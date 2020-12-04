@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `climbing_since` INT NULL,
   `goals` VARCHAR(200) NULL,
   `availability` VARCHAR(400) NULL,
-  `created_at` DATETIME NOT NULL,
+  `created_at` DATETIME NULL,
   `last_login` DATETIME NULL,
   `skill_level_id` INT NULL,
   `gear_id` INT NULL,
@@ -346,6 +346,6 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cragdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `favorite_beer`, `has_dog`, `profile_pic`, `other_pics`, `climbing_since`, `goals`, `availability`, `created_at`, `last_login`, `skill_level_id`, `gear_id`, `other_hobbies`, `age`, `password`, `security_answer`, `security_answer1`) VALUES (1, 'Timothy ', 'Laughlin', 'shakawithme', NULL, NULL, NULL, NULL, NULL, NULL, NULL, DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `favorite_beer`, `has_dog`, `profile_pic`, `other_pics`, `climbing_since`, `goals`, `availability`, `created_at`, `last_login`, `skill_level_id`, `gear_id`, `other_hobbies`, `age`, `password`, `security_answer`, `security_answer1`) VALUES (1, 'Timothy ', 'Laughlin', 'shakawithme', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 COMMIT;
