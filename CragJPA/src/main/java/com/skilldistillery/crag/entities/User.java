@@ -54,6 +54,7 @@ public class User {
 
 	private String password;
 
+	
 //	@Column(name = "recent_grade")
 //	private String recentGrade;
 
