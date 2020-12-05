@@ -377,6 +377,16 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `user_has_event`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cragdb`;
+INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `user_climb_type`
 -- -----------------------------------------------------
 START TRANSACTION;
