@@ -34,7 +34,7 @@ public class User {
 	@Column(name = "profile_pic")
 	private String profilePic;
 
-	@Column(name = "clibing_since")
+	@Column(name = "climbing_since")
 	private int climbingSince;
 
 	private String goals;
@@ -54,8 +54,8 @@ public class User {
 
 	private String password;
 
-	@Column(name = "recent_grade")
-	private String reentGrade;
+//	@Column(name = "recent_grade")
+//	private String recentGrade;
 
 //	CONSTRUCTOR
 	public User() {
@@ -166,13 +166,13 @@ public class User {
 		this.password = password;
 	}
 
-	public String getReentGrade() {
-		return reentGrade;
-	}
-
-	public void setReentGrade(String reentGrade) {
-		this.reentGrade = reentGrade;
-	}
+//	public String getReentGrade() {
+//		return reentGrade;
+//	}
+//
+//	public void setReentGrade(String reentGrade) {
+//		this.reentGrade = reentGrade;
+//	}
 
 //	GETTERS AND SETTERS
 	public int getId() {
@@ -197,7 +197,7 @@ public class User {
 				+ ", favortieBeer=" + favortieBeer + ", hasDog=" + hasDog + ", profilePic=" + profilePic
 				+ ", climbingSince=" + climbingSince + ", goals=" + goals + ", availability=" + availability
 				+ ", createdAt=" + createdAt + ", lastLogin=" + lastLogin + ", otherHobbies=" + otherHobbies
-				+ ", birthdate=" + birthdate + ", password=" + password + ", reentGrade=" + reentGrade + "]";
+				+ ", birthdate=" + birthdate + ", password=" + password + ", reentGrade=";
 	}
 
 	@Override
