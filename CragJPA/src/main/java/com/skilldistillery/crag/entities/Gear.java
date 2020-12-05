@@ -1,33 +1,28 @@
 package com.skilldistillery.crag.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="climbing_area")
-public class ClimbingArea {
+public class Gear {
 	
 	//Fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private String description;
-	@Column(name="img_url")
-	private String imgUrl;
 	
-//	private Location location;
 	
+//	private User user;
+
 	//Constructor
-	public ClimbingArea() {
+	
+	public Gear() {
 		super();
 	}
-
-	//Getters/Setters
+	
 	public int getId() {
 		return id;
 	}
@@ -44,30 +39,14 @@ public class ClimbingArea {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getImgUrl() {
-		return imgUrl;
-	}
-
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
-	}
-
-//	public Location getLocation() {
-//		return location;
+//	public User getUser() {
+//		return user;
 //	}
 //
-//	public void setLocation(Location location) {
-//		this.location = location;
+//	public void setUser(User user) {
+//		this.user = user;
 //	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -84,7 +63,7 @@ public class ClimbingArea {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ClimbingArea other = (ClimbingArea) obj;
+		Gear other = (Gear) obj;
 		if (id != other.id)
 			return false;
 		return true;
@@ -92,8 +71,9 @@ public class ClimbingArea {
 
 	@Override
 	public String toString() {
-		return "ClimbingArea [id=" + id + ", name=" + name + ", description=" + description + ", imgUrl=" + imgUrl
-				+ "]";
+		return "Gear [id=" + id + ", name=" + name + "]";
 	}
+
 	
+
 }

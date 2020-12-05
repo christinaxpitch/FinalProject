@@ -1,7 +1,6 @@
 package com.skilldistillery.crag.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,11 +12,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ClibmingAreaTest {
-	
+class GearTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private ClimbingArea ca;
+	private Gear gear;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,20 +31,19 @@ class ClibmingAreaTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		ca = em.find(ClimbingArea.class, 1);
+		gear = em.find(Gear.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		ca = null;
+		gear = null;
 	}
 
 	@Test
 	void test() {
-		assertNotNull(ca);
-		assertEquals("Gregory Canyon", ca.getName());
-		assertEquals("https://cdn2.apstatic.com/photos/climb/111418381_medium_1494361874_topo.jpg", ca.getImgUrl());
+		assertNotNull(gear);
+		assertEquals("Grigri, 9.5mm Rope, chalk, helmet, 10 quickdraws, 120 cm sling, 5 locking carabiners, crash pad", gear.getName());
 	}
 
 }
