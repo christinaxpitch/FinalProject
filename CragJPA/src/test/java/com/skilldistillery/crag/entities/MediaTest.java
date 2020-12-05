@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-class LocationTest {
+class MediaTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Location location;
+	private Media media;
 	
 	
 	@BeforeAll
@@ -33,22 +33,24 @@ class LocationTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		location = em.find(Location.class, 1);
+		media = em.find(Media.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		location = null;
+		media = null;
 	}
 
 	
-	@Test
-	void test1() {
-		assertNotNull(location);
-		assertEquals("Boulder", location.getCity());
-		assertEquals("CO", location.getState());
-		
-	}
+//	@Test
+//	void test1() {
+//		assertNotNull(media);
+//		assertEquals("", );
+//		assertEquals("", );
+//		
+//	}
+	
+	
 
 }
