@@ -387,6 +387,17 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `favorite_user`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cragdb`;
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 2);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (2, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `user_climb_type`
 -- -----------------------------------------------------
 START TRANSACTION;
