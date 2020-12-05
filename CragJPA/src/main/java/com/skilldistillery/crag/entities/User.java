@@ -48,6 +48,8 @@ public class User {
 	private String goals;
 
 	private String availability;
+	
+	private String role;
 
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
@@ -94,6 +96,8 @@ public class User {
 	
 	@OneToMany(mappedBy = "listOfUsersWhoHaveFavoritedMe")
 	private List<User> listOfUsersWhoHaveFavoritedMe;
+	
+	private Boolean enabled;
 	
 	
 //	CONSTRUCTOR
@@ -204,6 +208,8 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
 
 //	public String getReentGrade() {
 //		return reentGrade;
@@ -213,7 +219,23 @@ public class User {
 //		this.reentGrade = reentGrade;
 //	}
 
-//	GETTERS AND SETTERS
+public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	//	GETTERS AND SETTERS
 	public int getId() {
 		return id;
 	}
@@ -233,10 +255,14 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", favortieBeer=" + favoriteBeer + ", hasDog=" + hasDog + ", profilePic=" + profilePic
-				+ ", climbingSince=" + climbingSince + ", goals=" + goals + ", availability=" + availability
-				+ ", createdAt=" + createdAt + ", lastLogin=" + lastLogin + ", otherHobbies=" + otherHobbies
-				+ ", birthdate=" + birthdate + ", password=" + password + ", reentGrade=";
+				+ ", favoriteBeer=" + favoriteBeer + ", hasDog=" + hasDog + ", profilePic=" + profilePic
+				+ ", climbingSince=" + climbingSince + ", goals=" + goals + ", availability=" + availability + ", role="
+				+ role + ", createdAt=" + createdAt + ", lastLogin=" + lastLogin + ", otherHobbies=" + otherHobbies
+				+ ", birthdate=" + birthdate + ", password=" + password + ", climbTypes=" + climbTypes
+				+ ", favoriteAreaList=" + favoriteAreaList + ", location=" + location + ", createdEvents="
+				+ createdEvents + ", attendedEvents=" + attendedEvents + ", gearList=" + gearList
+				+ ", myListOfFavoriteUsers=" + myListOfFavoriteUsers + ", listOfUsersWhoHaveFavoritedMe="
+				+ listOfUsersWhoHaveFavoritedMe + ", enabled=" + enabled + "]";
 	}
 
 	@Override
