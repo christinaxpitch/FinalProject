@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-class LocationTest {
+class ClimbTypeTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Location location;
+	private ClimbType type;
 	
 	
 	@BeforeAll
@@ -33,21 +33,26 @@ class LocationTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		location = em.find(Location.class, 1);
+		type = em.find(ClimbType.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		location = null;
+		type = null;
 	}
 
 	
 	@Test
-	void test1() {
-		assertNotNull(location);
-		assertEquals("Boulder", location.getCity());
-		assertEquals("CO", location.getState());
+	void test() {
+		assertNotNull(type);
+		assertEquals("sport", type.getName());
+		assertEquals("Sport climbing is a form of rock climbing that may rely on permanent "
+				+ "anchors fixed to the rock for protection, "
+				+ "in which a rope that is "
+				+ "attached to the climber is clipped into the anchors to arrest a fall, or "
+				+ "that involves climbing short "
+				+ "distances with a crash pad underneath as protection", type.getDescription());
 		
 	}
 

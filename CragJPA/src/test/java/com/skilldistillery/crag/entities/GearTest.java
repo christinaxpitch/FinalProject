@@ -12,17 +12,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-class LocationTest {
-
+class GearTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Location location;
-	
-	
+	private Gear gear;
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("CragPU");
+		
 	}
 
 	@AfterAll
@@ -33,22 +31,19 @@ class LocationTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		location = em.find(Location.class, 1);
+		gear = em.find(Gear.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		location = null;
+		gear = null;
 	}
 
-	
 	@Test
-	void test1() {
-		assertNotNull(location);
-		assertEquals("Boulder", location.getCity());
-		assertEquals("CO", location.getState());
-		
+	void test() {
+		assertNotNull(gear);
+		assertEquals("Grigri, 9.5mm Rope, chalk, helmet, 10 quickdraws, 120 cm sling, 5 locking carabiners, crash pad", gear.getName());
 	}
 
 }

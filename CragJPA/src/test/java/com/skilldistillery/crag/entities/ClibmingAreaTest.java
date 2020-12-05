@@ -1,6 +1,7 @@
 package com.skilldistillery.crag.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,17 +13,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-class LocationTest {
-
+class ClibmingAreaTest {
+	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Location location;
-	
-	
+	private ClimbingArea ca;
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("CragPU");
+		
 	}
 
 	@AfterAll
@@ -33,22 +33,20 @@ class LocationTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		location = em.find(Location.class, 1);
+		ca = em.find(ClimbingArea.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		location = null;
+		ca = null;
 	}
 
-	
 	@Test
-	void test1() {
-		assertNotNull(location);
-		assertEquals("Boulder", location.getCity());
-		assertEquals("CO", location.getState());
-		
+	void test() {
+		assertNotNull(ca);
+		assertEquals("Gregory Canyon", ca.getName());
+		assertEquals("https://cdn2.apstatic.com/photos/climb/111418381_medium_1494361874_topo.jpg", ca.getImgUrl());
 	}
 
 }
