@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `has_dog` TINYINT(1) NULL DEFAULT 1,
   `profile_pic` VARCHAR(5000) NULL,
   `climbing_since` INT NULL,
-  `goals` VARCHAR(200) NULL,
+  `goals` VARCHAR(1000) NULL,
   `availability` VARCHAR(400) NULL,
   `created_at` DATETIME NULL,
   `last_login` DATETIME NULL,
@@ -307,7 +307,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cragdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `favorite_beer`, `has_dog`, `profile_pic`, `climbing_since`, `goals`, `availability`, `created_at`, `last_login`, `other_hobbies`, `birthdate`, `password`) VALUES (1, 'Timothy ', 'Laughlin', 'shakawithme', 'pink wine', 1, NULL, 2012, 'I am trying to climb once a week. Indoors or outdoors.', 'Sundays', NULL, NULL, 'Reading sci fi books, dancing to boy bands, and cooking spaghettios.', '1991-01-13', 'cooper');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `favorite_beer`, `has_dog`, `profile_pic`, `climbing_since`, `goals`, `availability`, `created_at`, `last_login`, `other_hobbies`, `birthdate`, `password`) VALUES (1, 'Timothy', 'Laughlin', 'shakawithme', 'pink wine', 1, NULL, 2012, 'I am trying to climb once a week. Indoors or outdoors.', 'Sundays', NULL, NULL, 'Reading sci fi books, dancing to boy bands, and cooking spaghettios.', '1991-01-13', 'cooper');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `favorite_beer`, `has_dog`, `profile_pic`, `climbing_since`, `goals`, `availability`, `created_at`, `last_login`, `other_hobbies`, `birthdate`, `password`) VALUES (2, 'Christina', 'Pitch', 'xtina00', 'Seattle Cider Company Dry Cider', 0, NULL, 2014, 'I have been transitioning from the indoor gyms to outdoors the past year. I\'m looking for someone who likes to go outside once or twice a month, and maybe someone who wants to set up some crimping routes because I am trying to get better at crimp holds!', 'Sundays and Tuesdays', NULL, NULL, 'Cooking vegan food, making memes, snowboarding, and suduko. ', '1994-04-20', 'christina');
 
 COMMIT;
 
@@ -328,6 +329,7 @@ COMMIT;
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `location` (`id`, `city`, `state`, `zip`, `user_id`, `street_address`, `hike_to_access`) VALUES (1, 'Boulder', 'CO', 80302, 1, 'Gregory Canyon Trailhead, Gregory Canyon Rd', 1);
+INSERT INTO `location` (`id`, `city`, `state`, `zip`, `user_id`, `street_address`, `hike_to_access`) VALUES (2, 'Golden', 'CO', 80401, 1, '18785 W 44th Ave', 1);
 
 COMMIT;
 
@@ -338,6 +340,7 @@ COMMIT;
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `climbing_area` (`id`, `name`, `location_id`, `description`, `img_url`) VALUES (1, 'Gregory Canyon', 1, 'This is the northern-most section of the the Flatirons which may be lumped together to help you find your way here. Included in the area is the better known Amphitheatre and some of the less-well known crags here (like 3rd, 4th, 5th pinnacles). Apparently, according to Rossiter, there is even a granite crag in this canyon. One route from this canyon even made the cover shot of a Boulder non-climber publication.\n\nSome shade can be found at some of the crags for those seeking cooler cragging in the hotter months. None of these routes are long here.\n\nAccess can be most readily obtained by parking in or near the Gregory Canyon Trailhead. Parking is popular here and, as a result, limited. Note, parking here does cost for non-Boulder County registered vehicles. 2006 was still $3/day and $25/year. However, street parking nearby and parking at Chataqua (0.6 mi) is free.\n\nAlso, for those wandering around with little kids, this is bear and mountain lion territory. Be careful.\n\nThere is also significant poison ivy in the area for the sensitive.', 'https://cdn2.apstatic.com/photos/climb/111418381_medium_1494361874_topo.jpg');
+INSERT INTO `climbing_area` (`id`, `name`, `location_id`, `description`, `img_url`) VALUES (2, 'North Table Mountain/Golden Cliffs', 2, 'Sitting above Golden, this popular cliff band faces south & west so it makes for comfortable winter/cold weather rock climbing. Most routes here are tightly bolted and generally short (60 foot range), so a 50m rope and 10 quickdraws will be sufficient for most routes. Toproping routes is easy to do, with quick access to the top and bolts just below the top of the cliffs. Be careful though; the rock at the top can be loose in places. Make sure you\'re safe when setting up said toprope. There is only a single trail leaving from each of the two parking lots, and it takes an obvious course up the hill to the cliffs above. Walking this trail, beware of rattlesnakes in the summer and fall. At the point where the trail meets the cliff, you are on the far right (east) side of the cliffs. Also, this area sees a lot of use and some anchors are being severly worn by people running topropes directly through anchors. If you plan to toprope, please preserve the resources by using quickdraws or \'biners to run the rope through, and whenever possible rap off rather than lowering through the anchors.\n\nNote, as the years have gone by and the popularity of this area has increased, the rock has become polished in places...amazingly so in spots. In particular, warm days will increase this characteristic and leave the infrequent visitor feeling sandbagged at times. Beware.\n\nThe climbing access here has been preserved with an amazing cooperation of landowner (Mr. Peery), city of Golden, and organizations like AMC, RMFI, and the Access Fund. The area straddles land owned by Golden and Jefferson County Open Space. Note, the regulations will vary slightly as you cross properties.\n\nThere is a dumpster here; however, consider recycling your cans and bottles rather than filling landfills.\n\nNote, with time & popularity, some of the basalt here is getting quite polished, similar to limestone.', 'https://img.grouponcdn.com/deal/hSwgLCsFmJKew87NH44zuGo2X6Z/hS-2048x1229/v1/c700x420.jpg');
 
 COMMIT;
 
@@ -348,6 +351,17 @@ COMMIT;
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `user_id`, `created_at`) VALUES (1, 'Crags and Brews', 'A saturday morning group climb in Gregory Canyon. Post climb cooldown at Avery Brewery Company!', NULL, 1, '2021-05-01 08:30:00', 1, NULL);
+INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `user_id`, `created_at`) VALUES (2, 'C3 (CCube) Crag, Chalk, and Chat', 'Come join us on a group climb! We will meet up in the morning at North Table Mountain park (Golden Cliffs climbing area) and we plan to set up as many routes as we have attendees! Come hang out, meet some new friends, try a new route, and have some fun! We will meet up at the Golden Cliffs parking lot (the climbing access side) on the other side of the main entrance to North Table Mountain Park. See you soon!', NULL, 2, '2021-05-03 08:30:00', 1, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `message`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cragdb`;
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (1, 'Hi Christina! I just wanted to let you know that I saw we are interested in climbing in the same areas and also have Sunday\'s free to outdoor climb. Let me know if you would be interested in meeting up - I am pretty good at crimps and know a few good routes we can get you up to practice! PS: My dog is super cute, lol!!!', NULL, 1, 2);
 
 COMMIT;
 
