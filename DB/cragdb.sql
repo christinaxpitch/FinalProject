@@ -110,18 +110,18 @@ CREATE TABLE IF NOT EXISTS `event` (
   `img_url` VARCHAR(5000) NULL,
   `climbing_area_id` INT NOT NULL,
   `event_date` DATETIME NOT NULL,
-  `user_id` INT NOT NULL,
+  `created_by_user_id` INT NOT NULL,
   `created_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_events_climbing_area1_idx` (`climbing_area_id` ASC),
-  INDEX `fk_event_user1_idx` (`user_id` ASC),
+  INDEX `fk_event_user1_idx` (`created_by_user_id` ASC),
   CONSTRAINT `fk_events_climbing_area1`
     FOREIGN KEY (`climbing_area_id`)
     REFERENCES `climbing_area` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_event_user1`
-    FOREIGN KEY (`user_id`)
+    FOREIGN KEY (`created_by_user_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -350,8 +350,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cragdb`;
-INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `user_id`, `created_at`) VALUES (1, 'Crags and Brews', 'A saturday morning group climb in Gregory Canyon. Post climb cooldown at Avery Brewery Company!', NULL, 1, '2021-05-01 08:30:00', 1, NULL);
-INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `user_id`, `created_at`) VALUES (2, 'C3 (CCube) Crag, Chalk, and Chat', 'Come join us on a group climb! We will meet up in the morning at North Table Mountain park (Golden Cliffs climbing area) and we plan to set up as many routes as we have attendees! Come hang out, meet some new friends, try a new route, and have some fun! We will meet up at the Golden Cliffs parking lot (the climbing access side) on the other side of the main entrance to North Table Mountain Park. See you soon!', NULL, 2, '2021-05-03 08:30:00', 1, NULL);
+INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (1, 'Crags and Brews', 'A saturday morning group climb in Gregory Canyon. Post climb cooldown at Avery Brewery Company!', NULL, 1, '2021-05-01 08:30:00', 1, NULL);
+INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (2, 'C3 (CCube) Crag, Chalk, and Chat', 'Come join us on a group climb! We will meet up in the morning at North Table Mountain park (Golden Cliffs climbing area) and we plan to set up as many routes as we have attendees! Come hang out, meet some new friends, try a new route, and have some fun! We will meet up at the Golden Cliffs parking lot (the climbing access side) on the other side of the main entrance to North Table Mountain Park. See you soon!', NULL, 2, '2021-05-03 08:30:00', 1, NULL);
 
 COMMIT;
 
