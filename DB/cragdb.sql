@@ -36,7 +36,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   `other_hobbies` VARCHAR(150) NULL,
   `birthdate` DATE NULL,
   `password` VARCHAR(200) NULL,
-  `recent_grade` VARCHAR(20) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -49,7 +48,7 @@ DROP TABLE IF EXISTS `climb_type` ;
 CREATE TABLE IF NOT EXISTS `climb_type` (
   `id` INT NOT NULL,
   `name` VARCHAR(50) NULL,
-  `description` VARCHAR(200) NULL,
+  `description` VARCHAR(5000) NULL,
   `img_url` VARCHAR(5000) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -67,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   `zip` INT NULL,
   `user_id` INT NOT NULL,
   `street_address` VARCHAR(45) NULL,
+  `hike_to_access` TINYINT(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_location_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_location_user1`
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `climbing_area` (
   `id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `location_id` INT NOT NULL,
-  `description` VARCHAR(300) NULL,
+  `description` VARCHAR(5000) NULL,
   `img_url` VARCHAR(5000) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_climbing_area_location_idx` (`location_id` ASC),
@@ -162,7 +162,7 @@ DROP TABLE IF EXISTS `gear` ;
 
 CREATE TABLE IF NOT EXISTS `gear` (
   `id` INT NOT NULL,
-  `name` VARCHAR(50) NULL,
+  `name` VARCHAR(1000) NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`, `user_id`),
   INDEX `fk_gear_user1_idx` (`user_id` ASC),
@@ -307,6 +307,66 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cragdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `favorite_beer`, `has_dog`, `profile_pic`, `climbing_since`, `goals`, `availability`, `created_at`, `last_login`, `other_hobbies`, `birthdate`, `password`, `recent_grade`) VALUES (1, 'Timothy ', 'Laughlin', 'shakawithme', 'pink wine', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `favorite_beer`, `has_dog`, `profile_pic`, `climbing_since`, `goals`, `availability`, `created_at`, `last_login`, `other_hobbies`, `birthdate`, `password`) VALUES (1, 'Timothy ', 'Laughlin', 'shakawithme', 'pink wine', 1, NULL, 2012, 'I am trying to climb once a week. Indoors or outdoors.', 'Sundays', NULL, NULL, 'Reading sci fi books, dancing to boy bands, and cooking spaghettios.', '1991-01-13', 'cooper');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `climb_type`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cragdb`;
+INSERT INTO `climb_type` (`id`, `name`, `description`, `img_url`) VALUES (1, 'sport', 'Sport climbing is a form of rock climbing that may rely on permanent anchors fixed to the rock for protection, in which a rope that is attached to the climber is clipped into the anchors to arrest a fall, or that involves climbing short distances with a crash pad underneath as protection', 'https://uploads-ssl.webflow.com/5732511283fb5b4c17492b27/597926a1ed093500015cd8ab_FL_Mirsky_Rifle.png');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `location`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cragdb`;
+INSERT INTO `location` (`id`, `city`, `state`, `zip`, `user_id`, `street_address`, `hike_to_access`) VALUES (1, 'Boulder', 'CO', 80302, 1, 'Gregory Canyon Trailhead, Gregory Canyon Rd', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `climbing_area`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cragdb`;
+INSERT INTO `climbing_area` (`id`, `name`, `location_id`, `description`, `img_url`) VALUES (1, 'Gregory Canyon', 1, 'This is the northern-most section of the the Flatirons which may be lumped together to help you find your way here. Included in the area is the better known Amphitheatre and some of the less-well known crags here (like 3rd, 4th, 5th pinnacles). Apparently, according to Rossiter, there is even a granite crag in this canyon. One route from this canyon even made the cover shot of a Boulder non-climber publication.\n\nSome shade can be found at some of the crags for those seeking cooler cragging in the hotter months. None of these routes are long here.\n\nAccess can be most readily obtained by parking in or near the Gregory Canyon Trailhead. Parking is popular here and, as a result, limited. Note, parking here does cost for non-Boulder County registered vehicles. 2006 was still $3/day and $25/year. However, street parking nearby and parking at Chataqua (0.6 mi) is free.\n\nAlso, for those wandering around with little kids, this is bear and mountain lion territory. Be careful.\n\nThere is also significant poison ivy in the area for the sensitive.', 'https://cdn2.apstatic.com/photos/climb/111418381_medium_1494361874_topo.jpg');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `event`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cragdb`;
+INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `user_id`, `created_at`) VALUES (1, 'Crags and Brews', 'A saturday morning group climb in Gregory Canyon. Post climb cooldown at Avery Brewery Company!', NULL, 1, '2021-05-01 08:30:00', 1, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `gear`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cragdb`;
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (1, 'Grigri, 9.5mm Rope, chalk, helmet, 10 quickdraws, 120 cm sling, 5 locking carabiners, crash pad', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_climb_type`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cragdb`;
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (1, 1, '5.11a', 1);
 
 COMMIT;
