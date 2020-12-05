@@ -384,3 +384,13 @@ USE `cragdb`;
 INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (1, 1, '5.11a', 1);
 
 COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `favorite_area`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cragdb`;
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (1, 1);
+
+COMMIT;
