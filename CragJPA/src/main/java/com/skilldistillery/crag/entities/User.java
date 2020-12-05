@@ -2,12 +2,20 @@ package com.skilldistillery.crag.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -26,7 +34,7 @@ public class User {
 	private String username;
 
 	@Column(name = "favorite_beer")
-	private String favortieBeer;
+	private String favoriteBeer;
 
 	@Column(name = "has_dog")
 	private boolean hasDog;
@@ -54,10 +62,40 @@ public class User {
 
 	private String password;
 
-	
-//	@Column(name = "recent_grade")
-//	private String recentGrade;
+	@ManyToMany
+	@JoinTable(name="user_climb_type", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "climb_type_id"))
+	private List<ClimbType> climbTypes;
 
+	
+	@ManyToMany
+	@JoinTable(name="favorite_area", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "climbing_area_id"))
+	private List<ClimbingArea> favoriteAreaList;
+	
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "location_id")
+	private Location location;
+	
+	
+	@OneToMany(mappedBy = "createdBy")
+	List<Event> createdEvents;
+	
+	@ManyToMany
+	@JoinTable(name="user_has_event", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))
+	private List<Event> attendedEvents;
+
+	
+	@OneToMany(mappedBy = "user")
+	List<Gear> gearList;
+	
+	@OneToMany(mappedBy = "myListOfFavoriteUsers")
+	private List<User> myListOfFavoriteUsers;
+	
+	@OneToMany(mappedBy = "listOfUsersWhoHaveFavoritedMe")
+	private List<User> listOfUsersWhoHaveFavoritedMe;
+	
+	
 //	CONSTRUCTOR
 	public User() {
 		super();
@@ -79,12 +117,12 @@ public class User {
 		this.username = username;
 	}
 
-	public String getFavortieBeer() {
-		return favortieBeer;
+	public String getFavoriteBeer() {
+		return favoriteBeer;
 	}
 
-	public void setFavortieBeer(String favortieBeer) {
-		this.favortieBeer = favortieBeer;
+	public void setFavoriteBeer(String favoriteBeer) {
+		this.favoriteBeer = favoriteBeer;
 	}
 
 	public boolean isHasDog() {
@@ -195,7 +233,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", favortieBeer=" + favortieBeer + ", hasDog=" + hasDog + ", profilePic=" + profilePic
+				+ ", favortieBeer=" + favoriteBeer + ", hasDog=" + hasDog + ", profilePic=" + profilePic
 				+ ", climbingSince=" + climbingSince + ", goals=" + goals + ", availability=" + availability
 				+ ", createdAt=" + createdAt + ", lastLogin=" + lastLogin + ", otherHobbies=" + otherHobbies
 				+ ", birthdate=" + birthdate + ", password=" + password + ", reentGrade=";
@@ -222,5 +260,71 @@ public class User {
 			return false;
 		return true;
 	}
+
+	public List<ClimbType> getClimbTypes() {
+		return climbTypes;
+	}
+
+	public void setClimbTypes(List<ClimbType> climbTypes) {
+		this.climbTypes = climbTypes;
+	}
+
+	public List<ClimbingArea> getFavoriteAreaList() {
+		return favoriteAreaList;
+	}
+
+	public void setFavoriteAreaList(List<ClimbingArea> favoriteAreaList) {
+		this.favoriteAreaList = favoriteAreaList;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	public List<Event> getCreatedEvents() {
+		return createdEvents;
+	}
+
+	public void setCreatedEvents(List<Event> createdEvents) {
+		this.createdEvents = createdEvents;
+	}
+
+	public List<Event> getAttendedEvents() {
+		return attendedEvents;
+	}
+
+	public void setAttendedEvents(List<Event> attendedEvents) {
+		this.attendedEvents = attendedEvents;
+	}
+
+	public List<Gear> getGearList() {
+		return gearList;
+	}
+
+	public void setGearList(List<Gear> gearList) {
+		this.gearList = gearList;
+	}
+
+	public List<User> getMyListOfFavoriteUsers() {
+		return myListOfFavoriteUsers;
+	}
+
+	public void setMyListOfFavoriteUsers(List<User> myListOfFavoriteUsers) {
+		this.myListOfFavoriteUsers = myListOfFavoriteUsers;
+	}
+
+	public List<User> getListOfUsersWhoHaveFavoritedMe() {
+		return listOfUsersWhoHaveFavoritedMe;
+	}
+
+	public void setListOfUsersWhoHaveFavoritedMe(List<User> listOfUsersWhoHaveFavoritedMe) {
+		this.listOfUsersWhoHaveFavoritedMe = listOfUsersWhoHaveFavoritedMe;
+	}
+
+	
 
 }

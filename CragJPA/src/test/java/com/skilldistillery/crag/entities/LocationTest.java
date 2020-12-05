@@ -50,5 +50,13 @@ class LocationTest {
 		assertEquals("CO", location.getState());
 		
 	}
+	@Test
+	void test2() {
+		assertNotNull(location);
+//		assertTrue();
+		assertEquals("Boulder", location.getUsers().get(0).getLocation().getCity());
+//		assertEquals("CO", location.getState());
+		
+	}
 
 }

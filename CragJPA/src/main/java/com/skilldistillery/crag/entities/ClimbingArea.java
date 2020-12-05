@@ -1,10 +1,15 @@
 package com.skilldistillery.crag.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +25,13 @@ public class ClimbingArea {
 	@Column(name="img_url")
 	private String imgUrl;
 	
-//	private Location location;
+	@ManyToMany(mappedBy="favoriteAreaList")
+	private List<User> users;
+	
+	@ManyToOne
+	@JoinColumn(name="location_id")
+	private Location location;
+	
 	
 	//Constructor
 	public ClimbingArea() {
@@ -94,6 +105,22 @@ public class ClimbingArea {
 	public String toString() {
 		return "ClimbingArea [id=" + id + ", name=" + name + ", description=" + description + ", imgUrl=" + imgUrl
 				+ "]";
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 	
 }

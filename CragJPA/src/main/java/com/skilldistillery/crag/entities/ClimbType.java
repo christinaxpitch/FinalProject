@@ -1,10 +1,13 @@
 package com.skilldistillery.crag.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +25,10 @@ public class ClimbType {
 	@Column(name = "img_url")
 	private String imgUrl;
 
+	@ManyToMany(mappedBy = "climbTypes")
+	private List<User> userList;
+	
+	
 	public ClimbType() {
 		super();
 	}
@@ -83,6 +90,14 @@ public class ClimbType {
 	@Override
 	public String toString() {
 		return "ClimbType [id=" + id + ", name=" + name + ", description=" + description + ", imgUrl=" + imgUrl + "]";
+	}
+
+	public List<User> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
 	}
 
 	

@@ -1,12 +1,18 @@
 package com.skilldistillery.crag.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Event {
@@ -29,12 +35,21 @@ public class Event {
 	@Column(name = "event_date")
 	private LocalDateTime eventDate;
 	
-	@Column(name = "user_id")
-	private int userId;
+//	@Column(name = "user_id")
+//	private int userId;
 	
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "created_by_user_id")
+	private User createdBy;
+	
+	@ManyToMany(mappedBy = "attendedEvents")
+	private List<User> attendedUsers;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -75,13 +90,7 @@ public class Event {
 		this.eventDate = eventDate;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+	
 
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
@@ -102,22 +111,11 @@ public class Event {
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", eventName=" + eventName + ", description=" + description + ", imaUrl=" + imaUrl
-				+ ", climbingAreaId=" + climbingAreaId + ", eventDate=" + eventDate + ", userId=" + userId
-				+ ", createdAt=" + createdAt + "]";
+				+ ", climbingAreaId=" + climbingAreaId + ", eventDate=" + eventDate + ", createdAt=" + createdAt
+				+ ", createdBy=" + createdBy + "]";
 	}
 
-	public Event(int id, String eventName, String description, String imaUrl, int climbingAreaId,
-			LocalDateTime eventDate, int userId, LocalDateTime createdAt) {
-		super();
-		this.id = id;
-		this.eventName = eventName;
-		this.description = description;
-		this.imaUrl = imaUrl;
-		this.climbingAreaId = climbingAreaId;
-		this.eventDate = eventDate;
-		this.userId = userId;
-		this.createdAt = createdAt;
-	}
+	
 
 	public String getEventName() {
 		return eventName;
@@ -144,6 +142,14 @@ public class Event {
 	
 	public Event() {
 		super();
+	}
+
+	public User getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
 	}
 	
 }

@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Gear {
@@ -15,7 +17,9 @@ public class Gear {
 	private String name;
 	
 	
-//	private User user;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	//Constructor
 	
@@ -72,6 +76,14 @@ public class Gear {
 	@Override
 	public String toString() {
 		return "Gear [id=" + id + ", name=" + name + "]";
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	

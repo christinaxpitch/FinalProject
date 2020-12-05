@@ -48,5 +48,10 @@ class ClibmingAreaTest {
 		assertEquals("Gregory Canyon", ca.getName());
 		assertEquals("https://cdn2.apstatic.com/photos/climb/111418381_medium_1494361874_topo.jpg", ca.getImgUrl());
 	}
+	@Test
+	void test2() {
+		assertNotNull(ca);
+		assertEquals("Boulder", ca.getLocation().getCity());
+	}
 
 }

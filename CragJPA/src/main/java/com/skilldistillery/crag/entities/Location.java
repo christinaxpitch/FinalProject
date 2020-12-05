@@ -1,5 +1,7 @@
 package com.skilldistillery.crag.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Location {
@@ -21,13 +26,16 @@ public class Location {
 
 	private int zip;
 
-//	@ManyToOne
-//	@JoinColumn(name= "user_id")
-//	private User user;
+	@OneToMany(mappedBy = "location")
+	private List<User> users;
 
 	@Column(name = "street_address")
 	private String streetAddress;
 
+	@OneToMany
+	private List<ClimbingArea> climbingAreas;
+	
+	
 	public Location() {
 		super();
 	}
@@ -99,5 +107,27 @@ public class Location {
 			return false;
 		return true;
 	}
+
+	public List<ClimbingArea> getClimbingAreas() {
+		return climbingAreas;
+	}
+
+	public void setClimbingAreas(List<ClimbingArea> climbingAreas) {
+		this.climbingAreas = climbingAreas;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	
+
+	
+
+	
 
 }
