@@ -16,32 +16,6 @@ CREATE SCHEMA IF NOT EXISTS `cragdb` DEFAULT CHARACTER SET utf8 ;
 USE `cragdb` ;
 
 -- -----------------------------------------------------
--- Table `skill_level`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `skill_level` ;
-
-CREATE TABLE IF NOT EXISTS `skill_level` (
-  `id` INT NOT NULL,
-  `lead_climb` TINYINT(1) NOT NULL DEFAULT 1,
-  `recent_grade` VARCHAR(20) NOT NULL,
-  `climbing_type_id` INT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `gear`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `gear` ;
-
-CREATE TABLE IF NOT EXISTS `gear` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(50) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `user` ;
@@ -53,45 +27,30 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` VARCHAR(16) NOT NULL,
   `favorite_beer` VARCHAR(45) NULL,
   `has_dog` TINYINT(1) NULL DEFAULT 1,
-  `profile_pic` VARCHAR(100) NULL,
-  `other_pics` VARCHAR(1400) NULL,
+  `profile_pic` VARCHAR(5000) NULL,
   `climbing_since` INT NULL,
   `goals` VARCHAR(200) NULL,
   `availability` VARCHAR(400) NULL,
   `created_at` DATETIME NULL,
   `last_login` DATETIME NULL,
-  `skill_level_id` INT NULL,
-  `gear_id` INT NULL,
   `other_hobbies` VARCHAR(150) NULL,
-  `age` INT NULL,
+  `birthdate` DATE NULL,
   `password` VARCHAR(200) NULL,
-  `security_answer` VARCHAR(45) NULL,
-  `security_answer1` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_user_skill_level_idx` (`skill_level_id` ASC),
-  INDEX `fk_user_gear1_idx` (`gear_id` ASC),
-  CONSTRAINT `fk_user_skill_level`
-    FOREIGN KEY (`skill_level_id`)
-    REFERENCES `skill_level` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_gear1`
-    FOREIGN KEY (`gear_id`)
-    REFERENCES `gear` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `recent_grade` VARCHAR(20) NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `climbing_area`
+-- Table `climb_type`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `climbing_area` ;
+DROP TABLE IF EXISTS `climb_type` ;
 
-CREATE TABLE IF NOT EXISTS `climbing_area` (
+CREATE TABLE IF NOT EXISTS `climb_type` (
   `id` INT NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  `location_id` INT NOT NULL,
+  `name` VARCHAR(50) NULL,
+  `description` VARCHAR(200) NULL,
+  `img_url` VARCHAR(5000) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -107,48 +66,63 @@ CREATE TABLE IF NOT EXISTS `location` (
   `state` CHAR(2) NULL,
   `zip` INT NULL,
   `user_id` INT NOT NULL,
-  `climbing_area_id` INT NOT NULL,
+  `street_address` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_location_user1_idx` (`user_id` ASC),
-  INDEX `fk_location_climbing_area1_idx` (`climbing_area_id` ASC),
   CONSTRAINT `fk_location_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_location_climbing_area1`
-    FOREIGN KEY (`climbing_area_id`)
-    REFERENCES `climbing_area` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `events`
+-- Table `climbing_area`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `events` ;
+DROP TABLE IF EXISTS `climbing_area` ;
 
-CREATE TABLE IF NOT EXISTS `events` (
+CREATE TABLE IF NOT EXISTS `climbing_area` (
   `id` INT NOT NULL,
-  `event_name` VARCHAR(100) NOT NULL,
-  `climbing_area_id` INT NOT NULL,
-  `description` VARCHAR(300) NULL,
-  `photo` VARCHAR(300) NULL,
+  `name` VARCHAR(45) NOT NULL,
   `location_id` INT NOT NULL,
-  `climbing_area_id1` INT NOT NULL,
-  `event_date` DATETIME NOT NULL,
-  PRIMARY KEY (`id`, `location_id`, `climbing_area_id1`),
-  INDEX `fk_events_location1_idx` (`location_id` ASC),
-  INDEX `fk_events_climbing_area1_idx` (`climbing_area_id1` ASC),
-  CONSTRAINT `fk_events_location1`
+  `description` VARCHAR(300) NULL,
+  `img_url` VARCHAR(5000) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_climbing_area_location_idx` (`location_id` ASC),
+  CONSTRAINT `fk_climbing_area_location`
     FOREIGN KEY (`location_id`)
     REFERENCES `location` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `event`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `event` ;
+
+CREATE TABLE IF NOT EXISTS `event` (
+  `id` INT NOT NULL,
+  `event_name` VARCHAR(100) NOT NULL,
+  `description` TEXT NULL,
+  `img_url` VARCHAR(5000) NULL,
+  `climbing_area_id` INT NOT NULL,
+  `event_date` DATETIME NOT NULL,
+  `user_id` INT NOT NULL,
+  `created_at` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_events_climbing_area1_idx` (`climbing_area_id` ASC),
+  INDEX `fk_event_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_events_climbing_area1`
-    FOREIGN KEY (`climbing_area_id1`)
+    FOREIGN KEY (`climbing_area_id`)
     REFERENCES `climbing_area` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_event_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -162,124 +136,54 @@ DROP TABLE IF EXISTS `message` ;
 CREATE TABLE IF NOT EXISTS `message` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `message_body` VARCHAR(5000) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `favorited_user`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `favorited_user` ;
-
-CREATE TABLE IF NOT EXISTS `favorited_user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NULL,
-  `enabled` TINYINT(1) NULL DEFAULT 1,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `favorited_area`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `favorited_area` ;
-
-CREATE TABLE IF NOT EXISTS `favorited_area` (
-  `id` INT NOT NULL,
-  `enabled` TINYINT(1) NULL,
-  `climbing_area_id` INT NOT NULL,
+  `created_at` DATETIME NULL,
+  `sender_id` INT NOT NULL,
+  `receiver_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_favorite_area_climbing_area1_idx` (`climbing_area_id` ASC),
-  CONSTRAINT `fk_favorite_area_climbing_area1`
-    FOREIGN KEY (`climbing_area_id`)
-    REFERENCES `climbing_area` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `user_has_message`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_has_message` ;
-
-CREATE TABLE IF NOT EXISTS `user_has_message` (
-  `user_id` INT NOT NULL,
-  `message_id` INT NOT NULL,
-  PRIMARY KEY (`user_id`, `message_id`),
-  INDEX `fk_user_has_message_message1_idx` (`message_id` ASC),
-  INDEX `fk_user_has_message_user1_idx` (`user_id` ASC),
-  CONSTRAINT `fk_user_has_message_user1`
-    FOREIGN KEY (`user_id`)
+  INDEX `fk_message_user1_idx` (`sender_id` ASC),
+  INDEX `fk_message_user2_idx` (`receiver_id` ASC),
+  CONSTRAINT `fk_message_user1`
+    FOREIGN KEY (`sender_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_has_message_message1`
-    FOREIGN KEY (`message_id`)
-    REFERENCES `message` (`id`)
+  CONSTRAINT `fk_message_user2`
+    FOREIGN KEY (`receiver_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `user_has_favorite_area`
+-- Table `gear`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_has_favorite_area` ;
+DROP TABLE IF EXISTS `gear` ;
 
-CREATE TABLE IF NOT EXISTS `user_has_favorite_area` (
+CREATE TABLE IF NOT EXISTS `gear` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(50) NULL,
   `user_id` INT NOT NULL,
-  `favorite_area_id` INT NOT NULL,
-  PRIMARY KEY (`user_id`, `favorite_area_id`),
-  INDEX `fk_user_has_favorite_area_favorite_area1_idx` (`favorite_area_id` ASC),
-  INDEX `fk_user_has_favorite_area_user1_idx` (`user_id` ASC),
-  CONSTRAINT `fk_user_has_favorite_area_user1`
+  PRIMARY KEY (`id`, `user_id`),
+  INDEX `fk_gear_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_gear_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_has_favorite_area_favorite_area1`
-    FOREIGN KEY (`favorite_area_id`)
-    REFERENCES `favorited_area` (`id`)
-    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `user_has_favorite_user`
+-- Table `user_has_event`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_has_favorite_user` ;
+DROP TABLE IF EXISTS `user_has_event` ;
 
-CREATE TABLE IF NOT EXISTS `user_has_favorite_user` (
+CREATE TABLE IF NOT EXISTS `user_has_event` (
   `user_id` INT NOT NULL,
-  `favorite_user_id` INT NOT NULL,
-  PRIMARY KEY (`user_id`, `favorite_user_id`),
-  INDEX `fk_user_has_favorite_user_favorite_user1_idx` (`favorite_user_id` ASC),
-  INDEX `fk_user_has_favorite_user_user1_idx` (`user_id` ASC),
-  CONSTRAINT `fk_user_has_favorite_user_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_has_favorite_user_favorite_user1`
-    FOREIGN KEY (`favorite_user_id`)
-    REFERENCES `favorited_user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `user_has_events`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_has_events` ;
-
-CREATE TABLE IF NOT EXISTS `user_has_events` (
-  `user_id` INT NOT NULL,
-  `events_id` INT NOT NULL,
-  PRIMARY KEY (`user_id`, `events_id`),
-  INDEX `fk_user_has_events_events1_idx` (`events_id` ASC),
+  `event_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `event_id`),
+  INDEX `fk_user_has_events_events1_idx` (`event_id` ASC),
   INDEX `fk_user_has_events_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_user_has_events_user1`
     FOREIGN KEY (`user_id`)
@@ -287,31 +191,31 @@ CREATE TABLE IF NOT EXISTS `user_has_events` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_has_events_events1`
-    FOREIGN KEY (`events_id`)
-    REFERENCES `events` (`id`)
+    FOREIGN KEY (`event_id`)
+    REFERENCES `event` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `climbing_area_has_user`
+-- Table `favorite_user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `climbing_area_has_user` ;
+DROP TABLE IF EXISTS `favorite_user` ;
 
-CREATE TABLE IF NOT EXISTS `climbing_area_has_user` (
-  `climbing_area_id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `favorite_user` (
   `user_id` INT NOT NULL,
-  PRIMARY KEY (`climbing_area_id`, `user_id`),
-  INDEX `fk_climbing_area_has_user_user1_idx` (`user_id` ASC),
-  INDEX `fk_climbing_area_has_user_climbing_area1_idx` (`climbing_area_id` ASC),
-  CONSTRAINT `fk_climbing_area_has_user_climbing_area1`
-    FOREIGN KEY (`climbing_area_id`)
-    REFERENCES `climbing_area` (`id`)
+  `favorite_user_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `favorite_user_id`),
+  INDEX `fk_user_has_user_user2_idx` (`favorite_user_id` ASC),
+  INDEX `fk_user_has_user_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_user_has_user_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_climbing_area_has_user_user1`
-    FOREIGN KEY (`user_id`)
+  CONSTRAINT `fk_user_has_user_user2`
+    FOREIGN KEY (`favorite_user_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -319,14 +223,71 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `password_recovery`
+-- Table `user_climb_type`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `password_recovery` ;
+DROP TABLE IF EXISTS `user_climb_type` ;
 
-CREATE TABLE IF NOT EXISTS `password_recovery` (
-  `id` INT NOT NULL,
-  `security_quesiton` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
+CREATE TABLE IF NOT EXISTS `user_climb_type` (
+  `user_id` INT NOT NULL,
+  `climb_type_id` INT NOT NULL,
+  `recent_grade` VARCHAR(20) NULL,
+  `lead_climb` TINYINT(1) NULL DEFAULT 1,
+  PRIMARY KEY (`user_id`, `climb_type_id`),
+  INDEX `fk_user_has_climb_type_climb_type1_idx` (`climb_type_id` ASC),
+  INDEX `fk_user_has_climb_type_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_user_has_climb_type_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_has_climb_type_climb_type1`
+    FOREIGN KEY (`climb_type_id`)
+    REFERENCES `climb_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `favorite_area`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `favorite_area` ;
+
+CREATE TABLE IF NOT EXISTS `favorite_area` (
+  `user_id` INT NOT NULL,
+  `climbing_area_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `climbing_area_id`),
+  INDEX `fk_user_has_climbing_area_climbing_area1_idx` (`climbing_area_id` ASC),
+  INDEX `fk_user_has_climbing_area_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_user_has_climbing_area_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_has_climbing_area_climbing_area1`
+    FOREIGN KEY (`climbing_area_id`)
+    REFERENCES `climbing_area` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `media`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `media` ;
+
+CREATE TABLE IF NOT EXISTS `media` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `media_url` VARCHAR(5000) NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_media_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_media_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
@@ -346,6 +307,6 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cragdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `favorite_beer`, `has_dog`, `profile_pic`, `other_pics`, `climbing_since`, `goals`, `availability`, `created_at`, `last_login`, `skill_level_id`, `gear_id`, `other_hobbies`, `age`, `password`, `security_answer`, `security_answer1`) VALUES (1, 'Timothy ', 'Laughlin', 'shakawithme', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `favorite_beer`, `has_dog`, `profile_pic`, `climbing_since`, `goals`, `availability`, `created_at`, `last_login`, `other_hobbies`, `birthdate`, `password`, `recent_grade`) VALUES (1, 'Timothy ', 'Laughlin', 'shakawithme', 'pink wine', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 COMMIT;
