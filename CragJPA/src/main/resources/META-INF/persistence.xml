@@ -9,6 +9,13 @@
     </provider>
     
     <class>com.skilldistillery.crag.entities.User</class>
+    <class>com.skilldistillery.crag.entities.Location</class>
+    <class>com.skilldistillery.crag.entities.Message</class>
+    <class>com.skilldistillery.crag.entities.Event</class>
+    <class>com.skilldistillery.crag.entities.ClimbingArea</class>
+    <class>com.skilldistillery.crag.entities.Media</class>
+    <class>com.skilldistillery.crag.entities.Gear</class>
+    <class>com.skilldistillery.crag.entities.ClimbType</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cragdb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />
