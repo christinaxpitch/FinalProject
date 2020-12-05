@@ -16,6 +16,22 @@ CREATE SCHEMA IF NOT EXISTS `cragdb` DEFAULT CHARACTER SET utf8 ;
 USE `cragdb` ;
 
 -- -----------------------------------------------------
+-- Table `location`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `location` ;
+
+CREATE TABLE IF NOT EXISTS `location` (
+  `id` INT NOT NULL,
+  `city` VARCHAR(45) NULL,
+  `state` CHAR(2) NULL,
+  `zip` INT NULL,
+  `street_address` VARCHAR(45) NULL,
+  `hike_to_access` TINYINT(1) NULL DEFAULT 1,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `user` ;
@@ -36,7 +52,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `other_hobbies` VARCHAR(150) NULL,
   `birthdate` DATE NULL,
   `password` VARCHAR(200) NULL,
-  PRIMARY KEY (`id`))
+  `location_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_user_location1_idx` (`location_id` ASC),
+  CONSTRAINT `fk_user_location1`
+    FOREIGN KEY (`location_id`)
+    REFERENCES `location` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -51,29 +74,6 @@ CREATE TABLE IF NOT EXISTS `climb_type` (
   `description` VARCHAR(5000) NULL,
   `img_url` VARCHAR(5000) NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `location`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `location` ;
-
-CREATE TABLE IF NOT EXISTS `location` (
-  `id` INT NOT NULL,
-  `city` VARCHAR(45) NULL,
-  `state` CHAR(2) NULL,
-  `zip` INT NULL,
-  `user_id` INT NOT NULL,
-  `street_address` VARCHAR(45) NULL,
-  `hike_to_access` TINYINT(1) NULL DEFAULT 1,
-  PRIMARY KEY (`id`),
-  INDEX `fk_location_user1_idx` (`user_id` ASC),
-  CONSTRAINT `fk_location_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -303,12 +303,23 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `location`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cragdb`;
+INSERT INTO `location` (`id`, `city`, `state`, `zip`, `street_address`, `hike_to_access`) VALUES (1, 'Boulder', 'CO', 80302, 'Gregory Canyon Trailhead, Gregory Canyon Rd', 1);
+INSERT INTO `location` (`id`, `city`, `state`, `zip`, `street_address`, `hike_to_access`) VALUES (2, 'Golden', 'CO', 80401, '18785 W 44th Ave', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `user`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cragdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `favorite_beer`, `has_dog`, `profile_pic`, `climbing_since`, `goals`, `availability`, `created_at`, `last_login`, `other_hobbies`, `birthdate`, `password`) VALUES (1, 'Timothy', 'Laughlin', 'shakawithme', 'pink wine', 1, NULL, 2012, 'I am trying to climb once a week. Indoors or outdoors.', 'Sundays', NULL, NULL, 'Reading sci fi books, dancing to boy bands, and cooking spaghettios.', '1991-01-13', 'cooper');
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `favorite_beer`, `has_dog`, `profile_pic`, `climbing_since`, `goals`, `availability`, `created_at`, `last_login`, `other_hobbies`, `birthdate`, `password`) VALUES (2, 'Christina', 'Pitch', 'xtina00', 'Seattle Cider Company Dry Cider', 0, NULL, 2014, 'I have been transitioning from the indoor gyms to outdoors the past year. I\'m looking for someone who likes to go outside once or twice a month, and maybe someone who wants to set up some crimping routes because I am trying to get better at crimp holds!', 'Sundays and Tuesdays', NULL, NULL, 'Cooking vegan food, making memes, snowboarding, and suduko. ', '1994-04-20', 'christina');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `favorite_beer`, `has_dog`, `profile_pic`, `climbing_since`, `goals`, `availability`, `created_at`, `last_login`, `other_hobbies`, `birthdate`, `password`, `location_id`) VALUES (1, 'Timothy', 'Laughlin', 'shakawithme', 'pink wine', 1, NULL, 2012, 'I am trying to climb once a week. Indoors or outdoors.', 'Sundays', NULL, NULL, 'Reading sci fi books, dancing to boy bands, and cooking spaghettios.', '1991-01-13', 'cooper', 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `favorite_beer`, `has_dog`, `profile_pic`, `climbing_since`, `goals`, `availability`, `created_at`, `last_login`, `other_hobbies`, `birthdate`, `password`, `location_id`) VALUES (2, 'Christina', 'Pitch', 'xtina00', 'Seattle Cider Company Dry Cider', 0, NULL, 2014, 'I have been transitioning from the indoor gyms to outdoors the past year. I\'m looking for someone who likes to go outside once or twice a month, and maybe someone who wants to set up some crimping routes because I am trying to get better at crimp holds!', 'Sundays and Tuesdays', NULL, NULL, 'Cooking vegan food, making memes, snowboarding, and suduko. ', '1994-04-20', 'christina', 1);
 
 COMMIT;
 
@@ -319,17 +330,6 @@ COMMIT;
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `climb_type` (`id`, `name`, `description`, `img_url`) VALUES (1, 'sport', 'Sport climbing is a form of rock climbing that may rely on permanent anchors fixed to the rock for protection, in which a rope that is attached to the climber is clipped into the anchors to arrest a fall, or that involves climbing short distances with a crash pad underneath as protection', 'https://uploads-ssl.webflow.com/5732511283fb5b4c17492b27/597926a1ed093500015cd8ab_FL_Mirsky_Rifle.png');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `location`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `cragdb`;
-INSERT INTO `location` (`id`, `city`, `state`, `zip`, `user_id`, `street_address`, `hike_to_access`) VALUES (1, 'Boulder', 'CO', 80302, 1, 'Gregory Canyon Trailhead, Gregory Canyon Rd', 1);
-INSERT INTO `location` (`id`, `city`, `state`, `zip`, `user_id`, `street_address`, `hike_to_access`) VALUES (2, 'Golden', 'CO', 80401, 1, '18785 W 44th Ave', 1);
 
 COMMIT;
 
