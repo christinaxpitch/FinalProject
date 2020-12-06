@@ -36,9 +36,6 @@ public class Event {
 	@Column(name = "event_date")
 	private LocalDateTime eventDate;
 	
-//	@Column(name = "user_id")
-//	private int userId;
-	
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
