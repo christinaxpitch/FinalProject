@@ -1,5 +1,6 @@
 package com.skilldistillery.crag.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -26,7 +27,7 @@ public class ClimbingArea {
 	private String imgUrl;
 	
 	@ManyToMany(mappedBy="favoriteAreaList")
-	private List<User> users;
+	private List<User> Users;
 	
 	@ManyToOne
 	@JoinColumn(name="location_id")
@@ -108,11 +109,11 @@ public class ClimbingArea {
 	}
 
 	public List<User> getUsers() {
-		return users;
+		return Users;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUsers(List<User> Users) {
+		this.Users = Users;
 	}
 
 	public Location getLocation() {
@@ -121,6 +122,23 @@ public class ClimbingArea {
 
 	public void setLocation(Location location) {
 		this.location = location;
+	}
+
+	public void addUser(User user) {
+		if (Users == null) {
+			Users = new ArrayList<>();
+		}
+		if (!Users.contains(user)) {
+			Users.add(user);
+			if (user.getFavoriteAreaList() != null) {
+				user.addClimbingArea(this);
+			}
+		}
+	}
+	public void removeUser(User user) {
+		if (Users != null && Users.contains(user)) {
+			Users.removeClimbingArea(user);
+		}
 	}
 	
 }
