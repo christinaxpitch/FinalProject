@@ -417,3 +417,12 @@ USE `cragdb`;
 INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (1, 1);
 
 COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `media`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cragdb`;
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (1, 'https://i1.wp.com/lafabriqueverticale.com/wp-content/uploads/2019/09/crag-dog-acceptable-or-not-climbing.jpg?fit=720%2C338&ssl=1', 1);
+
+COMMIT;
