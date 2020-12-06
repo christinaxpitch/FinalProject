@@ -98,6 +98,7 @@ public class User {
 	@OneToMany(mappedBy = "listOfUsersWhoHaveFavoritedMe")
 	private List<User> listOfUsersWhoHaveFavoritedMe;
 	
+	
 	private Boolean enabled;
 	
 //	CONSTRUCTOR
@@ -156,9 +157,6 @@ public class User {
 			attendedEvents.remove(event);
 			event.removeUser(this);
 		}
-	}
-	public void removeLocation(Location location) {
-			location.removeUser(this);
 	}
 	
 	
