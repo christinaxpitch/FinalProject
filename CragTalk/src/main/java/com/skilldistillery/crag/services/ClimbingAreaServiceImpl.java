@@ -28,6 +28,12 @@ public class ClimbingAreaServiceImpl implements ClimbingAreaService {
 		return climbingAreaRepo.findByUser_Username(username);
 	}
 		
+	public List<ClimbingArea> favoritedIndex(String username) {
+		if (userRepo.findByFavoriteArea(username)==null) {
+			return null;
+		}
+		return climbingAreaRepo.findByFavoriteArea_Username(username);
+	}
 
 	@Override
 	public ClimbingArea show(String username, int caid) {
