@@ -105,71 +105,22 @@ public class User {
 		super();
 	}
 
-	
-	
-	public void addClimbType(ClimbType climbType) {
-		if (climbTypes == null) {
-			climbTypes = new ArrayList<>();
-		}
-		if (!climbTypes.contains(climbType)) {
-			climbTypes.add(climbType);
-			climbType.addUser(this);
-		}
+//	GETTERS AND SETTERS
+	public int getId() {
+		return id;
 	}
 
-	public void removeClimbType(ClimbType climbType) {
-		if (climbTypes != null && climbTypes.contains(climbType)) {
-			climbTypes.remove(climbType);
-			climbType.removeUser(this);
-		}
+	public void setId(int id) {
+		this.id = id;
 	}
-	
-	public void addClimbingArea(ClimbingArea climbingArea) {
-		if (favoriteAreaList == null) {
-			favoriteAreaList = new ArrayList<>();
-		}
-		if (!favoriteAreaList.contains(climbingArea)) {
-			favoriteAreaList.add(climbingArea);
-			climbingArea.addUser(this);
-		}
+
+	public String getFirstName() {
+		return firstName;
 	}
-	
-	public void removeClimbingArea(ClimbingArea climbingArea) {
-		if (favoriteAreaList != null && favoriteAreaList.contains(climbingArea)) {
-			favoriteAreaList.remove(climbingArea);
-			climbingArea.removeUser(this);
-		}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	
-	public void addEvent(Event event) {
-		if (attendedEvents == null) {
-			attendedEvents = new ArrayList<>();
-		}
-		if (!attendedEvents.contains(event)) {
-			attendedEvents.add(event);
-			event.addUser(this);
-		}
-	}
-	
-	public void removeEvent(Event event) {
-		if (attendedEvents != null && attendedEvents.contains(event)) {
-			attendedEvents.remove(event);
-			event.removeUser(this);
-		}
-	}
-	public void removeLocation(Location location) {
-			location.removeUser(this);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	public String getLastName() {
 		return lastName;
@@ -274,16 +225,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-
-//	public String getReentGrade() {
-//		return reentGrade;
-//	}
-//
-//	public void setReentGrade(String reentGrade) {
-//		this.reentGrade = reentGrade;
-//	}
 
 public String getRole() {
 		return role;
@@ -292,67 +233,6 @@ public String getRole() {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
-	public Boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	//	GETTERS AND SETTERS
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", favoriteBeer=" + favoriteBeer + ", hasDog=" + hasDog + ", profilePic=" + profilePic
-				+ ", climbingSince=" + climbingSince + ", goals=" + goals + ", availability=" + availability + ", role="
-				+ role + ", createdAt=" + createdAt + ", lastLogin=" + lastLogin + ", otherHobbies=" + otherHobbies
-				+ ", birthdate=" + birthdate + ", password=" + password + ", climbTypes=" + climbTypes
-				+ ", favoriteAreaList=" + favoriteAreaList + ", location=" + location + ", createdEvents="
-				+ createdEvents + ", attendedEvents=" + attendedEvents + ", gearList=" + gearList
-				+ ", myListOfFavoriteUsers=" + myListOfFavoriteUsers + ", listOfUsersWhoHaveFavoritedMe="
-				+ listOfUsersWhoHaveFavoritedMe + ", enabled=" + enabled + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
-
 	public List<ClimbType> getClimbTypes() {
 		return climbTypes;
 	}
@@ -416,7 +296,103 @@ public String getRole() {
 	public void setListOfUsersWhoHaveFavoritedMe(List<User> listOfUsersWhoHaveFavoritedMe) {
 		this.listOfUsersWhoHaveFavoritedMe = listOfUsersWhoHaveFavoritedMe;
 	}
-
 	
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+	
+	//Add/Remove Methods
+	public void addClimbType(ClimbType climbType) {
+		if (climbTypes == null) {
+			climbTypes = new ArrayList<>();
+		}
+		if (!climbTypes.contains(climbType)) {
+			climbTypes.add(climbType);
+			climbType.addUser(this);
+		}
+	}
+
+	public void removeClimbType(ClimbType climbType) {
+		if (climbTypes != null && climbTypes.contains(climbType)) {
+			climbTypes.remove(climbType);
+			climbType.removeUser(this);
+		}
+	}
+	
+	public void addClimbingArea(ClimbingArea climbingArea) {
+		if (favoriteAreaList == null) {
+			favoriteAreaList = new ArrayList<>();
+		}
+		if (!favoriteAreaList.contains(climbingArea)) {
+			favoriteAreaList.add(climbingArea);
+			climbingArea.addUser(this);
+		}
+	}
+	
+	public void removeClimbingArea(ClimbingArea climbingArea) {
+		if (favoriteAreaList != null && favoriteAreaList.contains(climbingArea)) {
+			favoriteAreaList.remove(climbingArea);
+			climbingArea.removeUser(this);
+		}
+	}
+	
+	public void addEvent(Event event) {
+		if (attendedEvents == null) {
+			attendedEvents = new ArrayList<>();
+		}
+		if (!attendedEvents.contains(event)) {
+			attendedEvents.add(event);
+			event.addUser(this);
+		}
+	}
+	
+	public void removeEvent(Event event) {
+		if (attendedEvents != null && attendedEvents.contains(event)) {
+			attendedEvents.remove(event);
+			event.removeUser(this);
+		}
+	}
+	public void removeLocation(Location location) {
+			location.removeUser(this);
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
+				+ ", favoriteBeer=" + favoriteBeer + ", hasDog=" + hasDog + ", profilePic=" + profilePic
+				+ ", climbingSince=" + climbingSince + ", goals=" + goals + ", availability=" + availability + ", role="
+				+ role + ", createdAt=" + createdAt + ", lastLogin=" + lastLogin + ", otherHobbies=" + otherHobbies
+				+ ", birthdate=" + birthdate + ", password=" + password + ", climbTypes=" + climbTypes
+				+ ", favoriteAreaList=" + favoriteAreaList + ", location=" + location + ", createdEvents="
+				+ createdEvents + ", attendedEvents=" + attendedEvents + ", gearList=" + gearList
+				+ ", myListOfFavoriteUsers=" + myListOfFavoriteUsers + ", listOfUsersWhoHaveFavoritedMe="
+				+ listOfUsersWhoHaveFavoritedMe + ", enabled=" + enabled + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 
 }
