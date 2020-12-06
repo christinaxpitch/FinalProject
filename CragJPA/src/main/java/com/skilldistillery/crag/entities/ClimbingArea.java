@@ -21,13 +21,16 @@ public class ClimbingArea {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String name;
+	
 	private String description;
+	
 	@Column(name="img_url")
 	private String imgUrl;
 	
 	@ManyToMany(mappedBy="favoriteAreaList")
-	private List<User> Users;
+	private List<User> users;
 	
 	@ManyToOne
 	@JoinColumn(name="location_id")
@@ -109,11 +112,11 @@ public class ClimbingArea {
 	}
 
 	public List<User> getUsers() {
-		return Users;
+		return users;
 	}
 
 	public void setUsers(List<User> Users) {
-		this.Users = Users;
+		this.users = Users;
 	}
 
 	public Location getLocation() {
@@ -125,20 +128,22 @@ public class ClimbingArea {
 	}
 
 	public void addUser(User user) {
-		if (Users == null) {
-			Users = new ArrayList<>();
+		if (users == null) {
+			users = new ArrayList<>();
 		}
-		if (!Users.contains(user)) {
-			Users.add(user);
+		if (!users.contains(user)) {
+			users.add(user);
 			if (user.getFavoriteAreaList() != null) {
 				user.addClimbingArea(this);
 			}
 		}
 	}
+	
 	public void removeUser(User user) {
-		if (Users != null && Users.contains(user)) {
-			Users.removeClimbingArea(user);
+		if (users != null && users.contains(user)) {
+			users.remove(user);
+			user.removeClimbingArea(this);
 		}
-	}
+	}	
 	
 }

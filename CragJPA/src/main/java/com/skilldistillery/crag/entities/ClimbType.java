@@ -1,5 +1,6 @@
 package com.skilldistillery.crag.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -100,6 +101,23 @@ public class ClimbType {
 		this.userList = userList;
 	}
 
+	public void addUser(User user) {
+		if (userList == null) {
+			userList = new ArrayList<>();
+		}
+		if (!userList.contains(user)) {
+			userList.add(user);
+			if (user.getFavoriteAreaList() != null) {
+				user.addClimbType(this);
+			}
+		}
+	}
 	
+	public void removeUser(User user) {
+		if (userList != null && userList.contains(user)) {
+			userList.remove(user);
+			user.removeClimbType(this);
+		}
+	}
 	
 }

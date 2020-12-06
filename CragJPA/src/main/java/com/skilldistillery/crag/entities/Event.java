@@ -1,6 +1,7 @@
 package com.skilldistillery.crag.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -151,5 +152,36 @@ public class Event {
 	public void setCreatedBy(User createdBy) {
 		this.createdBy = createdBy;
 	}
+	
+	
+	public void addUser(User user) {
+		if (attendedUsers == null) {
+			attendedUsers = new ArrayList<>();
+		}
+		if (!attendedUsers.contains(user)) {
+			attendedUsers.add(user);
+			if (user.getFavoriteAreaList() != null) {
+				user.addEvent(this);
+			}
+		}
+	}
+	
+	public void removeUser(User user) {
+		if (attendedUsers != null && attendedUsers.contains(user)) {
+			attendedUsers.remove(user);
+			user.removeEvent(this);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
