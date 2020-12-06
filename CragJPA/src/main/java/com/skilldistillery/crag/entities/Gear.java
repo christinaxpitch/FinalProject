@@ -14,6 +14,7 @@ public class Gear {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String name;
 	
 	
