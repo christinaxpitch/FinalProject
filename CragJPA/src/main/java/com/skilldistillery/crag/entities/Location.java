@@ -1,5 +1,6 @@
 package com.skilldistillery.crag.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -124,7 +125,23 @@ public class Location {
 		this.users = users;
 	}
 
-	
+	public void addUser(User user) {
+		if (users == null) {
+			users = new ArrayList<>();
+		}
+		if (!users.contains(user)) {
+			users.add(user);
+			if (user.getLocation() != null) {
+				user.addLocation(this);
+			}
+		}
+	}
+	public void removeUser(User user) {
+		if (users != null && users.contains(user)) {
+			users.remove(user);
+			user.removeLocation(this);
+		}
+	}
 
 	
 
