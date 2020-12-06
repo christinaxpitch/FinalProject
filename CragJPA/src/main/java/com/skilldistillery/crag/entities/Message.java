@@ -13,6 +13,8 @@ import org.hibernate.annotations.CreationTimestamp;
 @Entity
 public class Message {
 
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

@@ -102,6 +102,16 @@ class UserTest {
 		assertNotNull(user);
 		assertTrue(user.getMyListOfFavoriteUsers().size() > 0);
 		assertEquals("Timothy", user.getMyListOfFavoriteUsers().get(0).getFirstName());
-
 	}
+	
+	@Test
+	void test9() {
+		assertNotNull(user);
+		assertTrue(user.getMediaList().size() > 0);
+		assertEquals("", user.getMediaList().get(0).getMediaUrl());
+	}
+	
+	
+	
+	
 }
