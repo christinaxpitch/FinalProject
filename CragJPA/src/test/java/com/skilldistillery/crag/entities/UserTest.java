@@ -56,24 +56,21 @@ class UserTest {
 		assertNotNull(user);
 		assertTrue(user.getClimbTypes().size() > 0);
 		assertEquals("sport", user.getClimbTypes().get(0).getName());
-//		assertEquals("", user.getLastName());
-//		assertEquals("", user.getUsername());
+
 	}
 	@Test
 	void test3() {
 		assertNotNull(user);
 		assertTrue(user.getFavoriteAreaList().size() > 0);
 		assertEquals("Gregory Canyon", user.getFavoriteAreaList().get(0).getName());
-//		assertEquals("", user.getLastName());
-//		assertEquals("", user.getUsername());
+
 	}
 	@Test
 	void test4() {
 		assertNotNull(user);
 		assertTrue(user.getCreatedEvents().size() > 0);
 		assertEquals("Crags and Brews", user.getCreatedEvents().get(0).getEventName());
-//		assertEquals("", user.getLastName());
-//		assertEquals("", user.getUsername());
+
 	}
 
 	@Test
@@ -81,8 +78,7 @@ class UserTest {
 		assertNotNull(user);
 		assertTrue(user.getAttendedEvents().size() > 0);
 		assertEquals("Crags and Brews", user.getAttendedEvents().get(0).getEventName());
-//		assertEquals("", user.getLastName());
-//		assertEquals("", user.getUsername());
+
 	}
 	
 	@Test
@@ -90,25 +86,22 @@ class UserTest {
 		assertNotNull(user);
 		assertTrue(user.getGearList().size() > 0);
 		assertEquals("Grigri, 9.5mm Rope, chalk, helmet, 10 quickdraws, 120 cm sling, 5 locking carabiners, crash pad", user.getGearList().get(0).getName());
-//		assertEquals("", user.getLastName());
-//		assertEquals("", user.getUsername());
+
 	}
 	
 //	@Test
 //	void test7() {
 //		assertNotNull(user);
 //		assertTrue(user.getListOfUsersWhoHaveFavoritedMe().size() > 0);
-//		assertEquals("Christina", user.getListOfUsersWhoHaveFavoritedMe().get(0).getId());
-////		assertEquals("", user.getLastName());
-////		assertEquals("", user.getUsername());
+//		assertEquals("Timothy", user.getListOfUsersWhoHaveFavoritedMe().get(0).getFirstName());
+//
 //	}
-//	
-//	@Test
-//	void test8() {
-//		assertNotNull(user);
-//		assertTrue(user.getMyListOfFavoriteUsers().size() > 0);
-////		assertEquals("Christina", user.getMyListOfFavoriteUsers().get(0).get);
-////		assertEquals("", user.getLastName());
-////		assertEquals("", user.getUsername());
-//	}
+	
+	@Test
+	void test8() {
+		assertNotNull(user);
+		assertTrue(user.getMyListOfFavoriteUsers().size() > 0);
+		assertEquals("Timothy", user.getMyListOfFavoriteUsers().get(0).getFirstName());
+
+	}
 }
