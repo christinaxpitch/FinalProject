@@ -2,6 +2,7 @@ package com.skilldistillery.crag.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -99,12 +100,74 @@ public class User {
 	
 	private Boolean enabled;
 	
-	
 //	CONSTRUCTOR
 	public User() {
 		super();
 	}
 
+	
+	
+	public void addClimbType(ClimbType climbType) {
+		if (climbTypes == null) {
+			climbTypes = new ArrayList<>();
+		}
+		if (!climbTypes.contains(climbType)) {
+			climbTypes.add(climbType);
+			climbType.addUser(this);
+		}
+	}
+
+	public void removeClimbType(ClimbType climbType) {
+		if (climbTypes != null && climbTypes.contains(climbType)) {
+			climbTypes.remove(climbType);
+			climbType.removeUser(this);
+		}
+	}
+	
+	public void addClimbingArea(ClimbingArea climbingArea) {
+		if (favoriteAreaList == null) {
+			favoriteAreaList = new ArrayList<>();
+		}
+		if (!favoriteAreaList.contains(climbingArea)) {
+			favoriteAreaList.add(climbingArea);
+			climbingArea.addUser(this);
+		}
+	}
+	
+	public void removeClimbingArea(ClimbingArea climbingArea) {
+		if (favoriteAreaList != null && favoriteAreaList.contains(climbingArea)) {
+			favoriteAreaList.remove(climbingArea);
+			climbingArea.removeUser(this);
+		}
+	}
+	
+	public void addEvent(Event event) {
+		if (attendedEvents == null) {
+			attendedEvents = new ArrayList<>();
+		}
+		if (!attendedEvents.contains(event)) {
+			attendedEvents.add(event);
+			event.addUser(this);
+		}
+	}
+	
+	public void removeEvent(Event event) {
+		if (attendedEvents != null && attendedEvents.contains(event)) {
+			attendedEvents.remove(event);
+			event.removeUser(this);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public String getLastName() {
 		return lastName;
 	}

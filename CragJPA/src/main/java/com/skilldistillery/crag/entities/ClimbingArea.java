@@ -1,5 +1,6 @@
 package com.skilldistillery.crag.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,8 +21,11 @@ public class ClimbingArea {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String name;
+	
 	private String description;
+	
 	@Column(name="img_url")
 	private String imgUrl;
 	
@@ -71,14 +75,6 @@ public class ClimbingArea {
 		this.imgUrl = imgUrl;
 	}
 
-//	public Location getLocation() {
-//		return location;
-//	}
-//
-//	public void setLocation(Location location) {
-//		this.location = location;
-//	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -111,8 +107,8 @@ public class ClimbingArea {
 		return users;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUsers(List<User> Users) {
+		this.users = Users;
 	}
 
 	public Location getLocation() {
@@ -122,5 +118,24 @@ public class ClimbingArea {
 	public void setLocation(Location location) {
 		this.location = location;
 	}
+
+	public void addUser(User user) {
+		if (users == null) {
+			users = new ArrayList<>();
+		}
+		if (!users.contains(user)) {
+			users.add(user);
+			if (user.getFavoriteAreaList() != null) {
+				user.addClimbingArea(this);
+			}
+		}
+	}
+	
+	public void removeUser(User user) {
+		if (users != null && users.contains(user)) {
+			users.remove(user);
+			user.removeClimbingArea(this);
+		}
+	}	
 	
 }
