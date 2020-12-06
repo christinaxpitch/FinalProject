@@ -44,21 +44,45 @@ public class ClimbingAreaServiceImpl implements ClimbingAreaService {
 		if ( user == null) {
 			return null;
 		}
-		climbingArea.setUser(user);
+		climbingArea.addUser(user);
 		return climbingAreaRepo.saveAndFlush(climbingArea);
 	};
 	
 
 	@Override
 	public ClimbingArea update(String username, int tid, ClimbingArea climbingArea) {
-		// TODO Auto-generated method stub
-		return null;
+		if (userRepo.findByUsername(username) == null) {
+			return null;
+		}
+		Optional<ClimbingArea> climbingAreaOpt = climbingAreaRepo.findById(tid);
+		ClimbingArea managedClimbingArea = null;
+		if (climbingAreaOpt.isPresent()) {
+			managedClimbingArea = climbingAreaOpt.get();
+
+			managedClimbingArea.setDescription(climbingArea.getDescription());
+			managedClimbingArea.setImgUrl(climbingArea.getImgUrl());
+			managedClimbingArea.setLocation(climbingArea.getLocation());
+			managedClimbingArea.setName(climbingArea.getName());
+			managedClimbingArea.setUsers(climbingArea.getUsers());
+			}
+		climbingAreaRepo.saveAndFlush(managedClimbingArea);
+		return managedClimbingArea;
 	}
+	
 
 	@Override
 	public boolean destroy(String username, int caid) {
-		// TODO Auto-generated method stub
-		return false;
+		if (userRepo.findByUsername(username) == null) {
+			return false;
+		}
+		Optional<ClimbingArea> climbingAreaOpt =climbingAreaRepo.findById(caid);
+		ClimbingArea managedClimbingArea = null;
+		if (climbingAreaOpt.isPresent()) {
+			managedClimbingArea = climbingAreaOpt.get();
+			climbingAreaRepo.deleteById(managedClimbingArea.getId());
+		}
+
+		return true;
 	}
 
 }
