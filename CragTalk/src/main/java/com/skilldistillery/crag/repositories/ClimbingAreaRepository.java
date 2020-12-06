@@ -10,5 +10,6 @@ public interface ClimbingAreaRepository extends JpaRepository<ClimbingArea, Inte
 
 List<ClimbingArea> findByUser_Username(String username);
 
-List<ClimbingArea> findByFavoriteArea_Username(String username);
+List<ClimbingArea> findFavoriteAreaListByUsers_Username(String username);
+
 }

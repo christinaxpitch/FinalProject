@@ -32,7 +32,7 @@ public class ClimbingAreaServiceImpl implements ClimbingAreaService {
 		if (userRepo.findFavoriteAreaListByUsername(username)==null) {
 			return null;
 		}
-		return climbingAreaRepo.findByFavoriteArea_Username(username);
+		return climbingAreaRepo.findFavoriteAreaListByUsers_Username(username);
 	}
 
 	@Override

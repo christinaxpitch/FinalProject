@@ -108,7 +108,8 @@ class UserTest {
 	void test9() {
 		assertNotNull(user);
 		assertTrue(user.getMediaList().size() > 0);
-		assertEquals("", user.getMediaList().get(0).getMediaUrl());
+		assertEquals("https://i1.wp.com/lafabriquev"
+				+ "erticale.com/wp-content/uploads/2019/09/crag-dog-acceptable-or-not-climbing.jpg?fit=720%2C338&ssl=1", user.getMediaList().get(0).getMediaUrl());
 	}
 	
 	
