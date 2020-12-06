@@ -157,6 +157,9 @@ public class User {
 			event.removeUser(this);
 		}
 	}
+	public void removeLocation(Location location) {
+			location.removeUser(this);
+	}
 	
 	
 	

@@ -67,14 +67,26 @@ public class LocationServiceImpl implements LocationService {
 	@Override
 	public boolean destroy(String username, int locationId) {
 		boolean deleted = false;
-		Location locationToUpdate = locationRepo.findByUser_UsernameAndId(username, locationId);
-		locationToUpdate.setEnabled(false);
-		if(locationToUpdate.getEnabled() == false) {
-			return true;
+//		Location locationToUpdate = locationRepo.findByUser_UsernameAndId(username, locationId);
+//		locationToUpdate.setEnabled(false);
+//		if(locationToUpdate.getEnabled() == false) {
+//			return true;
+//		}
+//		else {
+//		return false;
+//		}
+		
+		if (userRepo.findByUsername(username) == null || locationRepo.findById(locationId) == null) {
+			return deleted;
 		}
-		else {
-		return false;
+		Optional<Location> locationOpt = locationRepo.findById(locationId);
+		Location location = null;
+		if(locationOpt.isPresent()) {
+			location = locationOpt.get();
+			locationRepo.delete(location);
+			deleted = true;
 		}
+		return deleted;
 	}
 
 }

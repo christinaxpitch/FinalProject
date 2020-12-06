@@ -132,7 +132,7 @@ public class Location {
 		if (!users.contains(user)) {
 			users.add(user);
 			if (user.getLocation() != null) {
-				user.addLocation(this);
+				user.setLocation(this);
 			}
 		}
 	}
@@ -142,9 +142,5 @@ public class Location {
 			user.removeLocation(this);
 		}
 	}
-
-	
-
-	
 
 }
