@@ -71,21 +71,14 @@ class UserRepositoryTest {
 		assertEquals("Timothy", users.get(0).getFirstName());
 	}
 
+	@Test
+	@DisplayName("this is to see if we can find users by their availability")
+	void test5() {
+		List<User> users = repo.findByLocation_City("Boulder");
+		assertNotNull(users);
+		assertTrue(users.size() > 0);
+		assertEquals("Timothy", users.get(0).getFirstName());
+	}
 
 
-////	List<User> findByGearList(String gear);
-//	@Test
-//	@DisplayName("this is to see if we can find users by their gear")
-//	void test5() {
-////		Gear gear = gearRepo.findByName("Grigri, 9.5mm Rope, chalk, helmet, 10 quickdraws, 120 cm sling, "
-////				+ "5 locking carabiners, crash pad");
-//		
-//		
-//		String gearList = "Grigri, 9.5mm Rope, chalk, helmet, "
-//				+ "10 quickdraws, 120 cm sling, "
-//				+ "5 locking carabiners, crash pad";
-//		assertNotNull(user);
-//		assertTrue(user.size() > 0);
-//		assertEquals(gearList, user.getGearList().get(0).getName());
-//	}
 }

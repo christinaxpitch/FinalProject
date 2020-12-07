@@ -34,6 +34,8 @@ public interface UserService {
     public List<Event> findEventsAttendedByUser(String username);
     
     List<Event> findEventsCreatedByUser (String username);
-	
+    
+    List <User> findUsersByLocation(String username, String cityName);
+    
 	
 }

@@ -20,4 +20,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 //	this would find the users list of gear
 //	List<User> findByGearList(String gearName);
 	
+	List <User> findByLocation_City(String city);
+	
 }

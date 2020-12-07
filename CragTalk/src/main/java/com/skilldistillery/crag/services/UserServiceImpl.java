@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.crag.entities.ClimbType;
 import com.skilldistillery.crag.entities.ClimbingArea;
@@ -12,6 +13,7 @@ import com.skilldistillery.crag.entities.Gear;
 import com.skilldistillery.crag.entities.User;
 import com.skilldistillery.crag.repositories.UserRepository;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	
@@ -155,15 +157,7 @@ public class UserServiceImpl implements UserService {
 		User user = userRepo.findByUsername(username);
 		return user.getMyListOfFavoriteUsers();
 	}
-
-//	@Override
-//	public List<User> findUsersByGearList(String username, String gear) {
-//		if (userRepo.findByUsername(username) == null) {
-//			return null;
-//		}
-//		
-//		return userRepo.findByGearList(gear);
-//	}
+	
 
 	@Override
 	public List<User> findUsersByFavoriteClimbingAreas(String username, ClimbingArea climbingArea) {
@@ -191,6 +185,15 @@ public class UserServiceImpl implements UserService {
 		User user = userRepo.findByUsername(username);
 		return user.getCreatedEvents();
 		
+	}
+
+	@Override
+	public List<User> findUsersByLocation(String username, String cityName) {
+		if (userRepo.findByUsername(username) == null) {
+			return null;
+		}
+		
+		return userRepo.findByLocation_City(cityName);
 	}
 
 }
