@@ -9,7 +9,9 @@ import com.skilldistillery.crag.entities.Message;
 
 public interface MessageRepository extends JpaRepository<Message, Integer> {
 	
-//	Message findBySenderIdAndReceiverId_UsernameAndId(String username, int messageId);
-//	Set<Message> findBy_Username(String username);
+	Message findBySenderIdAndReceiverId_UsernameAndId(String username, int messageId);
+	
+	Set<Message> findByReceiverId_Username(String username);
+
 
 }
