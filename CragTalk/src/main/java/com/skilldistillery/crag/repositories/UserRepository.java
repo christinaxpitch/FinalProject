@@ -18,17 +18,17 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	List <User> findByAvailablity(String availability);
 	
-	List <User> findmyListOfFavoriteUsers_Username(String username);
+	List <User> findBymyListOfFavoriteUsers_Username(String username);
 	
 //	this would find the users list of gear
-	List<Gear> findGearList_Username(String username);
+	List<Gear> findByGearList_Username(String username);
 	
 //	find a users favorite climbing areas
-	List<ClimbingArea> findFavoriteAreaList_Username(String username);
+	List<ClimbingArea> findByFavoriteAreaList_Username(String username);
 	
-	List<Event> findCreatedEvents_Username(String username);
+	List<Event> findByCreatedEvents_Username(String username);
 	
-	List<Event> findAttendedEvents_Username(String username);
+	List<Event> findByttendedEvents_Username(String username);
 //	stretch goal, add the ability for a user to search the app by someones gearList
 }
 
