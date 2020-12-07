@@ -364,6 +364,7 @@ COMMIT;
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (1, 'Hi Christina! I just wanted to let you know that I saw we are interested in climbing in the same areas and also have Sunday\'s free to outdoor climb. Let me know if you would be interested in meeting up - I am pretty good at crimps and know a few good routes we can get you up to practice! PS: My dog is super cute, lol!!!', NULL, 1, 2);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (2, 'Hi Timothy! Thanks for your message. I don\'t own any lead climbing gear, but I see that you do. Where are you trying to climb on your next day trip?', NULL, 2, 1);
 
 COMMIT;
 

@@ -112,6 +112,12 @@ class UserTest {
 				+ "erticale.com/wp-content/uploads/2019/09/crag-dog-acceptable-or-not-climbing.jpg?fit=720%2C338&ssl=1", user.getMediaList().get(0).getMediaUrl());
 	}
 	
+	@Test
+	void test10() {
+		assertNotNull(user);
+		assertTrue(user.getMyListOfSentMessages().size() > 0);
+		assertEquals("Hi Christina! I just wanted to let you know that I saw we are interested in climbing in the same areas and also have Sunday's free to outdoor climb. Let me know if you would be interested in meeting up - I am pretty good at crimps and know a few good routes we can get you up to practice! PS: My dog is super cute, lol!!!", user.getMyListOfSentMessages().get(0).getMessageBody());
+	}
 	
 	
 	
