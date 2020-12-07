@@ -25,7 +25,8 @@ public class MediaServiceImpl implements MediaService {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
-		return mediaRepo.findUserByUsername(username);
+		User mediaUser = userRepo.findByUsername(username);
+		return mediaRepo.findByUser(mediaUser);
 	}
 
 	@Override
