@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,15 +32,25 @@ public class MessageController {
 	private String username = "shakawithme";
 	
 //	View All Messages 
-	@GetMapping(path = "/{uid}/messages")
-	public List<Message> getAllMessages(@RequestBody List<Message> messages, HttpServletResponse res, Principal principal,
-			@PathVariable Integer uid) {
-		if (messages == null) {
-			res.setStatus(400);
-		}
-		messages = messageService.show(username, uid);
-		return messages;
-	}
+//	@GetMapping(path = "/{uid}/messages")
+//	public List<Message> getAllMessages(@RequestBody List<Message> messages, HttpServletResponse res, Principal principal,
+//			@PathVariable Integer uid) {
+//		if (messages == null) {
+//			res.setStatus(400);
+//		}
+//		messages = messageService.show(username, uid);
+//		return messages;
+//	}
 	
 
+//	Remove a message
+	@DeleteMapping(path = "/{uid}/messages/{mid}")
+	public void destroy(Integer uid, String username) {
+		messageService.destroy(username, uid);
+	}
+	
+	
+	
+	
+	
 }
