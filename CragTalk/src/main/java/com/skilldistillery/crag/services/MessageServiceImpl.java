@@ -37,10 +37,14 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public Message create(String username, Message message) {
+	public Message create(String username, Message message, int receiverUserId) {
 		User user = userRepo.findByUsername(username);
-		if (user != null) {
-//			user.addUser(user);
+		Optional<User> receiverUserOpt = userRepo.findById(receiverUserId);
+		User receiverUser = null;
+		if (user != null && receiverUserOpt.isPresent()) {
+			receiverUser = receiverUserOpt.get();
+			user.addSentMessage(message);
+			receiverUser.addReceivedMessage(message);
 			messageRepo.saveAndFlush(message);
 			
 		}

@@ -107,6 +107,13 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	List<Media> mediaList;
 	
+	@ManyToMany
+	@JoinTable(name = "message", joinColumns = @JoinColumn(name="id"), inverseJoinColumns = @JoinColumn(name = "receiver_id"))
+	private List<Message> myListOfReceivedMessages;
+	
+	@ManyToMany
+	@JoinTable(name = "message", joinColumns = @JoinColumn(name="id"), inverseJoinColumns = @JoinColumn(name = "sender_id"))
+	private List<Message> myListOfSentMessages;
 	
 	private Boolean enabled;
 	
@@ -324,6 +331,23 @@ public String getRole() {
 		this.mediaList = mediaList;
 	}
 	
+	
+	public List<Message> getMyListOfReceivedMessages() {
+		return myListOfReceivedMessages;
+	}
+
+	public void setMyListOfReceivedMessages(List<Message> myListOfReceivedMessages) {
+		this.myListOfReceivedMessages = myListOfReceivedMessages;
+	}
+
+	public List<Message> getMyListOfSentMessages() {
+		return myListOfSentMessages;
+	}
+
+	public void setMyListOfSentMessages(List<Message> myListOfSentMessages) {
+		this.myListOfSentMessages = myListOfSentMessages;
+	}
+
 	//Add/Remove Methods
 	public void addClimbType(ClimbType climbType) {
 		if (climbTypes == null) {
@@ -379,6 +403,40 @@ public String getRole() {
 			location.removeUser(this);
 	}
 
+	public void addReceivedMessage(Message message) {
+		if (myListOfReceivedMessages == null) {
+			myListOfReceivedMessages = new ArrayList<>();
+		}
+		if (!myListOfReceivedMessages.contains(message)) {
+			myListOfReceivedMessages.add(message);
+		}	
+	}
+	
+	public void addSentMessage(Message message) {
+		if (myListOfSentMessages == null) {
+			myListOfSentMessages = new ArrayList<>();
+		}
+		if (!myListOfSentMessages.contains(message)) {
+			myListOfSentMessages.add(message);
+		}	
+	}
+	
+	public void removeReceivedMessage(Message message) {
+		if (myListOfReceivedMessages != null && myListOfReceivedMessages.contains(message)) {
+			myListOfReceivedMessages.remove(message);
+		}
+	}
+	
+	public void removeSentMessage(Message message) {
+		if (myListOfSentMessages != null && myListOfSentMessages.contains(message)) {
+			myListOfSentMessages.remove(message);
+		}
+	}
+
+	
+	
+	
+//	TO STRING METHOD
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username

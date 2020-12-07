@@ -31,6 +31,8 @@ public class Message {
 	
 	@Column(name="message_body")
 	private String messageBody;
+	
+	
 
 	public int getId() {
 		return id;
