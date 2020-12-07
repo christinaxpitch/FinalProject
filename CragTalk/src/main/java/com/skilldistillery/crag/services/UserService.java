@@ -27,7 +27,7 @@ public interface UserService {
     
     public List<User> listOfFavoriteUsers(String username);
     
-    public List<User> findUsersByGearList(String username, String gear);
+//    public List<User> findUsersByGearList(String username, String gear);
     
     public List<User> findUsersByFavoriteClimbingAreas(String username, ClimbingArea climbingArea);
     
