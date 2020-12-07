@@ -12,4 +12,7 @@ public interface MessageRepository extends JpaRepository<Message, Integer> {
 //	Message findBySenderIdAndReceiverId_UsernameAndId(String username, int messageId);
 //	Set<Message> findBy_Username(String username);
 
+	List <Message> findByReceiver_Username(String username);
+	List <Message> findBySender_Username(String username);
+	
 }

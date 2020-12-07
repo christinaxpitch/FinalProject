@@ -66,12 +66,16 @@ public class User {
 	private String password;
 
 	@ManyToMany
-	@JoinTable(name="user_climb_type", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "climb_type_id"))
+	@JoinTable(name="user_climb_type", 
+	joinColumns = @JoinColumn(name="user_id"), 
+	inverseJoinColumns = @JoinColumn(name = "climb_type_id"))
 	private List<ClimbType> climbTypes;
 
 	
 	@ManyToMany
-	@JoinTable(name="favorite_area", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "climbing_area_id"))
+	@JoinTable(name="favorite_area", 
+	joinColumns = @JoinColumn(name="user_id"), 
+	inverseJoinColumns = @JoinColumn(name = "climbing_area_id"))
 	private List<ClimbingArea> favoriteAreaList;
 	
 	
@@ -92,10 +96,11 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	List<Gear> gearList;
 	
-	@OneToMany(mappedBy = "myListOfFavoriteUsers")
+	@ManyToMany
+	@JoinTable(name = "favorite_user", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "favorite_user_id"))
 	private List<User> myListOfFavoriteUsers;
 	
-	@OneToMany(mappedBy = "listOfUsersWhoHaveFavoritedMe")
+	@ManyToMany(mappedBy = "myListOfFavoriteUsers")
 	private List<User> listOfUsersWhoHaveFavoritedMe;
 	
 	
