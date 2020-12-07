@@ -21,7 +21,7 @@ USE `cragdb` ;
 DROP TABLE IF EXISTS `location` ;
 
 CREATE TABLE IF NOT EXISTS `location` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `city` VARCHAR(45) NULL,
   `state` CHAR(2) NULL,
   `zip` INT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `other_hobbies` VARCHAR(150) NULL,
   `birthdate` DATE NULL,
   `password` VARCHAR(200) NULL,
-  `location_id` INT NOT NULL,
+  `location_id` INT NULL,
   `role` VARCHAR(20) NULL,
   `enabled` TINYINT(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`),
