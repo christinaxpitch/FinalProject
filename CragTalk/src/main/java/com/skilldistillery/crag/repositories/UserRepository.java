@@ -14,21 +14,21 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	User findByUsernameAndId(String username, int todoId);
 	
-	List <User> findByClimbType(ClimbType climbType);
+	List <User> findByClimbTypes(ClimbType climbType);
 	
 	List <User> findByAvailablity(String availability);
 	
-	List <User> findBymyListOfFavoriteUsers(String username);
+	List <User> findmyListOfFavoriteUsers_Username(String username);
 	
 //	this would find the users list of gear
-	List<Gear> findGearListByUsername(String username);
+	List<Gear> findGearList_Username(String username);
 	
 //	find a users favorite climbing areas
-	List<ClimbingArea> findFavoriteAreaListByUsername(String username);
+	List<ClimbingArea> findFavoriteAreaList_Username(String username);
 	
-	List<Event> findCreatedEventsByUsername(String username);
+	List<Event> findCreatedEvents_Username(String username);
 	
-	List<Event> findAttendedEventsByUsername(String username);
+	List<Event> findAttendedEvents_Username(String username);
 //	stretch goal, add the ability for a user to search the app by someones gearList
 }
 
