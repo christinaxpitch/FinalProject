@@ -1,13 +1,12 @@
 package com.skilldistillery.crag.services;
 
-import java.util.Set;
+import java.util.List;
 
 import com.skilldistillery.crag.entities.Event;
-import com.skilldistillery.crag.entities.Message;
 
 public interface EventService {
 
-	public Set<Event> index(String username);
+	public List<Event> index(String username);
 
     public Event show(String username, int id);
 

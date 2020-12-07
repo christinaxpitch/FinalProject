@@ -9,7 +9,7 @@ import com.skilldistillery.crag.entities.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 	List<User> findAllUsers();
 	User findByUsername(String username);
-	User findByUser_UsernameAndId(String username, int todoId);
+	User findByUsernameAndId(String username, int todoId);
 	List <User> findByClimbType(ClimbType climbType);
 	List <User> findByAvailablity(String availability);
 	List <User> findBymyListOfFavoriteUsers(String username);
@@ -18,6 +18,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 //	find a users favorite climbing areas
 	List<ClimbingArea> findFavoriteAreaListByUsername(String username);
 	List<Event> findCreatedEventsByUsername(String username);
-	List<Event> findAttendedEventsByUSername(String username);
+	List<Event> findAttendedEventsByUsername(String username);
 //	stretch goal, add the ability for a user to search the app by someones gearList
 }
+
+
+//findAttendedEventsByUsername

@@ -179,7 +179,7 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		
-		return userRepo.findAttendedEventsByUSername(username);
+		return userRepo.findAttendedEventsByUsername(username);
 	}
 
 	@Override

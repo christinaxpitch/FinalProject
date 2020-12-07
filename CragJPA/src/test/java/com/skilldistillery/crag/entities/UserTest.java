@@ -102,6 +102,17 @@ class UserTest {
 		assertNotNull(user);
 		assertTrue(user.getMyListOfFavoriteUsers().size() > 0);
 		assertEquals("Timothy", user.getMyListOfFavoriteUsers().get(0).getFirstName());
-
 	}
+	
+	@Test
+	void test9() {
+		assertNotNull(user);
+		assertTrue(user.getMediaList().size() > 0);
+		assertEquals("https://i1.wp.com/lafabriquev"
+				+ "erticale.com/wp-content/uploads/2019/09/crag-dog-acceptable-or-not-climbing.jpg?fit=720%2C338&ssl=1", user.getMediaList().get(0).getMediaUrl());
+	}
+	
+	
+	
+	
 }

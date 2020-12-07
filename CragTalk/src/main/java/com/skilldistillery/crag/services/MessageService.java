@@ -6,7 +6,7 @@ import com.skilldistillery.crag.entities.Message;
 
 public interface MessageService {
 	
-	 public Set<Message> index(String username);
+	 public Set<Message> index(String username, int messageId);
 
 	    public Message show(String username, int id);
 

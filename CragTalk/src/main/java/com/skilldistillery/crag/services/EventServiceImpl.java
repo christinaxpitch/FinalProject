@@ -1,6 +1,7 @@
 package com.skilldistillery.crag.services;
 
-import java.util.Set;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,20 +20,26 @@ public class EventServiceImpl implements EventService {
 	private EventRepository eventRepo;
 	
 	@Override
-	public Set<Event> index(String username) {
+	public List<Event> index(String username) {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
-		return eventRepo.findByUser_Username(username);
+		return eventRepo.findAll();
 	}
 
 	@Override
 	public Event show(String username, int id) {
-		return eventRepo.findByUser_UsernameAndId(username, id);
+		if (userRepo.findByUsername(username) == null) {
+			return null;
+		}
+		return eventRepo.findByCreatedBy_UsernameAndId(username, id);
 	}
 
 	@Override
 	public Event create(String username, Event event) {
+		if (userRepo.findByUsername(username) == null) {
+			return null;
+		}
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
 //			user.addUser(user);
@@ -43,7 +50,10 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public Event update(String username, int id, Event event) {
-		Event managedEvent = eventRepo.findByUser_UsernameAndId(username, id);
+		if (userRepo.findByUsername(username) == null) {
+			return null;
+		}
+		Event managedEvent = eventRepo.findByCreatedBy_UsernameAndId(username, id);
 		if(managedEvent != null) {
 			managedEvent.setClimbingAreaId(event.getClimbingAreaId());
 			managedEvent.setCreatedBy(event.getCreatedBy());
@@ -60,8 +70,13 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public boolean destroy(String username, int id) {
 		boolean deleted = false;
-		Event event = eventRepo.findByUser_UsernameAndId(username, id);
-		if (event != null) {
+		if (userRepo.findByUsername(username) == null) {
+			return deleted;
+		}
+		Optional <Event> eventOpt = eventRepo.findById(id);
+		Event event = null;
+		if (eventOpt.isPresent()) {
+			event = eventOpt.get();
 			eventRepo.delete(event);
 			deleted = true;
 		}

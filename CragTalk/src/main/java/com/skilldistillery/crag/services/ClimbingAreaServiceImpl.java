@@ -25,14 +25,14 @@ public class ClimbingAreaServiceImpl implements ClimbingAreaService {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
-		return climbingAreaRepo.findByUser_Username(username);
+		return climbingAreaRepo.findFavoriteAreaListByUsers_Username(username);
 	}
 		
 	public List<ClimbingArea> favoritedIndex(String username) {
 		if (userRepo.findFavoriteAreaListByUsername(username)==null) {
 			return null;
 		}
-		return climbingAreaRepo.findByFavoriteArea_Username(username);
+		return climbingAreaRepo.findFavoriteAreaListByUsers_Username(username);
 	}
 
 	@Override

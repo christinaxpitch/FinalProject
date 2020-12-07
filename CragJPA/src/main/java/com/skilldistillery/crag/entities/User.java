@@ -99,6 +99,10 @@ public class User {
 	private List<User> listOfUsersWhoHaveFavoritedMe;
 	
 	
+	@OneToMany(mappedBy = "user")
+	List<Media> mediaList;
+	
+	
 	private Boolean enabled;
 	
 //	CONSTRUCTOR
@@ -307,6 +311,14 @@ public String getRole() {
 		this.enabled = enabled;
 	}
 	
+	public List<Media> getMediaList() {
+		return mediaList;
+	}
+	
+	public void setMediaList(List<Media> mediaList) {
+		this.mediaList = mediaList;
+	}
+	
 	//Add/Remove Methods
 	public void addClimbType(ClimbType climbType) {
 		if (climbTypes == null) {
@@ -396,5 +408,6 @@ public String getRole() {
 			return false;
 		return true;
 	}
+
 
 }

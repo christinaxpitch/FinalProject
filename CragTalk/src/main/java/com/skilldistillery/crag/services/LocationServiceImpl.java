@@ -25,7 +25,7 @@ public class LocationServiceImpl implements LocationService {
 		if(userRepo.findByUsername(username) == null) {
 			return null;
 		}
-		return locationRepo.findByUser_Username(username);
+		return locationRepo.findByUsers_Username(username);
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public Location update(String username, int locationId, Location location) {
-		Location managedLocation = locationRepo.findByUser_UsernameAndId(username, locationId);
+		Location managedLocation = locationRepo.findByUsers_UsernameAndId(username, locationId);
 		if(managedLocation != null) {
 			managedLocation.setStreetAddress(location.getStreetAddress());
 			managedLocation.setCity(location.getCity());

@@ -25,7 +25,7 @@ public class MediaServiceImpl implements MediaService {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
-		return mediaRepo.findByUser_Username(username);
+		return mediaRepo.findUserByUsername(username);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class MediaServiceImpl implements MediaService {
 
 	@Override
 	public Media update(String username, int mediaId, Media media) {
-		Media managedMedia = mediaRepo.findByUser_UsernameAndId(username, mediaId);
+		Media managedMedia = mediaRepo.findUser_idByUsernameAndId(username, mediaId);
 		if (managedMedia != null) {
 			managedMedia.setMediaUrl(media.getMediaUrl());
 		}

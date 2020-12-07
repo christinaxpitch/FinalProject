@@ -8,7 +8,7 @@ import com.skilldistillery.crag.entities.Location;
 
 public interface LocationRepository extends JpaRepository<Location, Integer> {
 	
-	List<Location> findByUser_Username(String username);
-	Location findByUser_UsernameAndId(String username, int locationId);
+	List<Location> findByUsers_Username(String username);
+	Location findByUsers_UsernameAndId(String username, int locationId);
 
 }
