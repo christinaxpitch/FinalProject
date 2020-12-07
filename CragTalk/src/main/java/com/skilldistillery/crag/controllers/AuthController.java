@@ -24,9 +24,6 @@ public class AuthController {
 	@PostMapping(path = "/register")
 //	public User register(@RequestBody User user, HttpServletResponse res, Principal principal) {
 		public User register(@RequestBody User user, HttpServletResponse res) {
-		System.out.println("********");
-		System.out.println(user);
-		System.out.println("********");
 	    if (user == null) {
 	        res.setStatus(400);
 	    }

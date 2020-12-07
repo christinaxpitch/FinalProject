@@ -18,11 +18,6 @@ public class AuthServiceImpl implements AuthService {
 	
 	@Override
 	public User register(User user) {
-		
-		System.out.println("**********");
-		System.out.println(user);
-		System.out.println(user.getLocation());
-		System.out.println("***********");
 ////		encrypt and set the password for the User.
 //		user.setPassword(encoder.encode(user.getPassword()));
 ////		set the enabled field of the object to true.
