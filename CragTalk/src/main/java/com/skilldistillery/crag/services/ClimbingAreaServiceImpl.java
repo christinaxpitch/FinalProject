@@ -29,7 +29,7 @@ public class ClimbingAreaServiceImpl implements ClimbingAreaService {
 	}
 		
 	public List<ClimbingArea> favoritedIndex(String username) {
-		if (userRepo.findFavoriteAreaListByUsername(username)==null) {
+		if (userRepo.findByFavoriteAreaList_Username(username)==null) {
 			return null;
 		}
 		return climbingAreaRepo.findFavoriteAreaListByUsers_Username(username);
