@@ -119,6 +119,13 @@ class UserTest {
 		assertEquals("Hi Christina! I just wanted to let you know that I saw we are interested in climbing in the same areas and also have Sunday's free to outdoor climb. Let me know if you would be interested in meeting up - I am pretty good at crimps and know a few good routes we can get you up to practice! PS: My dog is super cute, lol!!!", user.getMyListOfSentMessages().get(0).getMessageBody());
 	}
 	
+	@Test
+	void test11() {
+		assertNotNull(user);
+		assertTrue(user.getMyListOfReceivedMessages().size() > 0);
+		assertEquals("Hi Timothy! Thanks for your message. I don't own any lead climbing gear, but I see that you do. Where are you trying to climb on your next day trip?", user.getMyListOfReceivedMessages().get(0).getMessageBody());
+	}
+	
 	
 	
 }

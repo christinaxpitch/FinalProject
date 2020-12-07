@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.skilldistillery.crag.entities.ClimbingArea;
+import com.skilldistillery.crag.entities.User;
 
 public interface ClimbingAreaRepository extends JpaRepository<ClimbingArea, Integer> {
 
 List<ClimbingArea> findByUsers_Username(String username);
 
-List<ClimbingArea> findFavoriteAreaListByUsers_Username(String username);
+//List<User> findByFavoriteAreaList(String climbingarea);
 
 }

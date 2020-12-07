@@ -10,8 +10,8 @@ import com.skilldistillery.crag.entities.User;
 
 public interface EventRepository extends JpaRepository<Event, Integer> {
 	
-	Event findByCreatedBy_UsernameAndId(String username, int id);
-	List <User> findAttendedUsersByUsernameAndId(String username, int id);
-	List<Event> findByUser_Username(String username);
+//	Event findByCreatedBy_UsernameAndId(String username, int id);
+////	List <User> findByAttendedUsers_Username(String username, int id);
+//	List<Event> findByCreatedBy_Username(String username);
 
 }
