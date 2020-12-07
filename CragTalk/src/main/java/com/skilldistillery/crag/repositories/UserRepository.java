@@ -9,7 +9,7 @@ import com.skilldistillery.crag.entities.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 	List<User> findAllUsers();
 	User findByUsername(String username);
-	User findByUser_UsernameAndId(String username, int todoId);
+	User findByUsernameAndId(String username, int todoId);
 	List <User> findByClimbType(ClimbType climbType);
 	List <User> findByAvailablity(String availability);
 	List <User> findBymyListOfFavoriteUsers(String username);
