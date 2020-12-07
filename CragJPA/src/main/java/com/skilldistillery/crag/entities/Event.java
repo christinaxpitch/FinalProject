@@ -36,7 +36,6 @@ public class Event {
 	@Column(name = "event_date")
 	private LocalDateTime eventDate;
 	
-	
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 

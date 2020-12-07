@@ -14,4 +14,7 @@ public interface MessageRepository extends JpaRepository<Message, Integer> {
 	Set<Message> findByReceiverId_Username(String username);
 
 
+	List <Message> findByReceiver_Username(String username);
+	List <Message> findBySender_Username(String username);
+	
 }

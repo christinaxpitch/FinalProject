@@ -89,19 +89,19 @@ class UserTest {
 
 	}
 	
-//	@Test
-//	void test7() {
-//		assertNotNull(user);
-//		assertTrue(user.getListOfUsersWhoHaveFavoritedMe().size() > 0);
-//		assertEquals("Timothy", user.getListOfUsersWhoHaveFavoritedMe().get(0).getFirstName());
-//
-//	}
+	@Test
+	void test7() {
+		assertNotNull(user);
+		assertTrue(user.getListOfUsersWhoHaveFavoritedMe().size() > 0);
+		assertEquals("Christina", user.getListOfUsersWhoHaveFavoritedMe().get(0).getFirstName());
+
+	}
 	
 	@Test
 	void test8() {
 		assertNotNull(user);
 		assertTrue(user.getMyListOfFavoriteUsers().size() > 0);
-		assertEquals("Timothy", user.getMyListOfFavoriteUsers().get(0).getFirstName());
+		assertEquals("Christina", user.getMyListOfFavoriteUsers().get(0).getFirstName());
 	}
 	
 	@Test
