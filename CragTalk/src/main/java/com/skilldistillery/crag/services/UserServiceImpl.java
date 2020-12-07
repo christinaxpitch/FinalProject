@@ -152,7 +152,7 @@ public class UserServiceImpl implements UserService {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
-		return userRepo.findmyListOfFavoriteUsers_Username(username);
+		return userRepo.findBymyListOfFavoriteUsers_Username(username);
 	}
 
 	@Override
@@ -161,7 +161,7 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		
-		return userRepo.findGearList_Username(username);
+		return userRepo.findByGearList_Username(username);
 	}
 
 	@Override
@@ -170,7 +170,7 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		
-		return userRepo.findFavoriteAreaList_Username(username);
+		return userRepo.findByFavoriteAreaList_Username(username);
 	}
 
 	@Override
@@ -179,7 +179,7 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		
-		return userRepo.findAttendedEvents_Username(username);
+		return userRepo.findByAttendedEvents_Username(username);
 	}
 
 	@Override
@@ -188,7 +188,7 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		
-		return userRepo.findCreatedEvents_Username(username);
+		return userRepo.findByCreatedEvents_Username(username);
 	}
 
 }

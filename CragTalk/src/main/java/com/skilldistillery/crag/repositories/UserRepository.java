@@ -28,7 +28,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	List<Event> findByCreatedEvents_Username(String username);
 	
-	List<Event> findByttendedEvents_Username(String username);
+	List<Event> findByAttendedEvents_Username(String username);
 //	stretch goal, add the ability for a user to search the app by someones gearList
 }
 
