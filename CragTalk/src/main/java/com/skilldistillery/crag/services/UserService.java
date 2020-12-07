@@ -27,9 +27,9 @@ public interface UserService {
     
     public List<User> listOfFavoriteUsers(String username);
     
-    public List<Gear> findUsersGearList(String username);
+    public List<User> findUsersByGearList(String username, String gear);
     
-    public List<ClimbingArea> findUsersFavoriteClimbingAreas(String username);
+    public List<User> findUsersByFavoriteClimbingAreas(String username, ClimbingArea climbingArea);
     
     public List<Event> findEventsAttendedByUser(String username);
     

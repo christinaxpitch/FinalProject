@@ -27,6 +27,14 @@ class ClimbingAreaTest {
 		
 	}
 	
+	@Test
+	void test2() {
+		ClimbingArea area = climbingAreaRepo.findByName("Gregory Canyon");
+		assertNotNull(area);
+		assertEquals(1, area.getId());
+		
+		
+	}
 //	@Test
 //	void test2() {
 //		String climbingArea = "Gregory Canyon";

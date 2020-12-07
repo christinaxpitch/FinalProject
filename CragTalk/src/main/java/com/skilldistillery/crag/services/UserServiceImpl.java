@@ -152,25 +152,26 @@
 //		if (userRepo.findByUsername(username) == null) {
 //			return null;
 //		}
-//		return userRepo.findBymyListOfFavoriteUsers_Username(username);
+//		User user = userRepo.findByUsername(username);
+//		return user.getMyListOfFavoriteUsers();
 //	}
 //
 //	@Override
-//	public List<Gear> findUsersGearList(String username) {
+//	public List<User> findUsersByGearList(String username, String gear) {
 //		if (userRepo.findByUsername(username) == null) {
 //			return null;
 //		}
 //		
-//		return userRepo.findByGearList_Username(username);
+//		return userRepo.findByGearList(gear);
 //	}
 //
 //	@Override
-//	public List<ClimbingArea> findUsersFavoriteClimbingAreas(String username) {
+//	public List<User> findUsersByFavoriteClimbingAreas(String username, ClimbingArea climbingArea) {
 //		if (userRepo.findByUsername(username) == null) {
 //			return null;
 //		}
 //		
-//		return userRepo.findByFavoriteAreaList_Username(username);
+//		return userRepo.findByFavoriteAreaList(climbingArea);
 //	}
 //
 //	@Override
@@ -178,8 +179,8 @@
 //		if (userRepo.findByUsername(username) == null) {
 //			return null;
 //		}
-//		
-//		return userRepo.findByAttendedEvents_Username(username);
+//		User user = userRepo.findByUsername(username);
+//		return user.getAttendedEvents();
 //	}
 //
 //	@Override
@@ -187,8 +188,9 @@
 //		if (userRepo.findByUsername(username) == null) {
 //			return null;
 //		}
+//		User user = userRepo.findByUsername(username);
+//		return user.getCreatedEvents();
 //		
-//		return userRepo.findByCreatedEvents_Username(username);
 //	}
 //
 //}
