@@ -125,7 +125,12 @@ class UserTest {
 		assertTrue(user.getMyListOfReceivedMessages().size() > 0);
 		assertEquals("Hi Timothy! Thanks for your message. I don't own any lead climbing gear, but I see that you do. Where are you trying to climb on your next day trip?", user.getMyListOfReceivedMessages().get(0).getMessageBody());
 	}
-	
+	@Test
+	void test12() {
+		assertNotNull(user);
+		
+		assertEquals("Boulder", user.getLocation().getCity());
+	}
 	
 	
 }
