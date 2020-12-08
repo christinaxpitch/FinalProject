@@ -3,6 +3,8 @@ package com.skilldistillery.crag.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ import com.skilldistillery.crag.repositories.ClimbingAreaRepository;
 import com.skilldistillery.crag.repositories.UserRepository;
 
 @Service
+//@Transactional
 public class UserServiceImpl implements UserService {
 
 	
@@ -24,6 +27,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private ClimbingAreaRepository areaRepo;
+	
 	
 	
 	@Override
@@ -138,11 +142,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> findByClimbType(String username, ClimbType climbType) {
+	public List<User> findByClimbType(String username, ClimbType type) {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
-		return userRepo.findByClimbTypes(climbType);
+		return userRepo.findByClimbTypes(type);
 	}
 
 	@Override
@@ -150,6 +154,7 @@ public class UserServiceImpl implements UserService {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
+	
 		return userRepo.findByAvailability(availability);
 	}
 
@@ -165,12 +170,12 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Override
-	public List<User> findUsersByFavoriteClimbingAreas(String username, ClimbingArea climbingArea) {
+	public List<User> findUsersByFavoriteClimbingAreas(String username, String climbingArea) {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
-		
-		return userRepo.findByFavoriteAreaList(climbingArea);
+		ClimbingArea area = areaRepo.findByName(climbingArea);
+		return userRepo.findByFavoriteAreaList(area);
 	}
 
 	@Override
@@ -221,6 +226,11 @@ public class UserServiceImpl implements UserService {
 		return user.getFavoriteAreaList();
 	}
 
+	
+	
+//	I think we need to also pass in a boolean from the front end. 
+//	If false - then remove the user from the current users favorites list 
+//	If true, then add the user to the current users favorites list?
 	@Override
 	public boolean addUserToFavorites(String username, int addedId) {
 		boolean addedFave = false;
@@ -228,18 +238,31 @@ public class UserServiceImpl implements UserService {
 		if (userRepo.findByUsername(username) == null) {
 			return addedFave;
 		}
+		
 		User userAddingFave = userRepo.findByUsername(username);
 		Optional <User> userOpt = userRepo.findById(addedId);
 		User userBeingFaved = userOpt.get();
-		List <User> usersFavoritesList = userAddingFave.getMyListOfFavoriteUsers();
-		usersFavoritesList.add(userBeingFaved);
-		userAddingFave.setMyListOfFavoriteUsers(usersFavoritesList);
+		
+//		LOGIC: if the user has toggled off the favorites button, they are still sent to this method. 
+//		in this method, the if statement below will check to see if that person 
 		
 		if (userAddingFave.getMyListOfFavoriteUsers().contains(userBeingFaved)) {
+//			If they are already on the faves list then use the remove method passing in the person being removed
+			userAddingFave.removeMyListOfFavoriteUsers(userBeingFaved);
+			userRepo.saveAndFlush(userAddingFave);
+			return addedFave;
+		}
+		else {
+//			call add method from user to add another user to their favorites list
+			userAddingFave.addMyListOfFavoriteUsers(userBeingFaved);
+			userRepo.saveAndFlush(userAddingFave);
 			return !addedFave;
 		}
-		return addedFave;
+		
 	}
+	
+	
+	
 	
 	@Override
 	public boolean addClimbingAreaToFavorites(String username, int addedId) {

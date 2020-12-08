@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="climb_type")
 public class ClimbType {
@@ -26,6 +28,8 @@ public class ClimbType {
 	@Column(name = "img_url")
 	private String imgUrl;
 
+	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "climbTypes")
 	private List<User> userList;
 	
