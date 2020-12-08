@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="climbing_area")
 public class ClimbingArea {
@@ -29,6 +31,7 @@ public class ClimbingArea {
 	@Column(name="img_url")
 	private String imgUrl;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="favoriteAreaList")
 	private List<User> users;
 	
