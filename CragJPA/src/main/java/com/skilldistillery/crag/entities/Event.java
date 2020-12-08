@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -28,7 +30,7 @@ public class Event {
 	private String description;
 	
 	@Column(name = "img_url")
-	private String imaUrl;
+	private String imgUrl;
 	
 	@Column(name = "climbing_area_id")
 	private int climbingAreaId;
@@ -36,6 +38,7 @@ public class Event {
 	@Column(name = "event_date")
 	private LocalDateTime eventDate;
 	
+	@CreationTimestamp
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
@@ -67,11 +70,11 @@ public class Event {
 	}
 
 	public String getImaUrl() {
-		return imaUrl;
+		return imgUrl;
 	}
 
 	public void setImaUrl(String imaUrl) {
-		this.imaUrl = imaUrl;
+		this.imgUrl = imaUrl;
 	}
 
 	public int getClimbingAreaId() {
