@@ -44,6 +44,8 @@ public class Event {
 	@JoinColumn(name = "created_by_user_id")
 	private User createdBy;
 	
+	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "attendedEvents")
 	private List<User> attendedUsers;
 	

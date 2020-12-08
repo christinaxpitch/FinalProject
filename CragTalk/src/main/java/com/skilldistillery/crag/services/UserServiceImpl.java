@@ -150,6 +150,7 @@ public class UserServiceImpl implements UserService {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
+	
 		return userRepo.findByAvailability(availability);
 	}
 
