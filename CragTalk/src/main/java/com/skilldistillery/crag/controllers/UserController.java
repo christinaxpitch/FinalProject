@@ -19,6 +19,7 @@ import com.skilldistillery.crag.entities.ClimbingArea;
 import com.skilldistillery.crag.entities.Event;
 import com.skilldistillery.crag.entities.Message;
 import com.skilldistillery.crag.entities.User;
+import com.skilldistillery.crag.repositories.ClimbTypeRepositories;
 import com.skilldistillery.crag.services.UserService;
 
 @CrossOrigin({ "*", "http://localhost:4210" })
@@ -29,6 +30,9 @@ public class UserController {
 	@Autowired
 	private UserService svc;
 
+	@Autowired
+	private ClimbTypeRepositories climbRepo;
+	
 	private String username = "shakawithme";
 
 //	Principal principal
@@ -99,9 +103,11 @@ public class UserController {
 	
 	
 	@GetMapping("user/climbtype/{climbType}")
-	public List<User> listUsersByClimbType(HttpServletResponse res, @RequestBody ClimbType climbType) {
+	public List<User> listUsersByClimbType(HttpServletResponse res, @PathVariable String climbType) {
 //			List <User> users = svc.findUsersByLocation(principal.getName(), cityName);
-		List<User> users = svc.findByClimbType(username, climbType);
+		ClimbType type = climbRepo.findByName(climbType);
+		
+		List<User> users = svc.findByClimbType(username, type);
 
 		if (users == null) {
 			res.setStatus(404);
@@ -109,6 +115,8 @@ public class UserController {
 		return users;
 	}
 
+	
+	
 	@GetMapping("user/available/{availability}")
 	public List<User> listUsersByAvailability(HttpServletResponse res, @PathVariable String availability) {
 //			List <User> users = svc.findUsersByLocation(principal.getName(), cityName);
@@ -144,9 +152,10 @@ public class UserController {
 //	
 //	THIS WILL GO IN THE CLIMBING AREA CONTROLLER
 
-	@GetMapping("users/climbingareausers/{climbingArea}")
-	public List<User> listUsersByFavoriteClimbingArea(HttpServletResponse res, @RequestBody ClimbingArea climbingArea) {
+	@GetMapping("user/climbingareausers/{climbingArea}")
+	public List<User> listUsersByFavoriteClimbingArea(HttpServletResponse res, @PathVariable String climbingArea) {
 //			List <User> users = svc.findUsersByLocation(principal.getName(), cityName);
+		
 		List<User> users = svc.findUsersByFavoriteClimbingAreas(username, climbingArea);
 
 		if (users == null) {
@@ -155,24 +164,24 @@ public class UserController {
 		return users;
 	}
 
-//	
-//	
-//	
-//	
-//	
-//	
+	
+	
+	
+//	Going into another controller
+//	@GetMapping("user/favoriteareas")
+//	public List<ClimbingArea> listofUsersFavoriteClimbingAreas(HttpServletResponse res) {
+////			List <User> users = svc.findUsersByLocation(principal.getName(), cityName);
+//		List<ClimbingArea> areas = svc.usersListOfClimbingAreas(username);
+//
+//		if (areas == null) {
+//			res.setStatus(404);
+//		}
+//		return areas;
+//	}
 
-	@GetMapping("user/favoriteareas")
-	public List<ClimbingArea> listofUsersFavoriteClimbingAreas(HttpServletResponse res) {
-//			List <User> users = svc.findUsersByLocation(principal.getName(), cityName);
-		List<ClimbingArea> areas = svc.usersListOfClimbingAreas(username);
-
-		if (areas == null) {
-			res.setStatus(404);
-		}
-		return areas;
-	}
-
+	
+	
+	
 	@GetMapping("user/attendedevents")
 	public List<Event> findEventsAttendedByUser(HttpServletResponse res) {
 //			List <User> users = svc.findUsersByLocation(principal.getName());
@@ -195,7 +204,7 @@ public class UserController {
 		return events;
 	}
 
-	@GetMapping("users/messages")
+	@GetMapping("user/messages")
 	public List<Message> listOfUsersMessages(HttpServletResponse res) {
 //			List <Message> messages = svc.findUsersByLocation(principal.getName(), cityName);
 		List<Message> messages = svc.usersMessages(username);

@@ -29,7 +29,7 @@ public interface UserService {
     
 //    public List<User> findUsersByGearList(String username, String gear);
     
-    public List<User> findUsersByFavoriteClimbingAreas(String username, ClimbingArea climbingArea);
+    public List<User> findUsersByFavoriteClimbingAreas(String username, String climbingArea);
     
     public List<Event> findEventsAttendedByUser(String username);
     
