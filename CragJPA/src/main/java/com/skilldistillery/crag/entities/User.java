@@ -442,7 +442,39 @@ public String getRole() {
 		}
 	}
 
+	public void addMyListOfFavoriteUsers(User user) {
+		if (myListOfFavoriteUsers == null) {
+			myListOfFavoriteUsers = new ArrayList<>();
+		}
+		if (!myListOfFavoriteUsers.contains(user)) {
+			myListOfFavoriteUsers.add(user);
+			user.addListOfUsersWhoHaveFavoritedMe(this);
+		}
+	}
+
+	public void removeMyListOfFavoriteUsers(User user) {
+		if (myListOfFavoriteUsers != null && myListOfFavoriteUsers.contains(user)) {
+			myListOfFavoriteUsers.remove(user);
+			user.removeListOfUsersWhoHaveFavoritedMe(this);
+		}
+	}
 	
+	public void addListOfUsersWhoHaveFavoritedMe(User user) {
+		if (listOfUsersWhoHaveFavoritedMe == null) {
+			listOfUsersWhoHaveFavoritedMe = new ArrayList<>();
+		}
+		if (!listOfUsersWhoHaveFavoritedMe.contains(user)) {
+			listOfUsersWhoHaveFavoritedMe.add(user);
+			user.addMyListOfFavoriteUsers(this);
+		}
+	}
+	
+	public void removeListOfUsersWhoHaveFavoritedMe(User user) {
+		if (listOfUsersWhoHaveFavoritedMe != null && listOfUsersWhoHaveFavoritedMe.contains(user)) {
+			listOfUsersWhoHaveFavoritedMe.remove(user);
+			user.removeMyListOfFavoriteUsers(this);
+		}
+	}
 	
 	
 //	TO STRING METHOD

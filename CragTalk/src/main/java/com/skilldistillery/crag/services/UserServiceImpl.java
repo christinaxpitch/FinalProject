@@ -3,6 +3,8 @@ package com.skilldistillery.crag.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ import com.skilldistillery.crag.repositories.ClimbingAreaRepository;
 import com.skilldistillery.crag.repositories.UserRepository;
 
 @Service
+//@Transactional
 public class UserServiceImpl implements UserService {
 
 	
@@ -223,6 +226,11 @@ public class UserServiceImpl implements UserService {
 		return user.getFavoriteAreaList();
 	}
 
+	
+	
+//	I think we need to also pass in a boolean from the front end. 
+//	If false - then remove the user from the current users favorites list 
+//	If true, then add the user to the current users favorites list?
 	@Override
 	public boolean addUserToFavorites(String username, int addedId) {
 		boolean addedFave = false;
@@ -234,15 +242,23 @@ public class UserServiceImpl implements UserService {
 		User userAddingFave = userRepo.findByUsername(username);
 		Optional <User> userOpt = userRepo.findById(addedId);
 		User userBeingFaved = userOpt.get();
-		List <User> usersFavoritesList = userAddingFave.getMyListOfFavoriteUsers();
-		userAddingFave.setMyListOfFavoriteUsers(usersFavoritesList);
-//		
-		if (!userAddingFave.getMyListOfFavoriteUsers().contains(userBeingFaved)) {
-			usersFavoritesList.add(userBeingFaved);
+		
+//		LOGIC: if the user has toggled off the favorites button, they are still sent to this method. 
+//		in this method, the if statement below will check to see if that person 
+		
+		if (userAddingFave.getMyListOfFavoriteUsers().contains(userBeingFaved)) {
+//			If they are already on the faves list then use the remove method passing in the person being removed
+			userAddingFave.removeMyListOfFavoriteUsers(userBeingFaved);
+			userRepo.saveAndFlush(userAddingFave);
+			return addedFave;
+		}
+		else {
+//			call add method from user to add another user to their favorites list
+			userAddingFave.addMyListOfFavoriteUsers(userBeingFaved);
+			userRepo.saveAndFlush(userAddingFave);
 			return !addedFave;
 		}
 		
-		return addedFave;
 	}
 	
 	
