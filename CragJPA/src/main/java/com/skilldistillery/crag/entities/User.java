@@ -72,7 +72,7 @@ public class User {
 	inverseJoinColumns = @JoinColumn(name = "climb_type_id"))
 	private List<ClimbType> climbTypes;
 
-	@JsonIgnore
+	
 	@ManyToMany
 	@JoinTable(name="favorite_area", 
 	joinColumns = @JoinColumn(name="user_id"), 

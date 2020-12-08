@@ -33,6 +33,7 @@ public class Location {
 	@Column(name = "street_address")
 	private String streetAddress;
 
+	@JsonIgnore
 	@OneToMany
 	private List<ClimbingArea> climbingAreas;
 	
