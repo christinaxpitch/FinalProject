@@ -41,8 +41,13 @@ public interface UserService {
     
     List <ClimbingArea> usersListOfClimbingAreas(String username);
     
-    public boolean addUserToFavorites(String username, int addedId);
+//    public boolean addUserToFavorites(String username, int addedId);
+    
+    public boolean addUserToFavorites(String username, int profileId);
+    
+    public boolean removeUserFromFavorites(String username, int profileId);
     
     public boolean addClimbingAreaToFavorites(String username, int areaAddedId);
 	
+    public boolean removeClimbingAreaFromFavorites(String username, int areaId);
 }
