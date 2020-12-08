@@ -25,7 +25,7 @@ public class ClimbingAreaServiceImpl implements ClimbingAreaService {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
-		return climbingAreaRepo.findByUsers_Username(username);
+		return climbingAreaRepo.findAll();
 	}
 		
 	public List<ClimbingArea> favoritedIndex(String username) {

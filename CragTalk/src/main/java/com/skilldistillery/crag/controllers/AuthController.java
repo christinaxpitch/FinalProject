@@ -22,8 +22,8 @@ public class AuthController {
 	private AuthService authSvc;
 	
 	@PostMapping(path = "/register")
-	public User register(@RequestBody User user, HttpServletResponse res, Principal principal) {
-
+//	public User register(@RequestBody User user, HttpServletResponse res, Principal principal) {
+		public User register(@RequestBody User user, HttpServletResponse res) {
 	    if (user == null) {
 	        res.setStatus(400);
 	    }
