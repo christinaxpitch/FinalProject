@@ -21,15 +21,12 @@ import com.skilldistillery.crag.repositories.UserRepository;
 //@Transactional
 public class UserServiceImpl implements UserService {
 
-	
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Autowired
 	private ClimbingAreaRepository areaRepo;
-	
-	
-	
+
 	@Override
 	public List<User> listAllUsers(String username) {
 		if (userRepo.findByUsername(username) == null) {
@@ -48,11 +45,9 @@ public class UserServiceImpl implements UserService {
 		if (userOpt.isPresent()) {
 			user = userOpt.get();
 		}
-		
+
 		return user;
 	}
-
-	
 
 	@Override
 	public User update(String username, User user) {
@@ -61,24 +56,21 @@ public class UserServiceImpl implements UserService {
 		}
 		Optional<User> userOpt = userRepo.findById(user.getId());
 		User updatedUser = userOpt.get();
-		
+
 		if (user.getAvailability() != null) {
 			updatedUser.setAvailability(user.getAvailability());
 		}
 		if (user.getBirthdate() != null) {
 			updatedUser.setBirthdate(user.getBirthdate());
 		}
-		
-			
+
 		if (user.getClimbTypes() != null) {
 			updatedUser.setClimbTypes(user.getClimbTypes());
 		}
 		if (user.getFavoriteAreaList() != null) {
 			updatedUser.setFavoriteAreaList(user.getFavoriteAreaList());
 		}
-		
-			
-		
+
 		if (user.getFavoriteBeer() != null) {
 			updatedUser.setFavoriteBeer(user.getFavoriteBeer());
 		}
@@ -112,15 +104,13 @@ public class UserServiceImpl implements UserService {
 		if (user.getProfilePic() != null) {
 			updatedUser.setProfilePic(user.getProfilePic());
 		}
-		
-		
-		
+
 		updatedUser.setLocation(user.getLocation());
 		updatedUser.setUsername(user.getUsername());
 		updatedUser.setClimbingSince(user.getClimbingSince());
 		updatedUser.setAvailability(user.getAvailability());
 		updatedUser.setPassword(user.getPassword());
-		
+
 		return updatedUser;
 	}
 
@@ -132,12 +122,12 @@ public class UserServiceImpl implements UserService {
 		}
 		Optional<User> todoOpt = userRepo.findById(uid);
 		User user = null;
-		if(todoOpt.isPresent()) {
+		if (todoOpt.isPresent()) {
 			user = todoOpt.get();
 			userRepo.delete(user);
 			deleted = true;
 		}
-		
+
 		return deleted;
 	}
 
@@ -154,7 +144,7 @@ public class UserServiceImpl implements UserService {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
-	
+
 		return userRepo.findByAvailability(availability);
 	}
 
@@ -166,8 +156,6 @@ public class UserServiceImpl implements UserService {
 		User user = userRepo.findByUsername(username);
 		return user.getMyListOfFavoriteUsers();
 	}
-	
-	
 
 	@Override
 	public List<User> findUsersByFavoriteClimbingAreas(String username, String climbingArea) {
@@ -194,7 +182,7 @@ public class UserServiceImpl implements UserService {
 		}
 		User user = userRepo.findByUsername(username);
 		return user.getCreatedEvents();
-		
+
 	}
 
 	@Override
@@ -202,7 +190,7 @@ public class UserServiceImpl implements UserService {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
-		
+
 		return userRepo.findByLocation_City(cityName);
 	}
 
@@ -221,71 +209,121 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		User user = userRepo.findByUsername(username);
-		
-		
+
 		return user.getFavoriteAreaList();
 	}
 
-	
-	
 //	I think we need to also pass in a boolean from the front end. 
 //	If false - then remove the user from the current users favorites list 
 //	If true, then add the user to the current users favorites list?
+//	@Override
+//	public boolean addUserToFavorites(String username, int addedId) {
+//		boolean addedFave = false;
+//
+//		if (userRepo.findByUsername(username) == null) {
+//			return addedFave;
+//		}
+//
+//		User userAddingFave = userRepo.findByUsername(username);
+//		Optional<User> userOpt = userRepo.findById(addedId);
+//		User userBeingFaved = userOpt.get();
+//
+////		LOGIC: if the user has toggled off the favorites button, they are still sent to this method. 
+////		in this method, the if statement below will check to see if that person 
+//
+//		if (userAddingFave.getMyListOfFavoriteUsers().contains(userBeingFaved)) {
+////			If they are already on the faves list then use the remove method passing in the person being removed
+//			userAddingFave.removeMyListOfFavoriteUsers(userBeingFaved);
+//			userRepo.saveAndFlush(userAddingFave);
+//			return addedFave;
+//		} else {
+////			call add method from user to add another user to their favorites list
+//			userAddingFave.addMyListOfFavoriteUsers(userBeingFaved);
+//			userRepo.saveAndFlush(userAddingFave);
+//			return !addedFave;
+//		}
+//
+//	}
+
 	@Override
-	public boolean addUserToFavorites(String username, int addedId) {
-		boolean addedFave = false;
-		
+	public boolean removeUserFromFavorites(String username, int profileId) {
+		boolean removingFave = false;
 		if (userRepo.findByUsername(username) == null) {
-			return addedFave;
+			return removingFave;
 		}
-		
-		User userAddingFave = userRepo.findByUsername(username);
-		Optional <User> userOpt = userRepo.findById(addedId);
-		User userBeingFaved = userOpt.get();
-		
-//		LOGIC: if the user has toggled off the favorites button, they are still sent to this method. 
-//		in this method, the if statement below will check to see if that person 
-		
-		if (userAddingFave.getMyListOfFavoriteUsers().contains(userBeingFaved)) {
-//			If they are already on the faves list then use the remove method passing in the person being removed
-			userAddingFave.removeMyListOfFavoriteUsers(userBeingFaved);
-			userRepo.saveAndFlush(userAddingFave);
-			return addedFave;
+		User userRemovingFave = userRepo.findByUsername(username);
+		Optional<User> userOpt = userRepo.findById(profileId);
+		User userBeingremoved = userOpt.get();
+		if (userRemovingFave.getMyListOfFavoriteUsers().contains(userBeingremoved)) {
+			userRemovingFave.removeMyListOfFavoriteUsers(userBeingremoved);
+			userRepo.saveAndFlush(userRemovingFave);
+			return !removingFave;
 		}
 		else {
-//			call add method from user to add another user to their favorites list
-			userAddingFave.addMyListOfFavoriteUsers(userBeingFaved);
-			userRepo.saveAndFlush(userAddingFave);
-			return !addedFave;
+			return removingFave;
 		}
-		
 	}
 	
-	
-	
-	
 	@Override
-	public boolean addClimbingAreaToFavorites(String username, int addedId) {
-		boolean addedFave = false;
-		
+	public boolean addUserToFavorites(String username, int profileId) {
+		boolean addingFave = false;
 		if (userRepo.findByUsername(username) == null) {
-			return addedFave;
+			return addingFave;
 		}
 		User userAddingFave = userRepo.findByUsername(username);
-		Optional <ClimbingArea> areaOpt = areaRepo.findById(addedId);
-		ClimbingArea area = areaOpt.get();
-		List <ClimbingArea> areaFavoritesList = userAddingFave.getFavoriteAreaList();
-		areaFavoritesList.add(area);
-		userAddingFave.setFavoriteAreaList(areaFavoritesList);
-		
-		if (userAddingFave.getFavoriteAreaList().contains(area)) {
-			return !addedFave;
+		Optional<User> userOpt = userRepo.findById(profileId);
+		User userBeingAdded = userOpt.get();
+		if (!userAddingFave.getMyListOfFavoriteUsers().contains(userBeingAdded)) {
+			userAddingFave.addMyListOfFavoriteUsers(userBeingAdded);
+			userRepo.saveAndFlush(userAddingFave);
+			return !addingFave;
 		}
-		return addedFave;
+		else {
+			return addingFave;
+		}
 	}
 
 	
+	@Override
+	public boolean removeClimbingAreaFromFavorites(String username, int areaId) {
+		boolean removedFave = false;
+
+		if (userRepo.findByUsername(username) == null) {
+			return removedFave;
+		}
+		User userRemovingFave = userRepo.findByUsername(username);
+		Optional<ClimbingArea> areaOpt = areaRepo.findById(areaId);
+		ClimbingArea area = areaOpt.get();
+
+		if (userRemovingFave.getFavoriteAreaList().contains(area)) {
+			userRemovingFave.removeClimbingArea(area);
+			userRepo.saveAndFlush(userRemovingFave);
+			return !removedFave;
+		}
+		else {
+			return removedFave;
+		}
+		
+	}
 	
 	
-	
+	@Override
+	public boolean addClimbingAreaToFavorites(String username, int areaId) {
+		boolean addedFave = false;
+		if (userRepo.findByUsername(username) == null) {
+			return addedFave;
+		}
+		User userAddingFave = userRepo.findByUsername(username);
+		Optional<ClimbingArea> areaOpt = areaRepo.findById(areaId);
+		ClimbingArea area = areaOpt.get();
+		if (!userAddingFave.getFavoriteAreaList().contains(area)) {
+			userAddingFave.addClimbingArea(area);
+			userRepo.saveAndFlush(userAddingFave);
+			return !addedFave;
+		}
+		else {
+			return addedFave;
+		}
+	}
+
 }

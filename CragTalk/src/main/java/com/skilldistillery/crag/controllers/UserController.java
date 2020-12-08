@@ -168,16 +168,16 @@ public class UserController {
 	
 	
 //	Going into another controller
-//	@GetMapping("user/favoriteareas")
-//	public List<ClimbingArea> listofUsersFavoriteClimbingAreas(HttpServletResponse res) {
-////			List <User> users = svc.findUsersByLocation(principal.getName(), cityName);
-//		List<ClimbingArea> areas = svc.usersListOfClimbingAreas(username);
-//
-//		if (areas == null) {
-//			res.setStatus(404);
-//		}
-//		return areas;
-//	}
+	@GetMapping("user/favoriteareas")
+	public List<ClimbingArea> listofUsersFavoriteClimbingAreas(HttpServletResponse res) {
+//			List <User> users = svc.findUsersByLocation(principal.getName(), cityName);
+		List<ClimbingArea> areas = svc.usersListOfClimbingAreas(username);
+
+		if (areas == null) {
+			res.setStatus(404);
+		}
+		return areas;
+	}
 
 	
 	
@@ -219,20 +219,27 @@ public class UserController {
 //	
 //	userAdded = svc.addUserToFavorites(principal.getName(), user);
 //	addedId - is that the id of the one being favorited
-	@PutMapping("user/profile/{addedId}/{isFavorited}")
+	@PutMapping("user/profile/{profileId}/{isFavorited}")
 	public boolean updateUsersFavoriteUsersList(HttpServletResponse res,
-			@PathVariable int addedId, @PathVariable boolean isFavorited) {
-		boolean userAdded = false;
-
+			@PathVariable int profileId, @PathVariable boolean isFavorited) {
+		
+		
+		boolean modifiedList = false;
+		
 		try {
-			userAdded = svc.addUserToFavorites(username, addedId);
-			if (userAdded == false) {
-				res.setStatus(404);
+			if (isFavorited) {
+				modifiedList = svc.addUserToFavorites(username, profileId);
 			}
+			else {
+				modifiedList = svc.removeUserFromFavorites(username, profileId);
+			}
+//			if ( == null) {
+//				res.setStatus(404);
+//			}
 		} catch (Exception e) {
 			res.setStatus(400);
 		}
-		return userAdded;
+		return modifiedList;
 	}
 
 //	
@@ -242,20 +249,25 @@ public class UserController {
 
 //	areaAdded = svc.addClimbingAreaToFavorites(principal.getName(), user);
 //	need to make sure api mapping is correct
-	@PutMapping("user/area/{areaId}")
-	public boolean updateUsersFavoriteAreasList(HttpServletResponse res, @RequestBody User user,
-			@PathVariable int areaId) {
-		boolean areaAdded = false;
-
+	@PutMapping("user/area/{areaId}/{isFavorited}")
+	public boolean updateUsersFavoriteAreasList(HttpServletResponse res, @PathVariable int areaId, @PathVariable boolean isFavorited) {
+		
+	boolean modifiedList = false;
+		
 		try {
-			areaAdded = svc.addClimbingAreaToFavorites(username, areaId);
-			if (user == null) {
-				res.setStatus(404);
+			if (isFavorited) {
+				modifiedList = svc.addClimbingAreaToFavorites(username, areaId);
 			}
+			else {
+				modifiedList = svc.removeClimbingAreaFromFavorites(username, areaId);
+			}
+//			if ( == null) {
+//				res.setStatus(404);
+//			}
 		} catch (Exception e) {
 			res.setStatus(400);
 		}
-		return areaAdded;
+		return modifiedList;
 	}
 
 }
