@@ -1,3 +1,8 @@
+import { Message } from './message';
+import { Media } from './media';
+import { Gear } from './gear';
+import { ClimbingArea } from './climbing-area';
+import { ClimbType } from './climb-type';
 export class User {
 
   id: number;
@@ -16,7 +21,18 @@ export class User {
   otherHobbies: string;
   birthdate: string;
   password: string;
-
+  climbTypes: ClimbType[];
+  favoriteAreaList: ClimbingArea[];
+  location: Location;
+  createdEvents: Event[];
+  attendedEvents: Event[];
+  gearList: Gear[];
+  myListOfFavoriteUsers: User[];
+  listOfUsersWhoHaveFavoritedMe: User[];
+  mediaList: Media[];
+  myListOfReceivedMessages: Message[];
+  myListOfSentMessages: Message[];
+  enabled: boolean;
 
 
   constructor(
@@ -36,6 +52,18 @@ export class User {
     otherHobbies?: string,
     birthdate?: string,
     password?: string,
+    climbTypes?: ClimbType[],
+    favoriteAreaList?: ClimbingArea[],
+    location?: Location,
+    createdEvents?: Event[],
+    attendedEvents?: Event[],
+    gearList?: Gear[],
+    myListOfFavoriteUsers?: User[],
+    listOfUsersWhoHaveFavoritedMe?: User[],
+    mediaList?: Media[],
+    myListOfReceivedMessages?: Message[],
+    myListOfSentMessages?: Message[],
+    enabled?: boolean,
 
   ){
     this.id=id;
@@ -53,5 +81,18 @@ export class User {
     this.lastLogin=lastLogin;
     this.otherHobbies=otherHobbies;
     this.birthdate=birthdate;
-    this.password=password;}
+    this.password=password;
+    this.climbTypes=climbTypes,
+    this.favoriteAreaList=favoriteAreaList,
+    this.location=location,
+    this.createdEvents=createdEvents,
+    this.attendedEvents=attendedEvents,
+    this.gearList=gearList,
+    this.myListOfFavoriteUsers=myListOfFavoriteUsers,
+    this.listOfUsersWhoHaveFavoritedMe=listOfUsersWhoHaveFavoritedMe,
+    this.mediaList=mediaList,
+    this.myListOfReceivedMessages=myListOfReceivedMessages,
+    this.myListOfSentMessages=myListOfSentMessages,
+    this.enabled=enabled
+  }
 }
