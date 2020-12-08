@@ -8,6 +8,7 @@ export class Message {
   zip           : number;
   users         : User [];
   streetAddress : string;
+  createdAt     : string;
   climbingAreas : ClimbingArea []
 
 
@@ -18,6 +19,7 @@ constructor(
   zip?            : number,
   users?          : User [],
   streetAddress?  : string,
+  createdAt?      : string,
   climbingAreas?  : ClimbingArea []
 
 ){
@@ -28,5 +30,6 @@ constructor(
   this.users         = users;
   this.streetAddress = streetAddress;
   this.climbingAreas = climbingAreas;
+  this.createdAt     = createdAt;
 }
 };
