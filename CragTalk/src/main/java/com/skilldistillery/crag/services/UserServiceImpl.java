@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService {
 	private ClimbingAreaRepository areaRepo;
 	
 	
+	
 	@Override
 	public List<User> listAllUsers(String username) {
 		if (userRepo.findByUsername(username) == null) {
@@ -138,11 +139,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> findByClimbType(String username, ClimbType climbType) {
+	public List<User> findByClimbType(String username, ClimbType type) {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
-		return userRepo.findByClimbTypes(climbType);
+		return userRepo.findByClimbTypes(type);
 	}
 
 	@Override
@@ -150,6 +151,7 @@ public class UserServiceImpl implements UserService {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
+	
 		return userRepo.findByAvailability(availability);
 	}
 
@@ -165,12 +167,12 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Override
-	public List<User> findUsersByFavoriteClimbingAreas(String username, ClimbingArea climbingArea) {
+	public List<User> findUsersByFavoriteClimbingAreas(String username, String climbingArea) {
 		if (userRepo.findByUsername(username) == null) {
 			return null;
 		}
-		
-		return userRepo.findByFavoriteAreaList(climbingArea);
+		ClimbingArea area = areaRepo.findByName(climbingArea);
+		return userRepo.findByFavoriteAreaList(area);
 	}
 
 	@Override
@@ -228,18 +230,23 @@ public class UserServiceImpl implements UserService {
 		if (userRepo.findByUsername(username) == null) {
 			return addedFave;
 		}
+		
 		User userAddingFave = userRepo.findByUsername(username);
 		Optional <User> userOpt = userRepo.findById(addedId);
 		User userBeingFaved = userOpt.get();
 		List <User> usersFavoritesList = userAddingFave.getMyListOfFavoriteUsers();
-		usersFavoritesList.add(userBeingFaved);
 		userAddingFave.setMyListOfFavoriteUsers(usersFavoritesList);
-		
-		if (userAddingFave.getMyListOfFavoriteUsers().contains(userBeingFaved)) {
+//		
+		if (!userAddingFave.getMyListOfFavoriteUsers().contains(userBeingFaved)) {
+			usersFavoritesList.add(userBeingFaved);
 			return !addedFave;
 		}
+		
 		return addedFave;
 	}
+	
+	
+	
 	
 	@Override
 	public boolean addClimbingAreaToFavorites(String username, int addedId) {

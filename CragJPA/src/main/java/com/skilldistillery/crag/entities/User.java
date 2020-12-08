@@ -65,13 +65,14 @@ public class User {
 
 	private String password;
 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="user_climb_type", 
 	joinColumns = @JoinColumn(name="user_id"), 
 	inverseJoinColumns = @JoinColumn(name = "climb_type_id"))
 	private List<ClimbType> climbTypes;
 
-	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="favorite_area", 
 	joinColumns = @JoinColumn(name="user_id"), 
@@ -88,6 +89,7 @@ public class User {
 	@OneToMany(mappedBy = "createdBy")
 	List<Event> createdEvents;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="user_has_event", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))
 	private List<Event> attendedEvents;
@@ -96,10 +98,13 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	List<Gear> gearList;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "favorite_user", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "favorite_user_id"))
 	private List<User> myListOfFavoriteUsers;
 	
+	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "myListOfFavoriteUsers")
 	private List<User> listOfUsersWhoHaveFavoritedMe;
 	
@@ -107,10 +112,14 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	List<Media> mediaList;
 	
+	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "message", joinColumns = @JoinColumn(name="id"), inverseJoinColumns = @JoinColumn(name = "receiver_id"))
 	private List<Message> myListOfReceivedMessages;
 	
+	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "message", joinColumns = @JoinColumn(name="id"), inverseJoinColumns = @JoinColumn(name = "sender_id"))
 	private List<Message> myListOfSentMessages;
