@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,8 +25,8 @@ import com.skilldistillery.crag.services.UserService;
 @RestController
 public class MessageController {
 	
-	@Autowired
-	private UserService userService;
+//	@Autowired
+//	private UserService userService;
 	
 	@Autowired
 	private MessageService messageService;
@@ -44,13 +46,19 @@ public class MessageController {
 	
 
 //	Remove a message
-	@DeleteMapping(path = "/{uid}/messages/{mid}")
-	public void destroy(Integer uid, String username) {
-		messageService.destroy(username, uid);
+	@DeleteMapping(path = "user/messages/{mid}")
+	public void destroy(String username, @PathVariable Integer mid) {
+		messageService.destroy(this.username, mid);
 	}
+
 	
-	
+	//add a message
+	@PostMapping(path = "user/message/{receiverUserId}")
+	public Message addMessage(String username, @RequestBody Message message, @PathVariable Integer receiverUserId) {
+	return messageService.create(this.username, message, receiverUserId);
+}
 	
 	
 	
 }
+
