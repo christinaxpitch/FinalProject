@@ -10,7 +10,9 @@ import com.skilldistillery.crag.entities.ClimbType;
 import com.skilldistillery.crag.entities.ClimbingArea;
 import com.skilldistillery.crag.entities.Event;
 import com.skilldistillery.crag.entities.Gear;
+import com.skilldistillery.crag.entities.Message;
 import com.skilldistillery.crag.entities.User;
+import com.skilldistillery.crag.repositories.ClimbingAreaRepository;
 import com.skilldistillery.crag.repositories.UserRepository;
 
 @Service
@@ -20,6 +22,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepo;
 	
+	@Autowired
+	private ClimbingAreaRepository areaRepo;
 	
 	
 	@Override
@@ -158,6 +162,7 @@ public class UserServiceImpl implements UserService {
 		return user.getMyListOfFavoriteUsers();
 	}
 	
+	
 
 	@Override
 	public List<User> findUsersByFavoriteClimbingAreas(String username, ClimbingArea climbingArea) {
@@ -196,4 +201,68 @@ public class UserServiceImpl implements UserService {
 		return userRepo.findByLocation_City(cityName);
 	}
 
+	@Override
+	public List<Message> usersMessages(String username) {
+		if (userRepo.findByUsername(username) == null) {
+			return null;
+		}
+		User user = userRepo.findByUsername(username);
+		return user.getMyListOfReceivedMessages();
+	}
+
+	@Override
+	public List<ClimbingArea> usersListOfClimbingAreas(String username) {
+		if (userRepo.findByUsername(username) == null) {
+			return null;
+		}
+		User user = userRepo.findByUsername(username);
+		
+		
+		return user.getFavoriteAreaList();
+	}
+
+	@Override
+	public boolean addUserToFavorites(String username, int addedId) {
+		boolean addedFave = false;
+		
+		if (userRepo.findByUsername(username) == null) {
+			return addedFave;
+		}
+		User userAddingFave = userRepo.findByUsername(username);
+		Optional <User> userOpt = userRepo.findById(addedId);
+		User userBeingFaved = userOpt.get();
+		List <User> usersFavoritesList = userAddingFave.getMyListOfFavoriteUsers();
+		usersFavoritesList.add(userBeingFaved);
+		userAddingFave.setMyListOfFavoriteUsers(usersFavoritesList);
+		
+		if (userAddingFave.getMyListOfFavoriteUsers().contains(userBeingFaved)) {
+			return !addedFave;
+		}
+		return addedFave;
+	}
+	
+	@Override
+	public boolean addClimbingAreaToFavorites(String username, int addedId) {
+		boolean addedFave = false;
+		
+		if (userRepo.findByUsername(username) == null) {
+			return addedFave;
+		}
+		User userAddingFave = userRepo.findByUsername(username);
+		Optional <ClimbingArea> areaOpt = areaRepo.findById(addedId);
+		ClimbingArea area = areaOpt.get();
+		List <ClimbingArea> areaFavoritesList = userAddingFave.getFavoriteAreaList();
+		areaFavoritesList.add(area);
+		userAddingFave.setFavoriteAreaList(areaFavoritesList);
+		
+		if (userAddingFave.getFavoriteAreaList().contains(area)) {
+			return !addedFave;
+		}
+		return addedFave;
+	}
+
+	
+	
+	
+	
 }

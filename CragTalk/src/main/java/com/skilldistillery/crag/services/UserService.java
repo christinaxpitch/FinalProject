@@ -5,7 +5,7 @@ import java.util.List;
 import com.skilldistillery.crag.entities.ClimbType;
 import com.skilldistillery.crag.entities.ClimbingArea;
 import com.skilldistillery.crag.entities.Event;
-import com.skilldistillery.crag.entities.Gear;
+import com.skilldistillery.crag.entities.Message;
 import com.skilldistillery.crag.entities.User;
 
 
@@ -37,5 +37,12 @@ public interface UserService {
     
     List <User> findUsersByLocation(String username, String cityName);
     
+    List <Message> usersMessages(String username);
+    
+    List <ClimbingArea> usersListOfClimbingAreas(String username);
+    
+    public boolean addUserToFavorites(String username, int addedId);
+    
+    public boolean addClimbingAreaToFavorites(String username, int areaAddedId);
 	
 }
