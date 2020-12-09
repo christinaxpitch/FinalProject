@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from 'src/app/models/event';
@@ -18,7 +19,8 @@ export class EventComponent implements OnInit {
 
   constructor(private eventService: EventService,
     private currentRoute: ActivatedRoute,
-    private router: Router,) { }
+    private router: Router,
+    private datePipe: DatePipe) { }
 
   ngOnInit(): void {
       const idStr = this.currentRoute.snapshot.paramMap.get('eventId');

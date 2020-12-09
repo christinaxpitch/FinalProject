@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     NgbModule,
     IvyCarouselModule
   ],
-  providers: [AuthService, EventService, IndexService, UserService],
+  providers: [AuthService, EventService, IndexService, UserService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
