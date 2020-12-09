@@ -32,7 +32,7 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     EventComponent,
     MessageComponent,
     LogoutComponent,
-    NotFoundComponent
+    NotFoundComponent,
 
   ],
   imports: [
