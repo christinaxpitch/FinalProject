@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 })
 export class EventService {
 baseUrl='http://localhost:8090/'
-private url = this.baseUrl + 'api/user';
+private url = this.baseUrl + 'api/event';
 constructor(private http: HttpClient, private authService: AuthService) { }
 
 getHttpOptions(){

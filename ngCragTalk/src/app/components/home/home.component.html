@@ -9,18 +9,16 @@
   <table>
     <thead>
       <tr>
-        <td>id</td>
-        <td>name</td>
-        <td>image</td>
+        <td>Name</td>
+        <td>Date</td>
+        <td>Users</td>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="recent of recentClimbs ">
-      <td>{{}}</td>
-      <td>{{}}</td>
-      <td>
-        <img [src]="poke.img"/>
-      </td>
+    <tr *ngFor="let recent of recentClimbs">
+      <td>{{recent.eventName}}</td>
+      <td>{{recent.eventDate}}</td>
+      <td>{{recent.attendedUsers}}</td>
     </tr>
   </tbody>
 </table>
@@ -28,6 +26,38 @@
 <div>
   <h1>Group Climbs
   </h1>
+  <table>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Date</td>
+        <td>Users</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let group of groupClimbs">
+      <td>{{group.eventName}}</td>
+      <td>{{group.eventDate}}</td>
+      <td>{{group.attendedUsers}}</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 <div><h1>Looking for partner</h1>
+  <table>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Style</td>
+        <td>Location</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of userClimbers">
+      <td>{{user.firstName}} {{user.lastName}}</td>
+      <td>{{user.climbTypes}}</td>
+      <td>{{user.location}}</td>
+    </tr>
+  </tbody>
+</table>
 </div>

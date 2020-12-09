@@ -1,5 +1,8 @@
+import { UserService } from './../../services/user.service';
 import { EventService } from './../../services/event.service';
 import { Component, OnInit } from '@angular/core';
+import { Event } from './../../models/event';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   recentClimbs: Event[] = [];
-  groupClimbs=null;
-  constructor(private eventService: EventService) { }
+  groupClimbs: Event[]=[];
+  userClimbers: User[] = [];
+  constructor(private eventService: EventService, private userService: UserService) { }
 
 
 
