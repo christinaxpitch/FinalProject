@@ -35,7 +35,7 @@ public class ClimbingAreaController {
 	
 	//View Favorite climbing locations
 	@GetMapping(path="climbingAreas/favorites")
-	public List<ClimbingArea> getFavoriteClimbingAreas(String username, HttpServletResponse res, Principal principal){
+	public List<ClimbingArea> getFavoriteClimbingAreas(HttpServletResponse res, Principal principal){
 	List<ClimbingArea> areas = climbingAreaSvc.favoritedIndex(principal.getName());
 	if(areas == null) {
 		res.setStatus(400);
