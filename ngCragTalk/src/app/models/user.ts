@@ -33,6 +33,7 @@ export class User {
   myListOfReceivedMessages: Message[];
   myListOfSentMessages: Message[];
   enabled: boolean;
+  userClimbTypes: ClimbType[];
 
 
   constructor(
@@ -64,6 +65,7 @@ export class User {
     myListOfReceivedMessages?: Message[],
     myListOfSentMessages?: Message[],
     enabled?: boolean,
+    userClimbTypes?: ClimbType[],
 
   ){
     this.id=id;
@@ -93,6 +95,7 @@ export class User {
     this.mediaList=mediaList,
     this.myListOfReceivedMessages=myListOfReceivedMessages,
     this.myListOfSentMessages=myListOfSentMessages,
-    this.enabled=enabled
+    this.enabled=enabled,
+    this.userClimbTypes = userClimbTypes
   }
 }

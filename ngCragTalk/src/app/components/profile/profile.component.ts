@@ -3,6 +3,8 @@ import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Gear } from 'src/app/models/gear';
+import { ClimbType } from 'src/app/models/climb-type';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +16,9 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
 
   selectedUser: User = null;
+  gearList: Gear[] = [];
+  climbTypes: ClimbType[] = [];
+  // will need to add an array for a users gear list and use the controller path and the method to get a users gear list
 
 
 
@@ -28,6 +33,8 @@ export class ProfileComponent implements OnInit {
             (data) => {
               console.log('Todo retrieved, setting selected');
               this.selectedUser = data;
+              this.gearList = data.gearList;
+              this.climbTypes = data.climbTypes;
               // this.reload();
             },
             (err) => {
