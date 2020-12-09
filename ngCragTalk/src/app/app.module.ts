@@ -19,6 +19,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserClimbTypeComponent } from './user-climb-type/user-climb-type.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EventComponent,
     MessageComponent,
     LogoutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    UserClimbTypeComponent
 
   ],
   imports: [
