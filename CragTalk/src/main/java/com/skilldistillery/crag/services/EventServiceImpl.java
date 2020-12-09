@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.crag.entities.Event;
 import com.skilldistillery.crag.entities.User;
 import com.skilldistillery.crag.repositories.EventRepository;
 import com.skilldistillery.crag.repositories.UserRepository;
 
+
+@Service
 public class EventServiceImpl implements EventService {
 
 	

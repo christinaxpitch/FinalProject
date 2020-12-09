@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.crag.entities.ClimbType;
 import com.skilldistillery.crag.repositories.ClimbTypeRepositories;
 import com.skilldistillery.crag.repositories.UserRepository;
 
+@Service
 public class ClimbingTypeServiceImpl implements ClimbingTypeService {
 
 	@Autowired
