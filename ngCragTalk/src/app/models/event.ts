@@ -1,5 +1,6 @@
 import { ClimbingArea } from './climbing-area';
 import { User } from './user';
+
 export class Event {
   id: number;
   eventName: string;
