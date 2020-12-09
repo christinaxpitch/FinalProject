@@ -1,9 +1,11 @@
 <div>
   <h1>Title</h1>
 </div>
-<div>
-  <h1>Carosel</h1>
-</div>
+<carousel>
+  <div *ngFor="let med of media" class="carousel-cell" >
+    <img src="{{med.mediaUrl}}">
+    </div>
+</carousel>
 <div>
   <h1>Recent Climbs</h1>
   <table>

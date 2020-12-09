@@ -3,6 +3,10 @@ import { EventService } from './../../services/event.service';
 import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/app/models/event';
 import { User } from 'src/app/models/user';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { Media } from 'src/app/models/media';
+import { IndexService } from 'src/app/services/index.service';
+
 
 @Component({
   selector: 'app-home',
@@ -13,14 +17,14 @@ export class HomeComponent implements OnInit {
   recentClimbs: Event[] = [];
   groupClimbs: Event[]=[];
   userClimbers: User[] = [];
-  constructor(private eventService: EventService, private userService: UserService) { }
-
-
+  media: Media[] = [];
+  constructor(private eventService: EventService, private userService: UserService, private indexService: IndexService) { }
 
   ngOnInit(): void {
     this.loadRecentClimbEvents();
     this.loadUsers();
     this.loadGroupClimbEvents();
+    this.loadMedia();
   }
   loadUsers(): void{
     this.userService.index().subscribe(
@@ -48,6 +52,18 @@ export class HomeComponent implements OnInit {
         console.log('Home.components loadEvent(): retrieve succeeded');},
       err=>{
         console.error('Home.components loadEvent(): retrieve failed');
+        console.error(err);
+      });
+  }
+
+  loadMedia(): void{
+    this.indexService.index().subscribe(
+      data=>{this.media=data;
+        console.log(this.media);
+
+        console.log('Home.components loadMedia(): retrieve succeeded');},
+      err=>{
+        console.error('Home.components loadMedia(): retrieve failed');
         console.error(err);
       });
   }
