@@ -1,3 +1,4 @@
+import { UserService } from './services/user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -10,6 +11,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { EventComponent } from './components/event/event.component';
 import { MessageComponent } from './components/message/message.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { AuthService } from './services/auth.service';
+import { IndexService } from './services/index.service';
+import { EventService } from './services/event.service';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,13 +28,18 @@ import { MessageComponent } from './components/message/message.component';
     NavbarComponent,
     HomeComponent,
     EventComponent,
-    MessageComponent
+    MessageComponent,
+    LogoutComponent,
+    NotFoundComponent
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService, EventService, IndexService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
