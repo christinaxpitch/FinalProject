@@ -38,5 +38,16 @@ export class UserService {
     );
   }
 
+  index(): Observable<User[]> {
+    const httpOptions=this.getHttpOptions();
+
+    return this.http.get<User[]>(this.url, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('UserService.index(): Error retrieving todo list');
+      })
+    );
+  }
+
 
 }

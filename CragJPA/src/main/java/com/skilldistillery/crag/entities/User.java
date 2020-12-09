@@ -126,6 +126,9 @@ public class User {
 	
 	private Boolean enabled;
 	
+	@OneToMany(mappedBy = "user")
+	private List<UserClimbType> userClimbTypes;
+	
 //	CONSTRUCTOR
 	public User() {
 		super();
