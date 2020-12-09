@@ -19,7 +19,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { UserClimbTypeComponent } from './user-climb-type/user-climb-type.component';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,6 @@ import { UserClimbTypeComponent } from './user-climb-type/user-climb-type.compon
     MessageComponent,
     LogoutComponent,
     NotFoundComponent,
-    UserClimbTypeComponent
 
   ],
   imports: [
@@ -41,7 +40,8 @@ import { UserClimbTypeComponent } from './user-climb-type/user-climb-type.compon
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    IvyCarouselModule
   ],
   providers: [AuthService, EventService, IndexService, UserService],
   bootstrap: [AppComponent]
