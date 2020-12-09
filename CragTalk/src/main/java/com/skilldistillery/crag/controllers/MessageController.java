@@ -47,14 +47,14 @@ public class MessageController {
 
 //	Remove a message
 	@DeleteMapping(path = "user/messages/{mid}")
-	public void destroy(String username, @PathVariable Integer mid, Principal principal) {
+	public void destroy(@PathVariable Integer mid, Principal principal) {
 		messageService.destroy(principal.getName(), mid);
 	}
 
 	
 	//add a message
 	@PostMapping(path = "user/message/{receiverUserId}")
-	public Message addMessage(String username, @RequestBody Message message, @PathVariable Integer receiverUserId, Principal principal) {
+	public Message addMessage(@RequestBody Message message, @PathVariable Integer receiverUserId, Principal principal) {
 	return messageService.create(principal.getName(), message, receiverUserId);
 }
 	
