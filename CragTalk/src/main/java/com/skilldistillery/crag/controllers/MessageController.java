@@ -31,7 +31,7 @@ public class MessageController {
 	@Autowired
 	private MessageService messageService;
 	
-	private String username = "shakawithme";
+//	private String username = "shakawithme";
 	
 //	View All Messages 
 //	@GetMapping(path = "/{uid}/messages")
@@ -40,22 +40,22 @@ public class MessageController {
 //		if (messages == null) {
 //			res.setStatus(400);
 //		}
-//		messages = messageService.show(username, uid);
+//		messages = messageService.show(principal.getName(), uid);
 //		return messages;
 //	}
 	
 
 //	Remove a message
 	@DeleteMapping(path = "user/messages/{mid}")
-	public void destroy(String username, @PathVariable Integer mid) {
-		messageService.destroy(this.username, mid);
+	public void destroy(String username, @PathVariable Integer mid, Principal principal) {
+		messageService.destroy(principal.getName(), mid);
 	}
 
 	
 	//add a message
 	@PostMapping(path = "user/message/{receiverUserId}")
-	public Message addMessage(String username, @RequestBody Message message, @PathVariable Integer receiverUserId) {
-	return messageService.create(this.username, message, receiverUserId);
+	public Message addMessage(String username, @RequestBody Message message, @PathVariable Integer receiverUserId, Principal principal) {
+	return messageService.create(principal.getName(), message, receiverUserId);
 }
 	
 	

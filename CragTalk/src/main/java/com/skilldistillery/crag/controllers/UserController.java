@@ -1,5 +1,6 @@
 package com.skilldistillery.crag.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -33,13 +34,13 @@ public class UserController {
 	@Autowired
 	private ClimbTypeRepositories climbRepo;
 	
-	private String username = "shakawithme";
+//	private String username = "shakawithme";
 
 //	Principal principal
 
 	@GetMapping("user")
-	public List<User> listAllUsers(HttpServletResponse res) {
-		List<User> users = svc.listAllUsers(username);
+	public List<User> listAllUsers(HttpServletResponse res, Principal principal) {
+		List<User> users = svc.listAllUsers(principal.getName());
 //		List <User> users = svc.listAllUsers(principal);
 		if (users == null) {
 			res.setStatus(404);
@@ -48,9 +49,9 @@ public class UserController {
 	}
 
 	@GetMapping("user/{userId}")
-	public User getUserById(@PathVariable Integer userId, HttpServletResponse res) {
+	public User getUserById(@PathVariable Integer userId, HttpServletResponse res, Principal principal) {
 //		User User = svc.show(principal.getName(), uid);
-		User user = svc.show(username, userId);
+		User user = svc.show(principal.getName(), userId);
 		if (user == null) {
 			res.setStatus(404);
 		}
@@ -59,10 +60,10 @@ public class UserController {
 
 //	
 	@PutMapping("user/{userId}")
-	public User updateUser(HttpServletResponse res, @RequestBody User user) {
+	public User updateUser(HttpServletResponse res, @RequestBody User user, Principal principal) {
 		try {
 //			user = svc.update(principal.getName(), user);
-			user = svc.update(username, user);
+			user = svc.update(principal.getName(), user);
 			if (user == null) {
 				res.setStatus(404);
 			}
@@ -75,11 +76,11 @@ public class UserController {
 	
 //	Hold of on testing? should 
 	@DeleteMapping("user/{userId}")
-	public void destroy(HttpServletResponse res, @PathVariable Integer userId) {
+	public void destroy(HttpServletResponse res, @PathVariable Integer userId, Principal principal) {
 //		if (svc.destroy(principal.getName(), userId)) {
 //			res.setStatus(204);
 //		}
-		if (svc.destroy(username, userId)) {
+		if (svc.destroy(principal.getName(), userId)) {
 			res.setStatus(204);
 		}
 
@@ -89,9 +90,9 @@ public class UserController {
 	}
 
 	@GetMapping("user/location/{cityName}")
-	public List<User> listUsersByLocation(HttpServletResponse res, @PathVariable String cityName) {
+	public List<User> listUsersByLocation(HttpServletResponse res, @PathVariable String cityName, Principal principal) {
 //			List <User> users = svc.findUsersByLocation(principal.getName(), cityName);
-		List<User> users = svc.findUsersByLocation(username, cityName);
+		List<User> users = svc.findUsersByLocation(principal.getName(), cityName);
 
 		if (users == null) {
 			res.setStatus(404);
@@ -103,11 +104,11 @@ public class UserController {
 	
 	
 	@GetMapping("user/climbtype/{climbType}")
-	public List<User> listUsersByClimbType(HttpServletResponse res, @PathVariable String climbType) {
+	public List<User> listUsersByClimbType(HttpServletResponse res, @PathVariable String climbType, Principal principal) {
 //			List <User> users = svc.findUsersByLocation(principal.getName(), cityName);
 		ClimbType type = climbRepo.findByName(climbType);
 		
-		List<User> users = svc.findByClimbType(username, type);
+		List<User> users = svc.findByClimbType(principal.getName(), type);
 
 		if (users == null) {
 			res.setStatus(404);
@@ -118,9 +119,9 @@ public class UserController {
 	
 	
 	@GetMapping("user/available/{availability}")
-	public List<User> listUsersByAvailability(HttpServletResponse res, @PathVariable String availability) {
+	public List<User> listUsersByAvailability(HttpServletResponse res, @PathVariable String availability, Principal principal) {
 //			List <User> users = svc.findUsersByLocation(principal.getName(), cityName);
-		List<User> users = svc.findByAvailability(username, availability);
+		List<User> users = svc.findByAvailability(principal.getName(), availability);
 
 		if (users == null) {
 			res.setStatus(404);
@@ -133,9 +134,9 @@ public class UserController {
 	
 
 	@GetMapping("user/favoriteusers")
-	public List<User> listOfFavoriteUsersByUser(HttpServletResponse res) {
+	public List<User> listOfFavoriteUsersByUser(HttpServletResponse res, Principal principal) {
 //			List <User> users = svc.findUsersByLocation(principal.getName(), cityName);
-		List<User> users = svc.listOfFavoriteUsers(username);
+		List<User> users = svc.listOfFavoriteUsers(principal.getName());
 
 		if (users == null) {
 			res.setStatus(404);
@@ -153,10 +154,10 @@ public class UserController {
 //	THIS WILL GO IN THE CLIMBING AREA CONTROLLER
 
 	@GetMapping("user/climbingareausers/{climbingArea}")
-	public List<User> listUsersByFavoriteClimbingArea(HttpServletResponse res, @PathVariable String climbingArea) {
+	public List<User> listUsersByFavoriteClimbingArea(HttpServletResponse res, @PathVariable String climbingArea, Principal principal) {
 //			List <User> users = svc.findUsersByLocation(principal.getName(), cityName);
 		
-		List<User> users = svc.findUsersByFavoriteClimbingAreas(username, climbingArea);
+		List<User> users = svc.findUsersByFavoriteClimbingAreas(principal.getName(), climbingArea);
 
 		if (users == null) {
 			res.setStatus(404);
@@ -169,9 +170,9 @@ public class UserController {
 	
 //	Going into another controller
 	@GetMapping("user/favoriteareas")
-	public List<ClimbingArea> listofUsersFavoriteClimbingAreas(HttpServletResponse res) {
+	public List<ClimbingArea> listofUsersFavoriteClimbingAreas(HttpServletResponse res, Principal principal) {
 //			List <User> users = svc.findUsersByLocation(principal.getName(), cityName);
-		List<ClimbingArea> areas = svc.usersListOfClimbingAreas(username);
+		List<ClimbingArea> areas = svc.usersListOfClimbingAreas(principal.getName());
 
 		if (areas == null) {
 			res.setStatus(404);
@@ -183,9 +184,9 @@ public class UserController {
 	
 	
 	@GetMapping("user/attendedevents")
-	public List<Event> findEventsAttendedByUser(HttpServletResponse res) {
+	public List<Event> findEventsAttendedByUser(HttpServletResponse res, Principal principal) {
 //			List <User> users = svc.findUsersByLocation(principal.getName());
-		List<Event> events = svc.findEventsAttendedByUser(username);
+		List<Event> events = svc.findEventsAttendedByUser(principal.getName());
 
 		if (events == null) {
 			res.setStatus(404);
@@ -194,9 +195,9 @@ public class UserController {
 	}
 
 	@GetMapping("user/createdevents")
-	public List<Event> listCreatedEventsForUser(HttpServletResponse res) {
+	public List<Event> listCreatedEventsForUser(HttpServletResponse res, Principal principal) {
 //			List <User> users = svc.findUsersByLocation(principal.getName(), cityName);
-		List<Event> events = svc.findEventsCreatedByUser(username);
+		List<Event> events = svc.findEventsCreatedByUser(principal.getName());
 
 		if (events == null) {
 			res.setStatus(404);
@@ -205,9 +206,9 @@ public class UserController {
 	}
 
 	@GetMapping("user/messages")
-	public List<Message> listOfUsersMessages(HttpServletResponse res) {
+	public List<Message> listOfUsersMessages(HttpServletResponse res, Principal principal) {
 //			List <Message> messages = svc.findUsersByLocation(principal.getName(), cityName);
-		List<Message> messages = svc.usersMessages(username);
+		List<Message> messages = svc.usersMessages(principal.getName());
 		if (messages == null) {
 			res.setStatus(404);
 		}
@@ -221,17 +222,17 @@ public class UserController {
 //	addedId - is that the id of the one being favorited
 	@PutMapping("user/profile/{profileId}/{isFavorited}")
 	public boolean updateUsersFavoriteUsersList(HttpServletResponse res,
-			@PathVariable int profileId, @PathVariable boolean isFavorited) {
+			@PathVariable int profileId, @PathVariable boolean isFavorited, Principal principal) {
 		
 		
 		boolean modifiedList = false;
 		
 		try {
 			if (isFavorited) {
-				modifiedList = svc.addUserToFavorites(username, profileId);
+				modifiedList = svc.addUserToFavorites(principal.getName(), profileId);
 			}
 			else {
-				modifiedList = svc.removeUserFromFavorites(username, profileId);
+				modifiedList = svc.removeUserFromFavorites(principal.getName(), profileId);
 			}
 //			if ( == null) {
 //				res.setStatus(404);
@@ -250,16 +251,16 @@ public class UserController {
 //	areaAdded = svc.addClimbingAreaToFavorites(principal.getName(), user);
 //	need to make sure api mapping is correct
 	@PutMapping("user/area/{areaId}/{isFavorited}")
-	public boolean updateUsersFavoriteAreasList(HttpServletResponse res, @PathVariable int areaId, @PathVariable boolean isFavorited) {
+	public boolean updateUsersFavoriteAreasList(HttpServletResponse res, @PathVariable int areaId, @PathVariable boolean isFavorited, Principal principal) {
 		
 	boolean modifiedList = false;
 		
 		try {
 			if (isFavorited) {
-				modifiedList = svc.addClimbingAreaToFavorites(username, areaId);
+				modifiedList = svc.addClimbingAreaToFavorites(principal.getName(), areaId);
 			}
 			else {
-				modifiedList = svc.removeClimbingAreaFromFavorites(username, areaId);
+				modifiedList = svc.removeClimbingAreaFromFavorites(principal.getName(), areaId);
 			}
 //			if ( == null) {
 //				res.setStatus(404);

@@ -1,5 +1,6 @@
 package com.skilldistillery.crag.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -21,11 +22,11 @@ public class ClimbingAreaController {
 	@Autowired
 	private ClimbingAreaService climbingAreaSvc;
 	
-	private String username = "shakawithme";
+//	private String username = "shakawithme";
 	
 	@GetMapping("climbingAreas")
-	public List<ClimbingArea> index(HttpServletResponse res){
-		List<ClimbingArea> climbingAreas = climbingAreaSvc.index(username);
+	public List<ClimbingArea> index(HttpServletResponse res, Principal principal){
+		List<ClimbingArea> climbingAreas = climbingAreaSvc.index(principal.getName());
 		if(climbingAreas == null) {
 			res.setStatus(400);
 		}
@@ -34,8 +35,8 @@ public class ClimbingAreaController {
 	
 	//View Favorite climbing locations
 	@GetMapping(path="climbingAreas/favorites")
-	public List<ClimbingArea> getFavoriteClimbingAreas(String username, HttpServletResponse res){
-	List<ClimbingArea> areas = climbingAreaSvc.favoritedIndex(this.username);//change this.username to username when no longer manualy setting username
+	public List<ClimbingArea> getFavoriteClimbingAreas(String username, HttpServletResponse res, Principal principal){
+	List<ClimbingArea> areas = climbingAreaSvc.favoritedIndex(principal.getName());
 	if(areas == null) {
 		res.setStatus(400);
 	}
