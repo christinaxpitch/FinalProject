@@ -16,6 +16,17 @@ export class EventService {
 
   constructor(private http: HttpClient, private authSvc: AuthService) { }
 
+  index(): Observable<Event []>{
+    const httpOptions = this.getHttpOptions();
+    return this.http.get<Event []>(this.url, httpOptions)
+    .pipe(
+      catchError((err:any)=>{
+        console.log(err);
+        return throwError('Event list not found.')
+      })
+    );
+  }
+
   show(eventId: Number): Observable<Event>{
     const httpOptions = this.getHttpOptions();
      return this.http.get<Event>(`${this.url}/${eventId}`, httpOptions)
@@ -40,3 +51,4 @@ Authorization: `Basic ${credentials}`,
 return httpOptions;
 }
 }
+

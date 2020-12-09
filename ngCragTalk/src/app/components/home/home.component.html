@@ -1,1 +1,65 @@
-<p>home works!</p>
+<div>
+  <h1>Title</h1>
+</div>
+<carousel>
+  <div *ngFor="let med of media" class="carousel-cell" >
+    <img src="{{med.mediaUrl}}">
+    </div>
+</carousel>
+<div>
+  <h1>Recent Climbs</h1>
+  <table>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Date</td>
+        <td>Description</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let recent of recentClimbs">
+      <td>{{recent.eventName}}</td>
+      <td>{{recent.eventDate}}</td>
+      <td>{{recent.description}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div>
+  <h1>Group Climbs
+  </h1>
+  <table>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Date</td>
+        <td>Description</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let group of groupClimbs">
+      <td>{{group.eventName}}</td>
+      <td>{{group.eventDate}}</td>
+      <td>{{group.description}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div><h1>Looking for partner</h1>
+  <table>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Style</td>
+        <td>Location</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of userClimbers">
+      <td>{{user.firstName}}</td>
+      <td>{{user.climbTypes}}</td>
+      <td>{{user.goals}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
