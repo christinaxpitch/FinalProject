@@ -1,1 +1,33 @@
-<p>home works!</p>
+<div>
+  <h1>Title</h1>
+</div>
+<div>
+  <h1>Carosel</h1>
+</div>
+<div>
+  <h1>Recent Climbs</h1>
+  <table>
+    <thead>
+      <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>image</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="recent of recentClimbs ">
+      <td>{{}}</td>
+      <td>{{}}</td>
+      <td>
+        <img [src]="poke.img"/>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div>
+  <h1>Group Climbs
+  </h1>
+</div>
+<div><h1>Looking for partner</h1>
+</div>
