@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
    this.authSvc.login(userName, password).subscribe(
      (data) => {
-        this.router.navigateByUrl('user');
+        this.router.navigateByUrl('user/' + data.id);
      },
      (err) => {
         console.error('LoginComponent.login():  error logging in user');
