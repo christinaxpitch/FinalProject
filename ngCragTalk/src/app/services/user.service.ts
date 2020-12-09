@@ -12,7 +12,7 @@ import { User } from '../models/user';
 })
 export class UserService {
 
-  constructor(private http: HttpClient, private datePipe: DatePipe, private auth: AuthService) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
   private  baseUrl = 'http://localhost:8090/';
   private url = this.baseUrl + 'api/user';
 

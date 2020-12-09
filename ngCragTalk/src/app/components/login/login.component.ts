@@ -22,12 +22,15 @@ export class LoginComponent implements OnInit {
 
 
    this.authSvc.login(userName, password).subscribe(
+
      (data) => {
         this.router.navigateByUrl('user/' + data.id);
      },
      (err) => {
         console.error('LoginComponent.login():  error logging in user');
         console.error(err);
+        console.log(userName);
+        console.log(password);
      }
    );
 }
