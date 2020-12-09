@@ -111,7 +111,7 @@ class UserTest {
 		assertEquals("https://i1.wp.com/lafabriquev"
 				+ "erticale.com/wp-content/uploads/2019/09/crag-dog-acceptable-or-not-climbing.jpg?fit=720%2C338&ssl=1", user.getMediaList().get(0).getMediaUrl());
 	}
-	
+	                             
 	@Test
 	void test10() {
 		assertNotNull(user);
