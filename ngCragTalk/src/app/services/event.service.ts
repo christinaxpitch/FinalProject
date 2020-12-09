@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
 import { AuthService } from './auth.service';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,17 @@ const httpOptions= {
     'X-Requested-With':'XMLHttpRequest'})
   };
   return httpOptions;
+}
+
+index(): Observable<Event[]> {
+  const httpOptions=this.getHttpOptions();
+
+  return this.http.get<Event[]>(this.url, httpOptions).pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError('EventService.index(): Error retrieving todo list');
+    })
+  );
 }
 
 
