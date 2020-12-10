@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
 
      (data) => {
         this.router.navigateByUrl('user/' + data.id);
+        localStorage.setItem('id', data.id.toString());
      },
      (err) => {
         console.error('LoginComponent.login():  error logging in user');
