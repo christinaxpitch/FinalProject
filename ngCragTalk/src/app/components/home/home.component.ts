@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit {
   userClimbers: User[] = [];
   media: Media[] = [];
 
-
   constructor(private datePipe: DatePipe,
      private eventService: EventService,
      private userService: UserService,
@@ -60,11 +59,13 @@ export class HomeComponent implements OnInit {
       });
   }
 
+
   loadGroupClimbEvents(): void{
     this.eventService.index().subscribe(
       data=>{this.groupClimbs=data;
         console.log('Home.components loadEvent(): retrieve succeeded');},
       err=>{
+
         console.error('Home.components loadEvent(): retrieve failed');
         console.error(err);
       });
