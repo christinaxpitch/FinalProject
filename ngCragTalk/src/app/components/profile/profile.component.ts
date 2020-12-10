@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Gear } from 'src/app/models/gear';
 import { ClimbType } from 'src/app/models/climb-type';
 import { UserClimbType } from 'src/app/models/user-climb-type';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -15,12 +16,14 @@ import { UserClimbType } from 'src/app/models/user-climb-type';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private datePipe: DatePipe) { }
 
   selectedUser: User = null;
   gearList: Gear[] = [];
   userClimbTypes: UserClimbType[] = [];
   favoriteClimbingAreas: ClimbingArea [] = [];
+  today: number = Date.now();
+
 
 
 
