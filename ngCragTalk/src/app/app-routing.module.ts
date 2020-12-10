@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'user', component: ProfileComponent },
   { path: 'user/:userId', component: ProfileComponent },
+  { path: 'user/update/:userId', component: EventComponent },
   { path: 'event', component: EventComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'event/:eventId', component: EventComponent },
