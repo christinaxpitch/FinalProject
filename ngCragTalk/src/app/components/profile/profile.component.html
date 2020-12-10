@@ -3,8 +3,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container emp-profile">
-            <form method="post">
+<div class="container emp-profile" *ngIf="selectedUser" >
+            <!-- <form method="post"> -->
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -25,7 +25,7 @@
 
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    About
+
                                 </li>
                             </ul>
                         </div>
@@ -40,12 +40,14 @@
                             <p></p>
 
                             <p>SKILLS</p>
-
+                              City: {{selectedUser.location}} <br>
+                              Has a Dog: {{selectedUser.hasDog}} <br>
+                              Age: {{selectedUser.birthdate}}
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div >
+                            <div >
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Username</label>
@@ -70,13 +72,14 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Skill Level</label>
+                                                <label>Most recent Climb grades</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <<table>
+
+                                                <table>
                                                   <tbody>
-                                                    <tr *ngFor= "let climb of climbTypes">
-                                                      <td></td>
+                                                    <tr *ngFor= "let climb of userClimbTypes">
+                                                      <td>{{climb.recentGrade}}</td>
                                                     </tr>
                                                   </tbody>
                                                 </table>
@@ -84,73 +87,79 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Phone</label>
+                                                <label>Favorite Climbing areas</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>123 456 7890</p>
+                                              <table>
+                                                <tbody>
+                                                  <tr *ngFor= "let area of favoriteClimbingAreas">
+                                                    <td>{{area.name}}</td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Profession</label>
+                                                <label></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
+
                                             </div>
                                         </div>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Experience</label>
+
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Hourly Rate</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>10$/hr</p>
+
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Total Projects</label>
+                                                <label></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>230</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>English Level</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
+                                                <p></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Availability</label>
+                                                <label></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>6 months</p>
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p></p>
                                             </div>
                                         </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
+                                        <label></label><br/>
+                                        <p></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+            <!-- </form> -->
         </div>
 
 

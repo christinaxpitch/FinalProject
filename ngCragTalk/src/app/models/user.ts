@@ -1,3 +1,4 @@
+import { UserClimbType } from 'src/app/models/user-climb-type';
 import { Message } from './message';
 import { Media } from './media';
 import { Gear } from './gear';
@@ -33,7 +34,7 @@ export class User {
   myListOfReceivedMessages: Message[];
   myListOfSentMessages: Message[];
   enabled: boolean;
-  userClimbTypes: ClimbType[];
+  userClimbTypes: UserClimbType[];
 
 
   constructor(
@@ -65,7 +66,7 @@ export class User {
     myListOfReceivedMessages?: Message[],
     myListOfSentMessages?: Message[],
     enabled?: boolean,
-    userClimbTypes?: ClimbType[],
+    userClimbTypes?: UserClimbType[]
 
   ){
     this.id=id;
@@ -84,18 +85,18 @@ export class User {
     this.otherHobbies=otherHobbies;
     this.birthdate=birthdate;
     this.password=password;
-    this.climbTypes=climbTypes,
-    this.favoriteAreaList=favoriteAreaList,
-    this.location=location,
-    this.createdEvents=createdEvents,
-    this.attendedEvents=attendedEvents,
-    this.gearList=gearList,
-    this.myListOfFavoriteUsers=myListOfFavoriteUsers,
-    this.listOfUsersWhoHaveFavoritedMe=listOfUsersWhoHaveFavoritedMe,
-    this.mediaList=mediaList,
-    this.myListOfReceivedMessages=myListOfReceivedMessages,
-    this.myListOfSentMessages=myListOfSentMessages,
-    this.enabled=enabled,
-    this.userClimbTypes = userClimbTypes
+    this.climbTypes=climbTypes;
+    this.favoriteAreaList=favoriteAreaList;
+    this.location=location;
+    this.createdEvents=createdEvents;
+    this.attendedEvents=attendedEvents;
+    this.gearList=gearList;
+    this.myListOfFavoriteUsers=myListOfFavoriteUsers;
+    this.listOfUsersWhoHaveFavoritedMe=listOfUsersWhoHaveFavoritedMe;
+    this.mediaList=mediaList;
+    this.myListOfReceivedMessages=myListOfReceivedMessages;
+    this.myListOfSentMessages=myListOfSentMessages;
+    this.enabled=enabled;
+    this.userClimbTypes = userClimbTypes;
   }
 }
