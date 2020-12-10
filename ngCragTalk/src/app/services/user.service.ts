@@ -1,3 +1,4 @@
+import { UserClimbType } from 'src/app/models/user-climb-type';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -6,6 +7,7 @@ import { catchError } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
 import { environment } from './../../environments/environment';
 import { User } from '../models/user';
+
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +47,17 @@ export class UserService {
       catchError((err: any) => {
         console.log(err);
         return throwError('UserService.index(): Error retrieving todo list');
+      })
+    );
+  }
+
+  update(id: number, user: User) {
+    const httpOptions = this.getHttpOptions();
+    return this.http.put<User>(this.url + '/' + id, user, httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('KABOOM');
       })
     );
   }

@@ -26,6 +26,7 @@ public class UserClimbType {
 	@MapsId(value = "userId") 
 	private User user;
 
+	
 	@ManyToOne
 	@JoinColumn(name = "climb_type_id") 
 	@MapsId(value = "climbTypeId") 

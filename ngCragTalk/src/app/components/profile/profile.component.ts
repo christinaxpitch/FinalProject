@@ -1,3 +1,4 @@
+import { ClimbingArea } from './../../models/climbing-area';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,6 +6,8 @@ import { User } from 'src/app/models/user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Gear } from 'src/app/models/gear';
 import { ClimbType } from 'src/app/models/climb-type';
+import { UserClimbType } from 'src/app/models/user-climb-type';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -13,11 +16,17 @@ import { ClimbType } from 'src/app/models/climb-type';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private datePipe: DatePipe) { }
 
   selectedUser: User = null;
   gearList: Gear[] = [];
-  climbTypes: ClimbType[] = [];
+  userClimbTypes: UserClimbType[] = [];
+  favoriteClimbingAreas: ClimbingArea [] = [];
+  today: number = Date.now();
+
+
+
+
   // will need to add an array for a users gear list and use the controller path and the method to get a users gear list
 
 
@@ -31,11 +40,14 @@ export class ProfileComponent implements OnInit {
         if (!isNaN(id)) {
           this.userService.show(id).subscribe(
             (data) => {
-              console.log('Todo retrieved, setting selected');
+              console.log('profile retrieved');
               this.selectedUser = data;
               this.gearList = data.gearList;
-              this.climbTypes = data.climbTypes;
-              // this.reload();
+              this.userClimbTypes = data.userClimbTypes;
+              this.favoriteClimbingAreas = data.favoriteAreaList;
+
+
+
             },
             (err) => {
               console.log('User ' + id + ' not found.');
@@ -52,6 +64,21 @@ export class ProfileComponent implements OnInit {
       }
   }
 
+
+  updateUser(user: User): void {
+    this.userService.update(user.id, user).subscribe(
+      data=>{
+        user = data;
+        console.log('retrieved');
+        // this.reload();
+      },
+      err=>{
+      console.error('retrieved failed')
+      console.error(err);
+      }
+    );
+    // window.location.reload();
+  }
 
 
 

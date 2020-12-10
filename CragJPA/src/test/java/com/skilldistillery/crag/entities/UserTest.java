@@ -131,6 +131,7 @@ class UserTest {
 		
 		assertEquals("Boulder", user.getLocation().getCity());
 	}
+//	
 	
 	
 }

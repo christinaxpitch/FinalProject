@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class User {
@@ -73,6 +74,7 @@ public class User {
 	private List<ClimbType> climbTypes;
 
 	
+	@JsonIgnoreProperties({"users"})
 	@ManyToMany
 	@JoinTable(name="favorite_area", 
 	joinColumns = @JoinColumn(name="user_id"), 
@@ -126,6 +128,7 @@ public class User {
 	
 	private Boolean enabled;
 	
+	@JsonIgnoreProperties({"user"})
 	@OneToMany(mappedBy = "user")
 	private List<UserClimbType> userClimbTypes;
 	
@@ -514,6 +517,14 @@ public String getRole() {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	public List<UserClimbType> getUserClimbTypes() {
+		return userClimbTypes;
+	}
+
+	public void setUserClimbTypes(List<UserClimbType> userClimbTypes) {
+		this.userClimbTypes = userClimbTypes;
 	}
 
 
