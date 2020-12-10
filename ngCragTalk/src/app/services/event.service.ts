@@ -42,12 +42,22 @@ export class EventService {
     // Get credentials
 const credentials = this.authSvc.getCredentials();
 // Send credentials as Authorization header (this is spring security convention for basic auth)
-const httpOptions = {
+let httpOptions;
+if (credentials){
+httpOptions = {
 headers: new HttpHeaders({
 Authorization: `Basic ${credentials}`,
 'X-Requested-With': 'XMLHttpRequest'
 })
-};
+};}
+else{
+  httpOptions = {
+    headers: new HttpHeaders({
+    'X-Requested-With': 'XMLHttpRequest'
+    })
+    };
+}
+
 return httpOptions;
 }
 }

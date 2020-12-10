@@ -21,12 +21,8 @@ public class MediaServiceImpl implements MediaService {
 	private UserRepository userRepo;
 
 	@Override
-	public List<Media> index(String username) {
-		if (userRepo.findByUsername(username) == null) {
-			return null;
-		}
-		User mediaUser = userRepo.findByUsername(username);
-		return mediaUser.getMediaList();
+	public List<Media> index() {
+		return mediaRepo.findAll();
 	}
 
 	@Override
