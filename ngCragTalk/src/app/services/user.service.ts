@@ -1,3 +1,4 @@
+import { Gear } from './../models/gear';
 import { UserClimbType } from 'src/app/models/user-climb-type';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -54,6 +55,28 @@ export class UserService {
   update(id: number, user: User) {
     const httpOptions = this.getHttpOptions();
     return this.http.put<User>(this.url + '/' + id, user, httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('KABOOM');
+      })
+    );
+  }
+
+  updateGear(id: number, gear: Gear) {
+    const httpOptions = this.getHttpOptions();
+    return this.http.put<Gear>('gear' + '/' + id, gear, httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('KABOOM');
+      })
+    );
+  }
+
+  updateUserClimbType(id: number, climb: UserClimbType) {
+    const httpOptions = this.getHttpOptions();
+    return this.http.put<Gear>('userClimbType' + '/' + id, climb, httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);
