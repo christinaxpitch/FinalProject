@@ -1,7 +1,9 @@
+import { UserService } from './../../services/user.service';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from 'src/app/models/event';
+import { User } from 'src/app/models/user';
 import { EventService } from 'src/app/services/event.service';
 
 @Component({
@@ -15,12 +17,14 @@ export class EventComponent implements OnInit {
   editEvent: Event = null;
   events: Event[] = [];
   display = true;
+  user: User = null;
 
 
   constructor(private eventService: EventService,
     private currentRoute: ActivatedRoute,
     private router: Router,
-    private datePipe: DatePipe) { }
+    private datePipe: DatePipe,
+    private userSvc: UserService) { }
 
   ngOnInit(): void {
       const idStr = this.currentRoute.snapshot.paramMap.get('eventId');
@@ -49,9 +53,11 @@ export class EventComponent implements OnInit {
         this.eventService.index().subscribe(
           data => {
             this.events = data;
+            console.log(this.events);
+
           },
           fail => {
-            console.error("TodoListComponent.reload(): error getting events");
+            console.error("EventComponent.reload(): error getting events");
             console.error(fail);
           }
           );
@@ -69,4 +75,22 @@ export class EventComponent implements OnInit {
   setEditEvent(){
     this.editEvent = Object.assign({}, this.selected);
   }
+  updateEvent(event){
+    this.eventService.update(event).subscribe(
+      data => {
+        this.editEvent = null;
+        this.reload();
+        this.selected = data;
+      },
+      fail => {
+        console.error('EventComponent.updateEvent(): error updating event');
+        console.error(fail);
+      }
+    );
+  }
+showProfile(createdById: number){
+  this.userSvc.show(createdById);
+      this.router.navigateByUrl('user/' + createdById);
+}
+
   }

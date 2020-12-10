@@ -1,25 +1,35 @@
 <div id="eventDetails" *ngIf="selected && !editEvent">
   <h3>{{selected.eventName }}</h3>
   <p>{{selected.description}}</p>
-  <p>Date: {{selected.eventDate | date: 'medium'}}</p>
+  <p>Date: {{selected.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</p>
+  <p class="hoverClick" (click)='showProfile(selected.createdBy.id)'>Host: {{selected.createdBy.username}}</p>
   <button (click)="displayTable()">Show All</button>
   <button (click)="setEditEvent()">Edit</button>
 </div>
+<div id="editFormDiv" *ngIf="selected && editEvent">
+  <input type="text" name = "eventName" [(ngModel)] = "editEvent.eventName">
+  <input type="text" name = "description" [(ngModel)] = "editEvent.description">
+  <input type="datetime-local" name = "eventDate" [(ngModel)] = "editEvent.eventDate">
+  <input type="text" name = "imgUrl" [(ngModel)] = "editEvent.imgUrl">
+  <button (click)="editEvent=null">Cancel</button>
+  <button (click)="updateEvent(editEvent)">Save</button>
+</div>
 <div id='eventList' *ngIf='! selected'>
-  <table class='table table-striped table-bordered table-hover'>
+  <table class='table table-striped table-bordered'>
     <thead>
       <tr>
         <th>Name</th>
         <th>Description</th>
         <th>Date</th>
-        <!-- <th>Host</th> -->
+        <th>Host</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor='let event of events'  (click)='displayEvent(event)'>
-        <td>{{event.eventName}}</td>
+      <tr *ngFor='let event of events'>
+        <td  class="hoverClick" (click)='displayEvent(event)'>{{event.eventName}}</td>
         <td>{{event.description}}</td>
-        <td>{{event.eventDate | date: 'medium'}}</td>
+        <td>{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</td>
+        <td class="hoverClick" (click)='showProfile(event.createdBy.id)'>{{event.createdBy.username}}</td>
       </tr>
     </tbody>
   </table>
