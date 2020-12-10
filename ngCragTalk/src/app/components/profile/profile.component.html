@@ -3,7 +3,172 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container emp-profile" *ngIf="selectedUser" >
+<form *ngIf="updateUserProfile">
+<div class="container emp-profile" >
+            <!-- <form method="post"> -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img alt=""/>
+                            <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                      <input type="text" name = "firstName" [(ngModel)] = "selectedUser.firstName" placeholder="selectedUser.firstName">
+                                      <input type="text" name = "lastName" [(ngModel)] = "selectedUser.lastName" placeholder="selectedUser.lastName">
+
+                                    </h5>
+
+                            <p></p>
+
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    About
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <!-- <input type="submit" class="profile-edit-btn" name="update(selectedUser)" value="Edit Profile"/> -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <p></p>
+
+                            <p>SKILLS</p>
+                              City: {{selectedUser.location}} <br>
+                              Has a Dog: {{selectedUser.hasDog}} <br>
+                              Age: {{age(selectedUser)}} <br>
+                              Favorite Beer: {{selectedUser.favoriteBeer}}
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div >
+                            <div >
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Username</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{selectedUser.username}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Gear</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                              <table>
+                                                <tbody>
+                                                  <tr *ngFor= "let gear of gearList">
+                                                    <td>{{gear.name}}</td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Most recent Climb grades</label>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <table>
+                                                  <tbody>
+                                                    <tr *ngFor= "let climb of userClimbTypes">
+                                                      <td>{{climb.recentGrade}}</td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Favorite Climbing areas</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                              <table>
+                                                <tbody>
+                                                  <tr *ngFor= "let area of favoriteClimbingAreas">
+                                                    <td>{{area.name}}</td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label></label>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+
+                                            </div>
+                                            <div class="col-md-6">
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label></label><br/>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- </form> -->
+        </div>
+      </form>
+
+        <!-- This is the div that shows when you're not editing -->
+<div class="container emp-profile" *ngIf="selectedUser && !updateUserProfile" >
             <!-- <form method="post"> -->
                 <div class="row">
                     <div class="col-md-4">
@@ -25,13 +190,13 @@
 
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-
+                                    About
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                      <button (click)="setUpdateUser()">Edit Profile</button>
                     </div>
                 </div>
                 <div class="row">
@@ -42,7 +207,8 @@
                             <p>SKILLS</p>
                               City: {{selectedUser.location}} <br>
                               Has a Dog: {{selectedUser.hasDog}} <br>
-                              Age: {{selectedUser.birthdate}}
+                              Age: {{age(selectedUser)}} <br>
+                              Favorite Beer: {{selectedUser.favoriteBeer}}
                         </div>
                     </div>
                     <div class="col-md-8">
