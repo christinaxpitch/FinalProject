@@ -48,6 +48,7 @@ export class EventService {
     );
   }
   update(event: Event): Observable<Event>{
+    console.log(event);
     const httpOptions = this.getHttpOptions();
     return this.http.put<Event>(`${this.url}/${event.id}`, event, httpOptions).pipe(
       catchError((err:any)=>{

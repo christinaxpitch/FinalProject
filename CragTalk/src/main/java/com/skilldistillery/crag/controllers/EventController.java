@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -67,6 +68,26 @@ public class EventController {
 		}
 		return event;
 	}
+	
+	//update and event
+	@PutMapping("event/{eventId}")
+	public Event updateEvent(HttpServletResponse res, HttpServletRequest req, Principal principal, @RequestBody Event event) {
+		try {
+			event = eventSvc.update(principal.getName(), event);
+			System.out.println("In Event Controller*********");
+			System.out.println(event);
+			System.out.println("*********");
+			if(event == null) {
+				res.setStatus(404);
+			}
+			
+		} catch (Exception e) {
+			res.setStatus(400);
+			event = null;
+		}
+		return event;
+	}
+	
 	
 	//delete event
 	@DeleteMapping("event/{eventId}")

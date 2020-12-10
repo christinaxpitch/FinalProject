@@ -81,6 +81,7 @@ export class EventComponent implements OnInit {
         this.editEvent = null;
         this.reload();
         this.selected = data;
+        console.log(data);
       },
       fail => {
         console.error('EventComponent.updateEvent(): error updating event');
