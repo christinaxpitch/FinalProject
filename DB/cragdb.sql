@@ -403,6 +403,10 @@ START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (1, 'Hi Christina! I just wanted to let you know that I saw we are interested in climbing in the same areas and also have Sunday\'s free to outdoor climb. Let me know if you would be interested in meeting up - I am pretty good at crimps and know a few good routes we can get you up to practice! PS: My dog is super cute, lol!!!', NULL, 1, 2);
 INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (2, 'Hi Timothy! Thanks for your message. I don\'t own any lead climbing gear, but I see that you do. Where are you trying to climb on your next day trip?', NULL, 2, 1);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (3, 'Hello there! Would you want to climb in Boulder next Saturday?', NULL, 1, 3);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (4, 'Hi Timothy! I haven\'t been climbing outdoors in a few months but I would love to set something up, maybe we can pick a couple easier routes. I have a book I can send some ideas of routes that might be good!', NULL, 3, 1);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (5, 'Hi! I was wondering if you wanted to set up a climb day soon. I am lead climb certified at the gym but haven\'t tried lead climbing outdoors yet.', NULL, 4, 1);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (6, 'Hi Jeanne! Nice to meet you. I think I saw you before at Ubergrippen Indoor Crag. I would love to set something up for a day trip, maybe up in Golden?', NULL, 1, 4);
 
 COMMIT;
 
@@ -413,6 +417,62 @@ COMMIT;
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (1, 'Grigri, 9.5mm Rope, chalk, helmet, 10 quickdraws, 120 cm sling, 5 locking carabiners, crash pad', 1);
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (2, 'Crash pad, harness, extra harness, crash pad', 2);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (3, 'Harness and chalkbag', 3);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (4, 'Grigri, 9.5mm Rope, chalk, helmet, 8 quickdraws, 120 cm sling, 8 locking carabiners, crash pad', 4);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (5, 'Crash pad, harness, extra harness, helmet', 5);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (6, '10.5mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 6);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (7, 'Grigri, 9.5mm Rope, chalk, helmet, 10 quickdraws, 120 cm sling, 5 locking carabiners, crash pad', 7);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (8, 'Crash pad, harness, extra harness, crash pad', 8);
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (9, 'Helmet, Grigri, 10.5mm Rope, chalk, 15 quickdraws, 120 cm sling, 10 locking carabiners, crash pad', 9);
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (10, '10.5mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 10);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (11, '10.5mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 11);
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (12, 'Crash pad, harness, extra harness, chalkbag and chalk', 12);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (13, 'Crash pad, harness, extra harness, chalk', 13);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (14, 'Chalk, harness, helmet', 14);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (15, 'Helmet, Grigri, 10.5mm Rope, chalk, 15 quickdraws, 120 cm sling, 10 locking carabiners, crash pad', 15);
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (16, 'Crash pad, harness, extra harness, crash pad', 16);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (17, 'Harness and chalkbag', 17);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (18, 'Harness and chalk and chalkbag', 18);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (19, '10.5mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 19);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (20, 'Crash pad, harness, extra harness, crash pad', 20);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (21, '10.5mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 21);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (22, '10.5mm Rope, 9.5 mm Rope, chalk, grigri, 15 quickdraws, 120 cm sling, 10 locking carabiners', 22);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (23, '12 mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 23);
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (24, 'Harness and chalkbag', 24);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (25, '9.5 mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 25);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (26, 'Crash pad, harness, chalkbag and chalk', 26);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (27, '12 mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 27);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (28, 'Crash pad, harness, extra harness, chalkbag and chalk', 28);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (29, 'Grigri, 10.5mm Rope, chalk, 8 quickdraws, 120 cm sling, 10 locking carabiners, crash pad', 29);
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (30, 'Helmet, Grigri, 10.5mm Rope, chalk, 10 quickdraws, 120 cm sling, 7 locking carabiners, crash pad', 30);
+
+
+
+
+
 
 COMMIT;
 
@@ -423,6 +483,11 @@ COMMIT;
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (1, 1);
+INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (2, 2);
+INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (1, 3);
+INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (1, 4);
+INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (3, 5);
+INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (4, 6);
 
 COMMIT;
 
@@ -434,6 +499,31 @@ START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 2);
 INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (2, 1);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (2, 3);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 3);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 4);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (2, 5);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (3, 2);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (4, 2);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (3, 1);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (5, 6);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (10, 20);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (21, 10);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (21, 11);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (21, 1);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 11);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (2, 11);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (17, 11);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (3, 30);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (3, 7);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (5, 17);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (30, 1);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 19);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 18);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 29);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (2, 29);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (9, 29);
+
 
 COMMIT;
 
@@ -481,6 +571,34 @@ INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (1, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (2, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (3, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (4, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (6, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (8, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (7, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (9, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (10, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (14, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (21, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (23, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (24, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (25, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (26, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (27, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (1, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (2, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (4, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (8, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (7, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (9, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (23, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (24, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (25, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (26, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (29, 2);
+
+
 
 COMMIT;
 
