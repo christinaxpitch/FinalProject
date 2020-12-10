@@ -47,7 +47,6 @@ export class EventService {
       })
     );
   }
-
   update(event: Event): Observable<Event>{
     const httpOptions = this.getHttpOptions();
     return this.http.put<Event>(`${this.url}/${event.id}`, event, httpOptions).pipe(
@@ -67,17 +66,27 @@ export class EventService {
         })
         );
       }
-      getHttpOptions(): object{
-        // Get credentials
-    const credentials = this.authSvc.getCredentials();
-    // Send credentials as Authorization header (this is spring security convention for basic auth)
-    const httpOptions = {
+
+  getHttpOptions(): object{
+    // Get credentials
+const credentials = this.authSvc.getCredentials();
+// Send credentials as Authorization header (this is spring security convention for basic auth)
+let httpOptions;
+if (credentials){
+httpOptions = {
+headers: new HttpHeaders({
+Authorization: `Basic ${credentials}`,
+'X-Requested-With': 'XMLHttpRequest'
+})
+};}
+else{
+  httpOptions = {
     headers: new HttpHeaders({
-    Authorization: `Basic ${credentials}`,
     'X-Requested-With': 'XMLHttpRequest'
     })
     };
-    return httpOptions;
-    }
-    }
+}
 
+return httpOptions;
+}
+}

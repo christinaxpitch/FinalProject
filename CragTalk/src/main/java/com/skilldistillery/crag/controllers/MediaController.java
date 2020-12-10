@@ -24,7 +24,7 @@ public class MediaController {
 	
 	@GetMapping("media")
 	public List<Media> index(HttpServletResponse res, Principal principal) {
-		List<Media> media = mediaService.index(principal.getName());
+		List<Media> media = mediaService.index();
 		try {
 			if (media == null) {
 				res.setStatus(404);

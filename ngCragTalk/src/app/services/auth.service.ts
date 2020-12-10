@@ -46,9 +46,13 @@ export class AuthService {
     );
   }
   logout(): void {
-    localStorage.removeItem('credentials');
+    // localStorage.removeItem('credentials');
+    console.log("logging out");
+
+    localStorage.clear();
   }
   checkLogin(): boolean {
+    console.log((localStorage.getItem('credentials')));
     if (localStorage.getItem('credentials')) {
       return true;
     }
