@@ -312,6 +312,10 @@ USE `cragdb`;
 INSERT INTO `location` (`id`, `city`, `state`, `zip`, `street_address`, `hike_to_access`) VALUES (1, 'Boulder', 'CO', 80302, 'Gregory Canyon Trailhead, Gregory Canyon Rd', 1);
 INSERT INTO `location` (`id`, `city`, `state`, `zip`, `street_address`, `hike_to_access`) VALUES (2, 'Golden', 'CO', 80401, '18785 W 44th Ave', 1);
 INSERT INTO `location` (`id`, `city`, `state`, `zip`, `street_address`, `hike_to_access`) VALUES (3, 'Denver', 'CO', 80202, 'Denver Area', 1);
+INSERT INTO `location` (`id`, `city`, `state`, `zip`, `street_address`, `hike_to_access`) VALUES (4, 'Golden', 'CO', 80403, '32088 US Highway 6', 1);
+INSERT INTO `location` (`id`, `city`, `state`, `zip`, `street_address`, `hike_to_access`) VALUES (5, 'Eldorado Springs', 'CO', 80025, 'Eldorado Canyon State Park, 9 Kneale Rd', 1);
+
+
 
 
 
@@ -377,6 +381,16 @@ START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `climbing_area` (`id`, `name`, `location_id`, `description`, `img_url`) VALUES (1, 'Gregory Canyon', 1, 'This is the northern-most section of the the Flatirons which may be lumped together to help you find your way here. Included in the area is the better known Amphitheatre and some of the less-well known crags here (like 3rd, 4th, 5th pinnacles). Apparently, according to Rossiter, there is even a granite crag in this canyon. One route from this canyon even made the cover shot of a Boulder non-climber publication.\n\nSome shade can be found at some of the crags for those seeking cooler cragging in the hotter months. None of these routes are long here.\n\nAccess can be most readily obtained by parking in or near the Gregory Canyon Trailhead. Parking is popular here and, as a result, limited. Note, parking here does cost for non-Boulder County registered vehicles. 2006 was still $3/day and $25/year. However, street parking nearby and parking at Chataqua (0.6 mi) is free.\n\nAlso, for those wandering around with little kids, this is bear and mountain lion territory. Be careful.\n\nThere is also significant poison ivy in the area for the sensitive.', 'https://cdn2.apstatic.com/photos/climb/111418381_medium_1494361874_topo.jpg');
 INSERT INTO `climbing_area` (`id`, `name`, `location_id`, `description`, `img_url`) VALUES (2, 'North Table Mountain/Golden Cliffs', 2, 'Sitting above Golden, this popular cliff band faces south & west so it makes for comfortable winter/cold weather rock climbing. Most routes here are tightly bolted and generally short (60 foot range), so a 50m rope and 10 quickdraws will be sufficient for most routes. Toproping routes is easy to do, with quick access to the top and bolts just below the top of the cliffs. Be careful though; the rock at the top can be loose in places. Make sure you\'re safe when setting up said toprope. There is only a single trail leaving from each of the two parking lots, and it takes an obvious course up the hill to the cliffs above. Walking this trail, beware of rattlesnakes in the summer and fall. At the point where the trail meets the cliff, you are on the far right (east) side of the cliffs. Also, this area sees a lot of use and some anchors are being severly worn by people running topropes directly through anchors. If you plan to toprope, please preserve the resources by using quickdraws or \'biners to run the rope through, and whenever possible rap off rather than lowering through the anchors.\n\nNote, as the years have gone by and the popularity of this area has increased, the rock has become polished in places...amazingly so in spots. In particular, warm days will increase this characteristic and leave the infrequent visitor feeling sandbagged at times. Beware.\n\nThe climbing access here has been preserved with an amazing cooperation of landowner (Mr. Peery), city of Golden, and organizations like AMC, RMFI, and the Access Fund. The area straddles land owned by Golden and Jefferson County Open Space. Note, the regulations will vary slightly as you cross properties.\n\nThere is a dumpster here; however, consider recycling your cans and bottles rather than filling landfills.\n\nNote, with time & popularity, some of the basalt here is getting quite polished, similar to limestone.', 'https://img.grouponcdn.com/deal/hSwgLCsFmJKew87NH44zuGo2X6Z/hS-2048x1229/v1/c700x420.jpg');
+INSERT INTO `climbing_area` (`id`, `name`, `location_id`, `description`, `img_url`) VALUES (3, 'Clear Creek Canyon Rock Climbing', 4, 'Clear Creek Canyon (CCC) is aptly situated along Clear Creek, just west of Golden. The canyon is most well known for its accesible wealth of sport climbs, with some trad climbs interspersed. The rock varies here from gneiss & schist to a sandy granite, relatively solid but much different and perhaps more unique than the gray sweeps of Boulder Canyon.
+
+While the individual areas here tend to be specialized with regard to the route type and difficulty, the canyon as a whole has a variety of ratings. Beginners should look into the High Wire Crag, Catslab - note it is apparently open, Little Eiger, Red Slab, and The Canal Zone while excellent difficult routes abound from the Primo Wall, Wall of the Nineties, Anarchy Wall, The River Wall, and New River formation. Clear Creek also offers some nice winter climbing options such as the Red Slab and the Dog House.
+
+As always, be attentive of the traffic and remove valuables from your car.', 'https://www.denverpost.com/wp-content/uploads/2016/05/20070710__20070711_D5_SP11OEXPLATTEp3.jpg?w=640');
+INSERT INTO `climbing_area` (`id`, `name`, `location_id`, `description`, `img_url`) VALUES (4, 'Eldorado Canyon SP', 5, 'As one of the world\'s finest and most famous climbing areas, Eldorado Canyon needs little introduction. It consists of steep, beautiful conglomerate sandstone walls of up to 700 feet high, in brilliant shades of gold and red. The rock quality is reminiscent of granite rather than the soft sandstone found throughout much of Utah and Arizona.
+
+The largest cliff, Redgarden Wall , is a few thousand feet wide; it boasts several spectacular summits and an incredible collection of classic climbs. Many of the classic routes were put up in the 1960s by Layton Kor, along with climbers such as Pat Ament and Larry Dalke. The 1970s were primarily a time of first free ascents, spearheaded by climbers such as Steve Wunsch, Roger Briggs, Jim Erickson, and Duncan Ferguson. New activity tailed off a bit in the 1980s, though some very good routes were established.
+
+Climbing in Eldorado Canyon can be odd and it requires some getting used to. It is primarily a traditional area, yet there is relatively little crack climbing. Friends of mine who are used to Lumpy Ridge think everything in Eldo is a sandbag, but once I got used to Eldo I started to feel more secure there than at Lumpy Ridge. Individual pitches will often require delicate face climbing and some kind of funky, inobvious traverse. Highly technical moves separated by decent rests are quite common. Old fixed gear is an Eldo staple, and can either add or subtract spice from your route depending on its quality and the availability of other pro. It enables routes such as the The Yellow Spur and the West Buttress of the Bastille (both 5.9) to offer pro-at-your-waist cruxes. On the other hand, you just know that those pins at the cruxes of climbs like Tagger (5.10) and the The Naked Edge (5.11) are not going to hold too many more 10 foot falls. One should really back up most pins whenever possible. Ultimately, skill in placing pro is very important; cracks tend to be discontinuous and incipient, and nearly all the "sport" routes require some gear as well.', 'https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg');
 
 COMMIT;
 
@@ -387,11 +401,12 @@ COMMIT;
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (1, 'Crags and Brews', 'A saturday morning group climb in Gregory Canyon. Post climb cooldown at Avery Brewery Company!', NULL, 1, '2021-05-01 08:30:00', 1, '2020-12-05 08:30:00');
-INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (2, 'C3 (CCube) Crag, Chalk, and Chat', 'Come join us on a group climb! We will meet up in the morning at North Table Mountain park (Golden Cliffs climbing area) and we plan to set up as many routes as we have attendees! Come hang out, meet some new friends, try a new route, and have some fun! We will meet up at the Golden Cliffs parking lot (the climbing access side) on the other side of the main entrance to North Table Mountain Park. See you soon!', NULL, 2, '2021-05-03 08:30:00', 1, '2020-12-05 08:30:00');
+INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (2, 'C3 (CCube) Crag, Chalk, & Chat', 'Come join us on a group climb! We will meet up in the morning at North Table Mountain park (Golden Cliffs climbing area) and we plan to set up as many routes as we have attendees! Come hang out, meet some new friends, try a new route, and have some fun! We will meet up at the Golden Cliffs parking lot (the climbing access side) on the other side of the main entrance to North Table Mountain Park. See you soon!', NULL, 2, '2021-05-03 08:30:00', 1, '2020-12-05 08:30:00');
 INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (3, 'Puppy Day Climb!', 'We couldn\'t resist a climbing day full of pups! Join on on our group day climb and bring your canine pal along. Must get along with other dogs, as we hope to have lots of dogs and puppies coming along for the day. Please bring adequate water and food for your dog to hang out with us! We will set up a variety of routes to appeal to all levels, and there is no need to bring your own gear besdies your shoes and harness if you don\'t have anything else. Bring snacks and we will see you there!', NULL, 2, '2021-05-12 08:30:00', 2, '2020-12-05 09:00:00');
 INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (4, 'Kids and Krags', 'Come join us on our kid centered event! Please have indoor experience for this. This event is to help expose kids that have been practicing indoors to the wonderful world of outdoor rock climbing! Please bring your own gear and snacks for the day. All ages welcome! Must be supervised with one parent the entire day, even if parent isn\'t climbing or belaying. Thank you!', NULL, 1, '2021-05-13 08:30:00', 2, '2020-12-05 08:30:00');
 INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (5, 'Belaytionship Night Out', 'A night out for you climbers! We are bringing lots of lanterns and lights to help set up some routes at sunset. Please have climbed outdoors before beccause we want to make sure everyone is at least experienced with outdoor climbing during the day in order to try at night. Headlamps required.', NULL, 2, '2021-05-14 18:00:00', 2, '2020-12-05 09:00:00');
-INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (6, 'First Timer\'s Day!', 'A day for climbers to try outdoor climbing! Please have indoor climbing experience, and your own harness and shoes. Bring a good attitude and a willingless to learn!', NULL, 1, '2021-05-30 18:00:00', 1, '2020-12-05 09:00:00');
+INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (6, 'Hip, Hip, BELAY!', 'Our plan is to get a group climb together for a day and Clear Creek Canyon. All are welcome and we will be setting up a variety of routes! Belayer\'s welcome, climber\'s welcome, friend\'s welcome, dog\'s welcome. You don\'t have to meet right at 7 am, but you can come for as little or as long as you would like! :)', NULL, 4, '2021-06-01 07:00:00', 4, '2020-12-05 09:00:00');
+INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (7, 'Rock On', 'An all day group climb at Eldorado Canyon State Park. Please be reminded that there is a fee to park, and carpooling is encouraged. Early start so that we can set the routes up and leave before the sun scorches the rock up!', NULL, 1, '2021-05-30 7:00:00', 3, '2020-12-05 09:00:00');
 
 COMMIT;
 
@@ -403,6 +418,10 @@ START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (1, 'Hi Christina! I just wanted to let you know that I saw we are interested in climbing in the same areas and also have Sunday\'s free to outdoor climb. Let me know if you would be interested in meeting up - I am pretty good at crimps and know a few good routes we can get you up to practice! PS: My dog is super cute, lol!!!', NULL, 1, 2);
 INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (2, 'Hi Timothy! Thanks for your message. I don\'t own any lead climbing gear, but I see that you do. Where are you trying to climb on your next day trip?', NULL, 2, 1);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (3, 'Hello there! Would you want to climb in Boulder next Saturday?', NULL, 1, 3);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (4, 'Hi Timothy! I haven\'t been climbing outdoors in a few months but I would love to set something up, maybe we can pick a couple easier routes. I have a book I can send some ideas of routes that might be good!', NULL, 3, 1);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (5, 'Hi! I was wondering if you wanted to set up a climb day soon. I am lead climb certified at the gym but haven\'t tried lead climbing outdoors yet.', NULL, 4, 1);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (6, 'Hi Jeanne! Nice to meet you. I think I saw you before at Ubergrippen Indoor Crag. I would love to set something up for a day trip, maybe up in Golden?', NULL, 1, 4);
 
 COMMIT;
 
@@ -413,6 +432,62 @@ COMMIT;
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (1, 'Grigri, 9.5mm Rope, chalk, helmet, 10 quickdraws, 120 cm sling, 5 locking carabiners, crash pad', 1);
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (2, 'Crash pad, harness, extra harness, crash pad', 2);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (3, 'Harness and chalkbag', 3);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (4, 'Grigri, 9.5mm Rope, chalk, helmet, 8 quickdraws, 120 cm sling, 8 locking carabiners, crash pad', 4);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (5, 'Crash pad, harness, extra harness, helmet', 5);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (6, '10.5mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 6);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (7, 'Grigri, 9.5mm Rope, chalk, helmet, 10 quickdraws, 120 cm sling, 5 locking carabiners, crash pad', 7);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (8, 'Crash pad, harness, extra harness, crash pad', 8);
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (9, 'Helmet, Grigri, 10.5mm Rope, chalk, 15 quickdraws, 120 cm sling, 10 locking carabiners, crash pad', 9);
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (10, '10.5mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 10);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (11, '10.5mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 11);
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (12, 'Crash pad, harness, extra harness, chalkbag and chalk', 12);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (13, 'Crash pad, harness, extra harness, chalk', 13);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (14, 'Chalk, harness, helmet', 14);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (15, 'Helmet, Grigri, 10.5mm Rope, chalk, 15 quickdraws, 120 cm sling, 10 locking carabiners, crash pad', 15);
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (16, 'Crash pad, harness, extra harness, crash pad', 16);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (17, 'Harness and chalkbag', 17);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (18, 'Harness and chalk and chalkbag', 18);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (19, '10.5mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 19);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (20, 'Crash pad, harness, extra harness, crash pad', 20);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (21, '10.5mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 21);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (22, '10.5mm Rope, 9.5 mm Rope, chalk, grigri, 15 quickdraws, 120 cm sling, 10 locking carabiners', 22);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (23, '12 mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 23);
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (24, 'Harness and chalkbag', 24);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (25, '9.5 mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 25);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (26, 'Crash pad, harness, chalkbag and chalk', 26);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (27, '12 mm Rope, 9.5 mm Rope, chalk, grigri, 8 quickdraws, 120 cm sling, 6 locking carabiners', 27);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (28, 'Crash pad, harness, extra harness, chalkbag and chalk', 28);
+
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (29, 'Grigri, 10.5mm Rope, chalk, 8 quickdraws, 120 cm sling, 10 locking carabiners, crash pad', 29);
+INSERT INTO `gear` (`id`, `name`, `user_id`) VALUES (30, 'Helmet, Grigri, 10.5mm Rope, chalk, 10 quickdraws, 120 cm sling, 7 locking carabiners, crash pad', 30);
+
+
+
+
+
 
 COMMIT;
 
@@ -423,6 +498,14 @@ COMMIT;
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (1, 1);
+INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (2, 2);
+INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (1, 3);
+INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (1, 4);
+INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (3, 5);
+INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (4, 6);
+INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (4, 7);
+INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (1, 7);
+
 
 COMMIT;
 
@@ -434,6 +517,31 @@ START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 2);
 INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (2, 1);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (2, 3);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 3);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 4);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (2, 5);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (3, 2);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (4, 2);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (3, 1);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (5, 6);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (10, 20);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (21, 10);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (21, 11);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (21, 1);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 11);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (2, 11);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (17, 11);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (3, 30);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (3, 7);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (5, 17);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (30, 1);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 19);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 18);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (1, 29);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (2, 29);
+INSERT INTO `favorite_user` (`user_id`, `favorite_user_id`) VALUES (9, 29);
+
 
 COMMIT;
 
@@ -444,8 +552,35 @@ COMMIT;
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (1, 1, '5.11a', 1);
-
-COMMIT;
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (2, 1, '5.8c', 0);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (3, 1, '5.7', 0);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (4, 1, '5.11a', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (5, 1, '5.9', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (6, 1, '5.8', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (7, 1, '5.6', 0);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (8, 1, '5.13', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (9, 1, '5.13', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (10, 1, '5.11a', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (11, 1, '5.10', 0);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (12, 1, '5.7', 0);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (13, 1, '5.11a', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (14, 1, '5.12b', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (15, 1, '5.9', 0);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (16, 1, '5.11a', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (17, 1, '5.8', 0);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (18, 1, '5.11a', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (19, 1, '5.12', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (20, 1, '5.11a', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (21, 1, '5.8', 0);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (22, 1, '5.7', 0);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (23, 1, '5.6', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (24, 1, '5.12', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (25, 1, '5.11', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (26, 1, '5.10', 0);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (27, 1, '5.13', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (28, 1, '5.11c', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (29, 1, '5.11b', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (30, 1, '5.11a', 1);
 
 
 -- -----------------------------------------------------
@@ -454,6 +589,44 @@ COMMIT;
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (1, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (2, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (3, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (4, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (6, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (8, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (7, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (9, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (10, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (14, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (21, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (23, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (24, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (25, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (26, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (27, 1);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (1, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (2, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (4, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (8, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (7, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (9, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (23, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (24, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (25, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (26, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (29, 2);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (1, 4);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (2, 4);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (3, 4);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (4, 4);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (5, 4);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (6, 4);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (1, 5);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (2, 5);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (4, 5);
+
+
+
 
 COMMIT;
 
