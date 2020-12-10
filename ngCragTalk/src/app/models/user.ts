@@ -20,7 +20,7 @@ export class User {
   createdAt: string;
   lastLogin: string;
   otherHobbies: string;
-  birthdate: string;
+  birthdate: Date;
   password: string;
   climbTypes: ClimbType[];
   favoriteAreaList: ClimbingArea[];
@@ -52,7 +52,7 @@ export class User {
     createdAt?: string,
     lastLogin?: string,
     otherHobbies?: string,
-    birthdate?: string,
+    birthdate?: Date,
     password?: string,
     climbTypes?: ClimbType[],
     favoriteAreaList?: ClimbingArea[],
