@@ -53,7 +53,7 @@ export class AuthService {
     localStorage.clear();
   }
   checkLogin(): boolean {
-    console.log((localStorage.getItem('credentials')));
+    // console.log((localStorage.getItem('credentials')));
     if (localStorage.getItem('credentials')) {
       return true;
     }
