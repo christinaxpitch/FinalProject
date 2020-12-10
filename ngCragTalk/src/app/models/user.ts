@@ -1,3 +1,4 @@
+import { Location } from './location';
 import { UserClimbType } from 'src/app/models/user-climb-type';
 import { Message } from './message';
 import { Media } from './media';
@@ -20,7 +21,7 @@ export class User {
   createdAt: string;
   lastLogin: string;
   otherHobbies: string;
-  birthdate: string;
+  birthdate: Date;
   password: string;
   climbTypes: ClimbType[];
   favoriteAreaList: ClimbingArea[];
@@ -52,7 +53,7 @@ export class User {
     createdAt?: string,
     lastLogin?: string,
     otherHobbies?: string,
-    birthdate?: string,
+    birthdate?: Date,
     password?: string,
     climbTypes?: ClimbType[],
     favoriteAreaList?: ClimbingArea[],

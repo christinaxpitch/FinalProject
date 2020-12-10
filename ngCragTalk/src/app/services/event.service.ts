@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { Event } from 'src/app/models/event';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class EventService {
   private baseUrl = 'http://localhost:8090/';
   private url = this.baseUrl + 'api/event';
 
-  constructor(private http: HttpClient, private authSvc: AuthService) { }
+  constructor(private http: HttpClient, private authSvc: AuthService, private datePipe: DatePipe) { }
 
   index(): Observable<Event []>{
     const httpOptions = this.getHttpOptions();
@@ -37,18 +38,55 @@ export class EventService {
        })
        );
    }
+   create(event: Event): Observable<Event>{
+     const httpOptions = this.getHttpOptions();
+    return this.http.post<Event>(this.url, event, httpOptions).pipe(
+      catchError((err:any)=>{
+      console.log(err);
+      return throwError('EventService.create(): Error creating event.')
+      })
+    );
+  }
+  update(event: Event): Observable<Event>{
+    const httpOptions = this.getHttpOptions();
+    return this.http.put<Event>(`${this.url}/${event.id}`, event, httpOptions).pipe(
+      catchError((err:any)=>{
+        console.log(err);
+        return throwError('EventService.update(): Error updating event.')
+      })
+      );
+    }
+
+    destroy(id: Number): Observable<boolean>{
+      const httpOptions = this.getHttpOptions();
+      return this.http.delete<boolean>(`${this.url}/${id}`, httpOptions).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('EventService.destory(): Error deleting event.');
+        })
+        );
+      }
 
   getHttpOptions(): object{
     // Get credentials
 const credentials = this.authSvc.getCredentials();
 // Send credentials as Authorization header (this is spring security convention for basic auth)
-const httpOptions = {
+let httpOptions;
+if (credentials){
+httpOptions = {
 headers: new HttpHeaders({
 Authorization: `Basic ${credentials}`,
 'X-Requested-With': 'XMLHttpRequest'
 })
-};
+};}
+else{
+  httpOptions = {
+    headers: new HttpHeaders({
+    'X-Requested-With': 'XMLHttpRequest'
+    })
+    };
+}
+
 return httpOptions;
 }
 }
-

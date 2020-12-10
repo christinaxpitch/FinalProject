@@ -66,7 +66,7 @@ public class User {
 
 	private String password;
 
-	@JsonIgnore
+	@JsonIgnoreProperties({"userList", "climbTypes"})
 	@ManyToMany
 	@JoinTable(name="user_climb_type", 
 	joinColumns = @JoinColumn(name="user_id"), 
@@ -82,7 +82,7 @@ public class User {
 	private List<ClimbingArea> favoriteAreaList;
 	
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"users"})
 	@ManyToOne
 	@JoinColumn(name = "location_id")
 	private Location location;

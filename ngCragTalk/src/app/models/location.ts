@@ -1,19 +1,35 @@
+import { ClimbingArea } from './climbing-area';
+import { User } from './user';
+
 export class Location {
-  id         : number;
-  senderId   : number;
-  receiverId : number;
-  messageBody: string;
+  id: number;
+  city: string;
+  state: string;
+  zip: number;
+  users: User[];
+  streetAddress: string;
+  climbingAreas: ClimbingArea[];
+
+
 
   constructor(
-    id?          : number,
-    senderId?    : number,
-    receiverId?  :  number,
-    messageBody? : string
+    id?: number,
+    city?: string,
+    state?: string,
+    zip?: number,
+    users?: User[],
+    streetAddress?: string,
+    climbingAreas?: ClimbingArea[]
+
+
 
   ){
-    this.id          = id;
-    this.senderId    = senderId;
-    this.receiverId  = receiverId;
-    this.messageBody = messageBody;
+    this.id = id;
+    this.city = city;
+    this.state = state;
+    this.zip = zip;
+    this.users = users;
+    this.streetAddress = streetAddress;
+    this.climbingAreas = climbingAreas;
   }
 };

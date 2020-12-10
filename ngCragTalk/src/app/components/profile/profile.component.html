@@ -3,7 +3,132 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container emp-profile" *ngIf="selectedUser" >
+
+<!-- This is the update Div -->
+
+<form *ngIf="updateUserProfile">
+<div class="container emp-profile" >
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img alt=""/>
+                            <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                     <label>Name: </label>  <input type="text" name = "firstName" [(ngModel)] = "selectedUser.firstName" placeholder="selectedUser.firstName"> <br>
+                                            <input type="text" name = "lastName" [(ngModel)] = "selectedUser.lastName" placeholder="selectedUser.lastName">
+
+                                    </h5>
+
+                            <p></p>
+
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    About
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <!-- <input type="submit" class="profile-edit-btn" name="update(selectedUser)" value="Edit Profile"/> -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <p></p>
+
+                            <p>SKILLS</p>
+                            City: <input type="text" name = "location" [(ngModel)] = "selectedUser.location.city" placeholder="selectedUser.location.city"> <br>
+
+                              Do you have a dog? <input type="checkbox" name = "hasDog" [(ngModel)] = "selectedUser.hasDog" placeholder="selectedUser.hasDog"> <br>
+                              Age: <input type="date" name = "birthdate" [(ngModel)] = "selectedUser.birthdate" placeholder=""> <br>
+                              Favorite Beer: <input type="test" name = "favoriteBeer" [(ngModel)] = "selectedUser.favoriteBeer" placeholder="selectedUser.favoriteBeer">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div >
+                            <div >
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Username</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><input type="text" name = "username" [(ngModel)] = "selectedUser.username" placeholder="selectedUser.username"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Gear</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                              <table>
+                                                <tbody>
+                                                  <tr *ngFor= "let gear of gearList">
+                                                    <td>{{gear.name}} <button (click) = "editGearList()">Edit</button></td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                              <form>
+
+
+                                              </form>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Most recent Climb grades</label>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <table>
+                                                  <tbody>
+                                                    <tr *ngFor= "let climb of userClimbTypes">
+                                                      <td>{{climb.recentGrade}}</td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Favorite Climbing areas</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                              <table>
+                                                <tbody>
+                                                  <tr *ngFor= "let area of favoriteClimbingAreas">
+                                                    <td>{{area.name}}</td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label></label>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                            </div>
+                                        </div>
+                                      </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+      </form>
+
+        <!-- This is the div that shows when you're not editing -->
+<div class="container emp-profile" *ngIf="selectedUser && !updateUserProfile" >
             <!-- <form method="post"> -->
                 <div class="row">
                     <div class="col-md-4">
@@ -25,13 +150,13 @@
 
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-
+                                    About
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                      <button *ngIf = "checkIfCurrentUser(selectedUser.username)" (click)="setUpdateUser()">Edit Profile</button>
                     </div>
                 </div>
                 <div class="row">
@@ -40,9 +165,10 @@
                             <p></p>
 
                             <p>SKILLS</p>
-                              City: {{selectedUser.location}} <br>
+                              City: {{selectedUser.location.city}} <br>
                               Has a Dog: {{selectedUser.hasDog}} <br>
-                              Age: {{selectedUser.birthdate}}
+                              Age: {{age(selectedUser)}} <br>
+                              Favorite Beer: {{selectedUser.favoriteBeer}}
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -152,7 +278,9 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label></label><br/>
-                                        <p></p>
+                                        <p>Where is this
+
+                                        </p>
                                     </div>
                                 </div>
                             </div>

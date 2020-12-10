@@ -8,7 +8,7 @@ export class Event {
   imgUrl: string;
   climbingAreaId: number;
   eventDate: string;
-  createdBy: User[];
+  createdBy: User;
   attendedUsers: User[];
 
 constructor (
@@ -18,7 +18,7 @@ constructor (
   imgUrl?: string,
   climbingAreaId?: number,
   eventDate?: string,
-  createdBy?: User[],
+  createdBy?: User,
   attendedUsers?: User[]
 ){
   this.id = id;

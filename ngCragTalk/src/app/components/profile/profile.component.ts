@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { ClimbingArea } from './../../models/climbing-area';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './../../services/user.service';
@@ -16,13 +17,16 @@ import { DatePipe } from '@angular/common';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private datePipe: DatePipe) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private datePipe: DatePipe, private auth: AuthService) { }
 
   selectedUser: User = null;
   gearList: Gear[] = [];
   userClimbTypes: UserClimbType[] = [];
   favoriteClimbingAreas: ClimbingArea [] = [];
-  today: number = Date.now();
+  today: Date = new Date();
+  updateUserProfile: User;
+  editGear: boolean = false;
+  managedGear: Gear;
 
 
 
@@ -65,11 +69,12 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  updateUser(user: User): void {
+  updateProfile(user: User): void {
     this.userService.update(user.id, user).subscribe(
       data=>{
         user = data;
         console.log('retrieved');
+        this.router.navigateByUrl('update/' + user.id);
         // this.reload();
       },
       err=>{
@@ -79,6 +84,49 @@ export class ProfileComponent implements OnInit {
     );
     // window.location.reload();
   }
+
+  setUpdateUser() {
+    this.updateUserProfile = Object.assign({}, this.selectedUser);
+  }
+
+
+  age(user: User): number {
+
+    const birthYear = user.birthdate.toString().substring(0,5);
+    const currentYear = this.today.getFullYear();
+    const age = currentYear - parseInt(birthYear);
+    return age;
+  }
+
+  showProfile(userId: number) {
+
+          this.userService.show(userId).subscribe(
+            (data) => {
+              console.log('profile retrieved');
+              this.selectedUser = data;
+              this.gearList = data.gearList;
+              this.userClimbTypes = data.userClimbTypes;
+              this.favoriteClimbingAreas = data.favoriteAreaList;
+
+
+
+            },
+            (err) => {
+              console.log('User ' + userId + ' not found.');
+              this.router.navigateByUrl('notFound');
+            }
+            );
+          }
+
+          checkIfCurrentUser(username: string): boolean {
+            return this.auth.checkIfCurrentUser(username);
+          }
+
+
+          editGearList(gear: Gear) {
+            this.editGear = !this.editGear;
+            this.managedGear = gear;
+          }
 
 
 

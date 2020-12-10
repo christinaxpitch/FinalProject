@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Event {
@@ -42,7 +43,7 @@ public class Event {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
-	@JsonIgnore
+	@JsonIgnoreProperties({"favoriteAreaList", "createdEvents"})
 	@ManyToOne
 	@JoinColumn(name = "created_by_user_id")
 	private User createdBy;

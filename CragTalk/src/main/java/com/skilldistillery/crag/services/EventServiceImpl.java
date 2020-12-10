@@ -23,10 +23,10 @@ public class EventServiceImpl implements EventService {
 	private EventRepository eventRepo;
 	
 	@Override
-	public List<Event> index(String username) {
-		if (userRepo.findByUsername(username) == null) {
-			return null;
-		}
+	public List<Event> index() {
+//		if (userRepo.findByUsername(username) == null) {
+//			return null;
+//		}
 		return eventRepo.findAll();
 	}
 
@@ -64,6 +64,7 @@ public class EventServiceImpl implements EventService {
 		Optional<Event> eventOpt = eventRepo.findById(id);
 		Event managedEvent = eventOpt.get();
 		if(managedEvent != null) {
+			if(event.getCreatedBy().getUsername() == username){
 			managedEvent.setClimbingAreaId(event.getClimbingAreaId());
 			managedEvent.setCreatedBy(event.getCreatedBy());
 			managedEvent.setDescription(event.getDescription());
@@ -71,6 +72,7 @@ public class EventServiceImpl implements EventService {
 			managedEvent.setEventName(event.getEventName());
 			managedEvent.setCreatedAt(event.getCreatedAt());
 			managedEvent.setEventDate(event.getEventDate());
+		}
 		}
 		
 		return managedEvent;

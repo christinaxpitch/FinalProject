@@ -30,7 +30,7 @@ public class EventController {
 	//show all events
 	@GetMapping("event")
 	public List<Event> showAllEvents(HttpServletResponse res, Principal principal){
-		List<Event> events = eventSvc.index(principal.getName());
+		List<Event> events = eventSvc.index();
 		if(events == null) {
 			res.setStatus(400);
 		}
