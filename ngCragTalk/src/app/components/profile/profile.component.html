@@ -72,31 +72,39 @@
                                               <table>
                                                 <tbody>
                                                   <tr *ngFor= "let gear of gearList">
-                                                    <td>{{gear.name}} <button (click) = "editGearList()">Edit</button></td>
+                                                    <td (click) = "displayGear(gear)">{{gear.name}}</td>
                                                   </tr>
                                                 </tbody>
                                               </table>
-                                              <form>
-
-
+                                              <form *ngIf = "editGear">
+                                                <input type="text" name = "name" [(ngModel)] = "managedGear.name" placeholder="managedGear.name">
+                                                <button (click)="editGearList(managedGear)">Save</button>
                                               </form>
                                             </div>
                                         </div>
+
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Most recent Climb grades</label>
                                             </div>
                                             <div class="col-md-6">
-
-                                                <table>
-                                                  <tbody>
-                                                    <tr *ngFor= "let climb of userClimbTypes">
-                                                      <td>{{climb.recentGrade}}</td>
-                                                    </tr>
-                                                  </tbody>
-                                                </table>
-                                            </div>
+                                              <table>
+                                                <tbody>
+                                                  <tr *ngFor= "let climb of userClimbTypes">
+                                                    <td (click) = "displayGear(climb)">{{climb.recentGrade}}</td>
+                                                    <td (click) = "displayGear(climb)">{{climb.recentGrade}}</td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                              <form *ngIf = "editGear">
+                                                <input type="text" name = "name" [(ngModel)] = "managedGear.name" placeholder="managedGear.name">
+                                                <button (click)="editGearList(managedGear)">Save</button>
+                                              </form>
                                         </div>
+
+
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Favorite Climbing areas</label>
@@ -111,6 +119,7 @@
                                               </table>
                                             </div>
                                         </div>
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label></label>
@@ -124,6 +133,7 @@
                     </div>
                 </div>
 
+        </div>
         </div>
       </form>
 

@@ -26,7 +26,9 @@ export class ProfileComponent implements OnInit {
   today: Date = new Date();
   updateUserProfile: User;
   editGear: boolean = false;
+  editClimbType: boolean = false;
   managedGear: Gear;
+  managedUserClimbType: UserClimbType;
 
 
 
@@ -123,10 +125,44 @@ export class ProfileComponent implements OnInit {
           }
 
 
-          editGearList(gear: Gear) {
+        editGearList(gear: Gear): void {
             this.editGear = !this.editGear;
+            this.userService.updateGear(gear.id, gear).subscribe(
+
+              data => {
+                gear = data;
+                this.editGear = false;
+              },
+              err =>{
+                console.error('attempt to update gear list failed')
+                console.error(err);
+                }
+            );
+
+          }
+
+          displayGear(gear: Gear) {
+            this.editGear = true
             this.managedGear = gear;
           }
+
+
+        // editClimbTypeList(climb: UserClimbType): void {
+        //     this.editGear = !this.editGear;
+        //     this.userService.updateUserClimbType(climb.id, climb).subscribe(
+
+        //       data => {
+        //         gear = data;
+        //         this.editGear = false;
+        //         this.ngOnInit();
+        //       }
+        //     );
+
+        //   }
+
+        //   displayClimbType(climb: UserClimbType) {
+        //     this.managedUserClimbType = climb;
+        //   }
 
 
 
