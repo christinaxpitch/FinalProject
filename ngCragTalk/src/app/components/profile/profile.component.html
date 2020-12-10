@@ -3,9 +3,12 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
+
+<!-- This is the update Div -->
+
 <form *ngIf="updateUserProfile">
 <div class="container emp-profile" >
-            <!-- <form method="post"> -->
+
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -19,8 +22,8 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                      <input type="text" name = "firstName" [(ngModel)] = "selectedUser.firstName" placeholder="selectedUser.firstName">
-                                      <input type="text" name = "lastName" [(ngModel)] = "selectedUser.lastName" placeholder="selectedUser.lastName">
+                                     <label>Name: </label>  <input type="text" name = "firstName" [(ngModel)] = "selectedUser.firstName" placeholder="selectedUser.firstName"> <br>
+                                            <input type="text" name = "lastName" [(ngModel)] = "selectedUser.lastName" placeholder="selectedUser.lastName">
 
                                     </h5>
 
@@ -43,10 +46,11 @@
                             <p></p>
 
                             <p>SKILLS</p>
-                              City: {{selectedUser.location}} <br>
-                              Has a Dog: {{selectedUser.hasDog}} <br>
-                              Age: {{age(selectedUser)}} <br>
-                              Favorite Beer: {{selectedUser.favoriteBeer}}
+                            City: <input type="text" name = "location" [(ngModel)] = "selectedUser.location.city" placeholder="selectedUser.location.city"> <br>
+
+                              Do you have a dog? <input type="checkbox" name = "hasDog" [(ngModel)] = "selectedUser.hasDog" placeholder="selectedUser.hasDog"> <br>
+                              Age: <input type="date" name = "birthdate" [(ngModel)] = "selectedUser.birthdate" placeholder=""> <br>
+                              Favorite Beer: <input type="test" name = "favoriteBeer" [(ngModel)] = "selectedUser.favoriteBeer" placeholder="selectedUser.favoriteBeer">
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -57,7 +61,7 @@
                                                 <label>Username</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{selectedUser.username}}</p>
+                                                <p><input type="text" name = "username" [(ngModel)] = "selectedUser.username" placeholder="selectedUser.username"></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -68,10 +72,14 @@
                                               <table>
                                                 <tbody>
                                                   <tr *ngFor= "let gear of gearList">
-                                                    <td>{{gear.name}}</td>
+                                                    <td>{{gear.name}} <button (click) = "editGearList()">Edit</button></td>
                                                   </tr>
                                                 </tbody>
                                               </table>
+                                              <form>
+
+
+                                              </form>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -111,59 +119,11 @@
 
                                             </div>
                                         </div>
-                            </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-
-                                            </div>
-                                            <div class="col-md-6">
-
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label></label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label></label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label></label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label></label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label></label><br/>
-                                        <p></p>
-                                    </div>
-                                </div>
-                            </div>
+                                      </div>
                         </div>
                     </div>
                 </div>
-            <!-- </form> -->
+
         </div>
       </form>
 
@@ -196,7 +156,7 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                      <button (click)="setUpdateUser()">Edit Profile</button>
+                      <button *ngIf = "checkIfCurrentUser(selectedUser.username)" (click)="setUpdateUser()">Edit Profile</button>
                     </div>
                 </div>
                 <div class="row">
@@ -205,7 +165,7 @@
                             <p></p>
 
                             <p>SKILLS</p>
-                              City: {{selectedUser.location}} <br>
+                              City: {{selectedUser.location.city}} <br>
                               Has a Dog: {{selectedUser.hasDog}} <br>
                               Age: {{age(selectedUser)}} <br>
                               Favorite Beer: {{selectedUser.favoriteBeer}}
@@ -318,7 +278,9 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label></label><br/>
-                                        <p></p>
+                                        <p>Where is this
+
+                                        </p>
                                     </div>
                                 </div>
                             </div>
