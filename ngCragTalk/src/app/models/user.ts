@@ -1,3 +1,4 @@
+import { Location } from './location';
 import { UserClimbType } from 'src/app/models/user-climb-type';
 import { Message } from './message';
 import { Media } from './media';

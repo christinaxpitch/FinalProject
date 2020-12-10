@@ -27,6 +27,7 @@ export class AuthService {
       .pipe(
         tap((res) => {
           localStorage.setItem('credentials' , credentials);
+          localStorage.setItem('username', username);
           return res;
         }),
         catchError((err: any) => {
@@ -59,5 +60,10 @@ export class AuthService {
   }
   getCredentials(): string {
     return localStorage.getItem('credentials');
+  }
+
+  checkIfCurrentUser(username: string): boolean {
+
+    return username === localStorage.getItem('username');
   }
 }
