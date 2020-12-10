@@ -82,7 +82,7 @@ public class User {
 	private List<ClimbingArea> favoriteAreaList;
 	
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"users"})
 	@ManyToOne
 	@JoinColumn(name = "location_id")
 	private Location location;
