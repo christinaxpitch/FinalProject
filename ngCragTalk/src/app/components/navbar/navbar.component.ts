@@ -19,4 +19,8 @@ export class NavbarComponent implements OnInit {
     return this.auth.checkLogin();
   }
 
+
+  getIdFromLoggedInUser()  {
+  return localStorage.getItem('id');
+  }
 }

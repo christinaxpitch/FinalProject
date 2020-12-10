@@ -70,4 +70,9 @@ export class AuthService {
 
     return username === localStorage.getItem('username');
   }
+  getCurrentUserId(): number {
+
+    const id = parseInt(localStorage.getItem('id'));
+    return id;
+  }
 }
