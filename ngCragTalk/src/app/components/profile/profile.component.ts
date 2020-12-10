@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { ClimbingArea } from './../../models/climbing-area';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './../../services/user.service';
@@ -16,7 +17,7 @@ import { DatePipe } from '@angular/common';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private datePipe: DatePipe) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private datePipe: DatePipe, private auth: AuthService) { }
 
   selectedUser: User = null;
   gearList: Gear[] = [];
@@ -24,6 +25,8 @@ export class ProfileComponent implements OnInit {
   favoriteClimbingAreas: ClimbingArea [] = [];
   today: Date = new Date();
   updateUserProfile: User;
+  editGear: boolean = false;
+  managedGear: Gear;
 
 
 
@@ -115,8 +118,15 @@ export class ProfileComponent implements OnInit {
             );
           }
 
+          checkIfCurrentUser(username: string): boolean {
+            return this.auth.checkIfCurrentUser(username);
+          }
 
 
+          editGearList(gear: Gear) {
+            this.editGear = !this.editGear;
+            this.managedGear = gear;
+          }
 
 
 
