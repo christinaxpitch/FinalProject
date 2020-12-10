@@ -6,7 +6,7 @@ import com.skilldistillery.crag.entities.Event;
 
 public interface EventService {
 
-	public List<Event> index(String username);
+	public List<Event> index();
 
     public Event show(String username, int id);
 

@@ -5,7 +5,7 @@ import java.util.List;
 import com.skilldistillery.crag.entities.Media;
 
 public interface MediaService {
-    public List<Media> index(String username);
+    public List<Media> index();
 
     public Media show(String username, int mediaId);
 

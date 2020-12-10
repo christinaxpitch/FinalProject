@@ -23,10 +23,10 @@ public class EventServiceImpl implements EventService {
 	private EventRepository eventRepo;
 	
 	@Override
-	public List<Event> index(String username) {
-		if (userRepo.findByUsername(username) == null) {
-			return null;
-		}
+	public List<Event> index() {
+//		if (userRepo.findByUsername(username) == null) {
+//			return null;
+//		}
 		return eventRepo.findAll();
 	}
 
