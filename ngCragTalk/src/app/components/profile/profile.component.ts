@@ -188,5 +188,20 @@ export class ProfileComponent implements OnInit {
           }
 
 
+          disableUser(user: User) {
+            this.userService.disableUser(user.id, user).subscribe(
+              data=>{
+
+
+
+
+
+              },
+              err=>{
+              console.error('retrieved failed')
+              console.error(err);
+              }
+            );
+          }
 
 }
