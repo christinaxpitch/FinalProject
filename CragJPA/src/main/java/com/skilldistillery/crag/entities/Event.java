@@ -36,6 +36,8 @@ public class Event {
 	@Column(name = "climbing_area_id")
 	private int climbingAreaId;
 	
+	//should be private ClimbingArea climbingArea;
+	
 	@Column(name = "event_date")
 	private LocalDateTime eventDate;
 	

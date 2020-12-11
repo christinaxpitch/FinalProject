@@ -22,7 +22,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr (click)='eventClick()' *ngFor="let recent of recentClimbs" >
+    <tr (click)='eventClick()' *ngFor="let recent of recentClimbs.slice().reverse()" >
       <td>{{recent.eventName}}</td>
       <td>{{recent.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</td>
       <!-- <td>{{recent.description}}</td> -->
