@@ -70,12 +70,12 @@ public class Event {
 		this.description = description;
 	}
 
-	public String getImaUrl() {
+	public String getImgUrl() {
 		return imgUrl;
 	}
 
-	public void setImaUrl(String imaUrl) {
-		this.imgUrl = imaUrl;
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	public int getClimbingAreaId() {

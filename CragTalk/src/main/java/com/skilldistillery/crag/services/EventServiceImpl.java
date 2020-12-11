@@ -61,24 +61,21 @@ public class EventServiceImpl implements EventService {
 		if (userRepo.findByUsername(username) == null || event == null) {
 			return null;
 		}
-		if(event.getCreatedBy().getUsername() == username){
+		if(event.getCreatedBy().getUsername().equals(username)){
 		Optional<Event> eventOpt = eventRepo.findById(event.getId());
+		
 		Event managedEvent = eventOpt.get();
 		if(managedEvent != null) {
-
 			managedEvent.setClimbingAreaId(event.getClimbingAreaId());
 			managedEvent.setCreatedBy(event.getCreatedBy());
 			managedEvent.setDescription(event.getDescription());
-			managedEvent.setImaUrl(event.getImaUrl());
+			managedEvent.setImgUrl(event.getImgUrl());
 			managedEvent.setEventName(event.getEventName());
 			managedEvent.setCreatedAt(event.getCreatedAt());
 			managedEvent.setEventDate(event.getEventDate());
-			System.out.println("**********");
-			System.out.println(managedEvent);
-			System.out.println("**********");
 			eventRepo.saveAndFlush(managedEvent);
+			return managedEvent;
 		}
-		return managedEvent;
 		}
 		return event;
 	}

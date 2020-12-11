@@ -74,9 +74,6 @@ public class EventController {
 	public Event updateEvent(HttpServletResponse res, HttpServletRequest req, Principal principal, @RequestBody Event event) {
 		try {
 			event = eventSvc.update(principal.getName(), event);
-			System.out.println("In Event Controller*********");
-			System.out.println(event);
-			System.out.println("*********");
 			if(event == null) {
 				res.setStatus(404);
 			}
