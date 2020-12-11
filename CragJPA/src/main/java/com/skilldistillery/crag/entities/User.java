@@ -100,7 +100,7 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	List<Gear> gearList;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"users"})
 	@ManyToMany
 	@JoinTable(name = "favorite_user", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "favorite_user_id"))
 	private List<User> myListOfFavoriteUsers;
@@ -115,7 +115,7 @@ public class User {
 	List<Media> mediaList;
 	
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"users"})
 	@ManyToMany
 	@JoinTable(name = "message", joinColumns = @JoinColumn(name="id"), inverseJoinColumns = @JoinColumn(name = "receiver_id"))
 	private List<Message> myListOfReceivedMessages;
