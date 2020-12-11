@@ -24,29 +24,54 @@ export class MessageComponent implements OnInit {
     selectedUser: User = null;
     messages: Message[] = [];
     today: Date = new Date();
+    showInbox: boolean = true;
 
 
 
 
   ngOnInit(): void {
+    const idStr = this.route.snapshot.paramMap.get('userId');
 
+    if (idStr) {
+
+      const id: number = Number.parseInt(idStr, 10);
+      if (!isNaN(id)) {
+        this.userService.show(id).subscribe(
+          (data) => {
+            console.log('profile retrieved');
+            this.selectedUser = data;
+            this.messages = data.myListOfReceivedMessages;
+          },
+          (err) => {
+            console.log('User ' + id + ' not found.');
+            this.router.navigateByUrl('notFound');
+          }
+          );
+        }
+        else {
+          this.router.navigateByUrl('invalidId');
+      }
+    }
+    else {
+      this.router.navigateByUrl('notFound');
+    }
   }
 
-  showProfile(userId: number) {
+  // showProfile(userId: number) {
 
-    this.userService.show(userId).subscribe(
-      (data) => {
-        console.log('profile retrieved');
-        this.selectedUser = data;
-        this.messages = data.myListOfReceivedMessages;
+  //   this.userService.show(userId).subscribe(
+  //     (data) => {
+  //       console.log('profile retrieved');
+  //       this.selectedUser = data;
+  //       this.messages = data.myListOfReceivedMessages;
 
 
 
-      },
-      (err) => {
-        console.log('User ' + userId + ' not found.');
-        this.router.navigateByUrl('notFound');
-      }
-      );
-    }
+  //     },
+  //     (err) => {
+  //       console.log('User ' + userId + ' not found.');
+  //       this.router.navigateByUrl('notFound');
+  //     }
+  //     );
+  //   }
 }
