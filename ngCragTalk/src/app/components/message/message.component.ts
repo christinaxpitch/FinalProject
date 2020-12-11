@@ -30,11 +30,12 @@ export class MessageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const idStr = this.route.snapshot.paramMap.get('userId');
+    // const idStr = this.route.snapshot.paramMap.get('userId');
+    const id = this.auth.getCurrentUserId();
 
-    if (idStr) {
+    if (id) {
 
-      const id: number = Number.parseInt(idStr, 10);
+
       if (!isNaN(id)) {
         this.userService.show(id).subscribe(
           (data) => {
