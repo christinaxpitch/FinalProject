@@ -1,3 +1,4 @@
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { UserService } from './services/user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -19,9 +20,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { DatePipe } from '@angular/common';
 import { ClimbingAreaComponent } from './components/climbing-area/climbing-area.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ClimbingAreaComponent } from './components/climbing-area/climbing-area.
     FormsModule,
     HttpClientModule,
     NgbModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    NoopAnimationsModule
   ],
   providers: [AuthService, EventService, IndexService, UserService, DatePipe],
   bootstrap: [AppComponent]
