@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { DatePipe } from '@angular/common';
+import { ClimbingAreaComponent } from './components/climbing-area/climbing-area.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { DatePipe } from '@angular/common';
     MessageComponent,
     LogoutComponent,
     NotFoundComponent,
+    ClimbingAreaComponent,
 
   ],
   imports: [
