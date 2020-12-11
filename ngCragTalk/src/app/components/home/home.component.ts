@@ -50,6 +50,7 @@ export class HomeComponent implements OnInit {
       this.router.navigateByUrl('login');}
   };
 
+
   loadRecentClimbEvents(): void{
     this.eventService.index().subscribe(
       data=>{this.recentClimbs=data;
