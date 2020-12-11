@@ -1,3 +1,4 @@
+import { ClimbingAreaComponent } from './components/climbing-area/climbing-area.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EventComponent } from './components/event/event.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'event', component: EventComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'event/:eventId', component: EventComponent },
+  { path: 'climbingArea', component: ClimbingAreaComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

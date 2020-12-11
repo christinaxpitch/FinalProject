@@ -18,12 +18,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
   recentClimbs: Event[] = [];
   groupClimbs: Event[]=[];
   userClimbers: User[] = [];
   media: Media[] = [];
-
 
   constructor(private datePipe: DatePipe,
      private eventService: EventService,
@@ -60,11 +60,13 @@ export class HomeComponent implements OnInit {
       });
   }
 
+
   loadGroupClimbEvents(): void{
     this.eventService.index().subscribe(
       data=>{this.groupClimbs=data;
         console.log('Home.components loadEvent(): retrieve succeeded');},
       err=>{
+
         console.error('Home.components loadEvent(): retrieve failed');
         console.error(err);
       });

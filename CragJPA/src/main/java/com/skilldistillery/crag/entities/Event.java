@@ -36,6 +36,8 @@ public class Event {
 	@Column(name = "climbing_area_id")
 	private int climbingAreaId;
 	
+	//should be private ClimbingArea climbingArea;
+	
 	@Column(name = "event_date")
 	private LocalDateTime eventDate;
 	
@@ -70,12 +72,12 @@ public class Event {
 		this.description = description;
 	}
 
-	public String getImaUrl() {
+	public String getImgUrl() {
 		return imgUrl;
 	}
 
-	public void setImaUrl(String imaUrl) {
-		this.imgUrl = imaUrl;
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	public int getClimbingAreaId() {

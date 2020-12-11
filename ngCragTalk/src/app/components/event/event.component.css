@@ -6,3 +6,19 @@
   -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
   box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
 }
+.hoverClickBlue:hover {
+  color: white;
+  background-color: #4cc9f0;
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+}
+
+.hoverClickPink:hover {
+  color: black;
+  background-color: #f3f315;
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(243, 243, 21, 1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(243, 243, 21, 1);
+  box-shadow: 10px 10px 99px 6px rgba(243, 243, 21, 1);
+}
+

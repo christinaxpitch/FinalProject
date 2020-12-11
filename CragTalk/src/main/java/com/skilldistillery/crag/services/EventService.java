@@ -12,7 +12,7 @@ public interface EventService {
 
     public Event create(String username, Event event);
 
-    public Event update(String username, int id, Event event);
+    public Event update(String username, Event event);
 
     public boolean destroy(String username, int id);
 }

@@ -141,28 +141,44 @@ export class ProfileComponent implements OnInit {
 
           }
 
+          updateUser(user: User): void {
+            this.userService.update(user.id, user).subscribe(
+              data=>{
+                user = data;
+                console.log('retrieved');
+                this.router.navigateByUrl('user/' + user.id);
+              },
+              err=>{
+              console.error('retrieved failed')
+              console.error(err);
+              }
+            );
+            // window.location.reload();
+          }
+
           displayGear(gear: Gear) {
             this.editGear = true
             this.managedGear = gear;
           }
 
 
-        // editClimbTypeList(climb: UserClimbType): void {
-        //     this.editGear = !this.editGear;
-        //     this.userService.updateUserClimbType(climb.id, climb).subscribe(
+        editClimbTypeList(climb: UserClimbType): void {
+          this.editClimbType = !this.editClimbTypeList;
+          this.userService.updateUserClimbType(climb.id, climb).subscribe(
 
-        //       data => {
-        //         gear = data;
-        //         this.editGear = false;
-        //         this.ngOnInit();
-        //       }
-        //     );
+            data => {
+              climb = data;
+              this.editClimbType = false;
 
-        //   }
+              }
+            );
 
-        //   displayClimbType(climb: UserClimbType) {
-        //     this.managedUserClimbType = climb;
-        //   }
+          }
+
+          displayClimbType(climb: UserClimbType) {
+            this.editClimbType = true;
+            this.managedUserClimbType = climb;
+          }
 
 
 

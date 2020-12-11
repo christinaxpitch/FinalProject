@@ -31,7 +31,7 @@
 
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    About
+                                    Climbing Info
                                 </li>
                             </ul>
                         </div>
@@ -45,9 +45,9 @@
                         <div class="profile-work">
                             <p></p>
 
-                            <p>SKILLS</p>
-                            City: <input type="text" name = "location" [(ngModel)] = "selectedUser.location.city" placeholder="selectedUser.location.city"> <br>
-
+                            <p>About Me</p>
+                              Username: <input type="text" name = "username" [(ngModel)] = "selectedUser.username" placeholder="selectedUser.username"> <br>
+                              City: <input type="text" name = "location" [(ngModel)] = "selectedUser.location.city" placeholder="selectedUser.location.city"> <br>
                               Do you have a dog? <input type="checkbox" name = "hasDog" [(ngModel)] = "selectedUser.hasDog" placeholder="selectedUser.hasDog"> <br>
                               Age: <input type="date" name = "birthdate" [(ngModel)] = "selectedUser.birthdate" placeholder=""> <br>
                               Favorite Beer: <input type="test" name = "favoriteBeer" [(ngModel)] = "selectedUser.favoriteBeer" placeholder="selectedUser.favoriteBeer">
@@ -56,14 +56,15 @@
                     <div class="col-md-8">
                         <div >
                             <div >
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-md-6">
                                                 <label>Username</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p><input type="text" name = "username" [(ngModel)] = "selectedUser.username" placeholder="selectedUser.username"></p>
                                             </div>
-                                        </div>
+                                        </div> -->
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Gear</label>
@@ -76,12 +77,19 @@
                                                   </tr>
                                                 </tbody>
                                               </table>
-                                              <form *ngIf = "editGear">
+                                              <div *ngIf = "editGear">
                                                 <input type="text" name = "name" [(ngModel)] = "managedGear.name" placeholder="managedGear.name">
                                                 <button (click)="editGearList(managedGear)">Save</button>
-                                              </form>
+                                              </div>
                                             </div>
                                         </div>
+
+
+
+
+
+
+
 
 
                                         <div class="row">
@@ -92,16 +100,39 @@
                                               <table>
                                                 <tbody>
                                                   <tr *ngFor= "let climb of userClimbTypes">
-                                                    <td (click) = "displayGear(climb)">{{climb.recentGrade}}</td>
-                                                    <td (click) = "displayGear(climb)">{{climb.recentGrade}}</td>
+                                                    <td (click) = "displayClimbType(climb)" >{{climb.recentGrade}}  </td>
+
+
                                                   </tr>
                                                 </tbody>
                                               </table>
-                                              <form *ngIf = "editGear">
-                                                <input type="text" name = "name" [(ngModel)] = "managedGear.name" placeholder="managedGear.name">
-                                                <button (click)="editGearList(managedGear)">Save</button>
-                                              </form>
+                                              <div *ngIf = "editClimbType">
+                                                <input type="text" name = "recentGrade" [(ngModel)] = "managedUserClimbType.recentGrade" placeholder="managedUserClimbType.recentGrade">
+                                                Was Lead Climber: <input type="checkbox" name = "leadClimb" [(ngModel)] = "managedUserClimbType.leadClimb" placeholder="managedUserClimbType.leadClimb">
+                                                <button (click)="editClimbTypeList(managedUserClimbType)">Save</button>
+                                              </div>
                                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -135,6 +166,7 @@
 
         </div>
         </div>
+        <button (click) = updateUser(selectedUser)>Save</button>
       </form>
 
         <!-- This is the div that shows when you're not editing -->
@@ -160,13 +192,14 @@
 
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    About
+                                    Climbing Info
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-2">
-                      <button *ngIf = "checkIfCurrentUser(selectedUser.username)" (click)="setUpdateUser()">Edit Profile</button>
+                      <button *ngIf = "checkIfCurrentUser(selectedUser.username) " (click)="setUpdateUser()">Edit Profile</button>
+                      <button *ngIf = " !checkIfCurrentUser(selectedUser.username) " >Message {{selectedUser.username}}</button>
                     </div>
                 </div>
                 <div class="row">
@@ -174,7 +207,8 @@
                         <div class="profile-work">
                             <p></p>
 
-                            <p>SKILLS</p>
+                            <p>About Me</p>
+                              Username: {{selectedUser.username}}
                               City: {{selectedUser.location.city}} <br>
                               Has a Dog: {{selectedUser.hasDog}} <br>
                               Age: {{age(selectedUser)}} <br>
@@ -184,14 +218,14 @@
                     <div class="col-md-8">
                         <div >
                             <div >
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-md-6">
                                                 <label>Username</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>{{selectedUser.username}}</p>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Gear</label>
@@ -215,7 +249,9 @@
                                                 <table>
                                                   <tbody>
                                                     <tr *ngFor= "let climb of userClimbTypes">
-                                                      <td>{{climb.recentGrade}}</td>
+                                                      <td>{{climb.recentGrade}}</td> <br>
+                                                     <td *ngIf = "climb.leadClimb"> (Was Lead climber) </td>
+                                                    <td *ngIf = "!climb.leadClimb"> (Was not Lead climber) </td>
                                                     </tr>
                                                   </tbody>
                                                 </table>
