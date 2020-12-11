@@ -33,8 +33,9 @@ public class Event {
 	@Column(name = "img_url")
 	private String imgUrl;
 	
-	@Column(name = "climbing_area_id")
-	private int climbingAreaId;
+//	@Column(name = "climbing_area_id")
+//	private int climbingAreaId;
+//	do not need this for foreign key
 	
 	//should be private ClimbingArea climbingArea;
 	
@@ -80,13 +81,6 @@ public class Event {
 		this.imgUrl = imgUrl;
 	}
 
-	public int getClimbingAreaId() {
-		return climbingAreaId;
-	}
-
-	public void setClimbingAreaId(int climbingAreaId) {
-		this.climbingAreaId = climbingAreaId;
-	}
 
 	public LocalDateTime getEventDate() {
 		return eventDate;
@@ -117,7 +111,7 @@ public class Event {
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", eventName=" + eventName + ", description=" + description + ", imgUrl=" + imgUrl
-				+ ", climbingAreaId=" + climbingAreaId + ", eventDate=" + eventDate + ", createdAt=" + createdAt
+				+ ", eventDate=" + eventDate + ", createdAt=" + createdAt
 				+ ", createdBy=" + createdBy + "]";
 	}
 
