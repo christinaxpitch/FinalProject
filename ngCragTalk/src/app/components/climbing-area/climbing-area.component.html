@@ -5,11 +5,20 @@
     <td><img src="{{climb.imgUrl}}"> </td>
     <tr>
     <td></td>
-    <td>{{climb.description}}</td>>
+    <td>{{climb.description}}</td>
     </tr>
     <tr>
       <td>Events</td>
-      <td><p *ngFor="let event of climb.events">{{event.eventName}}</p></td>
+      <td><p *ngFor="let event of climb.events">{{event.eventName}}<br>{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}} </p></td>
+    </tr>
+    <tr>
+      <td>Users who frequent</td>
+      <td><div *ngFor="let user of climb.users">
+        <p *ngFor="let climbType of user.climbTypes"> {{user.firstName}}<br>
+        {{climbType.name}} </p>
+        <hr>
+      </div>
+      </td>
     </tr>
   </tbody>
   </table>

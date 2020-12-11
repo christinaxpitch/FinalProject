@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit {
   };
 
 
+
   loadRecentClimbEvents(): void{
     this.eventService.index().subscribe(
       data=>{this.recentClimbs=data;
