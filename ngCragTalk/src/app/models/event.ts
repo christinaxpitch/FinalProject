@@ -6,7 +6,7 @@ export class Event {
   eventName: string;
   description: string;
   imgUrl: string;
-  climbingAreaId: number;
+  climbingArea: ClimbingArea;
   eventDate: string;
   createdBy: User;
   attendedUsers: User[];
@@ -16,7 +16,7 @@ constructor (
   eventName?: string,
   description?: string,
   imgUrl?: string,
-  climbingAreaId?: number,
+  climbingArea?: ClimbingArea,
   eventDate?: string,
   createdBy?: User,
   attendedUsers?: User[]
@@ -25,7 +25,7 @@ constructor (
   this.eventName = eventName;
   this.description = description;
   this.imgUrl = imgUrl;
-  this.climbingAreaId = climbingAreaId;
+  this.climbingArea = climbingArea;
   this.eventDate = eventDate;
   this.createdBy = createdBy;
   this.attendedUsers = attendedUsers;

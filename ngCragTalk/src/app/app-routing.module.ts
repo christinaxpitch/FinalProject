@@ -1,3 +1,4 @@
+import { MessageComponent } from './components/message/message.component';
 import { ClimbingAreaComponent } from './components/climbing-area/climbing-area.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'message', component: MessageComponent },
   { path: 'user', component: ProfileComponent },
   { path: 'user/:userId', component: ProfileComponent },
   { path: 'user/update/:userId', component: EventComponent },

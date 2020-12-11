@@ -2,11 +2,13 @@
   <h1>Welcome to Crag Talk</h1>
   <h3>Lets get you in a Belationship today!</h3>
 </div>
-<carousel style="background-color:#111;" cellsToShow=3 height=400 lightDOM=true autoplay=true pauseOnHover=true loop=true>
-  <div *ngFor="let med of media" class="carousel-cell" >
+<carousel [images]="media" style="background-color:#111;" cellsToShow=3 height=400 width=auto
+lightDOM=true autoplay=true pauseOnHover=true loop=true>
+  <div *ngFor="let med of media" class="carousel-cell">
     <img src="{{med.mediaUrl}}">
     </div>
 </carousel>
+
   <table align="center">
     <tr>
       <td align="center" class="mx-auto">
