@@ -54,7 +54,10 @@ export class ProfileComponent implements OnInit {
               this.gearList = data.gearList;
               this.userClimbTypes = data.userClimbTypes;
               this.favoriteClimbingAreas = data.favoriteAreaList;
-              this.messages = data.myListOfSentMessages;
+              this.favoriteUsers = data.myListOfFavoriteUsers;
+              console.log(this.favoriteUsers);
+              this.messages = data.myListOfReceivedMessages;
+              console.log(this.messages);
 
 
 

@@ -1,11 +1,14 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+
+
+
+
 
 
 <!-- This is the update Div -->
-<table>
+<table *ngIf="selectedUser && updateUserProfile">
   <tbody>
     <td>
       <!-- where the messages will go -->
@@ -88,15 +91,6 @@
                                                       </div>
                                                     </div>
                                                 </div>
-
-
-
-
-
-
-
-
-
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label>Most recent Climb grades</label>
@@ -148,14 +142,10 @@
                 </div>
                 </div>
                 <button (click) = updateUser(selectedUser)>Save</button>
+                <button (click) = disable(selectedUser)>Disable Profile</button>
               </form>
     </td>
-    <td>
-      <!-- list of favortie users  -->
-      <ul *ngFor = "let user of favoriteUsers">
-        <li (click) = "showProfile(user)">{{user.username}}</li>
-      </ul>
-    </td>
+
   </tbody>
 </table>
 
@@ -178,17 +168,21 @@
 
 
 
-
+<!-- This is the div for the profile before the user hits the edit button -->
 
 
 <table *ngIf="selectedUser && !updateUserProfile" >
   <tbody>
-    <tr class = "cols">
-    <td >
+    <tr>
+    <!-- <td >
 <div class = "cols">
+  <label >Messages</label>
 
+        <ul *ngFor= "let message of messages">
+          <li >{{message.messageBody}}</li>
+        </ul>
 </div>
-    </td>
+    </td> -->
     <td >
 
         <!-- This is the div that shows when you're not editing -->
@@ -294,9 +288,9 @@
                                             </table>
                                           </div>
                                       </div>
-                                      <div class="row">
+                                      <!-- <div class="row">
                                           <div class="col-md-6">
-                                              <label>Favorites</label>
+                                              <label>Messages</label>
                                           </div>
                                           <div class="col-md-6">
                                             <table>
@@ -307,7 +301,7 @@
                                               </tbody>
                                             </table>
                                           </div>
-                                      </div>
+                                      </div> -->
                           </div>
                       </div>
                   </div>
@@ -318,8 +312,8 @@
       <td >
         <label >Favorite Climbers</label>
         <!-- list of favortie users  -->
-        <ul *ngFor= "let area of favoriteClimbingAreas">
-          <li >{{area.name}}</li>
+        <ul *ngFor= "let user of favoriteUsers">
+          <li >{{user.username}}</li>
         </ul>
       </td>
 </tr>
