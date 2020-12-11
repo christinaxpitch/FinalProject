@@ -37,6 +37,9 @@ public class Event {
 //	private int climbingAreaId;
 //	do not need this for foreign key
 	
+	@ManyToOne
+	@JoinColumn(name = "climbing_area_id")
+	private ClimbingArea climbingArea;
 	//should be private ClimbingArea climbingArea;
 	
 	@Column(name = "event_date")
@@ -92,6 +95,36 @@ public class Event {
 
 	
 
+	public Event(int id, String eventName, String description, String imgUrl, ClimbingArea climbingArea,
+			LocalDateTime eventDate, LocalDateTime createdAt, User createdBy, List<User> attendedUsers) {
+		super();
+		this.id = id;
+		this.eventName = eventName;
+		this.description = description;
+		this.imgUrl = imgUrl;
+		this.climbingArea = climbingArea;
+		this.eventDate = eventDate;
+		this.createdAt = createdAt;
+		this.createdBy = createdBy;
+		this.attendedUsers = attendedUsers;
+	}
+
+	public ClimbingArea getClimbingArea() {
+		return climbingArea;
+	}
+
+	public void setClimbingArea(ClimbingArea climbingArea) {
+		this.climbingArea = climbingArea;
+	}
+
+	public List<User> getAttendedUsers() {
+		return attendedUsers;
+	}
+
+	public void setAttendedUsers(List<User> attendedUsers) {
+		this.attendedUsers = attendedUsers;
+	}
+
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
@@ -111,8 +144,8 @@ public class Event {
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", eventName=" + eventName + ", description=" + description + ", imgUrl=" + imgUrl
-				+ ", eventDate=" + eventDate + ", createdAt=" + createdAt
-				+ ", createdBy=" + createdBy + "]";
+				+ ", climbingArea=" + climbingArea + ", eventDate=" + eventDate + ", createdAt=" + createdAt
+				+ ", createdBy=" + createdBy + ", attendedUsers=" + attendedUsers + "]";
 	}
 
 	

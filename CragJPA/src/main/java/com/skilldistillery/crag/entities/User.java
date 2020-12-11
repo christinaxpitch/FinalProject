@@ -100,13 +100,13 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	List<Gear> gearList;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"myListOfFavoriteUsers", "listOfUsersWhoHaveFavoritedMe", "createdEvents"})
 	@ManyToMany
 	@JoinTable(name = "favorite_user", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "favorite_user_id"))
 	private List<User> myListOfFavoriteUsers;
 	
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"myListOfFavoriteUsers", "listOfUsersWhoHaveFavoritedMe", "createdEvents"})
 	@ManyToMany(mappedBy = "myListOfFavoriteUsers")
 	private List<User> listOfUsersWhoHaveFavoritedMe;
 	
@@ -115,13 +115,13 @@ public class User {
 	List<Media> mediaList;
 	
 	
-	@JsonIgnore
+	
 	@ManyToMany
 	@JoinTable(name = "message", joinColumns = @JoinColumn(name="id"), inverseJoinColumns = @JoinColumn(name = "receiver_id"))
 	private List<Message> myListOfReceivedMessages;
 	
 	
-	@JsonIgnore
+	
 	@ManyToMany
 	@JoinTable(name = "message", joinColumns = @JoinColumn(name="id"), inverseJoinColumns = @JoinColumn(name = "sender_id"))
 	private List<Message> myListOfSentMessages;
