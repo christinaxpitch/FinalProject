@@ -3,33 +3,24 @@ import { User } from './user';
 
 export class Message {
   id            : number;
-  city          : string;
-  state         : string;
-  zip           : number;
-  users         : User [];
-  streetAddress : string;
-  createdAt     : string;
-  climbingAreas : ClimbingArea []
+  createdAt: Date;
+  senderId: number;
+  receiverId: number;
+  messageBody: string;
 
 
 constructor(
-  id?             : number,
-  city?           : string,
-  state?          : string,
-  zip?            : number,
-  users?          : User [],
-  streetAddress?  : string,
-  createdAt?      : string,
-  climbingAreas?  : ClimbingArea []
+  id?: number,
+  createdAt?: Date,
+  senderId?: number,
+  receiverId?: number,
+  messageBody?: string
 
 ){
-  this.id            = id;
-  this.city          = city;
-  this.state         = state;
-  this.zip           = zip;
-  this.users         = users;
-  this.streetAddress = streetAddress;
-  this.climbingAreas = climbingAreas;
-  this.createdAt     = createdAt;
+  this.id = id;
+  this.createdAt = createdAt;
+  this.senderId = senderId;
+  this.receiverId = receiverId;
+  this.messageBody = messageBody;
 }
-};
+}
