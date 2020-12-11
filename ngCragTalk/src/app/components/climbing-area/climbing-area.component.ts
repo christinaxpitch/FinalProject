@@ -25,10 +25,11 @@ export class ClimbingAreaComponent implements OnInit {
     private router: Router)  { }
 
 
-
     loadClimbEvents(): void{
       this.climbAreaService.index().subscribe(
         data=>{this.climbingAreas=data;
+          console.log(data);
+
           console.log('Home.components loadClimbingArea(): retrieve succeeded');},
         err=>{
           console.error('Home.components loadClimbingArea(): retrieve failed');

@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -41,8 +42,19 @@ public class ClimbingArea {
 	private Location location;
 	
 //	list of events
+	@JsonIgnoreProperties({"climbingArea"})
+	@OneToMany(mappedBy="climbingArea")
+	private List<Event> events;
 	
 	
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+
 	//Constructor
 	public ClimbingArea() {
 		super();
