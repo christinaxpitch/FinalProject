@@ -53,7 +53,10 @@ export class AuthService {
     localStorage.clear();
   }
   checkLogin(): boolean {
+<<<<<<< HEAD
     // console.log((localStorage.getItem('credentials')));
+=======
+>>>>>>> 628476af644181e81652e27b8e9db2b3c94bb677
     if (localStorage.getItem('credentials')) {
       return true;
     }
@@ -69,5 +72,10 @@ export class AuthService {
   checkIfCurrentUser(username: string): boolean {
 
     return username === localStorage.getItem('username');
+  }
+  getCurrentUserId(): number {
+
+    const id = parseInt(localStorage.getItem('id'));
+    return id;
   }
 }
