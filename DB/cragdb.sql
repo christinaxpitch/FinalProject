@@ -400,7 +400,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cragdb`;
-INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (1, 'Crags and Brews', 'A saturday morning group climb in Gregory Canyon. Post climb cooldown at Avery Brewery Company!', NULL, 1, '2021-05-01 08:30:00', 1, '2020-12-05 08:30:00');
+INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (1, 'Crags & Brews', 'A saturday morning group climb in Gregory Canyon. Post climb cooldown at Avery Brewery Company!', NULL, 1, '2021-05-01 08:30:00', 1, '2020-12-05 08:30:00');
 INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (2, 'C3 (CCube) Crag, Chalk, & Chat', 'Come join us on a group climb! We will meet up in the morning at North Table Mountain park (Golden Cliffs climbing area) and we plan to set up as many routes as we have attendees! Come hang out, meet some new friends, try a new route, and have some fun! We will meet up at the Golden Cliffs parking lot (the climbing access side) on the other side of the main entrance to North Table Mountain Park. See you soon!', NULL, 2, '2021-05-03 08:30:00', 1, '2020-12-05 08:30:00');
 INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (3, 'Puppy Day Climb!', 'We couldn\'t resist a climbing day full of pups! Join on on our group day climb and bring your canine pal along. Must get along with other dogs, as we hope to have lots of dogs and puppies coming along for the day. Please bring adequate water and food for your dog to hang out with us! We will set up a variety of routes to appeal to all levels, and there is no need to bring your own gear besdies your shoes and harness if you don\'t have anything else. Bring snacks and we will see you there!', NULL, 2, '2021-05-12 08:30:00', 2, '2020-12-05 09:00:00');
 INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (4, 'Kids and Krags', 'Come join us on our kid centered event! Please have indoor experience for this. This event is to help expose kids that have been practicing indoors to the wonderful world of outdoor rock climbing! Please bring your own gear and snacks for the day. All ages welcome! Must be supervised with one parent the entire day, even if parent isn\'t climbing or belaying. Thank you!', NULL, 1, '2021-05-13 08:30:00', 2, '2020-12-05 08:30:00');
@@ -621,9 +621,6 @@ INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (3, 4);
 INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (4, 4);
 INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (5, 4);
 INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (6, 4);
-INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (1, 5);
-INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (2, 5);
-INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (4, 5);
 
 
 
