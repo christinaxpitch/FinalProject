@@ -54,4 +54,8 @@ class ClibmingAreaTest {
 		assertEquals("Boulder", ca.getLocation().getCity());
 	}
 
+//	@Test
+//	void test3() {
+//		assertEquals(2, ca.get);
+//	}
 }

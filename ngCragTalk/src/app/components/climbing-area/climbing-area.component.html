@@ -2,7 +2,6 @@
 <tbody *ngFor="let climb of climbingAreas">
   <tr>
     <td>{{climb.name}}</td>
-    <!-- <td>{{climb.}}</td>
     <td><img src="{{climb.imgUrl}}"> </td>
     <tr>
     <td></td>
@@ -10,7 +9,7 @@
     </tr>
     <tr>
       <td>Events</td>
-      <td *ngFor="let event of climbingAreas"></td> -->
+      <td><p *ngFor="let event of climb.events">{{event.eventName}}</p></td>
     </tr>
   </tbody>
   </table>
