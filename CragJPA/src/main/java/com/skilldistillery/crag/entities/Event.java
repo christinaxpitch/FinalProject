@@ -33,9 +33,13 @@ public class Event {
 	@Column(name = "img_url")
 	private String imgUrl;
 	
-	@Column(name = "climbing_area_id")
-	private int climbingAreaId;
+//	@Column(name = "climbing_area_id")
+//	private int climbingAreaId;
+//	do not need this for foreign key
 	
+	@ManyToOne
+	@JoinColumn(name = "climbing_area_id")
+	private ClimbingArea climbingArea;
 	//should be private ClimbingArea climbingArea;
 	
 	@Column(name = "event_date")
@@ -80,13 +84,6 @@ public class Event {
 		this.imgUrl = imgUrl;
 	}
 
-	public int getClimbingAreaId() {
-		return climbingAreaId;
-	}
-
-	public void setClimbingAreaId(int climbingAreaId) {
-		this.climbingAreaId = climbingAreaId;
-	}
 
 	public LocalDateTime getEventDate() {
 		return eventDate;
@@ -97,6 +94,36 @@ public class Event {
 	}
 
 	
+
+	public Event(int id, String eventName, String description, String imgUrl, ClimbingArea climbingArea,
+			LocalDateTime eventDate, LocalDateTime createdAt, User createdBy, List<User> attendedUsers) {
+		super();
+		this.id = id;
+		this.eventName = eventName;
+		this.description = description;
+		this.imgUrl = imgUrl;
+		this.climbingArea = climbingArea;
+		this.eventDate = eventDate;
+		this.createdAt = createdAt;
+		this.createdBy = createdBy;
+		this.attendedUsers = attendedUsers;
+	}
+
+	public ClimbingArea getClimbingArea() {
+		return climbingArea;
+	}
+
+	public void setClimbingArea(ClimbingArea climbingArea) {
+		this.climbingArea = climbingArea;
+	}
+
+	public List<User> getAttendedUsers() {
+		return attendedUsers;
+	}
+
+	public void setAttendedUsers(List<User> attendedUsers) {
+		this.attendedUsers = attendedUsers;
+	}
 
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
@@ -117,8 +144,8 @@ public class Event {
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", eventName=" + eventName + ", description=" + description + ", imgUrl=" + imgUrl
-				+ ", climbingAreaId=" + climbingAreaId + ", eventDate=" + eventDate + ", createdAt=" + createdAt
-				+ ", createdBy=" + createdBy + "]";
+				+ ", climbingArea=" + climbingArea + ", eventDate=" + eventDate + ", createdAt=" + createdAt
+				+ ", createdBy=" + createdBy + ", attendedUsers=" + attendedUsers + "]";
 	}
 
 	

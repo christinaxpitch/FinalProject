@@ -66,7 +66,7 @@ public class EventServiceImpl implements EventService {
 		
 		Event managedEvent = eventOpt.get();
 		if(managedEvent != null) {
-			managedEvent.setClimbingAreaId(event.getClimbingAreaId());
+			managedEvent.setClimbingArea(event.getClimbingArea());
 			managedEvent.setCreatedBy(event.getCreatedBy());
 			managedEvent.setDescription(event.getDescription());
 			managedEvent.setImgUrl(event.getImgUrl());
