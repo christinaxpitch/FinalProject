@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'user', component: ProfileComponent },
   { path: 'user/:userId', component: ProfileComponent },
   { path: 'user/update/:userId', component: EventComponent },
-  { path: 'user/messages', component: MessageComponent },
+  { path: 'user/message', component: MessageComponent },
   { path: 'event', component: EventComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'event/:eventId', component: EventComponent },
