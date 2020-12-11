@@ -40,6 +40,8 @@ public class ClimbingArea {
 	@JoinColumn(name="location_id")
 	private Location location;
 	
+//	list of events
+	
 	
 	//Constructor
 	public ClimbingArea() {
