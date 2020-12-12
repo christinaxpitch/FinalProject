@@ -213,11 +213,14 @@
                           </ul>
                       </div>
                   </div>
-                  <div class="col-md-2">
+                  <div class="col-md-2" id="buttondiv">
                     <button *ngIf = "checkIfCurrentUser(selectedUser.username) " (click)="setUpdateUser()">Edit Profile</button>
                     <button *ngIf = " !checkIfCurrentUser(selectedUser.username) " >Message {{selectedUser.username}}</button>
+                    <button *ngIf = " !checkIfCurrentUser(selectedUser.username) " >Favorite  {{selectedUser.username}}</button>
+
 
                   </div>
+
               </div>
               <div class="row">
                   <div class="col-md-4">
@@ -230,8 +233,10 @@
                             Has a Dog: {{selectedUser.hasDog}} <br>
                             Age: {{age(selectedUser)}} <br>
                             Favorite Beer: {{selectedUser.favoriteBeer}}
+
                       </div>
                   </div>
+
                   <div class="col-md-8">
                       <div >
                           <div >
@@ -310,6 +315,10 @@
       </div>
     </td> <br>
       <td >
+        <br>
+        <br>
+        <br>
+        <br>
         <label >Favorite Climbers</label>
         <!-- list of favortie users  -->
         <ul *ngFor= "let user of favoriteUsers">
