@@ -74,7 +74,7 @@ public class User {
 	private List<ClimbType> climbTypes;
 
 	
-	@JsonIgnoreProperties({"users"})
+	@JsonIgnoreProperties({"users", "events"})
 	@ManyToMany
 	@JoinTable(name="favorite_area", 
 	joinColumns = @JoinColumn(name="user_id"), 
