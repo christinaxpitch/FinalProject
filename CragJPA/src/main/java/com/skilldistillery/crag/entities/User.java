@@ -74,7 +74,7 @@ public class User {
 	private List<ClimbType> climbTypes;
 
 	
-	@JsonIgnoreProperties({"users"})
+	@JsonIgnoreProperties({"users", "events"})
 	@ManyToMany
 	@JoinTable(name="favorite_area", 
 	joinColumns = @JoinColumn(name="user_id"), 
@@ -87,7 +87,7 @@ public class User {
 	@JoinColumn(name = "location_id")
 	private Location location;
 	
-	
+	@JsonIgnoreProperties({"users"})
 	@OneToMany(mappedBy = "createdBy")
 	List<Event> createdEvents;
 	
@@ -100,13 +100,13 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	List<Gear> gearList;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"myListOfFavoriteUsers", "listOfUsersWhoHaveFavoritedMe", "createdEvents", "myListOfReceivedMessages", "myListOfSentMessages"})
 	@ManyToMany
 	@JoinTable(name = "favorite_user", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name = "favorite_user_id"))
 	private List<User> myListOfFavoriteUsers;
 	
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"myListOfFavoriteUsers", "listOfUsersWhoHaveFavoritedMe", "createdEvents", "myListOfReceivedMessages", "myListOfSentMessages"})
 	@ManyToMany(mappedBy = "myListOfFavoriteUsers")
 	private List<User> listOfUsersWhoHaveFavoritedMe;
 	
@@ -115,15 +115,15 @@ public class User {
 	List<Media> mediaList;
 	
 	
-	@JsonIgnore
-	@ManyToMany
-	@JoinTable(name = "message", joinColumns = @JoinColumn(name="id"), inverseJoinColumns = @JoinColumn(name = "receiver_id"))
+	
+//	@JoinTable(name = "message", joinColumns = @JoinColumn(name="id"), inverseJoinColumns = @JoinColumn(name = "receiver_id"))
+	@OneToMany(mappedBy = "receiver")
 	private List<Message> myListOfReceivedMessages;
 	
 	
-	@JsonIgnore
-	@ManyToMany
-	@JoinTable(name = "message", joinColumns = @JoinColumn(name="id"), inverseJoinColumns = @JoinColumn(name = "sender_id"))
+	
+//	@JoinTable(name = "message", joinColumns = @JoinColumn(name="id"), inverseJoinColumns = @JoinColumn(name = "sender_id"))
+	@OneToMany(mappedBy = "sender")
 	private List<Message> myListOfSentMessages;
 	
 	private Boolean enabled;

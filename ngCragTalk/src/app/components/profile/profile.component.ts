@@ -9,6 +9,7 @@ import { Gear } from 'src/app/models/gear';
 import { ClimbType } from 'src/app/models/climb-type';
 import { UserClimbType } from 'src/app/models/user-climb-type';
 import { DatePipe } from '@angular/common';
+import { Message } from 'src/app/models/message';
 
 @Component({
   selector: 'app-profile',
@@ -23,6 +24,8 @@ export class ProfileComponent implements OnInit {
   gearList: Gear[] = [];
   userClimbTypes: UserClimbType[] = [];
   favoriteClimbingAreas: ClimbingArea [] = [];
+  favoriteUsers: User [] = [];
+  messages: Message[] = [];
   today: Date = new Date();
   updateUserProfile: User;
   editGear: boolean = false;
@@ -38,11 +41,12 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const idStr = this.route.snapshot.paramMap.get('userId');
+    // const idStr = this.route.snapshot.paramMap.get('userId');
+    const id = this.auth.getCurrentUserId();
 
-      if (idStr) {
+      if (id) {
 
-        const id: number = Number.parseInt(idStr, 10);
+        // const id: number = Number.parseInt(idStr, 10);
         if (!isNaN(id)) {
           this.userService.show(id).subscribe(
             (data) => {
@@ -51,6 +55,10 @@ export class ProfileComponent implements OnInit {
               this.gearList = data.gearList;
               this.userClimbTypes = data.userClimbTypes;
               this.favoriteClimbingAreas = data.favoriteAreaList;
+              this.favoriteUsers = data.myListOfFavoriteUsers;
+              console.log(this.favoriteUsers);
+              this.messages = data.myListOfReceivedMessages;
+              console.log(this.messages);
 
 
 
@@ -181,5 +189,20 @@ export class ProfileComponent implements OnInit {
           }
 
 
+          disableUser(user: User) {
+            this.userService.disableUser(user.id, user).subscribe(
+              data=>{
+
+
+
+
+
+              },
+              err=>{
+              console.error('retrieved failed')
+              console.error(err);
+              }
+            );
+          }
 
 }

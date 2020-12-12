@@ -28,6 +28,7 @@ export class AuthService {
         tap((res) => {
           localStorage.setItem('credentials' , credentials);
           localStorage.setItem('username', username);
+          localStorage.setItem('userId', '' + res.id);
           return res;
         }),
         catchError((err: any) => {
@@ -53,6 +54,7 @@ export class AuthService {
     localStorage.clear();
   }
   checkLogin(): boolean {
+    // console.log((localStorage.getItem('credentials')));
     if (localStorage.getItem('credentials')) {
       return true;
     }
@@ -71,7 +73,7 @@ export class AuthService {
   }
   getCurrentUserId(): number {
 
-    const id = parseInt(localStorage.getItem('id'));
+    const id = parseInt(localStorage.getItem('userId'));
     return id;
   }
 }
