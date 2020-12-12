@@ -9,6 +9,7 @@ import { User } from 'src/app/models/user';
 import { EventService } from 'src/app/services/event.service';
 import { CommonModule } from '@angular/common';
 import { ClimbingAreaService } from 'src/app/services/climbing-area.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-event',
@@ -27,7 +28,7 @@ export class EventComponent implements OnInit {
   user: User = null;
   pageTitle: string = 'Come Climb with Us!';
   climbingAreas: ClimbingArea [];
-  location: ClimbingArea;
+  climbingAreaId: number;
 
   constructor(
     private eventService: EventService,
@@ -128,12 +129,14 @@ export class EventComponent implements OnInit {
       );
   }
 
-  addEvent(event: Event): void {
-    console.log("eventComponent: addEvent()" + event);
-    // event.climbingArea = this.location;
-    this.eventService.create(event).subscribe(
+  addEvent(): void {
+    console.log(this.climbingAreaId);
+    this.eventService.create(this.newEvent, this.climbingAreaId).subscribe(
       (data) => {
         this.newEvent = new Event();
+        this.displayTable = true;
+        this.selected = null;
+        this.showAddForm = false;
         this.reload();
       },
       (fail) => {
