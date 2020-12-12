@@ -134,6 +134,9 @@ export class EventComponent implements OnInit {
     this.eventService.create(this.newEvent, this.climbingAreaId).subscribe(
       (data) => {
         this.newEvent = new Event();
+        this.displayTable = true;
+        this.selected = null;
+        this.showAddForm = false;
         this.reload();
       },
       (fail) => {

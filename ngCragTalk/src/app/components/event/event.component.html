@@ -19,6 +19,7 @@
     <p class="hoverClickOrange" (click)='showProfile(selected.createdBy.id)'>Host: {{selected.createdBy.username}}</p>
     <button (click)="showTable()">Show All</button>
     <button  *ngIf="loggedInUserIsEventCreator" (click)="setEditEvent()">Edit</button>
+    <button  *ngIf="loggedInUserIsEventCreator" (click)="deleteEvent()">Delete</button>
   </div>
 </div>
 <div id="editFormDiv" *ngIf="selected && editEvent">
