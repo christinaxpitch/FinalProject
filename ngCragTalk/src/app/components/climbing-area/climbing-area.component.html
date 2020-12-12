@@ -1,18 +1,41 @@
+<br>
+<br>
+<br>
+<div *ngFor="let climb of climbingAreas">
+  <table><tr><td>{{climb.name}}</td></tr></table>
 <table align="center" class='table table-striped table-bordered'>
-<tbody *ngFor="let climb of climbingAreas">
+<tbody>
   <tr>
-    <td>{{climb.name}}</td>
-    <!-- <td>{{climb.}}</td>
     <td><img src="{{climb.imgUrl}}"> </td>
-    <tr>
-    <td></td>
-    <td>{{climb.description}}</td>>
-    </tr>
-    <tr>
-      <td>Events</td>
-      <td *ngFor="let event of climbingAreas"></td> -->
+    <td>{{climb.description}}</td>
+      <tr>
+      <td>Events
+        <br>
+        <br>
+        <table>
+          <div *ngFor="let event of climb.events" (click)="eventRoute(event.id)">
+        <tr>{{event.eventName}}
+          <tr>{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}} </tr>
+          <br>
+        </div>
+        </table>
+      </td>
+      <td>
+        Users who frequent
+        <br>
+        <br>
+        <table>
+          <div>
+        <tr *ngFor="let user of climb.users">
+        <td>{{user.firstName}}</td>
+        <td *ngFor="let climbType of user.climbTypes">{{climbType.name}}</td>
+      </tr>
+    </div>
+      </table>
+      </td>
     </tr>
   </tbody>
   </table>
+</div>
 
 

@@ -1,3 +1,4 @@
+import { Event } from './../../models/event';
 import { ClimbingAreaService } from './../../services/climbing-area.service';
 import { ClimbingArea } from './../../models/climbing-area';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +17,6 @@ export class ClimbingAreaComponent implements OnInit {
 
   climbingAreas: ClimbingArea[] = [];
 
-
   constructor(private datePipe: DatePipe,
     private eventService: EventService,
     private climbAreaService: ClimbingAreaService,
@@ -24,11 +24,20 @@ export class ClimbingAreaComponent implements OnInit {
     private auth: AuthService,
     private router: Router)  { }
 
-
+    eventRoute(event: Event): void{
+      if(this.auth.checkLogin()){
+        this.router.navigateByUrl('event');
+      }
+      else {
+        this.router.navigateByUrl('login');
+      }
+    }
 
     loadClimbEvents(): void{
       this.climbAreaService.index().subscribe(
         data=>{this.climbingAreas=data;
+          console.log(data);
+
           console.log('Home.components loadClimbingArea(): retrieve succeeded');},
         err=>{
           console.error('Home.components loadClimbingArea(): retrieve failed');

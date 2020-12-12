@@ -1,12 +1,23 @@
-<h1 class='text-center'>{{pageTitle}}</h1>
+<div>
+  <div class="row align-items-center">
+    <div class="col-4">
+    </div>
+    <div class="col-4">
+      <h1 class='text-center'>{{pageTitle}}</h1>
+    </div>
+    <div class="col-4" *ngIf="showAuthorizedStuff">
+      <button class="btn btn-outline-primary" (click)="showAddEventForm()" id="btnCreateEvent">Create An Event</button>
+    </div>
+  </div>
+</div>
 <div id="eventDetails" *ngIf="selected && !editEvent">
   <div>
     <h5>{{selected.eventName }}</h5>
     <p>{{selected.description}}</p>
     <p>Date: {{selected.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</p>
     <img src="{{selected.imgUrl}}" style="width:300px;height:300px">
-    <p class="hoverClick" (click)='showProfile(selected.createdBy.id)'>Host: {{selected.createdBy.username}}</p>
-    <button (click)="displayTable()">Show All</button>
+    <p class="hoverClickOrange" (click)='showProfile(selected.createdBy.id)'>Host: {{selected.createdBy.username}}</p>
+    <button (click)="showTable()">Show All</button>
     <button  *ngIf="loggedInUserIsEventCreator" (click)="setEditEvent()">Edit</button>
   </div>
 </div>
@@ -18,17 +29,17 @@
   <button (click)="editEvent=null">Cancel</button>
   <button (click)="updateEvent(editEvent)">Save</button>
 </div>
-<div id='eventList' *ngIf='!selected'>
+<div id='eventList' *ngIf='!selected && displayTable'>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div *ngFor='let event of events'>
       <div class="col">
         <div class="card h-100">
         <img src="{{event.imgUrl}}" class="card-img-top" alt="go climbing!">
           <div class="card-body">
-          <h5 class="hoverClick card-title" (click)='displayEvent(event)'>{{event.eventName}}</h5>
+          <h5 class="hoverClickGreen card-title" (click)='displayEvent(event)'>{{event.eventName}}</h5>
+          <h6 class="card-subtitle mb-2" style="font-weight: bold; color: #4cc9f0;">{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</h6>
           <p class="card-text">{{event.description}}</p>
-          <p class="card-text" style="font-weight: bold; color: #4cc9f0;">{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</p>
-          <p *ngIf="showAuthorizedStuff" class="hoverClickPink" (click)='showProfile(event.createdBy.id)'>{{event.createdBy.username}}</p>
+          <p *ngIf="showAuthorizedStuff" class="hoverClickOrange" (click)='showProfile(event.createdBy.id)'><b>Host:  </b>{{event.createdBy.username}}</p>
           </div>
         </div>
       </div>
@@ -36,21 +47,48 @@
     </div>
   </div>
 </div>
-  <!-- <table class='table table-striped table-bordered'>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Date</th>
-        <th *ngIf="showAuthorizedStuff">Host</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor='let event of events'>
-        <td  class="hoverClick" (click)='displayEvent(event)'>{{event.eventName}}</td>
-        <td>{{event.description}}</td>
-        <td>{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</td>
-        <td *ngIf="showAuthorizedStuff" class="hoverClick" (click)='showProfile(event.createdBy.id)'>{{event.createdBy.username}}</td>
-      </tr>
-    </tbody>
-  </table> -->
+<!-- <div id="newFormDiv" *ngIf="showAddForm">
+      <h3 class="text-centered">New Climbing Event</h3>
+      <label for="eventName" class="form-label">Title:  </label>
+      <input [(ngModel)]="newEvent.eventName" class="form-control" type="text" name="eventName" id="eventName" placeholder="Title"><br>
+      <label for="description" class="form-label">Description:  </label>
+      <textarea [(ngModel)]="newEvent.description" class="form-control" type="text" name="description" id="description" cols="30" rows="3" placeholder="Describe the event"></textarea><br>
+      <label for="imgUrl" class="form-label">Image URL:  </label>
+      <input [(ngModel)]="newEvent.imgUrl" class="form-control" type="text" name="imgUrl" id="imgUrl" placeholder="Enter the URL of the image you want to display for this event"><br>
+      <label for="eventDate" class="form-label">Date/Time of Event:  </label>
+      <input [(ngModel)]="newEvent.eventDate" class="form-control" type="datetime-local" name="eventDate" id="eventDate" placeholder="Date and Time of Event">
+      <label for="location" class="form-label">Event Location:  </label>
+      <select class="form-control" name="climbingAreas" id="climbingArea" [(ngModel)]="newEvent.climbingArea" required>
+        <option name="location"  *ngFor='let area of climbingAreas' [value]="area" >{{area.name}}</option>
+      </select>
+      <br>
+      <button class="btn btn-outline-primary" (click)="addEvent(newEvent)">Add Event</button>
+</div> -->
+
+<div id="newFormDiv" *ngIf="showAddForm">
+  <h2>New Climbing Event</h2>
+  <form #newEvent = "ngForm">
+    <div class='form-group'>
+      <label for="eventName" class="form-label">Title:  </label>
+      <input ngModel class="form-control" type="text" name="eventName" id="eventName" placeholder="Title">
+    </div><br>
+    <div>
+      <label for="description" class="form-label">Description:  </label>
+      <textarea ngModel class="form-control" type="text" name="description" id="description" cols="30" rows="3" placeholder="Describe the event"></textarea>
+    </div><br>
+    <div>
+      <label for="imgUrl" class="form-label">Image URL:  </label>
+      <input ngModel class="form-control" type="text" name="imgUrl" id="imgUrl" placeholder="Enter the URL of the image you want to display for this event">
+    </div><br>
+    <div>
+      <label for="eventDate" class="form-label">Date/Time of Event:  </label>
+      <input ngModel class="form-control" type="datetime-local" name="eventDate" id="eventDate" placeholder="Date and Time of Event">
+    </div><br>
+    <div>
+      <label for="location" class="form-label">Event Location:  </label>
+      <select class="form-control" name="climbingAreas" id="climbingArea" ngModel required>
+        <option name="location"  *ngFor='let area of climbingAreas' [value]="area" >{{area.name}}</option>
+      </select>
+    </div><br>
+  <button class="btn btn-outline-primary" (click)="addEvent(newEvent)">Add Event</button>
+</form>

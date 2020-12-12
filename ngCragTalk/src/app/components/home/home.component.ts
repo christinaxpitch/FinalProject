@@ -24,6 +24,10 @@ export class HomeComponent implements OnInit {
   groupClimbs: Event[]=[];
   userClimbers: User[] = [];
   media: Media[] = [];
+  selected: Event = null;
+  display = true;
+  loggedInUserIsEventCreator = false;
+  events: Event[] = [];
 
   constructor(private datePipe: DatePipe,
      private eventService: EventService,
@@ -39,6 +43,19 @@ export class HomeComponent implements OnInit {
     this.loadMedia();
   }
 
+  displayEvent(event: Event): void{
+    if(this.auth.checkLogin()){
+      if(this.auth.getCurrentUserId() == event.createdBy.id){
+        this.loggedInUserIsEventCreator = true;
+      }
+      this.display = false;
+      this.selected = event;
+    }
+    else {
+      this.router.navigateByUrl('login');
+    }
+  }
+
   eventClick() {
     console.log(this.auth.checkLogin());
     console.log(this.auth.getCredentials());
@@ -49,6 +66,7 @@ export class HomeComponent implements OnInit {
     else{
       this.router.navigateByUrl('login');}
   };
+
 
 
   loadRecentClimbEvents(): void{

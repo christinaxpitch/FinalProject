@@ -7,8 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Message {
@@ -23,11 +28,17 @@ public class Message {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
-	@Column(name = "sender_id")
-	private int senderId;
+	@JsonIgnoreProperties({"myListOfFavoriteUsers", "createdEvents", "listOfUsersWhoHaveFavoritedMe", "favoriteAreaList", "myListOfSentMessages", "myListOfReceivedMessages"})
+	//@JsonIgnoreProperties({"myListOfReceivedMessages", "myListOfSentMessages", "createdEvents"})
+	@ManyToOne
+	@JoinColumn(name = "sender_id")
+	private User sender;
 	
-	@Column(name = "receiver_id")
-	private int receiverId;
+	@JsonIgnoreProperties({"myListOfFavoriteUsers", "createdEvents", "listOfUsersWhoHaveFavoritedMe", "favoriteAreaList", "myListOfReceivedMessages", "myListOfSentMessages"})
+	//@JsonIgnoreProperties({"myListOfReceivedMessages", "myListOfSentMessages", "createdEvents"})
+	@ManyToOne
+	@JoinColumn(name = "receiver_id")
+	private User receiver;
 	
 	@Column(name="message_body")
 	private String messageBody;
@@ -50,21 +61,7 @@ public class Message {
 		this.createdAt = createdAt;
 	}
 
-	public int getSenderId() {
-		return senderId;
-	}
-
-	public void setSenderId(int senderId) {
-		this.senderId = senderId;
-	}
-
-	public int getReceiverId() {
-		return receiverId;
-	}
-
-	public void setReceiverId(int receiverId) {
-		this.receiverId = receiverId;
-	}
+	
 	
 	
 
@@ -78,20 +75,15 @@ public class Message {
 
 	
 	
-	public Message(int id, LocalDateTime createdAt, int senderId, int receiverId, String messageBody) {
+	
+
+	public Message(int id, LocalDateTime createdAt, User sender, User receiver, String messageBody) {
 		super();
 		this.id = id;
 		this.createdAt = createdAt;
-		this.senderId = senderId;
-		this.receiverId = receiverId;
+		this.sender = sender;
+		this.receiver = receiver;
 		this.messageBody = messageBody;
-	}
-	
-
-	@Override
-	public String toString() {
-		return "Message [id=" + id + ", createdAt=" + createdAt + ", senderId=" + senderId + ", receiverId="
-				+ receiverId + ", messageBody=" + messageBody + "]";
 	}
 
 	public Message() {
@@ -118,6 +110,28 @@ public class Message {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	public User getSender() {
+		return sender;
+	}
+
+	public void setSender(User sender) {
+		this.sender = sender;
+	}
+
+	public User getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(User receiver) {
+		this.receiver = receiver;
+	}
+
+	@Override
+	public String toString() {
+		return "Message [id=" + id + ", createdAt=" + createdAt + ", sender=" + sender + ", receiver=" + receiver
+				+ ", messageBody=" + messageBody + "]";
 	}
 	
 	

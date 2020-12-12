@@ -1,3 +1,31 @@
-<p>message works!</p>
-<h4>-----'s Inbox</h4>
+<div *ngIf = "showInbox">
+<table>
+  <thead>
+    <tr>
+  <th>Inbox</th>
+
+    </tr>
+  </thead>
+<tbody>
+
+<tr *ngFor = "let message of messages" >
+
+<td (click) = "setShowInbox()">{{message.sender.username}}
+</td>
+</tr>
+</tbody>
+
+
+</table>
+</div>
+
+    <div *ngIf = "!showInbox">
+      <p >
+        <!-- {{message.messageBody}} -->
+      </p>
+      i am in the div
+
+    <button (click) = "setShowInbox()"></button>
+    </div>
+
 

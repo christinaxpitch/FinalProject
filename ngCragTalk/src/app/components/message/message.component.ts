@@ -24,29 +24,69 @@ export class MessageComponent implements OnInit {
     selectedUser: User = null;
     messages: Message[] = [];
     today: Date = new Date();
+    showInbox: boolean = true;
+    showMessageBody: boolean = false;
+    messageBody: string;
 
 
 
 
   ngOnInit(): void {
+    // const idStr = this.route.snapshot.paramMap.get('userId');
+    const id = this.auth.getCurrentUserId();
+
+    if (id) {
+
+
+      if (!isNaN(id)) {
+        this.userService.show(id).subscribe(
+          (data) => {
+            console.log('profile retrieved');
+            this.selectedUser = data;
+            this.messages = data.myListOfReceivedMessages;
+          },
+          (err) => {
+            console.log('User ' + id + ' not found.');
+            this.router.navigateByUrl('notFound');
+          }
+          );
+        }
+        else {
+          this.router.navigateByUrl('invalidId');
+      }
+    }
+    else {
+      this.router.navigateByUrl('notFound');
+    }
+  }
+
+  displayMessageBody(message: Message) {
+      this.setShowInbox();
+      this.messageBody = message.messageBody;
 
   }
 
-  showProfile(userId: number) {
+  setShowInbox() {
+    this.showInbox = !this.showInbox;
+  }
+  setMessageBody() {
+    this.showMessageBody = !this.showMessageBody;
+  }
+  // showProfile(userId: number) {
 
-    this.userService.show(userId).subscribe(
-      (data) => {
-        console.log('profile retrieved');
-        this.selectedUser = data;
-        this.messages = data.myListOfReceivedMessages;
+  //   this.userService.show(userId).subscribe(
+  //     (data) => {
+  //       console.log('profile retrieved');
+  //       this.selectedUser = data;
+  //       this.messages = data.myListOfReceivedMessages;
 
 
 
-      },
-      (err) => {
-        console.log('User ' + userId + ' not found.');
-        this.router.navigateByUrl('notFound');
-      }
-      );
-    }
+  //     },
+  //     (err) => {
+  //       console.log('User ' + userId + ' not found.');
+  //       this.router.navigateByUrl('notFound');
+  //     }
+  //     );
+  //   }
 }
