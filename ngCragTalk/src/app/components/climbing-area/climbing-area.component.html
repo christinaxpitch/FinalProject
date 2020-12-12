@@ -1,38 +1,34 @@
-<br>
-<br>
-<br>
 <div *ngFor="let climb of climbingAreas">
-  <table><tr><td>{{climb.name}}</td></tr></table>
-<table align="center" class='table table-striped table-bordered'>
-<tbody>
+<table class='table table-striped table-bordered'>
+  <tbody>
   <tr>
-    <td><img src="{{climb.imgUrl}}"> </td>
-    <td>{{climb.description}}</td>
-      <tr>
-      <td>Events
-        <br>
-        <br>
-        <table>
-            <div *ngFor="let event of climb.events" (click)="eventRoute(event)">
-        <tr>{{event.eventName}}
-          <tr>{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}} </tr>
-          <br>
+<!-- cell 1x1 -->
+    <td>{{climb.name}}
+      <br>
+      <br>
+      <img src="{{climb.imgUrl}}">
+    </td>
+    <!-- cell 1x2 -->
+    <div style="height:300px;overflow:auto;">
+      <td>About: <br><br>{{climb.description}}</td></div>
+
+
+    <tr>
+      <!-- cell 2x1 -->
+      <td><tr><th>Events</th></tr>
+            <div *ngFor="let event of climb.events"
+            (click)="eventRoute(event)" >
+          <tr><td>{{event.eventName}}</td></tr>
+          <tr><td>{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</td></tr>
         </div>
-        </table>
       </td>
-      <td>
-        Users who frequent
-        <br>
-        <br>
-        <table>
-          <div>
-        <tr *ngFor="let user of climb.users" (click)="userRoute(user.id)">
-        <td>{{user.firstName}}</td>
-        <div *ngFor="let climbType of user.userClimbTypes">
-        <td >{{climbType.climbType.name}}</td>
+
+      <td><tr colspan="2"><th> Users who frequent </th></tr>
+        <div style="height:300px;overflow:auto;">
+        <tr *ngFor="let user of climb.users" (click)="userRoute(user.id)"><td>{{user.firstName}}</td>
+        <div *ngFor="let climbType of user.userClimbTypes"><td>{{climbType.climbType.name}}</td>
       </div>
     </div>
-      </table>
       </td>
     </tr>
   </tbody>

@@ -36,15 +36,15 @@ export class ClimbingAreaComponent implements OnInit {
       if(this.auth.checkLogin()){
         this.router.navigateByUrl('event/'
         +event.id
-        );
 
+        );
       }
       else {
+
+
         this.router.navigateByUrl('login');
       }
     }
-
-
     userRoute(user: User): void{
       if(this.auth.checkLogin()){
         this.router.navigateByUrl('user/');
