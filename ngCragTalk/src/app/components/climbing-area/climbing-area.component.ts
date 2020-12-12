@@ -36,7 +36,6 @@ export class ClimbingAreaComponent implements OnInit {
       if(this.auth.checkLogin()){
         this.router.navigateByUrl('event/'
         +event.id
-
         );
       }
       else {
@@ -47,7 +46,11 @@ export class ClimbingAreaComponent implements OnInit {
     }
     userRoute(user: User): void{
       if(this.auth.checkLogin()){
-        this.router.navigateByUrl('user/');
+        this.router.navigateByUrl('user/'
+        +user.id
+        );
+
+
 
 
       }

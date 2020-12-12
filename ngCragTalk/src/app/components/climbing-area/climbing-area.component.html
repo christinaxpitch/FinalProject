@@ -25,7 +25,7 @@
 
       <td><tr colspan="2"><th> Users who frequent </th></tr>
         <div style="height:300px;overflow:auto;">
-        <tr *ngFor="let user of climb.users" (click)="userRoute(user.id)"><td>{{user.firstName}}</td>
+        <tr *ngFor="let user of climb.users" (click)="userRoute(user)"><td>{{user.firstName}}</td>
         <div *ngFor="let climbType of user.userClimbTypes"><td>{{climbType.climbType.name}}</td>
       </div>
     </div>
