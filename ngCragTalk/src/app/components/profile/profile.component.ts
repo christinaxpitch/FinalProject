@@ -41,12 +41,12 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // const idStr = this.route.snapshot.paramMap.get('userId');
-    const id = this.auth.getCurrentUserId();
+    const idStr = this.route.snapshot.paramMap.get('userId');
+    // const id = this.auth.getCurrentUserId();
 
-      if (id) {
+      if (idStr) {
 
-        // const id: number = Number.parseInt(idStr, 10);
+        const id: number = Number.parseInt(idStr, 10);
         if (!isNaN(id)) {
           this.userService.show(id).subscribe(
             (data) => {

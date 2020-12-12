@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.crag.entities.Event;
+import com.skilldistillery.crag.services.ClimbingAreaService;
 import com.skilldistillery.crag.services.EventService;
 
 @CrossOrigin({ "*", "http://localhost:4210" })
@@ -27,6 +28,9 @@ public class EventController {
 	
 	@Autowired
 	private EventService eventSvc;
+	
+	@Autowired
+	private ClimbingAreaService climbAreaSvc;
 	
 	//show all events
 	@GetMapping("event")
@@ -49,9 +53,11 @@ public class EventController {
 	}
 	
 	//create an event
-	@PostMapping("event")
-	public Event createEvent(HttpServletResponse res, HttpServletRequest req, Principal principal, @RequestBody Event event) {
+	@PostMapping("event/{climbingAreaId}")
+	public Event createEvent(HttpServletResponse res, HttpServletRequest req, Principal principal, @RequestBody Event event, @PathVariable int climbingAreaId) {
+		event.setClimbingArea(climbAreaSvc.show(principal.getName(), climbingAreaId));
 		try {
+			
 			event = eventSvc.create(principal.getName(), event);
 			if(event == null) {
 				res.setStatus(404);

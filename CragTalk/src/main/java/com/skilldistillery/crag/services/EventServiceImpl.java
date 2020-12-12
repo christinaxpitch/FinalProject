@@ -50,6 +50,9 @@ public class EventServiceImpl implements EventService {
 		}
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
+			System.out.println("*****************");
+			System.out.println(event);
+			System.out.println("*****************");
 			event.setCreatedBy(user);
 			eventRepo.saveAndFlush(event);			
 		}
@@ -63,7 +66,6 @@ public class EventServiceImpl implements EventService {
 		}
 		if(event.getCreatedBy().getUsername().equals(username)){
 		Optional<Event> eventOpt = eventRepo.findById(event.getId());
-		
 		Event managedEvent = eventOpt.get();
 		if(managedEvent != null) {
 			managedEvent.setClimbingArea(event.getClimbingArea());

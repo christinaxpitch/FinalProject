@@ -38,9 +38,9 @@ export class EventService {
        })
        );
    }
-   create(event: Event): Observable<Event>{
-     const httpOptions = this.getHttpOptions();
-    return this.http.post<Event>(this.url, event, httpOptions).pipe(
+   create(event: Event, id: number): Observable<Event>{
+     let httpOptions = this.getHttpOptions();
+    return this.http.post<Event>(this.url + "/" + id, event, httpOptions).pipe(
       catchError((err:any)=>{
       console.log(err);
       return throwError('EventService.create(): Error creating event.')
