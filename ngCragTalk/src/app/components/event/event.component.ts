@@ -18,7 +18,7 @@ export class EventComponent implements OnInit {
   newEvent: Event = new Event();
   editEvent: Event = null;
   events: Event[] = [];
-  display = true;
+  displayTable = true;
   showAuthorizedStuff = false;
   loggedInUserIsEventCreator = false;
   user: User = null;
@@ -74,15 +74,15 @@ export class EventComponent implements OnInit {
             if(this.authSvc.getCurrentUserId() == event.createdBy.id){
               this.loggedInUserIsEventCreator = true;
             }
-            this.display = false;
+            this.displayTable = false;
             this.selected = event;
           }
           else {
             this.router.navigateByUrl('login');
           }
         }
-        displayTable(): void{
-          this.display = true;
+        showTable(): void{
+          this.displayTable = true;
           this.selected = null;
           this.loggedInUserIsEventCreator = false;
           this.router.navigateByUrl('event');

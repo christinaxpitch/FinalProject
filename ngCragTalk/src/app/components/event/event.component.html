@@ -1,4 +1,15 @@
-<h1 class='text-center'>{{pageTitle}}</h1>
+<div>
+  <div class="row align-items-center">
+    <div class="col-4">
+    </div>
+    <div class="col-4">
+      <h1 class='text-center'>{{pageTitle}}</h1>
+    </div>
+    <div class="col-4" *ngIf="showAuthorizedStuff">
+      <button (click)="showAddEventForm()" class="btn btn-outline-primary">Create An Event</button>
+    </div>
+  </div>
+</div>
 <div id="eventDetails" *ngIf="selected && !editEvent">
   <div>
     <h5>{{selected.eventName }}</h5>
@@ -6,7 +17,7 @@
     <p>Date: {{selected.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</p>
     <img src="{{selected.imgUrl}}" style="width:300px;height:300px">
     <p class="hoverClick" (click)='showProfile(selected.createdBy.id)'>Host: {{selected.createdBy.username}}</p>
-    <button (click)="displayTable()">Show All</button>
+    <button (click)="showTable()">Show All</button>
     <button  *ngIf="loggedInUserIsEventCreator" (click)="setEditEvent()">Edit</button>
   </div>
 </div>
@@ -18,7 +29,7 @@
   <button (click)="editEvent=null">Cancel</button>
   <button (click)="updateEvent(editEvent)">Save</button>
 </div>
-<div id='eventList' *ngIf='!selected'>
+<div id='eventList' *ngIf='!selected && !showAddForm'>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div *ngFor='let event of events'>
       <div class="col">
