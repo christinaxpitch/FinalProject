@@ -4,23 +4,23 @@ import { User } from './user';
 export class Message {
   id            : number;
   createdAt: Date;
-  senderId: number;
-  receiverId: number;
+  sender: User;
+  receiver: User;
   messageBody: string;
 
 
 constructor(
   id?: number,
   createdAt?: Date,
-  senderId?: number,
-  receiverId?: number,
+  senderId?: User,
+  receiverId?: User,
   messageBody?: string
 
 ){
   this.id = id;
   this.createdAt = createdAt;
-  this.senderId = senderId;
-  this.receiverId = receiverId;
+  this.sender = senderId;
+  this.receiver = receiverId;
   this.messageBody = messageBody;
 }
 }
