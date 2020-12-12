@@ -11,119 +11,102 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.css'],
+  styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
   selected: Event = null;
   newEvent: Event = new Event();
   editEvent: Event = null;
   events: Event[] = [];
-  displayTable = true;
-  showAddForm = false;
+  display = true;
   showAuthorizedStuff = false;
   loggedInUserIsEventCreator = false;
   user: User = null;
-  pageTitle: string = 'Come Climb with Us!';
+  pageTitle: string = 'Come Climb with Us!'
 
-  constructor(
-    private eventService: EventService,
+
+  constructor(private eventService: EventService,
     private currentRoute: ActivatedRoute,
     private router: Router,
     private datePipe: DatePipe,
     private userSvc: UserService,
-    private authSvc: AuthService
-  ) {}
+    private authSvc: AuthService) { }
 
   ngOnInit(): void {
-    const idStr = this.currentRoute.snapshot.paramMap.get('eventId');
-    if (idStr) {
-      const id: number = Number.parseInt(idStr);
-      if (!isNaN(id)) {
-        this.eventService.show(id).subscribe(
-          (event) => {
-            this.selected = event;
-            this.reload();
-          },
-          (fail) => {
+      const idStr = this.currentRoute.snapshot.paramMap.get('eventId');
+      if(idStr){
+        const id: number = Number.parseInt(idStr);
+        if(!isNaN(id)){
+          this.eventService.show(id).subscribe(
+            (event) => {
+              this.selected = event;
+              this.reload();
+            },
+            (fail) =>{
+              this.router.navigateByUrl('**');
+            }
+            );
+          }
+          else {
             this.router.navigateByUrl('**');
           }
-        );
-      } else {
-        this.router.navigateByUrl('**');
-      }
-    } else {
-      this.reload();
-    }
-  }
-  reload(): void {
-    this.eventService.index().subscribe(
-      (data) => {
-        if (this.authSvc.checkLogin()) {
-          this.showAuthorizedStuff = true;
         }
-        this.events = data;
-      },
-      (fail) => {
-        console.error('EventComponent.reload(): error getting events');
-        console.error(fail);
+        else {
+          this.reload();
+        }
       }
-    );
-  }
-  displayEvent(event: Event): void {
-    if (this.authSvc.checkLogin()) {
-      if (this.authSvc.getCurrentUserId() == event.createdBy.id) {
-        this.loggedInUserIsEventCreator = true;
-      }
-      this.displayTable = false;
-      this.selected = event;
-    } else {
-      this.router.navigateByUrl('login');
+      reload(): void{
+        this.eventService.index().subscribe(
+          data => {
+            if(this.authSvc.checkLogin()){
+              this.showAuthorizedStuff = true;
+            };
+            this.events = data;
+          },
+          fail => {
+            console.error("EventComponent.reload(): error getting events");
+            console.error(fail);
+          }
+          );
+        }
+        displayEvent(event: Event): void{
+          if(this.authSvc.checkLogin()){
+            if(this.authSvc.getCurrentUserId() == event.createdBy.id){
+              this.loggedInUserIsEventCreator = true;
+            }
+            this.display = false;
+            this.selected = event;
+          }
+          else {
+            this.router.navigateByUrl('login');
+          }
+        }
+        displayTable(): void{
+          this.display = true;
+          this.selected = null;
+          this.loggedInUserIsEventCreator = false;
+          this.router.navigateByUrl('event');
     }
-  }
-  showTable(): void {
-    this.displayTable = true;
-    this.selected = null;
-    this.loggedInUserIsEventCreator = false;
-    this.router.navigateByUrl('event');
-  }
 
-  setEditEvent() {
+  setEditEvent(){
     this.editEvent = Object.assign({}, this.selected);
   }
-  updateEvent(event) {
+  updateEvent(event){
     this.eventService.update(event).subscribe(
-      (data) => {
+      data => {
         this.editEvent = null;
         this.selected = data;
         this.reload();
       },
-      (fail) => {
+      fail => {
         console.error('EventComponent.updateEvent(): error updating event');
         console.error(fail);
       }
     );
   }
-  showProfile(createdById: number) {
-    this.userSvc.show(createdById);
-    this.router.navigateByUrl('user/' + createdById);
-  }
-  showAddEventForm(){
-    this.showAddForm = true;
-    this.displayTable = false;
-    this.selected = null;
-  }
-
-  addEvent(event: Event): void{
-    this.eventService.create(event).subscribe(
-      data => {
-        this.newEvent = new Event();
-        this.reload();
-      },
-      fail => {
-        console.error('EventComponent.addEvent(): error adding event');
-        console.error(fail);
-
-      }
-    );
-  }
+showProfile(createdById: number){
+  this.userSvc.show(createdById);
+      this.router.navigateByUrl('user/' + createdById);
 }
+
+  }

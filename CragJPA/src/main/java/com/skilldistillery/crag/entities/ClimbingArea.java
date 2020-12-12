@@ -32,7 +32,9 @@ public class ClimbingArea {
 	@Column(name="img_url")
 	private String imgUrl;
 	
-	@JsonIgnoreProperties({"favoriteAreaList", "createdEvents", "attendedEvents", "gearList", "mediaList"})
+	@JsonIgnoreProperties({"favoriteAreaList", "createdEvents", 
+		"attendedEvents", "gearList", "mediaList", 
+		"myListOfReceivedMessages", "myListOfSentMessages", "climbTypes"})
 	@ManyToMany(mappedBy="favoriteAreaList")
 	private List<User> users;
 	

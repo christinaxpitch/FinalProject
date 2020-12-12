@@ -1,13 +1,14 @@
-<!-- <div *ngIf = "showInbox">
+<div *ngIf = "showInbox">
 <table>
+  <thead>
+    <tr>
+  <th>Inbox</th>
+    </tr>
+  </thead>
 <tbody>
-<thead>
-  <tr>
-<th>Inbox</th>
-  </tr>
-</thead>
-
-
+<tr *ngFor = "let message of messages" >
+<td>{{message.sender.username}}</td>
+</tr>
 </tbody>
 
 
@@ -19,4 +20,4 @@
 
 </div>
 
-<p>message inbox</p> -->
+<p>message inbox</p>

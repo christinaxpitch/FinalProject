@@ -45,8 +45,8 @@ class MessageTest {
 	void test() {
 		assertNotNull(message);
 		assertEquals(null, message.getCreatedAt());
-		assertEquals(2, message.getReceiverId());
-		assertEquals(1, message.getSenderId());
+		assertEquals(2, message.getReceiver().getId());
+		assertEquals(1, message.getSender().getId());
 		assertEquals("Hi Christina! I just wanted to let you know that I saw we are interested in climbing in the same areas and also have Sunday's free to outdoor climb. Let me know if you would be interested in meeting up - I am pretty good at crimps and know a few good routes we can get you up to practice! PS: My dog is super cute, lol!!!", message.getMessageBody());
 	}
 
