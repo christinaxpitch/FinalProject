@@ -1,5 +1,5 @@
 
-.hoverClick:hover {
+.hoverClickGreen:hover {
   color: white;
   background-color: #b9e769;
   -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
@@ -14,11 +14,11 @@
   box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
 }
 
-.hoverClickPink:hover {
-  color: black;
-  background-color: #f3f315;
-  -webkit-box-shadow: 10px 10px 99px 6px rgba(243, 243, 21, 1);
-  -moz-box-shadow: 10px 10px 99px 6px rgba(243, 243, 21, 1);
-  box-shadow: 10px 10px 99px 6px rgba(243, 243, 21, 1);
+.hoverClickOrange:hover {
+  color: white;
+  background-color: #FF760D;
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
+  box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
 }
 

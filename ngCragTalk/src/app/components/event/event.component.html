@@ -1,12 +1,23 @@
-<h1 class='text-center'>{{pageTitle}}</h1>
+<div>
+  <div class="row align-items-center">
+    <div class="col-4">
+    </div>
+    <div class="col-4">
+      <h1 class='text-center'>{{pageTitle}}</h1>
+    </div>
+    <div class="col-4" *ngIf="showAuthorizedStuff">
+      <button (click)="showAddEventForm()" class="btn btn-outline-primary">Create An Event</button>
+    </div>
+  </div>
+</div>
 <div id="eventDetails" *ngIf="selected && !editEvent">
   <div>
     <h5>{{selected.eventName }}</h5>
     <p>{{selected.description}}</p>
     <p>Date: {{selected.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</p>
     <img src="{{selected.imgUrl}}" style="width:300px;height:300px">
-    <p class="hoverClick" (click)='showProfile(selected.createdBy.id)'>Host: {{selected.createdBy.username}}</p>
-    <button (click)="displayTable()">Show All</button>
+    <p class="hoverClickOrange" (click)='showProfile(selected.createdBy.id)'>Host: {{selected.createdBy.username}}</p>
+    <button (click)="showTable()">Show All</button>
     <button  *ngIf="loggedInUserIsEventCreator" (click)="setEditEvent()">Edit</button>
   </div>
 </div>
@@ -18,17 +29,17 @@
   <button (click)="editEvent=null">Cancel</button>
   <button (click)="updateEvent(editEvent)">Save</button>
 </div>
-<div id='eventList' *ngIf='!selected'>
+<div id='eventList' *ngIf='!selected && displayTable'>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div *ngFor='let event of events'>
       <div class="col">
         <div class="card h-100">
         <img src="{{event.imgUrl}}" class="card-img-top" alt="go climbing!">
           <div class="card-body">
-          <h5 class="hoverClick card-title" (click)='displayEvent(event)'>{{event.eventName}}</h5>
+          <h5 class="hoverClickGreen card-title" (click)='displayEvent(event)'>{{event.eventName}}</h5>
           <h6 class="card-subtitle mb-2" style="font-weight: bold; color: #4cc9f0;">{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</h6>
           <p class="card-text">{{event.description}}</p>
-          <p *ngIf="showAuthorizedStuff" class="hoverClickPink" (click)='showProfile(event.createdBy.id)'><b>Host:  </b>{{event.createdBy.username}}</p>
+          <p *ngIf="showAuthorizedStuff" class="hoverClickOrange" (click)='showProfile(event.createdBy.id)'><b>Host:  </b>{{event.createdBy.username}}</p>
           </div>
         </div>
       </div>
@@ -46,8 +57,8 @@
       <input [(ngModel)]="newEvent.imgUrl" class="form-control" type="text" name="imgUrl" placeholder="Enter the URL of the image you want to display for this event"><br>
       <label for="eventDate" class="form-label">Date/Time of Event:  </label>
       <input [(ngModel)]="newEvent.eventDate" class="form-control" type="datetime-local" name="eventDate" placeholder="Date and Time of Event">
-      <label for="location" class="form-label">Event Location:  </label>
-      <input [(ngModel)]="newEvent.eventDate" class="form-control" type="datetime-local" name="eventDate" placeholder="Date and Time of Event">
+      <!-- <label for="location" class="form-label">Event Location:  </label>
+      <input [(ngModel)]="newEvent.eventDate" class="form-control" type="datetime-local" name="eventDate" placeholder="Date and Time of Event"> -->
       <br>
       <button class="btn btn-outline-primary" (click)="addEvent(newEvent)">Add Event</button>
     </form>
