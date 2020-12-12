@@ -25,6 +25,8 @@ export class MessageComponent implements OnInit {
     messages: Message[] = [];
     today: Date = new Date();
     showInbox: boolean = true;
+    showMessageBody: boolean = false;
+    messageBody: string;
 
 
 
@@ -58,6 +60,18 @@ export class MessageComponent implements OnInit {
     }
   }
 
+  displayMessageBody(message: Message) {
+      this.setShowInbox();
+      this.messageBody = message.messageBody;
+
+  }
+
+  setShowInbox() {
+    this.showInbox = !this.showInbox;
+  }
+  setMessageBody() {
+    this.showMessageBody = !this.showMessageBody;
+  }
   // showProfile(userId: number) {
 
   //   this.userService.show(userId).subscribe(
