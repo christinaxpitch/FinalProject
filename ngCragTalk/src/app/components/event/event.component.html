@@ -47,7 +47,7 @@
     </div>
   </div>
 </div>
-<!-- <div id="newFormDiv" *ngIf="showAddForm">
+<div id="newFormDiv" *ngIf="showAddForm">
       <h3 class="text-centered">New Climbing Event</h3>
       <label for="eventName" class="form-label">Title:  </label>
       <input [(ngModel)]="newEvent.eventName" class="form-control" type="text" name="eventName" id="eventName" placeholder="Title"><br>
@@ -58,16 +58,16 @@
       <label for="eventDate" class="form-label">Date/Time of Event:  </label>
       <input [(ngModel)]="newEvent.eventDate" class="form-control" type="datetime-local" name="eventDate" id="eventDate" placeholder="Date and Time of Event">
       <label for="location" class="form-label">Event Location:  </label>
-      <select class="form-control" name="climbingAreas" id="climbingArea" [(ngModel)]="newEvent.climbingArea" required>
-        <option name="location"  *ngFor='let area of climbingAreas' [value]="area" >{{area.name}}</option>
+      <select class="form-control" name="climbingArea" id="climbingArea" [(ngModel)]="climbingAreaId" required>
+        <option  *ngFor='let area of climbingAreas' [ngValue]="area.id" >{{area.name}}</option>
       </select>
       <br>
-      <button class="btn btn-outline-primary" (click)="addEvent(newEvent)">Add Event</button>
-</div> -->
+      <button class="btn btn-outline-primary" (click)="addEvent()">Add Event</button>
+</div>
 
-<div id="newFormDiv" *ngIf="showAddForm">
+<!-- <div id="newFormDiv" *ngIf="showAddForm">
   <h2>New Climbing Event</h2>
-  <form #newEvent = "ngForm">
+  <form #addNewEvent = "ngForm">
     <div class='form-group'>
       <label for="eventName" class="form-label">Title:  </label>
       <input ngModel class="form-control" type="text" name="eventName" id="eventName" placeholder="Title">
@@ -87,8 +87,8 @@
     <div>
       <label for="location" class="form-label">Event Location:  </label>
       <select class="form-control" name="climbingAreas" id="climbingArea" ngModel required>
-        <option name="location"  *ngFor='let area of climbingAreas' [value]="area" >{{area.name}}</option>
+        <option name="climbingArea" id="location"  *ngFor='let area of climbingAreas' [value]="area" >{{area.name}}</option>
       </select>
     </div><br>
-  <button class="btn btn-outline-primary" (click)="addEvent(newEvent)">Add Event</button>
-</form>
+  <button class="btn btn-outline-primary" (click)="addEvent(addNewEvent)">Add Event</button>
+</form> -->
