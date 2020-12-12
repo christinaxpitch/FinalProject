@@ -51,6 +51,9 @@ public class EventController {
 	//create an event
 	@PostMapping("event")
 	public Event createEvent(HttpServletResponse res, HttpServletRequest req, Principal principal, @RequestBody Event event) {
+		System.out.println("***************");
+		System.out.println(event);
+		System.out.println("***************");
 		try {
 			event = eventSvc.create(principal.getName(), event);
 			if(event == null) {
