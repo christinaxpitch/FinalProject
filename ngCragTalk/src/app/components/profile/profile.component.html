@@ -217,8 +217,6 @@
                     <button *ngIf = "checkIfCurrentUser(selectedUser.username) " (click)="setUpdateUser()">Edit Profile</button>
                     <button *ngIf = " !checkIfCurrentUser(selectedUser.username) " >Message {{selectedUser.username}}</button>
                     <button *ngIf = " !checkIfCurrentUser(selectedUser.username) " >Favorite  {{selectedUser.username}}</button>
-
-
                   </div>
 
               </div>
