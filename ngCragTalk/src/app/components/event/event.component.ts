@@ -99,8 +99,8 @@ export class EventComponent implements OnInit {
   updateEvent(event) {
     this.eventService.update(event).subscribe(
       (data) => {
-        this.editEvent = null;
         this.selected = data;
+        this.editEvent = null;
         this.reload();
       },
       (fail) => {
@@ -128,11 +128,9 @@ export class EventComponent implements OnInit {
       }
       );
   }
-
   addEvent(): void {
-    console.log(this.climbingAreaId);
     this.eventService.create(this.newEvent, this.climbingAreaId).subscribe(
-      (data) => {
+      (newdata) => {
         this.newEvent = new Event();
         this.displayTable = true;
         this.selected = null;
@@ -144,5 +142,18 @@ export class EventComponent implements OnInit {
         console.error(fail);
       }
     );
+  }
+  deleteEvent(eventId: number): void {
+    this.eventService.destroy(eventId).subscribe(
+      (deleteData) => {
+          this.selected = null;
+          this.displayTable = true;
+          this.reload();
+      },
+      (err) =>{
+        console.error('EventComponent.deleteEvent(): error deleting event');
+        console.error(err);
+      }
+    )
   }
 }
