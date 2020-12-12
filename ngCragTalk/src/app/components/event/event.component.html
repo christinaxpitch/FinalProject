@@ -57,7 +57,10 @@
       <label for="imgUrl" class="form-label">Image URL:  </label>
       <input [(ngModel)]="newEvent.imgUrl" class="form-control" type="text" name="imgUrl" placeholder="Enter the URL of the image you want to display for this event"><br>
       <label for="eventDate" class="form-label">Date/Time of Event:  </label>
-      <input [(ngModel)]="newEvent.eventDate" class="form-control" type="datetime-local" name="eventDate" placeholder="Date and Time of Event"><br>
+      <input [(ngModel)]="newEvent.eventDate" class="form-control" type="datetime-local" name="eventDate" placeholder="Date and Time of Event">
+      <label for="location" class="form-label">Event Location:  </label>
+      <input [(ngModel)]="newEvent.eventDate" class="form-control" type="datetime-local" name="eventDate" placeholder="Date and Time of Event">
+      <br>
       <button class="btn btn-outline-primary" (click)="addEvent(newEvent)">Add Event</button>
     </form>
 </div>
