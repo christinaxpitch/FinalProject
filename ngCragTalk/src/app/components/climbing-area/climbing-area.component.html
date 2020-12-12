@@ -13,7 +13,7 @@
         <br>
         <br>
         <table>
-          <div *ngFor="let event of climb.events" (click)="eventRoute(event.id)">
+            <div *ngFor="let event of climb.events" (click)="eventRoute(event)">
         <tr>{{event.eventName}}
           <tr>{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}} </tr>
           <br>
@@ -26,10 +26,11 @@
         <br>
         <table>
           <div>
-        <tr *ngFor="let user of climb.users">
+        <tr *ngFor="let user of climb.users" (click)="userRoute(user.id)">
         <td>{{user.firstName}}</td>
-        <td *ngFor="let climbType of user.climbTypes">{{climbType.name}}</td>
-      </tr>
+        <div *ngFor="let climbType of user.userClimbTypes">
+        <td >{{climbType.climbType.name}}</td>
+      </div>
     </div>
       </table>
       </td>
