@@ -106,7 +106,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `event` ;
 
 CREATE TABLE IF NOT EXISTS `event` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `event_name` VARCHAR(100) NOT NULL,
   `description` TEXT NULL,
   `img_url` VARCHAR(5000) NULL,
