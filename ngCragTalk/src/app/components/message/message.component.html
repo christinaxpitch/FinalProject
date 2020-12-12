@@ -10,22 +10,41 @@
 
 <tr *ngFor = "let message of messages" >
 
-<td (click) = "setShowInbox()">{{message.sender.username}}
+<td (click) = "setShowMessageBody()">{{message.sender.username}}
+
+  <div *ngIf = "showMessageBody && showInbox">
+    <p >
+     {{message.messageBody}}
+     i am in the message body div
+   </p>
+    <button (click) = "setReplyDiv(message)">Reply</button>
+  </div>
 </td>
 </tr>
 </tbody>
-
-
 </table>
 </div>
 
-    <div *ngIf = "!showInbox">
-      <p >
-        <!-- {{message.messageBody}} -->
-      </p>
-      i am in the div
+<div *ngIf = "showReplyBox">
+  <p>{{managedMessage.messageBody}} {{managedMessage.sender.username}}</p>
+  <textarea [(ngModel)] = "newMessage.messageBody" class="form-control" type="text" name="messageBody" cols="30" rows="3" placeholder="Type message here"></textarea>
+  <button (click) = "reply(newMessage)">Send</button>
+  <button (click) = "backToInbox()">Back to inbox</button>
+</div>
 
-    <button (click) = "setShowInbox()"></button>
-    </div>
+<div *ngIf = "showInbox">
+  <table>
+    <thead>
+      <tr>
+    <th>Outbox</th>
 
-
+      </tr>
+    </thead>
+  <tbody>
+    <div>
+  <tr *ngFor = "let message of sentMessages" >
+  </tr>
+</div>
+  </tbody>
+  </table>
+</div>

@@ -39,17 +39,31 @@ export class ProfileComponent implements OnInit {
   // will need to add an array for a users gear list and use the controller path and the method to get a users gear list
 
 
+  // add set otherUserId in local storage within the click event
+
 
   ngOnInit(): void {
-    // const idStr = this.route.snapshot.paramMap.get('userId');
-    const id = this.auth.getCurrentUserId();
+    const idStr = this.route.snapshot.paramMap.get('userId');
+    // const loggedInUserId = this.auth.getCurrentUserId();
+    // var idStr = localStorage.getItem('otherUserId');
+    // var otherUserId = parseInt(idStr, 10);
+    // var id;
+    // if (otherUserId !== null && !isNaN(otherUserId)) {
+    //     id = otherUserId;
+    //   }
+    //   else {
+    //     id = loggedInUserId;
 
-      if (id) {
+    //   }
 
-        // const id: number = Number.parseInt(idStr, 10);
+      if (idStr) {
+
+        const id: number = Number.parseInt(idStr, 10);
         if (!isNaN(id)) {
           this.userService.show(id).subscribe(
             (data) => {
+              localStorage.removeItem('otherUserId');
+              console.log(localStorage);
               console.log('profile retrieved');
               this.selectedUser = data;
               this.gearList = data.gearList;
@@ -62,6 +76,8 @@ export class ProfileComponent implements OnInit {
 
 
 
+
+
             },
             (err) => {
               console.log('User ' + id + ' not found.');
@@ -71,11 +87,12 @@ export class ProfileComponent implements OnInit {
           }
           else {
             this.router.navigateByUrl('invalidId');
+          }
         }
+        else {
+          // this.router.navigateByUrl('notFound');
       }
-      else {
-        this.router.navigateByUrl('notFound');
-      }
+
   }
 
 
@@ -193,10 +210,6 @@ export class ProfileComponent implements OnInit {
             this.userService.disableUser(user.id, user).subscribe(
               data=>{
 
-
-
-
-
               },
               err=>{
               console.error('retrieved failed')
@@ -204,5 +217,8 @@ export class ProfileComponent implements OnInit {
               }
             );
           }
+
+
+
 
 }

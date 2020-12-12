@@ -1,3 +1,4 @@
+import { Message } from 'src/app/models/message';
 import { Gear } from './../models/gear';
 import { UserClimbType } from 'src/app/models/user-climb-type';
 import { AuthService } from 'src/app/services/auth.service';
@@ -95,6 +96,17 @@ export class UserService {
       })
     );
 
+  }
+
+  createMessage(message: Message, receiverId: number) {
+    const httpOptions = this.getHttpOptions();
+    return this.http.post<Message>(this.baseUrl + 'api/user/message' + '/' + receiverId, message, httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('KABOOM');
+      })
+    );
   }
 
 
