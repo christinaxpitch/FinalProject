@@ -1,3 +1,4 @@
+import { ClimbingArea } from './../../models/climbing-area';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from './../../services/user.service';
 import { DatePipe } from '@angular/common';
@@ -7,6 +8,7 @@ import { Event } from 'src/app/models/event';
 import { User } from 'src/app/models/user';
 import { EventService } from 'src/app/services/event.service';
 import { CommonModule } from '@angular/common';
+import { ClimbingAreaService } from 'src/app/services/climbing-area.service';
 
 @Component({
   selector: 'app-event',
@@ -24,6 +26,8 @@ export class EventComponent implements OnInit {
   loggedInUserIsEventCreator = false;
   user: User = null;
   pageTitle: string = 'Come Climb with Us!';
+  climbingAreas: ClimbingArea [];
+  location: ClimbingArea;
 
   constructor(
     private eventService: EventService,
@@ -31,7 +35,8 @@ export class EventComponent implements OnInit {
     private router: Router,
     private datePipe: DatePipe,
     private userSvc: UserService,
-    private authSvc: AuthService
+    private authSvc: AuthService,
+    private climbAreaSrv: ClimbingAreaService
   ) {}
 
   ngOnInit(): void {
@@ -108,12 +113,24 @@ export class EventComponent implements OnInit {
     this.router.navigateByUrl('user/' + createdById);
   }
   showAddEventForm() {
-    this.showAddForm = true;
-    this.displayTable = false;
-    this.selected = null;
+    this.showAuthorizedStuff = false;
+    this.climbAreaSrv.index().subscribe(
+      (climbAreas) => {
+        this.climbingAreas = climbAreas;
+        this.displayTable = false;
+        this.selected = null;
+        this.showAddForm = true;
+      },
+      (error) =>{
+        console.error('EventComponent.showAddEventForm().climbAreaSvc.index(): error getting climbing areas');
+        console.error(error);
+      }
+      );
   }
 
   addEvent(event: Event): void {
+    console.log("eventComponent: addEvent()" + event);
+    // event.climbingArea = this.location;
     this.eventService.create(event).subscribe(
       (data) => {
         this.newEvent = new Event();
