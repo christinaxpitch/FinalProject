@@ -49,8 +49,19 @@ export class MessageComponent implements OnInit {
           (data) => {
             console.log('profile retrieved');
             this.selectedUser = data;
-            this.messages = data.myListOfReceivedMessages;
-            this.sentMessages = data.myListOfSentMessages;
+
+            // Sort function
+            this.messages = data.myListOfReceivedMessages.sort(function (a, b) {
+              var dateA = <any>new Date(a.createdAt), dateB = <any>new Date(b.createdAt)
+              return dateB - dateA;
+            });;
+
+            // Sort function
+            this.sentMessages = data.myListOfSentMessages.sort(function (a, b) {
+              var dateA = <any>new Date(a.createdAt), dateB = <any>new Date(b.createdAt)
+              return dateB - dateA;
+            });
+
           },
           (err) => {
             console.log('User ' + id + ' not found.');
