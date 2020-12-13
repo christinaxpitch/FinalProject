@@ -177,7 +177,9 @@ export class ProfileComponent implements OnInit {
             this.editClimbType = true;
             this.managedUserClimbType = climb;
           }
+
           disableUser(user: User) {
+            user.enabled = false;
             this.userService.disableUser(user.id, user).subscribe(
               data=>{
               },
@@ -188,7 +190,7 @@ export class ProfileComponent implements OnInit {
             );
           }
 
-          addUserToFavorites(user: User) {
+          toggleUserToFavorites(user: User) {
             this.isFavorited = !this.isFavorited;
             this.userService.addUserToFavorites(user, this.isFavorited).subscribe(
               data=>{
@@ -227,5 +229,7 @@ export class ProfileComponent implements OnInit {
             );
             this.router.navigateByUrl('message');
           }
+
+
 
 }
