@@ -1,4 +1,18 @@
 img {
-  width: 500px;
-  height: auto;
+  width: auto;
+  height: 300px;
 }
+
+td{
+  width: 500px;
+  text-align: center;
+}
+tr{
+  height: auto;
+  width: 50%;
+}
+th{
+  width: 500px;
+}
+
+

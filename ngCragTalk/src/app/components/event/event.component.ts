@@ -2,7 +2,7 @@ import { ClimbingArea } from './../../models/climbing-area';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from './../../services/user.service';
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from 'src/app/models/event';
 import { User } from 'src/app/models/user';
@@ -17,6 +17,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./event.component.css'],
 })
 export class EventComponent implements OnInit {
+
   selected: Event = null;
   newEvent: Event = new Event();
   editEvent: Event = null;

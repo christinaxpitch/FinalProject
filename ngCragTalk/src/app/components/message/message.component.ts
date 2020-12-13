@@ -23,10 +23,16 @@ export class MessageComponent implements OnInit {
 
     selectedUser: User = null;
     messages: Message[] = [];
+    sentMessages: Message [] = [];
     today: Date = new Date();
     showInbox: boolean = true;
     showMessageBody: boolean = false;
-    messageBody: string;
+    messageBody: Message = new Message();
+    showReplyBox: boolean = false;
+    newMessage: Message = new Message();
+    managedMessage: Message;
+    showOutboxMessages: boolean = false;
+    outboxMessageBody: string;
 
 
 
@@ -44,6 +50,7 @@ export class MessageComponent implements OnInit {
             console.log('profile retrieved');
             this.selectedUser = data;
             this.messages = data.myListOfReceivedMessages;
+            this.sentMessages = data.myListOfSentMessages;
           },
           (err) => {
             console.log('User ' + id + ' not found.');
@@ -60,17 +67,69 @@ export class MessageComponent implements OnInit {
     }
   }
 
+
   displayMessageBody(message: Message) {
-      this.setShowInbox();
-      this.messageBody = message.messageBody;
+      this.setShowMessageBody();
+      this.messageBody = message;
+      this.showInbox = !this.showInbox;
 
   }
 
-  setShowInbox() {
-    this.showInbox = !this.showInbox;
+
+  displayOutboxMessageBody(message: Message) {
+      this.setOutboxView();
+      this.outboxMessageBody = message.messageBody;
+      this.showInbox = !this.showInbox;
+
+
   }
-  setMessageBody() {
+
+  setOutboxView() {
+    this.showOutboxMessages = !this.showOutboxMessages;
+  }
+
+
+
+
+  setShowMessageBody() {
     this.showMessageBody = !this.showMessageBody;
+  }
+
+
+  backToInbox() {
+    this.showInbox = true;
+    this.showMessageBody = false;
+    this.showReplyBox = false;
+    this.showOutboxMessages = false;
+  }
+
+  setShowReplyBox() {
+    this.showReplyBox = !this.showReplyBox;
+    this.showInbox = false;
+    this.showMessageBody = false;
+    this.showOutboxMessages = false;
+  }
+
+  setReplyDiv(message: Message) {
+    this.setShowReplyBox();
+
+    this.newMessage.sender = message.receiver;
+    this.newMessage.receiver = message.sender;
+    this.managedMessage = message;
+  }
+
+  reply(message: Message) {
+    this.userService.createMessage(message, message.receiver.id).subscribe(
+          (data) => {
+            console.log('message sent succesfully');
+            this.router.navigateByUrl('message');
+            window.location.reload();
+          },
+          (err) => {
+            console.log('message reply failed');
+
+          }
+          );
   }
   // showProfile(userId: number) {
 

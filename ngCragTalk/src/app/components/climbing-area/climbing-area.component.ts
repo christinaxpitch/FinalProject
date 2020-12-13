@@ -1,21 +1,29 @@
+import { EventComponent } from './../event/event.component';
+import { ClimbType } from './../../models/climb-type';
 import { Event } from './../../models/event';
 import { ClimbingAreaService } from './../../services/climbing-area.service';
 import { ClimbingArea } from './../../models/climbing-area';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { EventService } from 'src/app/services/event.service';
+import { User } from 'src/app/models/user';
+
+
 
 @Component({
   selector: 'app-climbing-area',
   templateUrl: './climbing-area.component.html',
   styleUrls: ['./climbing-area.component.css']
+
 })
 export class ClimbingAreaComponent implements OnInit {
 
+  @Output() clickedEvent = new EventEmitter<Event>();
 
   climbingAreas: ClimbingArea[] = [];
+  climbType: ClimbType[]=[];
 
   constructor(private datePipe: DatePipe,
     private eventService: EventService,
@@ -26,7 +34,25 @@ export class ClimbingAreaComponent implements OnInit {
 
     eventRoute(event: Event): void{
       if(this.auth.checkLogin()){
-        this.router.navigateByUrl('event');
+        this.router.navigateByUrl('event/'
+        +event.id
+        );
+      }
+      else {
+
+
+        this.router.navigateByUrl('login');
+      }
+    }
+    userRoute(user: User): void{
+      if(this.auth.checkLogin()){
+        this.router.navigateByUrl('user/'
+        +user.id
+        );
+
+
+
+
       }
       else {
         this.router.navigateByUrl('login');

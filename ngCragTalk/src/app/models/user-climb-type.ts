@@ -11,6 +11,7 @@ export class UserClimbType {
 
 
 
+
   constructor(
     id?: number,
     recentGrade?: string,
