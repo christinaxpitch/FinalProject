@@ -214,7 +214,18 @@
                   <div class="col-md-2" id="buttondiv">
                     <button *ngIf = "checkIfCurrentUser(selectedUser.username) " (click)="setUpdateUser()">Edit Profile</button>
                     <button *ngIf = " !checkIfCurrentUser(selectedUser.username)" (click) = "showMessageBox()" >Message {{selectedUser.username}}</button>
-                    <button *ngIf = " !checkIfCurrentUser(selectedUser.username) " (click) = "addUserToFavorites(selectedUser)" >Favorite  {{selectedUser.username}}</button>
+
+                    <button *ngIf = "!checkIfCurrentUser(selectedUser.username)"
+
+                    (click) = "setIsFavoritedValue(selectedUser)" >
+                    Favorite  {{selectedUser.username}}
+                    </button>
+                   <!-- <input type="checkbox" name="isFavorited" value = "isFavorited" *ngIf = "!checkIfCurrentUser(selectedUser.username)"
+
+                    (change) = "setIsFavoritedValue(selectedUser)" >   -->
+
+
+
                   </div>
 
 

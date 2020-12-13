@@ -81,6 +81,7 @@ export class MessageComponent implements OnInit {
 
   displayMessageBody(message: Message) {
       this.setShowMessageBody();
+
       this.messageBody = message;
       this.showInbox = !this.showInbox;
 
@@ -89,6 +90,7 @@ export class MessageComponent implements OnInit {
 
   displayOutboxMessageBody(message: Message) {
       this.setOutboxView();
+
       this.outboxMessageBody = message.messageBody;
       this.showInbox = !this.showInbox;
 
