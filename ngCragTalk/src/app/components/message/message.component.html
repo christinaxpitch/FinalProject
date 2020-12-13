@@ -10,41 +10,101 @@
 
 <tr *ngFor = "let message of messages" >
 
-<td (click) = "setShowMessageBody()">{{message.sender.username}}
-
-  <div *ngIf = "showMessageBody && showInbox">
-    <p >
-     {{message.messageBody}}
-     i am in the message body div
-   </p>
-    <button (click) = "setReplyDiv(message)">Reply</button>
-  </div>
+<td (click) = "displayMessageBody(message)">{{message.sender.username}}
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 
-<div *ngIf = "showReplyBox">
-  <p>{{managedMessage.messageBody}} {{managedMessage.sender.username}}</p>
-  <textarea [(ngModel)] = "newMessage.messageBody" class="form-control" type="text" name="messageBody" cols="30" rows="3" placeholder="Type message here"></textarea>
-  <button (click) = "reply(newMessage)">Send</button>
+<div *ngIf = "showMessageBody">
+  <p >
+   {{messageBody.messageBody}}
+ </p>
+  <button (click) = "setReplyDiv(messageBody)">Reply</button>
   <button (click) = "backToInbox()">Back to inbox</button>
 </div>
+
+
+
+
+<!-- outbox view -->
 
 <div *ngIf = "showInbox">
   <table>
     <thead>
       <tr>
     <th>Outbox</th>
+      </tr>
+    </thead>
+  <tbody>
+
+  <tr *ngFor = "let message of sentMessages" >
+
+  <td (click) = "displayOutboxMessageBody(message)">{{message.receiver.username}}
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+
+  <div *ngIf = "showOutboxMessages">
+    <p >
+     {{outboxMessageBody}}
+   </p>
+    <button (click) = "backToInbox()">Back to inbox</button>
+  </div>
+
+
+
+
+
+  <div *ngIf = "showReplyBox">
+    <p>{{managedMessage.messageBody}} {{managedMessage.sender.username}}</p>
+    <textarea [(ngModel)] = "newMessage.messageBody" class="form-control" type="text" name="messageBody" cols="30" rows="3" placeholder="Type message here"></textarea>
+    <button (click) = "reply(newMessage)">Send</button>
+    <button (click) = "backToInbox()">Back to inbox</button>
+  </div>
+
+
+
+<!-- <div *ngIf = "showInbox">
+  <table>
+    <thead>
+      <tr>
+    <th (click) = "setOutboxView()">Outbox</th>
 
       </tr>
     </thead>
   <tbody>
-    <div>
+    <div *ngIf = "showOutboxMessages">
   <tr *ngFor = "let message of sentMessages" >
+    <td (click) = "displayOutboxMessageBody(message)">
+      {{message.receiver.username}}
+    </td>
   </tr>
 </div>
   </tbody>
   </table>
 </div>
+
+<div *ngIf = "showOutboxMessages && showInbox">
+  <p >
+   {{outboxMessageBody}}
+ </p>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -27,10 +27,12 @@ export class MessageComponent implements OnInit {
     today: Date = new Date();
     showInbox: boolean = true;
     showMessageBody: boolean = false;
-    messageBody: string;
+    messageBody: Message = new Message();
     showReplyBox: boolean = false;
     newMessage: Message = new Message();
     managedMessage: Message;
+    showOutboxMessages: boolean = false;
+    outboxMessageBody: string;
 
 
 
@@ -65,24 +67,47 @@ export class MessageComponent implements OnInit {
     }
   }
 
+
   displayMessageBody(message: Message) {
       this.setShowMessageBody();
-      this.messageBody = message.messageBody;
+      this.messageBody = message;
+      this.showInbox = !this.showInbox;
 
   }
+
+
+  displayOutboxMessageBody(message: Message) {
+      this.setOutboxView();
+      this.outboxMessageBody = message.messageBody;
+      this.showInbox = !this.showInbox;
+
+
+  }
+
+  setOutboxView() {
+    this.showOutboxMessages = !this.showOutboxMessages;
+  }
+
+
+
 
   setShowMessageBody() {
     this.showMessageBody = !this.showMessageBody;
   }
+
+
   backToInbox() {
     this.showInbox = true;
     this.showMessageBody = false;
     this.showReplyBox = false;
+    this.showOutboxMessages = false;
   }
 
   setShowReplyBox() {
     this.showReplyBox = !this.showReplyBox;
-    this.showInbox = !this.showInbox;
+    this.showInbox = false;
+    this.showMessageBody = false;
+    this.showOutboxMessages = false;
   }
 
   setReplyDiv(message: Message) {
@@ -98,7 +123,7 @@ export class MessageComponent implements OnInit {
           (data) => {
             console.log('message sent succesfully');
             this.router.navigateByUrl('message');
-
+            window.location.reload();
           },
           (err) => {
             console.log('message reply failed');

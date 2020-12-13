@@ -56,6 +56,9 @@ public class MessageController {
 	@PostMapping(path = "user/message/{receiverUserId}")
 	public Message addMessage(@RequestBody Message message, @PathVariable Integer receiverUserId, Principal principal) {
 	return messageService.create(principal.getName(), message, receiverUserId);
+//	System.out.println('');
+//	System.out.println('in add message controller');
+//	System.out.println('*****************');
 }
 	
 	
