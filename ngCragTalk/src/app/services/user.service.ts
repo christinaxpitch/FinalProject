@@ -100,6 +100,7 @@ export class UserService {
 
   createMessage(message: Message, receiverId: number) {
     const httpOptions = this.getHttpOptions();
+    console.log(message);
     return this.http.post<Message>(this.baseUrl + 'api/user/message' + '/' + receiverId, message, httpOptions)
     .pipe(
       catchError((err: any) => {
@@ -109,6 +110,18 @@ export class UserService {
     );
   }
 
+  addUserToFavorites(user: User, isFavorited: boolean) {
+    const httpOptions = this.getHttpOptions();
+    return this.http.put<User>(this.url + '/' + user.id + '/' + isFavorited, user, httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('KABOOM');
+      })
+    );
+
+
+  }
 
 
 }

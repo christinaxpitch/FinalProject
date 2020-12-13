@@ -191,11 +191,9 @@
               <div class="row">
                   <div class="col-md-4">
                       <div class="profile-img">
-                          <img alt=""/>
-                          <div class="file btn btn-lg btn-primary">
-                              Change Photo
-                              <input type="file" name="file"/>
-                          </div>
+
+                          <img alt="{{selectedUser.profilePic}}"/>
+
                       </div>
                   </div>
                   <div class="col-md-6">
@@ -215,9 +213,11 @@
                   </div>
                   <div class="col-md-2" id="buttondiv">
                     <button *ngIf = "checkIfCurrentUser(selectedUser.username) " (click)="setUpdateUser()">Edit Profile</button>
-                    <button *ngIf = " !checkIfCurrentUser(selectedUser.username) " >Message {{selectedUser.username}}</button>
-                    <button *ngIf = " !checkIfCurrentUser(selectedUser.username) " >Favorite  {{selectedUser.username}}</button>
+                    <button *ngIf = " !checkIfCurrentUser(selectedUser.username)" (click) = "showMessageBox()" >Message {{selectedUser.username}}</button>
+                    <button *ngIf = " !checkIfCurrentUser(selectedUser.username) " (click) = "addUserToFavorites(selectedUser)" >Favorite  {{selectedUser.username}}</button>
                   </div>
+
+
 
               </div>
               <div class="row">
@@ -313,6 +313,13 @@
       </div>
     </td> <br>
       <td >
+        <div *ngIf = "showMessageTextBox">
+
+          <textarea [(ngModel)] = "newMessage.messageBody"  class="form-control" type="text" name="messageBody" cols="30" rows="3" placeholder="Type message here"></textarea>
+          <button (click) = "sendMessage(newMessage)">Send</button>
+          <button (click) = "showMessageBox()">Back to profile</button>
+        </div>
+
         <br>
         <br>
         <br>
@@ -320,7 +327,7 @@
         <label >Favorite Climbers</label>
         <!-- list of favortie users  -->
         <ul *ngFor= "let user of favoriteUsers">
-          <li >{{user.username}}</li>
+          <li (click) = "showProfile(user.id)" >{{user.username}}</li>
         </ul>
       </td>
 </tr>
