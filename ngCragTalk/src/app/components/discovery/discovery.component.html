@@ -16,7 +16,7 @@
       <h3 class="text-center">Climbers</h3>
       <div id='userList'>
         <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div *ngFor='let user of users'>
+          <div *ngFor='let user of users | favAreaLocation: loggedInUser'>
             <div class="col">
               <div class="card h-100">
               <img src="{{user.profilePic}}" class="card-img-top" alt="climber profilePic">

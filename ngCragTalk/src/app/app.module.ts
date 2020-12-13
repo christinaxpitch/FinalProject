@@ -52,7 +52,7 @@ import { FavAreaLocationPipe } from './pipes/fav-area-location.pipe';
     IvyCarouselModule,
     NoopAnimationsModule
   ],
-  providers: [AuthService, EventService, IndexService, UserService, DatePipe],
+  providers: [AuthService, EventService, IndexService, UserService, DatePipe, FavAreaLocationPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

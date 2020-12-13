@@ -9,16 +9,25 @@ export class FavAreaLocationPipe implements PipeTransform {
 
   transform(users: User[], loggedInUser: User): User[] {
     const results = [];
+    console.log(users);
+    console.log(loggedInUser);
+
     let loggedInUserFavAreaIds = [];
     loggedInUser.favoriteAreaList.forEach((area)=> {
         loggedInUserFavAreaIds.push(area.id);
     });
 
-    if(users !== null && loggedInUser ! == null){
+    console.log(loggedInUserFavAreaIds);
+
+
+    if(users !== null && loggedInUser !== null){
       users.forEach((user)=> {
         if(user.id !== loggedInUser.id){
           user.favoriteAreaList.forEach((climbingArea) => {
-              if(loggedInUserFavAreaIds.indexOf(climbingArea.id) !== -1 && user.location.city === loggedInUser.location.city){
+            console.log(user);
+            console.log(climbingArea);
+
+              if(loggedInUserFavAreaIds.indexOf(climbingArea.id) !== -1){
                 results.push(user);
               }
           });
