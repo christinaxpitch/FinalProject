@@ -19,7 +19,7 @@ export class User {
   availability: string;
   role: string;
   createdAt: string;
-  lastLogin: string;
+  lastLogin: Date;
   otherHobbies: string;
   birthdate: Date;
   password: string;
@@ -51,7 +51,7 @@ export class User {
     availability?: string,
     role?: string,
     createdAt?: string,
-    lastLogin?: string,
+    lastLogin?: Date,
     otherHobbies?: string,
     birthdate?: Date,
     password?: string,

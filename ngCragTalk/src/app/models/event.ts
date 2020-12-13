@@ -7,7 +7,7 @@ export class Event {
   description: string;
   imgUrl: string;
   climbingArea: ClimbingArea;
-  eventDate: string;
+  eventDate: Date;
   createdBy: User;
   attendedUsers: User[];
 
@@ -17,7 +17,7 @@ constructor (
   description?: string,
   imgUrl?: string,
   climbingArea?: ClimbingArea,
-  eventDate?: string,
+  eventDate?: Date,
   createdBy?: User,
   attendedUsers?: User[]
 ){
