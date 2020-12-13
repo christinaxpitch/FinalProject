@@ -3,7 +3,7 @@ import { User } from './user';
 
 export class Message {
   id            : number;
-  createdAt: Date;
+  createdAt: string;
   sender: User;
   receiver: User;
   messageBody: string;
@@ -11,7 +11,7 @@ export class Message {
 
 constructor(
   id?: number,
-  createdAt?: Date,
+  createdAt?: string,
   senderId?: User,
   receiverId?: User,
   messageBody?: string

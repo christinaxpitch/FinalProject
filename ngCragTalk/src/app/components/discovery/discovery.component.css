@@ -1,0 +1,40 @@
+#leftPane{
+  background-color: lightseagreen;
+}
+#users{
+  background-color: lightcyan;
+}
+#newEvents{
+  background-color: lightsalmon;
+}
+#rightPane{
+  background-color: lightblue;
+}
+.hoverClickGreen:hover {
+  color: white;
+  background-color: #b9e769;
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+}
+.hoverClickBlue:hover {
+  color: white;
+  background-color: #4cc9f0;
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+}
+
+.hoverClickOrange:hover {
+  color: white;
+  background-color: #FF760D;
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
+  box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
+}
+#gearLabel{
+  font-weight: bold;
+}
+.checked{
+  color : orange;
+}

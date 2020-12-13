@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div>
+  <h1 class="text-center">{{pageTitle}}</h1>
+</div>
+<div class="row align-items-top">
+  <div id="leftPane" class="col">
+    <h3 class="text-center">New Messages</h3>
+    <div *ngFor='let message of messages'>
+      <p>{{message.sender}}</p>
+    </div>
+    <br>
+
+  </div>
+  <div id="centerPane" class="col-6">
+    <div id="users">
+      <h3 class="text-center">Climbers</h3>
+      <div id='userList'>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div *ngFor='let user of users'>
+            <div class="col">
+              <div class="card h-100">
+              <img src="{{user.profilePic}}" class="card-img-top" alt="climber profilePic">
+                <div class="card-body">
+                <h5 class="hoverClickBlue card-title" style="font-weight: bold; color: #4cc9f0;" (click)='showProfile(user.id)'>{{user.username}}</h5>
+                <!-- <h6 class="card-subtitle mb-2" >{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</h6> -->
+                <label for="gear" id="gearLabel">Gear: </label>
+                <p class="card-text" *ngFor='let gear of user.gearList'>{{gear.name}}</p>
+                <!-- <p *ngIf="showAuthorizedStuff" class="hoverClickOrange" ><b>Host:  </b>{{event.createdBy.username}}</p> -->
+                </div>
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+
+
+  </div>
+  <div id="rightPane" class="col">
+    <h3 class="text-center">My Favorite Climbers</h3>
+    <div *ngFor='let climber of loggedInUser.myListOfFavoriteUsers'>
+      <i class='fa fa-star'></i>
+      <label for="favclimber">{{climber.username}}</label>
+    </div>
+    <br>
+  </div>
+</div>
+<div class="row align-items-center">
+  <div class="col"></div>
+  <div id="newEvents" class="col-6">
+    <div>
+    <h3 class="text-center">New Events</h3>
+    <br>
+  </div>
+</div>
+  <div class="col"></div>
+</div>
+

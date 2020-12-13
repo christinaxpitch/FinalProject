@@ -23,6 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import { ClimbingAreaComponent } from './components/climbing-area/climbing-area.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { DiscoveryComponent } from './components/discovery/discovery.component';
+import { FavAreaLocationPipe } from './pipes/fav-area-location.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     LogoutComponent,
     NotFoundComponent,
     ClimbingAreaComponent,
+    DiscoveryComponent,
+    FavAreaLocationPipe,
 
   ],
   imports: [
