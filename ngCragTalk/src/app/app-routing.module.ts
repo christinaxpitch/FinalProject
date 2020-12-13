@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'event', component: EventComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'event/:eventId', component: EventComponent },
-  { path: 'climbingArea', component: ClimbingAreaComponent },
+  { path: 'climbingAreas', component: ClimbingAreaComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
