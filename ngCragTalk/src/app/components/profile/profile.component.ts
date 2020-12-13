@@ -10,16 +10,13 @@ import { ClimbType } from 'src/app/models/climb-type';
 import { UserClimbType } from 'src/app/models/user-climb-type';
 import { DatePipe } from '@angular/common';
 import { Message } from 'src/app/models/message';
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private datePipe: DatePipe, private auth: AuthService) { }
-
   selectedUser: User = null;
   gearList: Gear[] = [];
   userClimbTypes: UserClimbType[] = [];
@@ -32,14 +29,7 @@ export class ProfileComponent implements OnInit {
   editClimbType: boolean = false;
   managedGear: Gear;
   managedUserClimbType: UserClimbType;
-
-
-
-
   // will need to add an array for a users gear list and use the controller path and the method to get a users gear list
-
-
-
   ngOnInit(): void {
     const idStr = this.route.snapshot.paramMap.get('userId');
     // const id = this.auth.getCurrentUserId();
@@ -59,9 +49,6 @@ export class ProfileComponent implements OnInit {
               console.log(this.favoriteUsers);
               this.messages = data.myListOfReceivedMessages;
               console.log(this.messages);
-
-
-
             },
             (err) => {
               console.log('User ' + id + ' not found.');
@@ -77,8 +64,6 @@ export class ProfileComponent implements OnInit {
         this.router.navigateByUrl('notFound');
       }
   }
-
-
   updateProfile(user: User): void {
     this.userService.update(user.id, user).subscribe(
       data=>{
@@ -94,22 +79,16 @@ export class ProfileComponent implements OnInit {
     );
     // window.location.reload();
   }
-
   setUpdateUser() {
     this.updateUserProfile = Object.assign({}, this.selectedUser);
   }
-
-
   age(user: User): number {
-
     const birthYear = user.birthdate.toString().substring(0,5);
     const currentYear = this.today.getFullYear();
     const age = currentYear - parseInt(birthYear);
     return age;
   }
-
   showProfile(userId: number) {
-
           this.userService.show(userId).subscribe(
             (data) => {
               console.log('profile retrieved');
@@ -117,9 +96,6 @@ export class ProfileComponent implements OnInit {
               this.gearList = data.gearList;
               this.userClimbTypes = data.userClimbTypes;
               this.favoriteClimbingAreas = data.favoriteAreaList;
-
-
-
             },
             (err) => {
               console.log('User ' + userId + ' not found.');
@@ -127,16 +103,12 @@ export class ProfileComponent implements OnInit {
             }
             );
           }
-
           checkIfCurrentUser(username: string): boolean {
             return this.auth.checkIfCurrentUser(username);
           }
-
-
         editGearList(gear: Gear): void {
             this.editGear = !this.editGear;
             this.userService.updateGear(gear.id, gear).subscribe(
-
               data => {
                 gear = data;
                 this.editGear = false;
@@ -146,9 +118,7 @@ export class ProfileComponent implements OnInit {
                 console.error(err);
                 }
             );
-
           }
-
           updateUser(user: User): void {
             this.userService.update(user.id, user).subscribe(
               data=>{
@@ -163,40 +133,26 @@ export class ProfileComponent implements OnInit {
             );
             // window.location.reload();
           }
-
           displayGear(gear: Gear) {
             this.editGear = true
             this.managedGear = gear;
           }
-
-
         editClimbTypeList(climb: UserClimbType): void {
           this.editClimbType = !this.editClimbTypeList;
           this.userService.updateUserClimbType(climb.id, climb).subscribe(
-
             data => {
               climb = data;
               this.editClimbType = false;
-
               }
             );
-
           }
-
           displayClimbType(climb: UserClimbType) {
             this.editClimbType = true;
             this.managedUserClimbType = climb;
           }
-
-
           disableUser(user: User) {
             this.userService.disableUser(user.id, user).subscribe(
               data=>{
-
-
-
-
-
               },
               err=>{
               console.error('retrieved failed')
@@ -204,5 +160,4 @@ export class ProfileComponent implements OnInit {
               }
             );
           }
-
 }
