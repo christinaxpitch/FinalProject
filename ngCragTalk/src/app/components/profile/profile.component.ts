@@ -111,19 +111,22 @@ export class ProfileComponent implements OnInit {
             }
             );
           }
-  getLoggedinUserObject(userId: number): User {
+  getLoggedinUserObject(userId: number) {
           this.userService.show(userId).subscribe(
             (data) => {
               console.log('user retrieved');
               this.loggedInUser = data;
+              console.log(this.loggedInUser);
+
 
             },
             (err) => {
               console.log('User ' + userId + ' not found.');
               this.router.navigateByUrl('notFound');
+
             }
             );
-            return this.loggedInUser;
+
           }
 
           checkIfCurrentUser(username: string): boolean {
@@ -202,30 +205,27 @@ export class ProfileComponent implements OnInit {
 
           showMessageBox() {
           this.showMessageTextBox = !this.showMessageTextBox;
+          this.getLoggedinUserObject(parseInt(localStorage.getItem('userId')));
           }
 
           sendMessage(message: Message) {
-            message.sender = this.getLoggedinUserObject(parseInt(localStorage.getItem('userId')));
-            console.log(message.sender);
-
+            console.log(this.loggedInUser);
             message.receiver = this.selectedUser;
-
+            message.sender = this.loggedInUser;
             console.log(message);
 
+            this.userService.createMessage(message, message.receiver.id).subscribe(
+              (data) => {
+                console.log('message sent succesfully');
 
+              },
+              (err) => {
+                console.log('message reply failed');
 
-            // this.userService.createMessage(message, message.receiver.id).subscribe(
-            //   (data) => {
-            //     console.log('message sent succesfully');
-            //     window.location.reload();
-            //   },
-            //   (err) => {
-            //     console.log('message reply failed');
+              }
 
-            //   }
-
-            // );
-
+            );
+            this.router.navigateByUrl('message');
           }
 
 }
