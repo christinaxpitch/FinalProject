@@ -220,7 +220,7 @@ public class UserController {
 //	
 //	userAdded = svc.addUserToFavorites(principal.getName(), user);
 //	addedId - is that the id of the one being favorited
-	@PutMapping("user/profile/{profileId}/{isFavorited}")
+	@PutMapping("user/{profileId}/{isFavorited}")
 	public boolean updateUsersFavoriteUsersList(HttpServletResponse res,
 			@PathVariable int profileId, @PathVariable boolean isFavorited, Principal principal) {
 		
