@@ -50,9 +50,6 @@ public class EventServiceImpl implements EventService {
 		}
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
-			System.out.println("*****************");
-			System.out.println(event);
-			System.out.println("*****************");
 			event.setCreatedBy(user);
 			eventRepo.saveAndFlush(event);			
 		}
@@ -61,6 +58,9 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public Event update(String username, Event event) {
+		System.out.println("*****************");
+		System.out.println("implUpdate()" + event);
+		System.out.println("*****************");
 		if (userRepo.findByUsername(username) == null || event == null) {
 			return null;
 		}

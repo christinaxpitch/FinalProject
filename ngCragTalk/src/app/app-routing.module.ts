@@ -9,6 +9,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { DiscoveryComponent } from './components/discovery/discovery.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'event/:eventId', component: EventComponent },
   { path: 'climbingAreas', component: ClimbingAreaComponent },
+  { path: 'discovery', component: DiscoveryComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

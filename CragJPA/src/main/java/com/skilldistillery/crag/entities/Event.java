@@ -37,6 +37,7 @@ public class Event {
 //	private int climbingAreaId;
 //	do not need this for foreign key
 	
+	@JsonIgnoreProperties({"users", "events"})
 	@ManyToOne
 	@JoinColumn(name = "climbing_area_id")
 	private ClimbingArea climbingArea;
@@ -49,7 +50,7 @@ public class Event {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
-	@JsonIgnoreProperties({"favoriteAreaList", "createdEvents"})
+	@JsonIgnoreProperties({"favoriteAreaList", "createdEvents", "myListOfFavoriteUsers", "listOfUsersWhoHaveFavoritedMe", "mediaList", "climbTypes", "myListOfReceivedMessages", "myListOfSentMessages"})
 	@ManyToOne
 	@JoinColumn(name = "created_by_user_id")
 	private User createdBy;

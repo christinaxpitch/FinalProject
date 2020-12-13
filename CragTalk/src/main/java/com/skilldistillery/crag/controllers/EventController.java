@@ -77,7 +77,7 @@ public class EventController {
 	
 	//update and event
 	@PutMapping("event/{eventId}")
-	public Event updateEvent(HttpServletResponse res, HttpServletRequest req, Principal principal, @RequestBody Event event) {
+	public Event updateEvent(HttpServletResponse res, HttpServletRequest req, Principal principal, @RequestBody Event event, @PathVariable int eventId) {
 		try {
 			event = eventSvc.update(principal.getName(), event);
 			if(event == null) {
