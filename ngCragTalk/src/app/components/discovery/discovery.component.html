@@ -51,7 +51,12 @@
   <div class="col"></div>
   <div id="newEvents" class="col-6">
     <div>
-    <h3 class="text-center">New Events</h3>
+    <h3 class="text-center">Upcoming Events</h3>
+    <div *ngIf='showEventList'>
+      <p *ngFor="let event of events"></p>
+
+    </div>
+
     <br>
   </div>
 </div>

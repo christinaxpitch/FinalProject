@@ -1,3 +1,4 @@
+import { Event } from 'src/app/models/event';
 import { IndexService } from './../../services/index.service';
 import { ClimbingArea } from './../../models/climbing-area';
 import { Component, OnInit, ɵclearResolutionOfComponentResourcesQueue } from '@angular/core';
@@ -6,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-discovery',
@@ -15,10 +17,12 @@ import { User } from 'src/app/models/user';
 export class DiscoveryComponent implements OnInit {
   pageTitle: string = 'Discovery';
   messages: Message[] = [];
+  events: Event[] = [];
   users: User[] = [];
   filteredUsers: User[] = [];
   selectedUser: User = null;
   loggedInUser: User = null;
+  showEventList: boolean = false;
 
 
 
@@ -26,7 +30,8 @@ export class DiscoveryComponent implements OnInit {
   constructor(private userSvc: UserService,
     private currentRoute: ActivatedRoute,
     private router: Router,
-    private authSvc: AuthService
+    private authSvc: AuthService,
+    private eventSvc: EventService
     ) { }
 
   ngOnInit(): void {
@@ -70,6 +75,8 @@ export class DiscoveryComponent implements OnInit {
         // this.filteredUsers = data.filter(user => (!this.loggedInUser.myListOfFavoriteUsers.includes(user)));
         // console.log(this.filteredUsers);
         // this.showRecommendedUsers(this.users, this.loggedInUser);
+        this.showNewMessages();
+        this.showUpcomingEvents();
       },
       (fail) => {
         console.error('DiscoveryComponent.reload(): error getting users');
@@ -80,11 +87,25 @@ export class DiscoveryComponent implements OnInit {
     else {
       this.router.navigateByUrl('login');
     }
-    }
+  }
 
   showNewMessages(){
+    // this.messages = this.loggedInUser.myListOfReceivedMessages.filter(message => (message.createdAt > this.loggedInUser.lastLogin));
 
   }
+
+  showUpcomingEvents(){
+    this.eventSvc.index().subscribe(
+      (events) => {
+        this.events = events.filter(event =>(event.eventDate > this.loggedInUser.lastLogin));
+      },
+      (err) => {
+        console.error('DiscoveryComponent.showUpcomingEvents().index():  error getting events');
+        console.error(err);
+
+
+      }
+    )};
 
   showRecommendedUsers(users: User[], currentUser: User){
     console.log(users);
