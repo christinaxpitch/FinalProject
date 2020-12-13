@@ -37,6 +37,7 @@ export class ProfileComponent implements OnInit {
   showMessageTextBox: boolean = false;
   newMessage: Message = new Message();
   loggedInUser: User = new User();
+  checkUsersList: boolean = null;
   // will need to add an array for a users gear list and use the controller path and the method to get a users gear list
   ngOnInit(): void {
     const idStr = this.route.snapshot.paramMap.get('userId');
@@ -190,20 +191,43 @@ export class ProfileComponent implements OnInit {
             );
           }
 
-          toggleUserToFavorites(user: User) {
-            this.isFavorited = !this.isFavorited;
-            this.userService.addUserToFavorites(user, this.isFavorited).subscribe(
+          toggleUserToFavorites(user: User, isFavorited: boolean) {
+            // isFavorited: boolean = false;
+            // this.isFavorited = isFavorited;
+            console.log(isFavorited);
+            this.userService.addUserToFavorites(user, isFavorited).subscribe(
               data=>{
                 console.log('succesfully added user to favorites list');
+                this.favoriteUsers = data.myListOfFavoriteUsers;
 
-                window.location.reload();
+                // window.location.reload();
               },
               err=>{
               console.error('retrieved failed')
               console.error(err);
               }
             );
+            // this.checkUsersList = this.checkFavoriteUsersList(user);
           }
+
+          setIsFavoritedValue(user: User) {
+            this.isFavorited = !this.isFavorited;
+            this.toggleUserToFavorites(user, this.isFavorited);
+
+          }
+
+          // checkFavoriteUsersList(user: User): boolean {
+          //   for(var i =0; i < this.favoriteUsers.length; i++) {
+          //         if(this.favoriteUsers[i].username == user.username){
+          //           this.isFavorited = true;
+          //           return true;
+
+          //         }
+          //         else {
+          //           return false;
+          //         }
+          //       }
+          // }
 
           showMessageBox() {
           this.showMessageTextBox = !this.showMessageTextBox;
