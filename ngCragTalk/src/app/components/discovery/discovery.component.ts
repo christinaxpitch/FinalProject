@@ -23,6 +23,7 @@ export class DiscoveryComponent implements OnInit {
   selectedUser: User = null;
   loggedInUser: User = null;
   showEventList: boolean = false;
+  showMessageList: boolean = false;
 
 
 
@@ -91,7 +92,8 @@ export class DiscoveryComponent implements OnInit {
 
   showNewMessages(){
     // this.messages = this.loggedInUser.myListOfReceivedMessages.filter(message => (message.createdAt > this.loggedInUser.lastLogin));
-
+    this.messages = this.loggedInUser.myListOfReceivedMessages;
+    this.showMessageList = true;
   }
 
   showUpcomingEvents(){
