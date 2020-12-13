@@ -1,3 +1,4 @@
+
 import { AuthService } from 'src/app/services/auth.service';
 import { ClimbingArea } from './../../models/climbing-area';
 import { HttpClient } from '@angular/common/http';
@@ -16,7 +17,10 @@ import { Message } from 'src/app/models/message';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private datePipe: DatePipe, private auth: AuthService) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router,
+     private datePipe: DatePipe,
+      private auth: AuthService,
+      ) { }
   selectedUser: User = null;
   gearList: Gear[] = [];
   userClimbTypes: UserClimbType[] = [];
@@ -29,6 +33,10 @@ export class ProfileComponent implements OnInit {
   editClimbType: boolean = false;
   managedGear: Gear;
   managedUserClimbType: UserClimbType;
+  isFavorited: boolean = false;
+  showMessageTextBox: boolean = false;
+  newMessage: Message = new Message();
+  loggedInUser: User = new User();
   // will need to add an array for a users gear list and use the controller path and the method to get a users gear list
   ngOnInit(): void {
     const idStr = this.route.snapshot.paramMap.get('userId');
@@ -103,9 +111,28 @@ export class ProfileComponent implements OnInit {
             }
             );
           }
+  getLoggedinUserObject(userId: number) {
+          this.userService.show(userId).subscribe(
+            (data) => {
+              console.log('user retrieved');
+              this.loggedInUser = data;
+              console.log(this.loggedInUser);
+
+
+            },
+            (err) => {
+              console.log('User ' + userId + ' not found.');
+              this.router.navigateByUrl('notFound');
+
+            }
+            );
+
+          }
+
           checkIfCurrentUser(username: string): boolean {
             return this.auth.checkIfCurrentUser(username);
           }
+
         editGearList(gear: Gear): void {
             this.editGear = !this.editGear;
             this.userService.updateGear(gear.id, gear).subscribe(
@@ -160,4 +187,45 @@ export class ProfileComponent implements OnInit {
               }
             );
           }
+
+          addUserToFavorites(user: User) {
+            this.isFavorited = !this.isFavorited;
+            this.userService.addUserToFavorites(user, this.isFavorited).subscribe(
+              data=>{
+                console.log('succesfully added user to favorites list');
+
+                window.location.reload();
+              },
+              err=>{
+              console.error('retrieved failed')
+              console.error(err);
+              }
+            );
+          }
+
+          showMessageBox() {
+          this.showMessageTextBox = !this.showMessageTextBox;
+          this.getLoggedinUserObject(parseInt(localStorage.getItem('userId')));
+          }
+
+          sendMessage(message: Message) {
+            console.log(this.loggedInUser);
+            message.receiver = this.selectedUser;
+            message.sender = this.loggedInUser;
+            console.log(message);
+
+            this.userService.createMessage(message, message.receiver.id).subscribe(
+              (data) => {
+                console.log('message sent succesfully');
+
+              },
+              (err) => {
+                console.log('message reply failed');
+
+              }
+
+            );
+            this.router.navigateByUrl('message');
+          }
+
 }
