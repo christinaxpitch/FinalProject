@@ -416,12 +416,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cragdb`;
-INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (1, 'Hi Christina! I just wanted to let you know that I saw we are interested in climbing in the same areas and also have Sunday\'s free to outdoor climb. Let me know if you would be interested in meeting up - I am pretty good at crimps and know a few good routes we can get you up to practice! PS: My dog is super cute, lol!!!', NULL, 1, 2);
-INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (2, 'Hi Timothy! Thanks for your message. I don\'t own any lead climbing gear, but I see that you do. Where are you trying to climb on your next day trip?', NULL, 2, 1);
-INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (3, 'Hello there! Would you want to climb in Boulder next Saturday?', NULL, 1, 3);
-INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (4, 'Hi Timothy! I haven\'t been climbing outdoors in a few months but I would love to set something up, maybe we can pick a couple easier routes. I have a book I can send some ideas of routes that might be good!', NULL, 3, 1);
-INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (5, 'Hi! I was wondering if you wanted to set up a climb day soon. I am lead climb certified at the gym but haven\'t tried lead climbing outdoors yet.', NULL, 4, 1);
-INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (6, 'Hi Jeanne! Nice to meet you. I think I saw you before at Ubergrippen Indoor Crag. I would love to set something up for a day trip, maybe up in Golden?', NULL, 1, 4);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (1, 'Hi Christina! I just wanted to let you know that I saw we are interested in climbing in the same areas and also have Sunday\'s free to outdoor climb. Let me know if you would be interested in meeting up - I am pretty good at crimps and know a few good routes we can get you up to practice! PS: My dog is super cute, lol!!!', '2020-12-11 7:00:00', 1, 2);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (2, 'Hi Timothy! Thanks for your message. I don\'t own any lead climbing gear, but I see that you do. Where are you trying to climb on your next day trip?', '2020-12-11 7:00:00', 2, 1);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (3, 'Hello there! Would you want to climb in Boulder next Saturday?', '2020-12-11 7:00:00', 1, 3);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (4, 'Hi Timothy! I haven\'t been climbing outdoors in a few months but I would love to set something up, maybe we can pick a couple easier routes. I have a book I can send some ideas of routes that might be good!', '2020-12-11 7:00:00', 3, 1);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (5, 'Hi! I was wondering if you wanted to set up a climb day soon. I am lead climb certified at the gym but haven\'t tried lead climbing outdoors yet.', '2020-12-11 7:00:00', 4, 1);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (6, 'Hi Jeanne! Nice to meet you. I think I saw you before at Ubergrippen Indoor Crag. I would love to set something up for a day trip, maybe up in Golden?', '2020-12-11 7:00:00', 1, 4);
 
 COMMIT;
 
