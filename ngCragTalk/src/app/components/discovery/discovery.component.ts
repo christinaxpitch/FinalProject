@@ -32,7 +32,7 @@ export class DiscoveryComponent implements OnInit {
   showMessageList: boolean = false;
   userClimbTypes: UserClimbType[] = [];
   myEvents: Event[] = [];
-  today: Date = new Date ();
+  today: string = new Date().toISOString();
 
   constructor(
     private userSvc: UserService,
@@ -85,9 +85,6 @@ export class DiscoveryComponent implements OnInit {
         (data) => {
           this.users = data.filter((user) => user.id !== loggedInUserId);
           this.userClimbTypes = this.loggedInUser.userClimbTypes;
-          // this.filteredUsers = data.filter(user => (!this.loggedInUser.myListOfFavoriteUsers.includes(user)));
-          // console.log(this.filteredUsers);
-          // this.showRecommendedUsers(this.users, this.loggedInUser);
           this.showNewMessages();
           this.showUpcomingEvents();
         },
@@ -114,10 +111,12 @@ export class DiscoveryComponent implements OnInit {
     this.eventSvc.index().subscribe(
       (events) => {
         this.events = events;
-        // this.events = events.filter(
-        //   // (event) => event.eventDate > this.loggedInUser.lastLogin
-        //   (event) => event.eventDate > this.today
-        //   );
+        this.events = events.filter(
+          //   // (event) => event.eventDate > this.loggedInUser.lastLogin
+          (event) => {
+            return '' + event.eventDate > this.today;
+          }
+        );
       },
       (err) => {
         console.error(
@@ -129,9 +128,6 @@ export class DiscoveryComponent implements OnInit {
   }
 
   showRecommendedUsers(users: User[], currentUser: User) {
-    console.log(users);
-    console.log(currentUser);
-    console.log(currentUser.favoriteAreaList);
     let loggedInUserFavAreaIds = [];
     let loggedInUserFavClimbers = [];
     if (users != null && currentUser != null) {
@@ -140,14 +136,9 @@ export class DiscoveryComponent implements OnInit {
       });
       currentUser.myListOfFavoriteUsers.forEach((fav) => {
         loggedInUserFavClimbers.push(fav.id);
-      }),
-        console.log(loggedInUserFavAreaIds);
-      console.log(loggedInUserFavClimbers);
-
+      });
       for (let i = 0; i < users.length; i++) {
-        console.log(users[i]);
         for (let j = 0; j < loggedInUserFavClimbers.length; j++) {
-          console.log(loggedInUserFavClimbers[i]);
           if (users[i].id == loggedInUserFavClimbers[j]) {
             // users.splice(i, 1);
             continue;
@@ -159,7 +150,6 @@ export class DiscoveryComponent implements OnInit {
         }
       }
     }
-    console.log(this.filteredUsers);
   }
 
   showProfile(userId: number) {
@@ -167,40 +157,39 @@ export class DiscoveryComponent implements OnInit {
     this.router.navigateByUrl('user/' + userId);
   }
 
-  removeFav(user: User){
+  removeFav(user: User) {
     this.userSvc.addUserToFavorites(user, false).subscribe(
-      data=>{
-      console.log('succesfully removed user to favorites list');
+      (data) => {
+        console.log('succesfully removed user to favorites list');
 
-      this.reload();
-    },
-    err=>{
-    console.error('retrieved failed')
-    console.error(err);
-    }
-  );
-  };
+        this.reload();
+      },
+      (err) => {
+        console.error('retrieved failed');
+        console.error(err);
+      }
+    );
+  }
 
-  addFav(user: User){
+  addFav(user: User) {
     this.userSvc.addUserToFavorites(user, true).subscribe(
-      data=>{
-      console.log('succesfully added user to favorites list');
+      (data) => {
+        console.log('succesfully added user to favorites list');
 
-      this.reload();
-    },
-    err=>{
-    console.error('retrieved failed')
-    console.error(err);
-    }
-  );
-  };
+        this.reload();
+      },
+      (err) => {
+        console.error('retrieved failed');
+        console.error(err);
+      }
+    );
+  }
 
   displayMessageBody(message: Message) {
     // this.router.navigateByUrl('message/' + message);
+  }
 
-};
-
-displayEvent(event){
-  this.router.navigateByUrl('event/' + event.id);
-};
+  displayEvent(event) {
+    this.router.navigateByUrl('event/' + event.id);
+  }
 }

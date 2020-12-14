@@ -57,6 +57,9 @@ public class UserServiceImpl implements UserService {
 		Optional<User> userOpt = userRepo.findById(user.getId());
 		User updatedUser = userOpt.get();
 
+		if (user.getLastLogin() != null) {
+			updatedUser.setLastLogin(user.getLastLogin());
+		}
 		if (user.getAvailability() != null) {
 			updatedUser.setAvailability(user.getAvailability());
 		}
