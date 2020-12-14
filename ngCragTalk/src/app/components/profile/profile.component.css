@@ -136,7 +136,7 @@ table {
   box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
 }
 .hoverClickYellow:hover {
-  color: #ffd700;
+  color: black;
   background-color: #ffd700;
   -webkit-box-shadow: 10px 10px 99px 6px rgba(255, 215, 0, 1);
   -moz-box-shadow: 10px 10px 99px 6px rgba(255, 215, 0, 1);
@@ -145,12 +145,13 @@ table {
 #gearLabel{
   font-weight: bold;
 }
-#favclimber {
+#favclimberFavorite {
+  color: grey;
+  font-size: x-large;
+}
+#favclimberUnfavorite {
   color: gold;
+  font-size: x-large;
 }
-#notFavClimber {
-  color: white;
-  font-size: xx-large;
 
-}
 

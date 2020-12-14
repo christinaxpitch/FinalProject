@@ -85,9 +85,6 @@ export class DiscoveryComponent implements OnInit {
         (data) => {
           this.users = data.filter((user) => user.id !== loggedInUserId);
           this.userClimbTypes = this.loggedInUser.userClimbTypes;
-          // this.filteredUsers = data.filter(user => (!this.loggedInUser.myListOfFavoriteUsers.includes(user)));
-          // console.log(this.filteredUsers);
-          // this.showRecommendedUsers(this.users, this.loggedInUser);
           this.showNewMessages();
           this.showUpcomingEvents();
         },
@@ -114,13 +111,9 @@ export class DiscoveryComponent implements OnInit {
     this.eventSvc.index().subscribe(
       (events) => {
         this.events = events;
-        console.log(this.today);
-
         this.events = events.filter(
           //   // (event) => event.eventDate > this.loggedInUser.lastLogin
           (event) => {
-            console.log(event.eventDate);
-            console.log('' + event.eventDate > this.today);
             return '' + event.eventDate > this.today;
           }
         );
@@ -135,9 +128,6 @@ export class DiscoveryComponent implements OnInit {
   }
 
   showRecommendedUsers(users: User[], currentUser: User) {
-    console.log(users);
-    console.log(currentUser);
-    console.log(currentUser.favoriteAreaList);
     let loggedInUserFavAreaIds = [];
     let loggedInUserFavClimbers = [];
     if (users != null && currentUser != null) {
@@ -146,14 +136,9 @@ export class DiscoveryComponent implements OnInit {
       });
       currentUser.myListOfFavoriteUsers.forEach((fav) => {
         loggedInUserFavClimbers.push(fav.id);
-      }),
-        console.log(loggedInUserFavAreaIds);
-      console.log(loggedInUserFavClimbers);
-
+      });
       for (let i = 0; i < users.length; i++) {
-        console.log(users[i]);
         for (let j = 0; j < loggedInUserFavClimbers.length; j++) {
-          console.log(loggedInUserFavClimbers[i]);
           if (users[i].id == loggedInUserFavClimbers[j]) {
             // users.splice(i, 1);
             continue;
@@ -165,7 +150,6 @@ export class DiscoveryComponent implements OnInit {
         }
       }
     }
-    console.log(this.filteredUsers);
   }
 
   showProfile(userId: number) {
