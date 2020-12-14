@@ -69,7 +69,7 @@ class UserTest {
 	void test4() {
 		assertNotNull(user);
 		assertTrue(user.getCreatedEvents().size() > 0);
-		assertEquals("Crags and Brews", user.getCreatedEvents().get(0).getEventName());
+		assertEquals("Crags & Brews", user.getCreatedEvents().get(0).getEventName());
 
 	}
 
@@ -77,7 +77,7 @@ class UserTest {
 	void test5() {
 		assertNotNull(user);
 		assertTrue(user.getAttendedEvents().size() > 0);
-		assertEquals("Crags and Brews", user.getAttendedEvents().get(0).getEventName());
+		assertEquals("Crags & Brews", user.getAttendedEvents().get(0).getEventName());
 
 	}
 	

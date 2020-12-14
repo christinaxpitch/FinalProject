@@ -44,7 +44,7 @@ class EventTest {
 	@Test
 	void test() {
 		assertNotNull(event);
-		assertEquals("Crags and Brews", event.getEventName());
+		assertEquals("Crags & Brews", event.getEventName());
 		assertEquals("A saturday morning group climb in Gregory Canyon. Post climb cooldown at Avery Brewery Company!", event.getDescription());
 		assertEquals(2021, event.getEventDate().getYear());
 		assertEquals(1, event.getCreatedBy().getId());

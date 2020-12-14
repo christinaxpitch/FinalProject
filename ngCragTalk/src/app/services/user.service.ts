@@ -6,7 +6,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { DatePipe } from '@angular/common';
 import { environment } from './../../environments/environment';
 import { User } from '../models/user';
 
@@ -17,7 +16,7 @@ import { User } from '../models/user';
 export class UserService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
-  private  baseUrl = 'http://localhost:8090/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/user';
 
 
