@@ -1,10 +1,28 @@
 <br>
-<h4>{{selectedUser.username}}'s Messages</h4>
+<!-- <div style="background-image: url('https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg'); background-size: cover;
+background-repeat:no-repeat;"> -->
+<div style="vertical-align: top; background-image: url('https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg');  background-repeat:no-repeat; background-size: cover;">
+  <h4 style="color: whitesmoke" >{{selectedUser.username}}'s Messages</h4>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+</div>
+<br>
+<br>
+
 
 <div *ngIf = "showInbox">
-<table>
-  <thead>
-    <caption>Inbox</caption>
+<table class="table">
+  <thead class="thead-dark">
+    Inbox
     <tr>
   <th>Date</th>
   <th>From</th>
@@ -28,8 +46,10 @@
   <p >
    {{messageBody.messageBody}}
  </p>
-  <button (click) = "setReplyDiv(messageBody)">Reply</button>
-  <button (click) = "backToInbox()">Back to inbox</button>
+ <br>
+ <br>
+  <button class="btn btn-outline-primary" (click) = "setReplyDiv(messageBody)">Reply</button>
+  <button class="btn btn-outline-primary" (click) = "backToInbox()">Back to inbox</button>
 </div>
 
 
@@ -38,8 +58,8 @@
 <!-- outbox view -->
 
 <div *ngIf = "showInbox">
-  <table>
-    <thead>
+  <table class = "table">
+    <thead class="thead-dark">
       <caption>Outbox</caption>
       <tr>
         <th>Date</th>
@@ -63,7 +83,7 @@
     <p >
      {{outboxMessageBody}}
    </p>
-    <button (click) = "backToInbox()">Back to inbox</button>
+    <button class="btn btn-outline-primary" (click) = "backToInbox()">Back to inbox</button>
   </div>
 
 
