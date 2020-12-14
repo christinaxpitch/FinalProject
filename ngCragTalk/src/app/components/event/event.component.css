@@ -22,3 +22,8 @@
   box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
 }
 
+.title {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}

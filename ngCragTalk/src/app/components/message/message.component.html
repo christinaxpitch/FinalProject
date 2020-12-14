@@ -1,10 +1,33 @@
 <br>
-<h4>{{selectedUser.username}}'s Messages</h4>
+<!-- <div style="background-image: url('https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg'); background-size: cover;
+background-repeat:no-repeat;"> -->
+<div style="vertical-align: top; background-image: url('https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg');  background-repeat:no-repeat; background-size: cover;">
+  <h4 style="color: whitesmoke" >{{selectedUser.username}}'s Messages</h4>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+</div>
+<br>
+<br>
+
 
 <div *ngIf = "showInbox">
-<table>
-  <thead>
-    <caption>Inbox</caption>
+<table class="table">
+  <thead class="thead-dark">
+    <div>
+      <h3 style = "text-align: center;" >
+
+        Inbox
+      </h3>
+    </div>
     <tr>
   <th>Date</th>
   <th>From</th>
@@ -27,9 +50,12 @@
 <div *ngIf = "showMessageBody">
   <p >
    {{messageBody.messageBody}}
+
  </p>
-  <button (click) = "setReplyDiv(messageBody)">Reply</button>
-  <button (click) = "backToInbox()">Back to inbox</button>
+ <br>
+ <br>
+  <button class="btn btn-outline-primary" (click) = "setReplyDiv(messageBody)">Reply</button>
+  <button class="btn btn-outline-primary" (click) = "backToInbox()">Back to inbox</button>
 </div>
 
 
@@ -38,9 +64,14 @@
 <!-- outbox view -->
 
 <div *ngIf = "showInbox">
-  <table>
-    <thead>
-      <caption>Outbox</caption>
+  <table class = "table">
+    <thead class="thead-dark">
+      <div>
+        <h3 style = "text-align: center;" >
+
+          Outbox
+        </h3>
+      </div>
       <tr>
         <th>Date</th>
         <th>Sent To</th>
@@ -50,20 +81,22 @@
   <tbody>
 
   <tr *ngFor = "let message of sentMessages" >
-  <td (click) = "displayMessageBody(message)" rowspan="1">{{message.createdAt | date: 'MMMM d, y'}}</td>
+  <td (click) = "displayOutboxMessageBody(message)" rowspan="1">{{message.createdAt | date: 'MMMM d, y'}}</td>
   <td (click) = "displayOutboxMessageBody(message)" rowspan="1" >{{message.receiver.username}}
   </td>
-  <td (click) = "displayMessageBody(message)" rowspan="1">{{message.messageBody}}</td>
+  <td (click) = "displayOutboxMessageBody(message)" rowspan="1">{{message.messageBody}}</td>
   </tr>
   </tbody>
   </table>
   </div>
 
-  <div *ngIf = "showOutboxMessages">
+  <div  *ngIf = "showOutboxMessages"m>
     <p >
-     {{outboxMessageBody}}
+      Sent to: {{outboxMessageBody.receiver.username}} <br>
+     Message: <br>
+     {{outboxMessageBody.messageBody}}
    </p>
-    <button (click) = "backToInbox()">Back to inbox</button>
+    <button class="btn btn-outline-primary" (click) = "backToInbox()">Back to inbox</button>
   </div>
 
 
@@ -73,8 +106,8 @@
   <div *ngIf = "showReplyBox">
     <p>{{managedMessage.messageBody}} {{managedMessage.sender.username}}</p>
     <textarea [(ngModel)] = "newMessage.messageBody" class="form-control" type="text" name="messageBody" cols="30" rows="3" placeholder="Type message here"></textarea>
-    <button (click) = "reply(newMessage)">Send</button>
-    <button (click) = "backToInbox()">Back to inbox</button>
+    <button class="btn btn-outline-primary" (click) = "reply(newMessage)">Send</button>
+    <button class="btn btn-outline-primary" (click) = "backToInbox()">Back to inbox</button>
   </div>
 
 
