@@ -38,6 +38,7 @@ export class ProfileComponent implements OnInit {
   newMessage: Message = new Message();
   loggedInUser: User = new User();
   checkUsersList: boolean = null;
+  toFavOrNot: string = '';
   // will need to add an array for a users gear list and use the controller path and the method to get a users gear list
   ngOnInit(): void {
     const idStr = this.route.snapshot.paramMap.get('userId');
@@ -51,6 +52,7 @@ export class ProfileComponent implements OnInit {
             (data) => {
               console.log('profile retrieved');
               this.selectedUser = data;
+              this.getLoggedinUserObject(parseInt(localStorage.getItem('userId')));
               this.gearList = data.gearList;
               this.userClimbTypes = data.userClimbTypes;
               this.favoriteClimbingAreas = data.favoriteAreaList;
@@ -218,22 +220,34 @@ export class ProfileComponent implements OnInit {
 
           }
 
-          // checkFavoriteUsersList(user: User): boolean {
-          //   for(var i =0; i < this.favoriteUsers.length; i++) {
-          //         if(this.favoriteUsers[i].username == user.username){
-          //           this.isFavorited = true;
-          //           return true;
+          checkFavoriteUsersList(selectedUser: User): boolean {
+          // this.getLoggedinUserObject(parseInt(localStorage.getItem('userId')));
+          console.log(this.loggedInUser);
+          console.log(this.selectedUser);
+          console.log(this.selectedUser.username);
 
-          //         }
-          //         else {
-          //           return false;
-          //         }
-          //       }
-          // }
+          console.log(this.loggedInUser.myListOfFavoriteUsers);
+          this.loggedInUser.myListOfFavoriteUsers.forEach((user) => {
+            console.log(user.username);
+
+          });
+
+            for(var i =0; i < this.loggedInUser.myListOfFavoriteUsers.length; i++) {
+                  if(this.loggedInUser.myListOfFavoriteUsers[i].username === selectedUser.username){
+                    this.isFavorited = true;
+                    this.toFavOrNot = 'Unfavorite';
+                    return true;
+                  }
+                  else {
+                    this.toFavOrNot = 'Favorite';
+                    return false;
+                  }
+                }
+          }
 
           showMessageBox() {
           this.showMessageTextBox = !this.showMessageTextBox;
-          this.getLoggedinUserObject(parseInt(localStorage.getItem('userId')));
+          // this.getLoggedinUserObject(parseInt(localStorage.getItem('userId')));
           }
 
           sendMessage(message: Message) {

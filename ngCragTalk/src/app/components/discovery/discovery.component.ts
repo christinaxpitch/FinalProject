@@ -32,7 +32,7 @@ export class DiscoveryComponent implements OnInit {
   showMessageList: boolean = false;
   userClimbTypes: UserClimbType[] = [];
   myEvents: Event[] = [];
-  today: Date = new Date ();
+  today: string = new Date().toISOString();
 
   constructor(
     private userSvc: UserService,
@@ -114,10 +114,16 @@ export class DiscoveryComponent implements OnInit {
     this.eventSvc.index().subscribe(
       (events) => {
         this.events = events;
-        // this.events = events.filter(
-        //   // (event) => event.eventDate > this.loggedInUser.lastLogin
-        //   (event) => event.eventDate > this.today
-        //   );
+        console.log(this.today);
+
+        this.events = events.filter(
+          //   // (event) => event.eventDate > this.loggedInUser.lastLogin
+          (event) => {
+            console.log(event.eventDate);
+            console.log('' + event.eventDate > this.today);
+            return '' + event.eventDate > this.today;
+          }
+        );
       },
       (err) => {
         console.error(
@@ -167,40 +173,39 @@ export class DiscoveryComponent implements OnInit {
     this.router.navigateByUrl('user/' + userId);
   }
 
-  removeFav(user: User){
+  removeFav(user: User) {
     this.userSvc.addUserToFavorites(user, false).subscribe(
-      data=>{
-      console.log('succesfully removed user to favorites list');
+      (data) => {
+        console.log('succesfully removed user to favorites list');
 
-      this.reload();
-    },
-    err=>{
-    console.error('retrieved failed')
-    console.error(err);
-    }
-  );
-  };
+        this.reload();
+      },
+      (err) => {
+        console.error('retrieved failed');
+        console.error(err);
+      }
+    );
+  }
 
-  addFav(user: User){
+  addFav(user: User) {
     this.userSvc.addUserToFavorites(user, true).subscribe(
-      data=>{
-      console.log('succesfully added user to favorites list');
+      (data) => {
+        console.log('succesfully added user to favorites list');
 
-      this.reload();
-    },
-    err=>{
-    console.error('retrieved failed')
-    console.error(err);
-    }
-  );
-  };
+        this.reload();
+      },
+      (err) => {
+        console.error('retrieved failed');
+        console.error(err);
+      }
+    );
+  }
 
   displayMessageBody(message: Message) {
     // this.router.navigateByUrl('message/' + message);
+  }
 
-};
-
-displayEvent(event){
-  this.router.navigateByUrl('event/' + event.id);
-};
+  displayEvent(event) {
+    this.router.navigateByUrl('event/' + event.id);
+  }
 }

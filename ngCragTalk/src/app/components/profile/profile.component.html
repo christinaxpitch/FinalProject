@@ -1,7 +1,7 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
@@ -213,15 +213,18 @@
                       </div>
                   </div>
                   <div class="col-md-2" id="buttondiv">
-                    <button *ngIf = "checkIfCurrentUser(selectedUser.username) " (click)="setUpdateUser()">Edit Profile</button>
-                    <button *ngIf = " !checkIfCurrentUser(selectedUser.username)" (click) = "showMessageBox()" >Message {{selectedUser.username}}</button>
+                    <button *ngIf="checkIfCurrentUser(selectedUser.username) " (click)="setUpdateUser()">Edit Profile</button>
+                    <button *ngIf="!checkIfCurrentUser(selectedUser.username)" (click) = "showMessageBox()" >Message {{selectedUser.username}}</button>
+                    <div *ngIf="!checkIfCurrentUser(selectedUser.username)">
+                    <button *ngIf="checkFavoriteUsersList()" (click) = "setIsFavoritedValue(selectedUser)"  >
+                    {{toFavOrNot}}{{selectedUser.username}}
+                    </button></div>
 
-                    <button *ngIf = "!checkIfCurrentUser(selectedUser.username)"
-
-                    (click) = "setIsFavoritedValue(selectedUser)" >
-                    Favorite  {{selectedUser.username}}
-                    </button>
-
+                    <!-- <div *ngFor="let climber of loggedInUser.myListOfFavoriteUsers">
+                       <div class="star" (change)="removeFav(climber)"><i class="fa fa-star" id="favclimer"></i></div> -->
+                      <!-- <i (click)="removeFav(climber)" class="fa fa-star" id="favclimber">&nbsp;</i>
+                      <label for="favclimber" (click)="showProfile(climber.id)" style="font-weight: bold;" class="hoverClickGreen">{{climber.username}}</label>
+                    </div> -->
                    <!-- <input type="checkbox" name="isFavorited" value = "isFavorited" *ngIf = "!checkIfCurrentUser(selectedUser.username)"
 
                     (change) = "setIsFavoritedValue(selectedUser)" >   -->
