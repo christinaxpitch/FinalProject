@@ -96,7 +96,7 @@ lightDOM=true autoplay=true pauseOnHover=true loop=true>
     </tr>
   </thead>
   <tbody>
-    <tr (click)='eventClick()' *ngFor="let group of groupClimbs">
+    <tr class="hoverClickBlue" (click)='eventClick()' *ngFor="let group of groupClimbs">
       <td>{{group.eventName}}</td>
       <td>{{group.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</td>
       <!-- <td>{{group.description}}</td> -->

@@ -1,6 +1,3 @@
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -51,9 +48,7 @@
                 </ul>
               </div>
             </div>
-            <div class="col-md-2">
-              <!-- <input type="submit" class="profile-edit-btn" name="update(selectedUser)" value="Edit Profile"/> -->
-            </div>
+            <div class="col-md-2"></div>
           </div>
           <div class="row">
             <div class="col-md-4">
@@ -105,15 +100,6 @@
             <div class="col-md-8">
               <div>
                 <div>
-                  <!-- <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Username</label>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <p><input type="text" name = "username" [(ngModel)] = "selectedUser.username" placeholder="selectedUser.username"></p>
-                                                    </div>
-                                                </div> -->
-
                   <div class="row">
                     <div class="col-md-6">
                       <label>Gear</label>
@@ -188,7 +174,6 @@
                         </table>
                       </div>
                     </div>
-
                     <div class="row">
                       <div class="col-md-6">
                         <label></label>
@@ -202,13 +187,7 @@
           </div>
         </div>
         <button (click)="updateUser(selectedUser)">Save</button>
-        <button
-          class="btn btn-outline-danger"
-          (click)="disableUser(selectedUser)"
-        >
-          Disable account
-        </button>
-        <!-- <button (click) = disable(selectedUser)>Disable Profile</button> -->
+
       </form>
     </td>
   </tbody>
@@ -219,15 +198,6 @@
 <table *ngIf="selectedUser && !updateUserProfile">
   <tbody>
     <tr>
-      <!-- <td >
-<div class = "cols">
-  <label >Messages</label>
-
-        <ul *ngFor= "let message of messages">
-          <li >{{message.messageBody}}</li>
-        </ul>
-</div>
-    </td> -->
       <td>
         <!-- This is the div that shows when you're not editing -->
         <div class="container emp-profile">
@@ -243,35 +213,47 @@
                 <h5>
                   {{ selectedUser.firstName }} {{ selectedUser.lastName }}
                 </h5>
-
                 <p></p>
-
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                   <li class="nav-item">Climbing Info</li>
                 </ul>
               </div>
             </div>
             <div class="col-md-2" id="buttondiv">
-              <button
+              <button class="btn btn-outline-primary"
                 *ngIf="checkIfCurrentUser(selectedUser.username)"
                 (click)="setUpdateUser()"
               >
                 Edit Profile
               </button>
+              <button *ngIf="checkIfCurrentUser(selectedUser.username)"
+          class="btn btn-outline-danger"
+          (click)="disableUser(selectedUser)"
+        >
+          Disable account
+        </button>
+        <!-- <button (click) = disable(selectedUser)>Disable Profile</button> -->
               <button
                 *ngIf="!checkIfCurrentUser(selectedUser.username)"
                 (click)="showMessageBox()"
               >
                 Message {{ selectedUser.username }}
               </button>
-              <i (click)="setIsFavoritedValue(selectedUser)" class="fa fa-star hoverClickYellow" id="favclimber{{toFavOrNot}}"></i>
+              <!--Favorite-->
+              <div *ngIf="!checkIfCurrentUser(selectedUser.username)">
+              <!-- {{toFavOrNot}} Me? -->
+              <i
+                (click)="setIsFavoritedValue(selectedUser)"
+                class="fa fa-star hoverClickYellow"
+                id="favclimber{{ toFavOrNot }}"
+              ></i>
+            </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-4">
               <div class="profile-work">
                 <p></p>
-
                 <p>About Me</p>
                 Username: {{ selectedUser.username }} <br />
                 City: {{ selectedUser.location.city }} <br />
@@ -280,18 +262,9 @@
                 Favorite Beer: {{ selectedUser.favoriteBeer }}
               </div>
             </div>
-
             <div class="col-md-8">
               <div>
                 <div>
-                  <!-- <div class="row">
-                                          <div class="col-md-6">
-                                              <label>Username</label>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <p>{{selectedUser.username}}</p>
-                                          </div>
-                                      </div> -->
                   <div class="row">
                     <div class="col-md-6">
                       <label>Gear</label>
@@ -339,25 +312,10 @@
                       </table>
                     </div>
                   </div>
-                  <!-- <div class="row">
-                                          <div class="col-md-6">
-                                              <label>Messages</label>
-                                          </div>
-                                          <div class="col-md-6">
-                                            <table>
-                                              <tbody>
-                                                <tr *ngFor= "let message of messages">
-                                                  <td>{{message.messageBody}}</td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                          </div>
-                                      </div> -->
                 </div>
               </div>
             </div>
           </div>
-          <!-- </form> -->
         </div>
       </td>
       <br />
@@ -375,7 +333,6 @@
           <button (click)="sendMessage(newMessage)">Send</button>
           <button (click)="showMessageBox()">Back to profile</button>
         </div>
-
         <br />
         <br />
         <br />
@@ -389,22 +346,3 @@
     </tr>
   </tbody>
 </table>
-
-<!-- <div id = "profile image"></div>
-
-<button id="favorite button">Favorite</button>
-
-<h1 id="users profile name"></h1>
-
-<div id = "additional photos"></div>
-<div id = "about me"></div>
-
-<div id= "skill level"></div>
-
-<div id = "gear"></div>
-
-<div id = "preffered climbing loications"></div>
-
-<div id = "send message">
-
-</div> -->
