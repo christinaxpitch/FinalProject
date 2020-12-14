@@ -22,7 +22,12 @@ background-repeat:no-repeat;"> -->
 <div *ngIf = "showInbox">
 <table class="table">
   <thead class="thead-dark">
-    Inbox
+    <div>
+      <h3 style = "text-align: center;" >
+
+        Inbox
+      </h3>
+    </div>
     <tr>
   <th>Date</th>
   <th>From</th>
@@ -45,6 +50,7 @@ background-repeat:no-repeat;"> -->
 <div *ngIf = "showMessageBody">
   <p >
    {{messageBody.messageBody}}
+
  </p>
  <br>
  <br>
@@ -60,7 +66,12 @@ background-repeat:no-repeat;"> -->
 <div *ngIf = "showInbox">
   <table class = "table">
     <thead class="thead-dark">
-      <caption>Outbox</caption>
+      <div>
+        <h3 style = "text-align: center;" >
+
+          Outbox
+        </h3>
+      </div>
       <tr>
         <th>Date</th>
         <th>Sent To</th>
@@ -70,18 +81,20 @@ background-repeat:no-repeat;"> -->
   <tbody>
 
   <tr *ngFor = "let message of sentMessages" >
-  <td (click) = "displayMessageBody(message)" rowspan="1">{{message.createdAt | date: 'MMMM d, y'}}</td>
+  <td (click) = "displayOutboxMessageBody(message)" rowspan="1">{{message.createdAt | date: 'MMMM d, y'}}</td>
   <td (click) = "displayOutboxMessageBody(message)" rowspan="1" >{{message.receiver.username}}
   </td>
-  <td (click) = "displayMessageBody(message)" rowspan="1">{{message.messageBody}}</td>
+  <td (click) = "displayOutboxMessageBody(message)" rowspan="1">{{message.messageBody}}</td>
   </tr>
   </tbody>
   </table>
   </div>
 
-  <div *ngIf = "showOutboxMessages">
+  <div  *ngIf = "showOutboxMessages"m>
     <p >
-     {{outboxMessageBody}}
+      Sent to: {{outboxMessageBody.receiver.username}} <br>
+     Message: <br>
+     {{outboxMessageBody.messageBody}}
    </p>
     <button class="btn btn-outline-primary" (click) = "backToInbox()">Back to inbox</button>
   </div>
@@ -93,8 +106,8 @@ background-repeat:no-repeat;"> -->
   <div *ngIf = "showReplyBox">
     <p>{{managedMessage.messageBody}} {{managedMessage.sender.username}}</p>
     <textarea [(ngModel)] = "newMessage.messageBody" class="form-control" type="text" name="messageBody" cols="30" rows="3" placeholder="Type message here"></textarea>
-    <button (click) = "reply(newMessage)">Send</button>
-    <button (click) = "backToInbox()">Back to inbox</button>
+    <button class="btn btn-outline-primary" (click) = "reply(newMessage)">Send</button>
+    <button class="btn btn-outline-primary" (click) = "backToInbox()">Back to inbox</button>
   </div>
 
 

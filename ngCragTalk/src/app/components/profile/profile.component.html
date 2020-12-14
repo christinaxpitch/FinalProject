@@ -1,11 +1,10 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-
-
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
 
 <!-- This is the update Div -->
 <table *ngIf="selectedUser && updateUserProfile">
@@ -15,56 +14,98 @@
     </td>
     <td>
       <form *ngIf="updateUserProfile">
-        <div class="container emp-profile" >
+        <div class="container emp-profile">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="profile-img">
+                <img alt="" />
+                <div class="file btn btn-lg btn-primary">
+                  Change Photo
+                  <input type="file" name="file" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="profile-head">
+                <h5>
+                  <label>Name: </label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    [(ngModel)]="selectedUser.firstName"
+                    placeholder="selectedUser.firstName"
+                  />
+                  <br />
+                  <input
+                    type="text"
+                    name="lastName"
+                    [(ngModel)]="selectedUser.lastName"
+                    placeholder="selectedUser.lastName"
+                  />
+                </h5>
 
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="profile-img">
-                                    <img alt=""/>
-                                    <div class="file btn btn-lg btn-primary">
-                                        Change Photo
-                                        <input type="file" name="file"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="profile-head">
-                                            <h5>
-                                             <label>Name: </label>  <input type="text" name = "firstName" [(ngModel)] = "selectedUser.firstName" placeholder="{{selectedUser.firstName}}"> <br>
-                                                    <input type="text" name = "lastName" [(ngModel)] = "selectedUser.lastName" placeholder="selectedUser.lastName">
+                <p></p>
 
-                                            </h5>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item">Climbing Info</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <!-- <input type="submit" class="profile-edit-btn" name="update(selectedUser)" value="Edit Profile"/> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="profile-work">
+                <p></p>
 
-                                    <p></p>
-
-                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                        <li class="nav-item">
-                                            Climbing Info
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <!-- <input type="submit" class="profile-edit-btn" name="update(selectedUser)" value="Edit Profile"/> -->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="profile-work">
-                                    <p></p>
-
-                                    <p>About Me</p>
-                                      Username: <input type="text" name = "username" [(ngModel)] = "selectedUser.username" placeholder="selectedUser.username"> <br>
-                                      City: <input type="text" name = "location" [(ngModel)] = "selectedUser.location.city" placeholder="selectedUser.location.city"> <br>
-                                      Do you have a dog? <input type="checkbox" name = "hasDog" [(ngModel)] = "selectedUser.hasDog" placeholder="selectedUser.hasDog"> <br>
-                                      Age: <input type="date" name = "birthdate" [(ngModel)] = "selectedUser.birthdate" placeholder=""> <br>
-                                      Favorite Beer: <input type="test" name = "favoriteBeer" [(ngModel)] = "selectedUser.favoriteBeer" placeholder="selectedUser.favoriteBeer">
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div >
-                                    <div >
-                                                <!-- <div class="row">
+                <p>About Me</p>
+                Username:
+                <input
+                  type="text"
+                  name="username"
+                  [(ngModel)]="selectedUser.username"
+                  placeholder="selectedUser.username"
+                />
+                <br />
+                City:
+                <input
+                  type="text"
+                  name="location"
+                  [(ngModel)]="selectedUser.location.city"
+                  placeholder="selectedUser.location.city"
+                />
+                <br />
+                Do you have a dog?
+                <input
+                  type="checkbox"
+                  name="hasDog"
+                  [(ngModel)]="selectedUser.hasDog"
+                  placeholder="selectedUser.hasDog"
+                />
+                <br />
+                Age:
+                <input
+                  type="date"
+                  name="birthdate"
+                  [(ngModel)]="selectedUser.birthdate"
+                  placeholder=""
+                />
+                <br />
+                Favorite Beer:
+                <input
+                  type="test"
+                  name="favoriteBeer"
+                  [(ngModel)]="selectedUser.favoriteBeer"
+                  placeholder="selectedUser.favoriteBeer"
+                />
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div>
+                <div>
+                  <!-- <div class="row">
                                                     <div class="col-md-6">
                                                         <label>Username</label>
                                                     </div>
@@ -73,109 +114,112 @@
                                                     </div>
                                                 </div> -->
 
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Gear</label>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                      <table>
-                                                        <tbody>
-                                                          <tr *ngFor= "let gear of gearList">
-                                                            <td (click) = "displayGear(gear)">{{gear.name}}</td>
-                                                          </tr>
-                                                        </tbody>
-                                                      </table>
-                                                      <div *ngIf = "editGear">
-                                                        <input type="text" name = "name" [(ngModel)] = "managedGear.name" placeholder="managedGear.name">
-                                                        <button (click)="editGearList(managedGear)">Save</button>
-                                                      </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Most recent Climb grades</label>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                      <table>
-                                                        <tbody>
-                                                          <tr *ngFor= "let climb of userClimbTypes">
-                                                            <td (click) = "displayClimbType(climb)" >{{climb.recentGrade}}  </td>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Gear</label>
+                    </div>
+                    <div class="col-md-6">
+                      <table>
+                        <tbody>
+                          <tr *ngFor="let gear of gearList">
+                            <td (click)="displayGear(gear)">{{ gear.name }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div *ngIf="editGear">
+                        <input
+                          type="text"
+                          name="name"
+                          [(ngModel)]="managedGear.name"
+                          placeholder="managedGear.name"
+                        />
+                        <button (click)="editGearList(managedGear)">
+                          Save
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Most recent Climb grades</label>
+                    </div>
+                    <div class="col-md-6">
+                      <table>
+                        <tbody>
+                          <tr *ngFor="let climb of userClimbTypes">
+                            <td (click)="displayClimbType(climb)">
+                              {{ climb.recentGrade }}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div *ngIf="editClimbType">
+                        <input
+                          type="text"
+                          name="recentGrade"
+                          [(ngModel)]="managedUserClimbType.recentGrade"
+                          placeholder="managedUserClimbType.recentGrade"
+                        />
+                        Was Lead Climber:
+                        <input
+                          type="checkbox"
+                          name="leadClimb"
+                          [(ngModel)]="managedUserClimbType.leadClimb"
+                          placeholder="managedUserClimbType.leadClimb"
+                        />
+                        <button
+                          (click)="editClimbTypeList(managedUserClimbType)"
+                        >
+                          Save
+                        </button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Favorite Climbing areas</label>
+                      </div>
+                      <div class="col-md-6">
+                        <table>
+                          <tbody>
+                            <tr *ngFor="let area of favoriteClimbingAreas">
+                              <td>{{ area.name }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
 
-
-                                                          </tr>
-                                                        </tbody>
-                                                      </table>
-                                                      <div *ngIf = "editClimbType">
-                                                        <input type="text" name = "recentGrade" [(ngModel)] = "managedUserClimbType.recentGrade" placeholder="managedUserClimbType.recentGrade">
-                                                        Was Lead Climber: <input type="checkbox" name = "leadClimb" [(ngModel)] = "managedUserClimbType.leadClimb" placeholder="managedUserClimbType.leadClimb">
-                                                        <button (click)="editClimbTypeList(managedUserClimbType)">Save</button>
-                                                      </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Favorite Climbing areas</label>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                      <table>
-                                                        <tbody>
-                                                          <tr *ngFor= "let area of favoriteClimbingAreas">
-                                                            <td>{{area.name}}</td>
-                                                          </tr>
-                                                        </tbody>
-                                                      </table>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label></label>
-                                                    </div>
-                                                    <div class="col-md-6">
-
-                                                    </div>
-                                                </div>
-                                              </div>
-                                </div>
-                            </div>
-                        </div>
-
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label></label>
+                      </div>
+                      <div class="col-md-6"></div>
+                    </div>
+                  </div>
                 </div>
-                </div>
-                <button (click) = "updateUser(selectedUser)">Save</button>
-                <button class="btn btn-outline-danger" (click) = "disableUser(selectedUser)">Disable account</button>
-                <!-- <button (click) = disable(selectedUser)>Disable Profile</button> -->
-              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button (click)="updateUser(selectedUser)">Save</button>
+        <button
+          class="btn btn-outline-danger"
+          (click)="disableUser(selectedUser)"
+        >
+          Disable account
+        </button>
+        <!-- <button (click) = disable(selectedUser)>Disable Profile</button> -->
+      </form>
     </td>
-
   </tbody>
 </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- This is the div for the profile before the user hits the edit button -->
 
-
-<table *ngIf="selectedUser && !updateUserProfile" >
+<table *ngIf="selectedUser && !updateUserProfile">
   <tbody>
     <tr>
-    <!-- <td >
+      <!-- <td >
 <div class = "cols">
   <label >Messages</label>
 
@@ -184,74 +228,63 @@
         </ul>
 </div>
     </td> -->
-    <td >
-
+      <td>
         <!-- This is the div that shows when you're not editing -->
-        <div class="container emp-profile"  >
+        <div class="container emp-profile">
           <!-- <form method="post"> -->
-              <div class="row">
-                  <div class="col-md-4">
-                      <div class="profile-img">
-
-                          <img alt="{{selectedUser.profilePic}}"/>
-
-                      </div>
-                  </div>
-                  <div class="col-md-6">
-                      <div class="profile-head">
-                                  <h5>
-                                      {{selectedUser.firstName}} {{selectedUser.lastName}}
-                                  </h5>
-
-                          <p></p>
-
-                          <ul class="nav nav-tabs" id="myTab" role="tablist">
-                              <li class="nav-item">
-                                  Climbing Info
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="col-md-2" id="buttondiv">
-                    <button *ngIf = "checkIfCurrentUser(selectedUser.username) " (click)="setUpdateUser()">Edit Profile</button>
-                    <button *ngIf = " !checkIfCurrentUser(selectedUser.username)" (click) = "showMessageBox()" >Message {{selectedUser.username}}</button>
-
-                    <button *ngIf = "!checkIfCurrentUser(selectedUser.username)"
-
-                    (click) = "setIsFavoritedValue(selectedUser)" >
-                    Favorite  {{selectedUser.username}}
-                    </button>
-
-                   <!-- <input type="checkbox" name="isFavorited" value = "isFavorited" *ngIf = "!checkIfCurrentUser(selectedUser.username)"
-
-                    (change) = "setIsFavoritedValue(selectedUser)" >   -->
-
-
-
-                  </div>
-
-
-
+          <div class="row">
+            <div class="col-md-4">
+              <div class="profile-img">
+                <img alt="{{ selectedUser.profilePic }}" />
               </div>
-              <div class="row">
-                  <div class="col-md-4">
-                      <div class="profile-work">
-                          <p></p>
+            </div>
+            <div class="col-md-6">
+              <div class="profile-head">
+                <h5>
+                  {{ selectedUser.firstName }} {{ selectedUser.lastName }}
+                </h5>
 
-                          <p>About Me</p>
-                            Username: {{selectedUser.username}} <br>
-                            City: {{selectedUser.location.city}} <br>
-                            Has a Dog: {{selectedUser.hasDog}} <br>
-                            Age: {{age(selectedUser)}} <br>
-                            Favorite Beer: {{selectedUser.favoriteBeer}}
+                <p></p>
 
-                      </div>
-                  </div>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item">Climbing Info</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2" id="buttondiv">
+              <button
+                *ngIf="checkIfCurrentUser(selectedUser.username)"
+                (click)="setUpdateUser()"
+              >
+                Edit Profile
+              </button>
+              <button
+                *ngIf="!checkIfCurrentUser(selectedUser.username)"
+                (click)="showMessageBox()"
+              >
+                Message {{ selectedUser.username }}
+              </button>
+              <i (click)="setIsFavoritedValue(selectedUser)" class="fa fa-star hoverClickYellow" id="favclimber{{toFavOrNot}}"></i>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="profile-work">
+                <p></p>
 
-                  <div class="col-md-8">
-                      <div >
-                          <div >
-                                      <!-- <div class="row">
+                <p>About Me</p>
+                Username: {{ selectedUser.username }} <br />
+                City: {{ selectedUser.location.city }} <br />
+                Has a Dog: {{ selectedUser.hasDog }} <br />
+                Age: {{ age(selectedUser) }} <br />
+                Favorite Beer: {{ selectedUser.favoriteBeer }}
+              </div>
+            </div>
+
+            <div class="col-md-8">
+              <div>
+                <div>
+                  <!-- <div class="row">
                                           <div class="col-md-6">
                                               <label>Username</label>
                                           </div>
@@ -259,52 +292,54 @@
                                               <p>{{selectedUser.username}}</p>
                                           </div>
                                       </div> -->
-                                      <div class="row">
-                                          <div class="col-md-6">
-                                              <label>Gear</label>
-                                          </div>
-                                          <div class="col-md-6">
-                                            <table>
-                                              <tbody>
-                                                <tr *ngFor= "let gear of gearList">
-                                                  <td>{{gear.name}}</td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                          </div>
-                                      </div>
-                                      <div class="row">
-                                          <div class="col-md-6">
-                                              <label>Most recent Climb grades</label>
-                                          </div>
-                                          <div class="col-md-6">
-
-                                              <table>
-                                                <tbody>
-                                                  <tr *ngFor= "let climb of userClimbTypes">
-                                                    <td>{{climb.recentGrade}}</td> <br>
-                                                   <td *ngIf = "climb.leadClimb"> (Was Lead climber) </td>
-                                                  <td *ngIf = "!climb.leadClimb"> (Was not Lead climber) </td>
-                                                  </tr>
-                                                </tbody>
-                                              </table>
-                                          </div>
-                                      </div>
-                                      <div class="row">
-                                          <div class="col-md-6">
-                                              <label>Favorite Climbing areas</label>
-                                          </div>
-                                          <div class="col-md-6">
-                                            <table>
-                                              <tbody>
-                                                <tr *ngFor= "let area of favoriteClimbingAreas">
-                                                  <td>{{area.name}}</td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                          </div>
-                                      </div>
-                                      <!-- <div class="row">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Gear</label>
+                    </div>
+                    <div class="col-md-6">
+                      <table>
+                        <tbody>
+                          <tr *ngFor="let gear of gearList">
+                            <td>{{ gear.name }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Most recent Climb grades</label>
+                    </div>
+                    <div class="col-md-6">
+                      <table>
+                        <tbody>
+                          <tr *ngFor="let climb of userClimbTypes">
+                            <td>{{ climb.recentGrade }}</td>
+                            <br />
+                            <td *ngIf="climb.leadClimb">(Was Lead climber)</td>
+                            <td *ngIf="!climb.leadClimb">
+                              (Was not Lead climber)
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Favorite Climbing areas</label>
+                    </div>
+                    <div class="col-md-6">
+                      <table>
+                        <tbody>
+                          <tr *ngFor="let area of favoriteClimbingAreas">
+                            <td>{{ area.name }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- <div class="row">
                                           <div class="col-md-6">
                                               <label>Messages</label>
                                           </div>
@@ -318,51 +353,42 @@
                                             </table>
                                           </div>
                                       </div> -->
-                          </div>
-                      </div>
-                  </div>
+                </div>
               </div>
+            </div>
+          </div>
           <!-- </form> -->
-      </div>
-    </td> <br>
-      <td >
-        <div *ngIf = "showMessageTextBox">
-
-          <textarea [(ngModel)] = "newMessage.messageBody"  class="form-control" type="text" name="messageBody" cols="30" rows="3" placeholder="Type message here"></textarea>
-          <button (click) = "sendMessage(newMessage)">Send</button>
-          <button (click) = "showMessageBox()">Back to profile</button>
+        </div>
+      </td>
+      <br />
+      <td>
+        <div *ngIf="showMessageTextBox">
+          <textarea
+            [(ngModel)]="newMessage.messageBody"
+            class="form-control"
+            type="text"
+            name="messageBody"
+            cols="30"
+            rows="3"
+            placeholder="Type message here"
+          ></textarea>
+          <button (click)="sendMessage(newMessage)">Send</button>
+          <button (click)="showMessageBox()">Back to profile</button>
         </div>
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <label >Favorite Climbers</label>
+        <br />
+        <br />
+        <br />
+        <br />
+        <label>Favorite Climbers</label>
         <!-- list of favortie users  -->
-        <ul *ngFor= "let userFaves of favoriteUsers">
-          <li (click) = "showProfile(userFaves.id)" >{{userFaves.username}}</li>
+        <ul *ngFor="let userFaves of favoriteUsers">
+          <li (click)="showProfile(userFaves.id)">{{ userFaves.username }}</li>
         </ul>
       </td>
-</tr>
+    </tr>
   </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- <div id = "profile image"></div>
 

@@ -1,6 +1,7 @@
 package com.skilldistillery.crag.controllers;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.crag.entities.User;
 import com.skilldistillery.crag.services.AuthService;
+import com.skilldistillery.crag.services.UserService;
 
 @CrossOrigin({"*", "http://localhost:4210"})
 @RestController
@@ -20,6 +22,8 @@ public class AuthController {
 	
 	@Autowired
 	private AuthService authSvc;
+	@Autowired
+	private UserService userSvc;
 	
 	@PostMapping(path = "/register")
 	public User register(@RequestBody User user, HttpServletResponse res, Principal principal) {
@@ -33,7 +37,9 @@ public class AuthController {
 
 	@GetMapping(path = "/authenticate")
 	public User authenticate(Principal principal) {
-	    return authSvc.getUser(principal.getName());
+	    User user = authSvc.getUser(principal.getName());
+	    user.setLastLogin(LocalDateTime.now());
+	    return user;
 	}
 
 }
