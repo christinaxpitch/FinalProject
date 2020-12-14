@@ -1,4 +1,4 @@
-<h2>Registration Form</h2>
+<!-- <h2>Registration Form</h2>
 <form #registerForm = "ngForm">
   <div class='form-group'>
     <label for='firstName'>First Name:  </label>
@@ -20,4 +20,32 @@
   <input name='password' type='password' class='form-control' placeholder='Enter a password' ngModel>
 </div>
   <button name='SubmitRegistration' (click)='register(registerForm)'>Submit</button>
-</form>
+</form> -->
+
+<div class="bg-img">
+  <form class="container" #registerForm = "ngForm">
+    <h1>Register</h1>
+
+   <div class='form-group'>
+    <label for='firstName'>First Name:  </label>
+    <input name='firstName' type='text' class='form-control' placeholder='Enter your first name' ngModel>
+  </div>  <div class='form-group'>
+    <label for='lastName'>Last Name:  </label>
+    <input name='lastName' type='text' class='form-control' placeholder='Enter your last name' ngModel>
+  </div>
+  <div class='form-group'>
+  <label for='email'>Email:  </label>
+  <input name='email' type='email' class='form-control' placeholder='Enter your email' ngModel>
+</div>
+<div class='form-group'>
+  <label for='username'>Username:  </label>
+  <input name='username' type='text' class='form-control' placeholder='Enter a username' ngModel>
+</div>
+<div class='form-group'>
+  <label for='password'>Password:  </label>
+  <input name='password' type='password' class='form-control' placeholder='Enter a password' ngModel>
+</div>
+
+   <button class="btn" name='SubmitRegistration' (click)='register(registerForm)'>Submit</button>
+  </form>
+</div>

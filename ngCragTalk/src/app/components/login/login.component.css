@@ -14,11 +14,13 @@ body, html {
 
   min-height: 380px;
 
+
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  height: 125%;
 }
 
 /* Add styles to the form container */
@@ -29,6 +31,11 @@ body, html {
   max-width: 300px;
   padding: 16px;
   background-color: white;
+
+   position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* Full-width input fields */
