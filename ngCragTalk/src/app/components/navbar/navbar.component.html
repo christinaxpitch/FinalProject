@@ -69,16 +69,19 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/about']">About</a>
       </li>
-      <li class="nav-item" *ngIf="loggedIn()">
-        <a class="nav-link"  [routerLink]="['/climbingAreas']">Climbing Locations</a>
+      <li class="nav-item">
+        <a class="nav-link"  [routerLink]="['/climbingAreas']">Locations</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/event']">Events</a>
       </li>
-      <li class="nav-item" *ngIf="loggedIn()">
-        <a class="nav-link"  [routerLink]="['/message']">Message Inbox</a>
+      <li class="nav-item" *ngIf="loggedIn()" >
+        <a class="nav-link" [routerLink]="['/discovery']">Discovery</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="loggedIn()">
+        <a class="nav-link"  [routerLink]="['/message']">Messages</a>
+      </li>
+      <li class="nav-item" *ngIf="loggedIn()" >
         <a class="nav-link " [routerLink]="['/user/' + getIdFromLoggedInUser()]">Profile</a>
         <!-- <a class="nav-link " [routerLink]="['/user']">Profile</a> -->
       </li>
