@@ -108,13 +108,10 @@
   left: 16px;
 }
 
-.mytable tr:hover td {
-  background-color: #FEFEFE;
-  }
 
 
 body {
-  background-image: url("https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg");
+  /* background-image: url("https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg"); */
   background: url('https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   /* background-color: black; */
@@ -124,18 +121,44 @@ body {
 }
 
 .cardcharacter {
-  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+  /* box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   width: 40%;
+  /* width:200px;
   display: flex;
+  text-align:center;
+  display:block;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin-right: 10px;
+  margin-bottom: 1px; */
+  display: flex;
+  align-items: center;
+  height: 50 px;
+  width: 50 px;
+  /* vertical-align: middle; */
+
 }
 
-.cardcharacter:hover {
+/* .cardcharacter:hover {
   box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
-}
+} */
 
 .cc2 {
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  /* width: 40%; */
+  display: flex;
   display: inline-block;
   height: 100 px;
-  width: 100 px
+  width: 100 px;
+  /* width:200px; */
+  text-align:center;
+  display:block;
+  background-color: transparent;
+  border: 1px solid transparent;
+  margin-right: 10px;
+  margin-bottom: 1px;
+  flex: 0.7;
 }
+

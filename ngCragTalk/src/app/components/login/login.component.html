@@ -1,4 +1,4 @@
-<form #loginForm = "ngForm" class='form-inline'>
+<!-- <form #loginForm = "ngForm" class='form-inline'>
   <div class='form-group'>
     <label for='username'>Username:  </label>
     <input class='form-control' name='username' type='text' placeholder='Enter your username' ngModel>
@@ -8,4 +8,22 @@
   <input class='form-control' name='password' type='password' placeholder='Enter your password' ngModel>
 </div>
   <button name='SubmitRegistration' (click)='login(loginForm)'>Login</button>
-</form>
+</form> -->
+
+<div class="bg-img">
+  <form class="container" #loginForm = "ngForm">
+    <h1>Login</h1>
+
+   <div class='form-group'>
+    <label for='username'>Username</label>
+    <input class='form-control' name='username' type='text' placeholder='Enter your username' ngModel>
+	</div>
+
+    <div class='form-group'>
+    <label for='password'>Password:  </label>
+  <input class='form-control' name='password' type='password' placeholder='Enter your password' ngModel>
+</div>
+
+   <button class = "btn" name='SubmitRegistration' (click)='login(loginForm)'>Login</button>
+  </form>
+</div>
