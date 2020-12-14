@@ -32,14 +32,14 @@ class GearRepositoryTest {
 		
 	}
 	
-	@Test
-	void test2() {
-		Gear gear = repo.findByName("Grigri, 9.5mm Rope, chalk, helmet, 10 quickdraws, 120 cm sling, 5 locking carabiners, crash pad");
-		assertNotNull(gear);
-		assertEquals(1, gear.getId());
-		
-		
-	}
+//	@Test
+//	void test2() {
+//		Gear gear = repo.findByName("Grigri, 9.5mm Rope, chalk, helmet, 10 quickdraws, 120 cm sling, 5 locking carabiners, crash pad");
+//		assertNotNull(gear);
+//		assertEquals(1, gear.getId());
+//		
+//		
+//	}
 	
 
 }

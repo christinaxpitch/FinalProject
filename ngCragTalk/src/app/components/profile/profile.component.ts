@@ -50,9 +50,7 @@ export class ProfileComponent implements OnInit {
     const userId = parseInt(localStorage.getItem('userId'))
     this.userService.show(userId).subscribe(
       (data) => {
-        console.log('user retrieved');
         this.loggedInUser = data;
-        console.log(this.loggedInUser);
         const idStr = this.route.snapshot.paramMap.get('userId');
         // const id = this.auth.getCurrentUserId();
 
@@ -68,7 +66,7 @@ export class ProfileComponent implements OnInit {
         }
       },
       (err) => {
-        console.log('User ' + userId + ' not found.');
+        console.error('User ' + userId + ' not found.');
         this.router.navigateByUrl('notFound');
       }
     );
@@ -77,22 +75,16 @@ export class ProfileComponent implements OnInit {
   loadOtherUser(userId: number) {
     this.userService.show(userId).subscribe(
       (data) => {
-        console.log('profile retrieved');
         this.selectedUser = data;
         this.favoriteUsers = data.myListOfFavoriteUsers;
-        // this.getLoggedinUserObject(parseInt(localStorage.getItem('userId')));
-        console.log(this.loggedInUser);
-
         this.checkFavoriteUsersList(this.selectedUser);
         this.gearList = data.gearList;
         this.userClimbTypes = data.userClimbTypes;
         this.favoriteClimbingAreas = data.favoriteAreaList;
-        console.log(this.favoriteUsers);
         this.messages = data.myListOfReceivedMessages;
-        console.log(this.messages);
       },
       (err) => {
-        console.log('User ' + userId + ' not found.');
+        console.error('User ' + userId + ' not found.');
         this.router.navigateByUrl('notFound');
       }
     );
@@ -101,16 +93,13 @@ export class ProfileComponent implements OnInit {
     this.userService.update(user.id, user).subscribe(
       (data) => {
         user = data;
-        console.log('retrieved');
         this.router.navigateByUrl('update/' + user.id);
-        // this.reload();
       },
       (err) => {
         console.error('retrieved failed');
         console.error(err);
       }
     );
-    // window.location.reload();
   }
   setUpdateUser() {
     this.updateUserProfile = Object.assign({}, this.selectedUser);
@@ -124,7 +113,6 @@ export class ProfileComponent implements OnInit {
   showProfile(userId: number) {
     this.userService.show(userId).subscribe(
       (data) => {
-        console.log('profile retrieved');
         this.selectedUser = data;
         this.gearList = data.gearList;
         this.userClimbTypes = data.userClimbTypes;
@@ -132,7 +120,7 @@ export class ProfileComponent implements OnInit {
         this.favoriteUsers = data.myListOfFavoriteUsers;
       },
       (err) => {
-        console.log('User ' + userId + ' not found.');
+        console.error('User ' + userId + ' not found.');
         this.router.navigateByUrl('notFound');
       }
     );
@@ -159,7 +147,6 @@ export class ProfileComponent implements OnInit {
     this.userService.update(user.id, user).subscribe(
       (data) => {
         user = data;
-        console.log('retrieved');
         this.router.navigateByUrl('user/' + user.id);
       },
       (err) => {
@@ -198,10 +185,8 @@ export class ProfileComponent implements OnInit {
   }
 
   toggleUserToFavorites(user: User, isFavorited: boolean) {
-    console.log(isFavorited);
     this.userService.addUserToFavorites(user, isFavorited).subscribe(
       (data) => {
-        console.log('succesfully added user to favorites list');
       this.initializeUser();
         this.router.navigateByUrl('user/' + user.id);
       },
@@ -243,17 +228,15 @@ export class ProfileComponent implements OnInit {
   }
 
   sendMessage(message: Message) {
-    console.log(this.loggedInUser);
     message.receiver = this.selectedUser;
     message.sender = this.loggedInUser;
-    console.log(message);
 
     this.userService.createMessage(message, message.receiver.id).subscribe(
       (data) => {
         console.log('message sent succesfully');
       },
       (err) => {
-        console.log('message reply failed');
+        console.error('message reply failed');
       }
     );
     this.router.navigateByUrl('message');

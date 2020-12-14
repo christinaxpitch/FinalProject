@@ -16,6 +16,7 @@
     <class>com.skilldistillery.crag.entities.Media</class>
     <class>com.skilldistillery.crag.entities.Gear</class>
     <class>com.skilldistillery.crag.entities.ClimbType</class>
+    <class>com.skilldistillery.crag.entities.UserClimbType</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cragdb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />

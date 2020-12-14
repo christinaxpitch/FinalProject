@@ -186,7 +186,7 @@ export class DiscoveryComponent implements OnInit {
   }
 
   displayMessageBody(message: Message) {
-    // this.router.navigateByUrl('message/' + message);
+    this.router.navigateByUrl('message');
   }
 
   displayEvent(event) {

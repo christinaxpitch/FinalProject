@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
 })
 export class EventService {
   //when we change the environment to production: comment out baseUrl and change this.baseUrl to environment.baseUrl
-  private baseUrl = 'http://localhost:8090/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/event';
 
   constructor(private http: HttpClient, private authSvc: AuthService, private datePipe: DatePipe) { }
