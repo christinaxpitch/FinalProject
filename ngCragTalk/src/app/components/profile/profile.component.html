@@ -7,6 +7,12 @@
 />
 
 <!-- This is the update Div -->
+
+<div class="header">
+  <h1>Header</h1>
+  <p>My supercool header</p>
+</div>
+
 <table *ngIf="selectedUser && updateUserProfile">
   <tbody>
     <td>
@@ -61,7 +67,7 @@
                 <p></p>
 
                 <p>About Me</p>
-                Username:
+                <p class ="italicizeMe"> Username: </p>
                 <input
                   type="text"
                   name="username"
@@ -69,7 +75,7 @@
                   placeholder="selectedUser.username"
                 />
                 <br />
-                City:
+                <i>City:</i>
                 <input
                   type="text"
                   name="location"
@@ -85,7 +91,7 @@
                   placeholder="selectedUser.hasDog"
                 />
                 <br />
-                Age:
+                <i>Age:</i>
                 <input
                   type="date"
                   name="birthdate"
@@ -93,7 +99,7 @@
                   placeholder=""
                 />
                 <br />
-                Favorite Beer:
+                <i>Favorite Beer:</i>
                 <input
                   type="test"
                   name="favoriteBeer"
@@ -116,7 +122,7 @@
 
                   <div class="row">
                     <div class="col-md-6">
-                      <label>Gear</label>
+                      <label><i>Gear</i></label>
                     </div>
                     <div class="col-md-6">
                       <table>
@@ -141,7 +147,7 @@
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <label>Most recent Climb grades</label>
+                      <label><i>Most recent Climb grades</i></label>
                     </div>
                     <div class="col-md-6">
                       <table>
@@ -176,7 +182,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-6">
-                        <label>Favorite Climbing areas</label>
+                        <label><i>Favorite Climbing areas</i></label>
                       </div>
                       <div class="col-md-6">
                         <table>
