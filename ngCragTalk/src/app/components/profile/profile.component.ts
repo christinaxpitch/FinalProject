@@ -160,7 +160,8 @@ export class ProfileComponent implements OnInit {
               console.error(err);
               }
             );
-            // window.location.reload();
+
+            window.location.reload();
           }
           displayGear(gear: Gear) {
             this.editGear = true
@@ -199,7 +200,7 @@ export class ProfileComponent implements OnInit {
             this.userService.addUserToFavorites(user, isFavorited).subscribe(
               data=>{
                 console.log('succesfully added user to favorites list');
-                this.favoriteUsers = data.myListOfFavoriteUsers;
+                // this.favoriteUsers = data.myListOfFavoriteUsers;
 
                 // window.location.reload();
               },
@@ -208,7 +209,7 @@ export class ProfileComponent implements OnInit {
               console.error(err);
               }
             );
-            // this.checkUsersList = this.checkFavoriteUsersList(user);
+            this.router.navigateByUrl('user/' + user.id);
           }
 
           setIsFavoritedValue(user: User) {
