@@ -416,12 +416,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cragdb`;
-INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (1, 'Hi Christina! I just wanted to let you know that I saw we are interested in climbing in the same areas and also have Sunday\'s free to outdoor climb. Let me know if you would be interested in meeting up - I am pretty good at crimps and know a few good routes we can get you up to practice! PS: My dog is super cute, lol!!!', NULL, 1, 2);
-INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (2, 'Hi Timothy! Thanks for your message. I don\'t own any lead climbing gear, but I see that you do. Where are you trying to climb on your next day trip?', NULL, 2, 1);
-INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (3, 'Hello there! Would you want to climb in Boulder next Saturday?', NULL, 1, 3);
-INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (4, 'Hi Timothy! I haven\'t been climbing outdoors in a few months but I would love to set something up, maybe we can pick a couple easier routes. I have a book I can send some ideas of routes that might be good!', NULL, 3, 1);
-INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (5, 'Hi! I was wondering if you wanted to set up a climb day soon. I am lead climb certified at the gym but haven\'t tried lead climbing outdoors yet.', NULL, 4, 1);
-INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (6, 'Hi Jeanne! Nice to meet you. I think I saw you before at Ubergrippen Indoor Crag. I would love to set something up for a day trip, maybe up in Golden?', NULL, 1, 4);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (1, 'Hi Christina! I just wanted to let you know that I saw we are interested in climbing in the same areas and also have Sunday\'s free to outdoor climb. Let me know if you would be interested in meeting up - I am pretty good at crimps and know a few good routes we can get you up to practice! PS: My dog is super cute, lol!!!', '2020-12-11 7:00:00', 1, 2);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (2, 'Hi Timothy! Thanks for your message. I don\'t own any lead climbing gear, but I see that you do. Where are you trying to climb on your next day trip?', '2020-12-11 7:00:00', 2, 1);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (3, 'Hello there! Would you want to climb in Boulder next Saturday?', '2020-12-11 7:00:00', 1, 3);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (4, 'Hi Timothy! I haven\'t been climbing outdoors in a few months but I would love to set something up, maybe we can pick a couple easier routes. I have a book I can send some ideas of routes that might be good!', '2020-12-11 7:00:00', 3, 1);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (5, 'Hi! I was wondering if you wanted to set up a climb day soon. I am lead climb certified at the gym but haven\'t tried lead climbing outdoors yet.', '2020-12-11 7:00:00', 4, 1);
+INSERT INTO `message` (`id`, `message_body`, `created_at`, `sender_id`, `receiver_id`) VALUES (6, 'Hi Jeanne! Nice to meet you. I think I saw you before at Ubergrippen Indoor Crag. I would love to set something up for a day trip, maybe up in Golden?', '2020-12-11 7:00:00', 1, 4);
 
 COMMIT;
 
@@ -632,22 +632,35 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cragdb`;
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (1, 'https://i1.wp.com/lafabriqueverticale.com/wp-content/uploads/2019/09/crag-dog-acceptable-or-not-climbing.jpg?fit=720%2C338&ssl=1', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (2, 'https://www.rei.com/dam/rinckenberger_111815_1406_main_lg.jpg', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (3, 'https://cdn2.apstatic.com/photos/climb/114075045_smallMed_1518138144.jpg', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (4, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDjJAL6Cl-MewTAHOmbjLh6gFEGTONV2zKRw&usqp=CAU', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (5, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDifXddjDF5WMh_1MUDVaVDsVzrh9n-uVD2Q&usqp=CAU', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (6, 'https://coloradowildernessridesandguides.com/wp-content/uploads/2017/02/golden-cliff.jpg', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (7, 'https://www.colorado.com/sites/default/files/styles/1000x685/public/climbing.jpg?itok=cFTUlMVQ', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (8, 'https://www.liveabout.com/thmb/8g_tjxnfrsqNWnzRvnz7ao_MkMk=/613x407/filters:no_upscale():max_bytes(150000):strip_icc()/GardenofGods_FingerFace037_3-56a1693a3df78cf7726a8052.jpg', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (9, 'https://cdn2.apstatic.com/photos/climb/109599023_medium_1494357676.jpg', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (10, 'https://www.splitterchoss.com/wp-content/uploads/2010/02/bob-winter-rock.jpg', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (11, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShGjH0wrgnweANMT9vkGkFluSpny-0ox8hfw&usqp=CAU', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (12, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWOpN4DEt72V_bdSaylfv1yJjUrxXrTeulJQ&usqp=CAU', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (13, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkKmuvkthuY6Wm-0gQ5EA-es2WZwKcm17giw&usqp=CAU', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (14, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5IX6uw1Yeg9z0ERF5h2BLItGeixg0I_BFBQ&usqp=CAU', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (15, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQo3hyOHREn431b4Z4PTxudOk_orIN1LnbOA&usqp=CAU', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (16, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQaQi0EDYuNzftoFigvEBTStquph3FDSNkWA&usqp=CAU', 1);
-INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (17, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg0RwlxsS1CT51rdsNLMF6NWoXlBnpboAsnA&usqp=CAU', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (1, 'https://cdn2.apstatic.com/photos/climb/114075045_smallMed_1518138144.jpg', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (2, 'https://cdn2.apstatic.com/photos/climb/109599023_medium_1494357676.jpg', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShGjH0wrgnweANMT9vkGkFluSpny-0ox8hfw&usqp=CAU', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (4, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkKmuvkthuY6Wm-0gQ5EA-es2WZwKcm17giw&usqp=CAU', 1);
+
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (5, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQo3hyOHREn431b4Z4PTxudOk_orIN1LnbOA&usqp=CAU', 1);
+
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (6, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkKmuvkthuY6Wm-0gQ5EA-es2WZwKcm17giw&usqp=CAU', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (7, 'https://cdn2.apstatic.com/photos/climb/114075045_smallMed_1518138144.jpg', 1);
+
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (8, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDjJAL6Cl-MewTAHOmbjLh6gFEGTONV2zKRw&usqp=CAU', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (9, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDifXddjDF5WMh_1MUDVaVDsVzrh9n-uVD2Q&usqp=CAU', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (10, 'https://coloradowildernessridesandguides.com/wp-content/uploads/2017/02/golden-cliff.jpg', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (11, 'https://www.colorado.com/sites/default/files/styles/1000x685/public/climbing.jpg?itok=cFTUlMVQ', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (12, 'https://www.liveabout.com/thmb/8g_tjxnfrsqNWnzRvnz7ao_MkMk=/613x407/filters:no_upscale():max_bytes(150000):strip_icc()/GardenofGods_FingerFace037_3-56a1693a3df78cf7726a8052.jpg', 1);
+
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (13, 'https://www.splitterchoss.com/wp-content/uploads/2010/02/bob-winter-rock.jpg', 1);
+
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (14, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWOpN4DEt72V_bdSaylfv1yJjUrxXrTeulJQ&usqp=CAU', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (15, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkKmuvkthuY6Wm-0gQ5EA-es2WZwKcm17giw&usqp=CAU', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (16, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5IX6uw1Yeg9z0ERF5h2BLItGeixg0I_BFBQ&usqp=CAU', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (17, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQaQi0EDYuNzftoFigvEBTStquph3FDSNkWA&usqp=CAU', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (18, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg0RwlxsS1CT51rdsNLMF6NWoXlBnpboAsnA&usqp=CAU', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (19, 'https://www.rei.com/dam/rinckenberger_111815_1406_main_lg.jpg', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (20, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkKmuvkthuY6Wm-0gQ5EA-es2WZwKcm17giw&usqp=CAU', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (21, 'https://i1.wp.com/lafabriqueverticale.com/wp-content/uploads/2019/09/crag-dog-acceptable-or-not-climbing.jpg?fit=720%2C338&ssl=1', 1);
+INSERT INTO `media` (`id`, `media_url`, `user_id`) VALUES (22, 'https://www.splitterchoss.com/wp-content/uploads/2010/02/bob-winter-rock.jpg', 1);
+
+
+
 
 COMMIT;

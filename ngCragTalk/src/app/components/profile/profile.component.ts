@@ -37,6 +37,7 @@ export class ProfileComponent implements OnInit {
   showMessageTextBox: boolean = false;
   newMessage: Message = new Message();
   loggedInUser: User = new User();
+  checkUsersList: boolean = null;
   // will need to add an array for a users gear list and use the controller path and the method to get a users gear list
   ngOnInit(): void {
     const idStr = this.route.snapshot.paramMap.get('userId');
@@ -104,6 +105,7 @@ export class ProfileComponent implements OnInit {
               this.gearList = data.gearList;
               this.userClimbTypes = data.userClimbTypes;
               this.favoriteClimbingAreas = data.favoriteAreaList;
+              this.favoriteUsers = data.myListOfFavoriteUsers;
             },
             (err) => {
               console.log('User ' + userId + ' not found.');
@@ -158,7 +160,8 @@ export class ProfileComponent implements OnInit {
               console.error(err);
               }
             );
-            // window.location.reload();
+
+            window.location.reload();
           }
           displayGear(gear: Gear) {
             this.editGear = true
@@ -177,7 +180,9 @@ export class ProfileComponent implements OnInit {
             this.editClimbType = true;
             this.managedUserClimbType = climb;
           }
+
           disableUser(user: User) {
+            user.enabled = false;
             this.userService.disableUser(user.id, user).subscribe(
               data=>{
               },
@@ -188,20 +193,43 @@ export class ProfileComponent implements OnInit {
             );
           }
 
-          addUserToFavorites(user: User) {
-            this.isFavorited = !this.isFavorited;
-            this.userService.addUserToFavorites(user, this.isFavorited).subscribe(
+          toggleUserToFavorites(user: User, isFavorited: boolean) {
+            // isFavorited: boolean = false;
+            // this.isFavorited = isFavorited;
+            console.log(isFavorited);
+            this.userService.addUserToFavorites(user, isFavorited).subscribe(
               data=>{
                 console.log('succesfully added user to favorites list');
+                // this.favoriteUsers = data.myListOfFavoriteUsers;
 
-                window.location.reload();
+                // window.location.reload();
               },
               err=>{
               console.error('retrieved failed')
               console.error(err);
               }
             );
+            this.router.navigateByUrl('user/' + user.id);
           }
+
+          setIsFavoritedValue(user: User) {
+            this.isFavorited = !this.isFavorited;
+            this.toggleUserToFavorites(user, this.isFavorited);
+
+          }
+
+          // checkFavoriteUsersList(user: User): boolean {
+          //   for(var i =0; i < this.favoriteUsers.length; i++) {
+          //         if(this.favoriteUsers[i].username == user.username){
+          //           this.isFavorited = true;
+          //           return true;
+
+          //         }
+          //         else {
+          //           return false;
+          //         }
+          //       }
+          // }
 
           showMessageBox() {
           this.showMessageTextBox = !this.showMessageTextBox;
@@ -227,5 +255,7 @@ export class ProfileComponent implements OnInit {
             );
             this.router.navigateByUrl('message');
           }
+
+
 
 }

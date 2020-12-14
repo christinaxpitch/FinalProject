@@ -1,17 +1,24 @@
+<br>
+<h4>{{selectedUser.username}}'s Messages</h4>
+
 <div *ngIf = "showInbox">
 <table>
   <thead>
+    <caption>Inbox</caption>
     <tr>
-  <th>Inbox</th>
-
+  <th>Date</th>
+  <th>From</th>
+  <th>Message</th>
     </tr>
   </thead>
 <tbody>
 
 <tr *ngFor = "let message of messages" >
+<td (click) = "displayMessageBody(message)" rowspan="1">{{message.createdAt | date: 'MMMM d, y'}}</td>
 
-<td (click) = "displayMessageBody(message)">{{message.sender.username}}
+<td (click) = "displayMessageBody(message)" rowspan="1" >{{message.sender.username}}
 </td>
+<td (click) = "displayMessageBody(message)" rowspan="1">{{message.messageBody}}</td>
 </tr>
 </tbody>
 </table>
@@ -33,16 +40,20 @@
 <div *ngIf = "showInbox">
   <table>
     <thead>
+      <caption>Outbox</caption>
       <tr>
-    <th>Outbox</th>
+        <th>Date</th>
+        <th>Sent To</th>
+        <th>Message</th>
       </tr>
     </thead>
   <tbody>
 
   <tr *ngFor = "let message of sentMessages" >
-
-  <td (click) = "displayOutboxMessageBody(message)">{{message.receiver.username}}
+  <td (click) = "displayMessageBody(message)" rowspan="1">{{message.createdAt | date: 'MMMM d, y'}}</td>
+  <td (click) = "displayOutboxMessageBody(message)" rowspan="1" >{{message.receiver.username}}
   </td>
+  <td (click) = "displayMessageBody(message)" rowspan="1">{{message.messageBody}}</td>
   </tr>
   </tbody>
   </table>

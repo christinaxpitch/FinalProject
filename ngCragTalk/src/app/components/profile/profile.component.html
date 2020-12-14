@@ -142,6 +142,7 @@
                 </div>
                 </div>
                 <button (click) = "updateUser(selectedUser)">Save</button>
+                <button class="btn btn-outline-danger" (click) = "disableUser(selectedUser)">Disable account</button>
                 <!-- <button (click) = disable(selectedUser)>Disable Profile</button> -->
               </form>
     </td>
@@ -214,7 +215,19 @@
                   <div class="col-md-2" id="buttondiv">
                     <button *ngIf = "checkIfCurrentUser(selectedUser.username) " (click)="setUpdateUser()">Edit Profile</button>
                     <button *ngIf = " !checkIfCurrentUser(selectedUser.username)" (click) = "showMessageBox()" >Message {{selectedUser.username}}</button>
-                    <button *ngIf = " !checkIfCurrentUser(selectedUser.username) " (click) = "addUserToFavorites(selectedUser)" >Favorite  {{selectedUser.username}}</button>
+
+                    <button *ngIf = "!checkIfCurrentUser(selectedUser.username)"
+
+                    (click) = "setIsFavoritedValue(selectedUser)" >
+                    Favorite  {{selectedUser.username}}
+                    </button>
+
+                   <!-- <input type="checkbox" name="isFavorited" value = "isFavorited" *ngIf = "!checkIfCurrentUser(selectedUser.username)"
+
+                    (change) = "setIsFavoritedValue(selectedUser)" >   -->
+
+
+
                   </div>
 
 
@@ -326,8 +339,8 @@
         <br>
         <label >Favorite Climbers</label>
         <!-- list of favortie users  -->
-        <ul *ngFor= "let user of favoriteUsers">
-          <li (click) = "showProfile(user.id)" >{{user.username}}</li>
+        <ul *ngFor= "let userFaves of favoriteUsers">
+          <li (click) = "showProfile(userFaves.id)" >{{userFaves.username}}</li>
         </ul>
       </td>
 </tr>
