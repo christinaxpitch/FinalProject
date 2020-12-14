@@ -135,7 +135,7 @@ export class ProfileComponent implements OnInit {
             return this.auth.checkIfCurrentUser(username);
           }
 
-        editGearList(gear: Gear): void {
+          editGearList(gear: Gear): void {
             this.editGear = !this.editGear;
             this.userService.updateGear(gear.id, gear).subscribe(
               data => {
@@ -145,53 +145,58 @@ export class ProfileComponent implements OnInit {
               err =>{
                 console.error('attempt to update gear list failed')
                 console.error(err);
+              }
+              );
+            }
+            updateUser(user: User): void {
+              this.userService.update(user.id, user).subscribe(
+                data=>{
+                  user = data;
+                  console.log('retrieved');
+                  // this.router.navigateByUrl('user/' + user.id);
+                },
+                err=>{
+                  console.error('retrieved failed')
+                  console.error(err);
                 }
-            );
-          }
-          updateUser(user: User): void {
-            this.userService.update(user.id, user).subscribe(
-              data=>{
-                user = data;
-                console.log('retrieved');
-                this.router.navigateByUrl('user/' + user.id);
-              },
-              err=>{
-              console.error('retrieved failed')
-              console.error(err);
-              }
-            );
+                );
 
-            window.location.reload();
-          }
-          displayGear(gear: Gear) {
-            this.editGear = true
-            this.managedGear = gear;
-          }
-        editClimbTypeList(climb: UserClimbType): void {
-          this.editClimbType = !this.editClimbTypeList;
-          this.userService.updateUserClimbType(climb.id, climb).subscribe(
-            data => {
-              climb = data;
-              this.editClimbType = false;
+                window.location.reload();
               }
-            );
-          }
-          displayClimbType(climb: UserClimbType) {
-            this.editClimbType = true;
-            this.managedUserClimbType = climb;
-          }
+              displayGear(gear: Gear) {
+                this.editGear = true
+                this.managedGear = gear;
+              }
+              editClimbTypeList(climb: UserClimbType): void {
+                this.editClimbType = !this.editClimbTypeList;
+                this.userService.updateUserClimbType(climb.id, climb).subscribe(
+                  data => {
+                    climb = data;
+                    this.editClimbType = false;
+                  }
+                  );
+                }
+                displayClimbType(climb: UserClimbType) {
+                  this.editClimbType = true;
+                  this.managedUserClimbType = climb;
+                }
 
-          disableUser(user: User) {
-            user.enabled = false;
-            this.userService.disableUser(user.id, user).subscribe(
-              data=>{
-              },
-              err=>{
-              console.error('retrieved failed')
-              console.error(err);
-              }
-            );
-          }
+
+                disableUser(user: User) {
+                  user.enabled = false;
+                  this.userService.disableUser(user.id, user).subscribe(
+                    data=>{
+                      user = data;
+                    },
+                    err=>{
+                      console.error('retrieved failed')
+                      console.error(err);
+                    }
+                    );
+                    this.auth.logout();
+                    window.location.reload();
+                  }
+
 
           toggleUserToFavorites(user: User, isFavorited: boolean) {
             // isFavorited: boolean = false;
