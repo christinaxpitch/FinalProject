@@ -18,11 +18,11 @@
   box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
 }
 .hoverClickBlue:hover {
-  color: white;
+  color: black;
   background-color: #4cc9f0;
-  -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
-  -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
-  box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+  box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
 }
 
 .hoverClickOrange:hover {
@@ -32,9 +32,23 @@
   -moz-box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
   box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
 }
+.hoverClickYellow:hover {
+  color: #ffd700;
+  background-color: #ffd700;
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(255, 215, 0, 1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(255, 215, 0, 1);
+  box-shadow: 10px 10px 99px 6px rgba(255, 215, 0, 1);
+}
 #gearLabel{
   font-weight: bold;
 }
-.checked{
-  color : orange;
+#favclimber {
+  color: gold;
+}
+#notFavClimber {
+  color: white;
+
+}
+.card{
+  background-color: lightsteelblue;
 }

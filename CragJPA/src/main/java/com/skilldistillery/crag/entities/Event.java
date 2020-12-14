@@ -56,7 +56,7 @@ public class Event {
 	private User createdBy;
 	
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"favoriteAreaList", "createdEvents", "myListOfFavoriteUsers", "listOfUsersWhoHaveFavoritedMe", "mediaList", "climbTypes", "myListOfReceivedMessages", "myListOfSentMessages"})
 	@ManyToMany(mappedBy = "attendedEvents")
 	private List<User> attendedUsers;
 	
