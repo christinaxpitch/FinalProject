@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
    this.authSvc.login(userName, password).subscribe(
 
      (data) => {
-        this.router.navigateByUrl('user/' + data.id);
+        // this.router.navigateByUrl('user/' + data.id);
+        this.router.navigateByUrl('discovery');
         localStorage.setItem('id', data.id.toString());
      },
      (err) => {
