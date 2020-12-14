@@ -64,8 +64,8 @@
             <div class="card text-dark bg-info mb-3">
             <img src="{{event.imgUrl}}" class="card-img-top" alt="go climbing!">
               <div class="card-body">
-              <h5 class="hoverClickGreen card-title" (click)='displayEvent(event)'>{{event.eventName}}</h5>
-              <h6 class="card-subtitle mb-2" style="font-weight: bold; color: #4cc9f0;">{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</h6>
+              <h5 class="hoverClickBlue card-title" (click)='displayEvent(event)'>{{event.eventName}}</h5>
+              <h6 class="card-subtitle mb-2" style="font-weight: bold; color: lightsalmon;">{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</h6>
               <p class="card-text">{{event.description}}</p>
               <p class="hoverClickOrange" (click)='showProfile(event.createdBy.id)'><b>Host:  </b>{{event.createdBy.username}}</p>
               </div>
