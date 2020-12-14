@@ -142,6 +142,7 @@
                 </div>
                 </div>
                 <button (click) = "updateUser(selectedUser)">Save</button>
+                <button class="btn btn-outline-danger" (click) = "disableUser(selectedUser)">Disable account</button>
                 <!-- <button (click) = disable(selectedUser)>Disable Profile</button> -->
               </form>
     </td>
@@ -220,6 +221,7 @@
                     (click) = "setIsFavoritedValue(selectedUser)" >
                     Favorite  {{selectedUser.username}}
                     </button>
+
                    <!-- <input type="checkbox" name="isFavorited" value = "isFavorited" *ngIf = "!checkIfCurrentUser(selectedUser.username)"
 
                     (change) = "setIsFavoritedValue(selectedUser)" >   -->
