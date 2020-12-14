@@ -1,3 +1,4 @@
+import { EventComponent } from './../event/event.component';
 
 import { Event } from 'src/app/models/event';
 import {
@@ -13,7 +14,7 @@ import { User } from 'src/app/models/user';
 import { EventService } from 'src/app/services/event.service';
 import { UserClimbType } from 'src/app/models/user-climb-type';
 import { MessageComponent } from '../message/message.component';
-
+import { formatDate, DatePipe } from '@angular/common';
 @Component({
   selector: 'app-discovery',
   templateUrl: './discovery.component.html',
@@ -31,13 +32,15 @@ export class DiscoveryComponent implements OnInit {
   showMessageList: boolean = false;
   userClimbTypes: UserClimbType[] = [];
   myEvents: Event[] = [];
+  today: Date = new Date ();
 
   constructor(
     private userSvc: UserService,
     private currentRoute: ActivatedRoute,
     private router: Router,
     private authSvc: AuthService,
-    private eventSvc: EventService
+    private eventSvc: EventService,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -107,14 +110,14 @@ export class DiscoveryComponent implements OnInit {
   }
 
   showUpcomingEvents() {
-    console.log(this.loggedInUser);
+    this.showEventList = true;
     this.eventSvc.index().subscribe(
       (events) => {
-        console.log(events);
-        this.events = events.filter(
-          // (event) => event.eventDate > this.loggedInUser.lastLogin
-          (event) => event.attendedUsers.indexOf(this.loggedInUser) > -1
-        );
+        this.events = events;
+        // this.events = events.filter(
+        //   // (event) => event.eventDate > this.loggedInUser.lastLogin
+        //   (event) => event.eventDate > this.today
+        //   );
       },
       (err) => {
         console.error(
@@ -198,7 +201,6 @@ export class DiscoveryComponent implements OnInit {
 };
 
 displayEvent(event){
-  this.eventSvc.show(event.id);
-  this.router.navigateByUrl('event');
+  this.router.navigateByUrl('event/' + event.id);
 };
 }
