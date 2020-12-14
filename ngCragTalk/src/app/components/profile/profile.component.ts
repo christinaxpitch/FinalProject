@@ -105,6 +105,7 @@ export class ProfileComponent implements OnInit {
               this.gearList = data.gearList;
               this.userClimbTypes = data.userClimbTypes;
               this.favoriteClimbingAreas = data.favoriteAreaList;
+              this.favoriteUsers = data.myListOfFavoriteUsers;
             },
             (err) => {
               console.log('User ' + userId + ' not found.');
