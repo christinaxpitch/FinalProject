@@ -370,6 +370,9 @@ COMMIT;
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `climb_type` (`id`, `name`, `description`, `img_url`) VALUES (1, 'sport', 'Sport climbing is a form of rock climbing that may rely on permanent anchors fixed to the rock for protection, in which a rope that is attached to the climber is clipped into the anchors to arrest a fall, or that involves climbing short distances with a crash pad underneath as protection', 'https://uploads-ssl.webflow.com/5732511283fb5b4c17492b27/597926a1ed093500015cd8ab_FL_Mirsky_Rifle.png');
+INSERT INTO `climb_type` (`id`, `name`, `description`, `img_url`) VALUES (2, 'trad', 'Traditional climbing, is a style of rock climbing in which a climber or group of climbers place all gear required to protect against falls, and remove it when a pitch is complete. Traditional bolted face climbing means the bolts were placed on lead and/or with hand drills', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOKJjSndL6axAh0ERVLNPteR8hCtB0KxCcvA&usqp=CAU');
+INSERT INTO `climb_type` (`id`, `name`, `description`, `img_url`) VALUES (3, 'ice', 'Ice climbing is a lot like rock climbing – on ice. Rather than climbing on rocky surfaces, ice climbers use crampons, picks, ropes and other equipment to climb on ice. ... Glaciers and frozen waterfalls are by far the most popular ice climbing venues.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRswoJ_Nq68acDRuZvIKEwf2vhxCeI3S7eMlg&usqp=CAU');
+INSERT INTO `climb_type` (`id`, `name`, `description`, `img_url`) VALUES (4, 'bouldering', 'Bouldering is rock climbing stripped down to its raw essentials. Leaving behind ropes and harnesses and just using climbing shoes and a bag of chalk over safety mats, your challenge is to climb short but tricky bouldering "problems" (a route, or sequence of moves) using balance, technique, strength, and your brain.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1pSD5_7hEAuqR7Y2VKKJhF3eWkTqIh0CkcQ&usqp=CAU');
 
 COMMIT;
 
@@ -400,7 +403,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cragdb`;
-INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (7, 'Crags & Brews', 'A saturday morning group climb in Gregory Canyon. Post climb cooldown at Avery Brewery Company!', 'https://cdn2.apstatic.com/photos/climb/112572084_medium_1494313872.jpg', 1, '2021-05-01 08:30:00', 1, '2020-12-05 08:30:00');
+INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (7, 'Crags & Brews', 'A saturday morning group climb in Gregory Canyon. Post climb cooldown at Avery Brewery Company!', 'https://cdn2.apstatic.com/photos/climb/112572084_medium_1494313872.jpg', 1, '2021-05-01 08:30:00', 3, '2020-12-05 08:30:00');
 INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (2, 'Rock On', 'An all day group climb at Eldorado Canyon State Park. Please be reminded that there is a fee to park, and carpooling is encouraged. Early start so that we can set the routes up and leave before the sun scorches the rock up!', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0mzHsxbrJF5bq1K_rQAr-sLmWne5lx4ouaQ&usqp=CAU', 1, '2021-05-30 7:00:00', 3, '2020-12-05 09:00:00');
 INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (3, 'Hip, Hip, BELAY!', 'Our plan is to get a group climb together for a day and Clear Creek Canyon. All are welcome and we will be setting up a variety of routes! Belayer\'s welcome, climber\'s welcome, friend\'s welcome, dog\'s welcome. You don\'t have to meet right at 7 am, but you can come for as little or as long as you would like! :)', 'http://3.bp.blogspot.com/_CTCxYQvSGPk/SlIu1wJH6bI/AAAAAAAAApY/yPt6dwCL6yw/s400/D-COEL0690.JPG', 4, '2021-06-01 07:00:00', 4, '2020-12-05 09:00:00');
 INSERT INTO `event` (`id`, `event_name`, `description`, `img_url`, `climbing_area_id`, `event_date`, `created_by_user_id`, `created_at`) VALUES (4, 'Kids and Krags', 'Come join us on our kid centered event! Please have indoor experience for this. This event is to help expose kids that have been practicing indoors to the wonderful world of outdoor rock climbing! Please bring your own gear and snacks for the day. All ages welcome! Must be supervised with one parent the entire day, even if parent isn\'t climbing or belaying. Thank you!', 'https://i.imgur.com/eFREpPf.jpg', 1, '2021-05-13 08:30:00', 2, '2020-12-05 08:30:00');
@@ -556,16 +559,16 @@ COMMIT;
 START TRANSACTION;
 USE `cragdb`;
 INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (1, 1, '5.11a', 1);
-INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (2, 1, '5.8c', 0);
-INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (3, 1, '5.7', 0);
-INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (4, 1, '5.11a', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (2, 2, '5.8c', 0);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (3, 4, '5.7', 0);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (4, 4, '5.11a', 1);
 INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (5, 1, '5.9', 1);
-INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (6, 1, '5.8', 1);
-INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (7, 1, '5.6', 0);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (6, 2, '5.8', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (7, 3, '5.6', 0);
 INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (8, 1, '5.13', 1);
-INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (9, 1, '5.13', 1);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (9, 2, '5.13', 1);
 INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (10, 1, '5.11a', 1);
-INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (11, 1, '5.10', 0);
+INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (11, 4, '5.10', 0);
 INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (12, 1, '5.7', 0);
 INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (13, 1, '5.11a', 1);
 INSERT INTO `user_climb_type` (`user_id`, `climb_type_id`, `recent_grade`, `lead_climb`) VALUES (14, 1, '5.12b', 1);
@@ -622,7 +625,16 @@ INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (2, 4);
 INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (3, 4);
 INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (4, 4);
 INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (5, 4);
-INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (6, 4);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (6, 3);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (1, 3);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (2, 3);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (3, 3);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (4, 3);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (5, 3);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (13, 3);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (14, 3);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (15, 3);
+INSERT INTO `favorite_area` (`user_id`, `climbing_area_id`) VALUES (16, 3);
 
 
 
