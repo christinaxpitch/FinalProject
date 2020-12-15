@@ -4,11 +4,31 @@
 />
 
 <!-- This is the update Div -->
+<div style="vertical-align: top; background-image: url('https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg');  background-repeat:no-repeat; background-size: cover;">
+  <br>
+  <br>
+   <!-- <h2 class = "title" style="color: whitesmoke" >Profile</h2> -->
+   <div class="title">Profile: {{selectedUser.username}}</div>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
 
-<div class="header">
-  <h1>Header</h1>
-  <p>My supercool header</p>
-</div>
+ </div>
+
+
+<!-- <div class="header">
+  <h1>Profile</h1>
+</div> -->
+
+
+
 
 <table *ngIf="selectedUser && updateUserProfile">
   <tbody>
@@ -62,7 +82,7 @@
                 <p></p>
 
                 <p>About Me</p>
-                <p class ="italicizeMe"> Username: </p>
+                <i><p class ="italicizeMe"> Username: </p></i>
                 <input
                   type="text"
                   name="username"
@@ -125,7 +145,7 @@
                           [(ngModel)]="managedGear.name"
                           placeholder="managedGear.name"
                         />
-                        <button (click)="editGearList(managedGear)">
+                        <button class="btn btn-outline-primary" (click)="editGearList(managedGear)">
                           Save
                         </button>
                       </div>
@@ -159,7 +179,7 @@
                           [(ngModel)]="managedUserClimbType.leadClimb"
                           placeholder="managedUserClimbType.leadClimb"
                         />
-                        <button
+                        <button class="btn btn-outline-primary"
                           (click)="editClimbTypeList(managedUserClimbType)"
                         >
                           Save
@@ -192,7 +212,7 @@
             </div>
           </div>
         </div>
-        <button (click)="updateUser(selectedUser)">Save</button>
+        <button class="btn btn-outline-primary" (click)="updateUser(selectedUser)">Save</button>
         <button *ngIf="checkIfCurrentUser(selectedUser.username)"
           class="btn btn-outline-danger"
           (click)="disableUser(selectedUser)"
@@ -230,28 +250,28 @@
               </div>
             </div>
             <div class="col-md-2" id="buttondiv">
-              <button class="btn btn-outline-primary"
+              <!-- <button class="btn btn-outline-primary"
                 *ngIf="checkIfCurrentUser(selectedUser.username)"
                 (click)="setUpdateUser()"
-              >Edit Profile</button>
+              >Edit Profile</button> -->
 
 
         <!-- <button (click) = disable(selectedUser)>Disable Profile</button> -->
-              <button
+              <!-- <button
                 *ngIf="!checkIfCurrentUser(selectedUser.username)"
                 (click)="showMessageBox()"
               >
                 Message {{ selectedUser.username }}
-              </button>
+              </button> -->
               <!--Favorite-->
-              <div *ngIf="!checkIfCurrentUser(selectedUser.username)">
+              <!-- <div *ngIf="!checkIfCurrentUser(selectedUser.username)"> -->
               <!-- {{toFavOrNot}} Me? -->
-              <i
+              <!-- <i
                 (click)="setIsFavoritedValue(selectedUser)"
                 class="fa fa-star hoverClickYellow"
                 id="favclimber{{ toFavOrNot }}"
-              ></i>
-            </div>
+              ></i> -->
+            <!-- </div> -->
             </div>
           </div>
           <div class="row">
@@ -264,6 +284,25 @@
                 Has a Dog: {{ selectedUser.hasDog }} <br />
                 Age: {{ age(selectedUser) }} <br />
                 Favorite Beer: {{ selectedUser.favoriteBeer }}
+                <button class="btn btn-outline-primary"
+                *ngIf="checkIfCurrentUser(selectedUser.username)"
+                (click)="setUpdateUser()"
+              >Edit Profile</button>
+              <br>
+              <button class = "btn btn-outline-primary"
+                *ngIf="!checkIfCurrentUser(selectedUser.username)"
+                (click)="showMessageBox()"
+              >
+                Message {{ selectedUser.username }}
+              </button>
+              <br>
+              <div *ngIf="!checkIfCurrentUser(selectedUser.username)">
+              <i
+              (click)="setIsFavoritedValue(selectedUser)"
+              class="fa fa-star hoverClickYellow"
+              id="favclimber{{ toFavOrNot }}"
+            ></i>
+          </div>
               </div>
             </div>
             <div class="col-md-8">
@@ -350,3 +389,6 @@
     </tr>
   </tbody>
 </table>
+
+
+<img src="/Users/christinapitch/SD/Java/FinalProject/DB/0.png" alt="">
