@@ -2,7 +2,6 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
-
 <!-- This is the update Div -->
 <div style="vertical-align: top; background-image: url('https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg');  background-repeat:no-repeat; background-size: cover;">
   <br>
@@ -19,17 +18,10 @@
    <br>
    <br>
    <br>
-
  </div>
-
-
 <!-- <div class="header">
   <h1>Profile</h1>
 </div> -->
-
-
-
-
 <table *ngIf="selectedUser && updateUserProfile">
   <tbody>
     <td>
@@ -66,10 +58,9 @@
                     placeholder="selectedUser.lastName"
                   />
                 </h5>
-
                 <p></p>
 
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+<ul class="nav nav-tabs" id="myTab" role="tablist">
                   <li class="nav-item">Climbing Info</li>
                 </ul>
               </div>
@@ -80,7 +71,6 @@
             <div class="col-md-4">
               <div class="profile-work">
                 <p></p>
-
                 <p>About Me</p>
                 <i><p class ="italicizeMe"> Username: </p></i>
                 <input
@@ -145,7 +135,7 @@
                           [(ngModel)]="managedGear.name"
                           placeholder="managedGear.name"
                         />
-                        <button class="btn btn-outline-primary" (click)="editGearList(managedGear)">
+                        <button (click)="editGearList(managedGear)">
                           Save
                         </button>
                       </div>
@@ -179,7 +169,7 @@
                           [(ngModel)]="managedUserClimbType.leadClimb"
                           placeholder="managedUserClimbType.leadClimb"
                         />
-                        <button class="btn btn-outline-primary"
+                        <button
                           (click)="editClimbTypeList(managedUserClimbType)"
                         >
                           Save
@@ -212,19 +202,16 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-outline-primary" (click)="updateUser(selectedUser)">Save</button>
+        <button (click)="updateUser(selectedUser)">Save</button>
         <button *ngIf="checkIfCurrentUser(selectedUser.username)"
           class="btn btn-outline-danger"
           (click)="disableUser(selectedUser)"
         >Disable account</button>
-
       </form>
     </td>
   </tbody>
 </table>
-
 <!-- This is the div for the profile before the user hits the edit button -->
-
 <table *ngIf="selectedUser && !updateUserProfile">
   <tbody>
     <tr>
@@ -254,8 +241,6 @@
                 *ngIf="checkIfCurrentUser(selectedUser.username)"
                 (click)="setUpdateUser()"
               >Edit Profile</button> -->
-
-
         <!-- <button (click) = disable(selectedUser)>Disable Profile</button> -->
               <!-- <button
                 *ngIf="!checkIfCurrentUser(selectedUser.username)"
@@ -363,7 +348,7 @@
       </td>
       <br />
       <td>
-        <div *ngIf="showMessageTextBox">
+        <!-- <div *ngIf="showMessageTextBox">
           <textarea
             [(ngModel)]="newMessage.messageBody"
             class="form-control"
@@ -375,7 +360,7 @@
           ></textarea>
           <button (click)="sendMessage(newMessage)">Send</button>
           <button (click)="showMessageBox()">Back to profile</button>
-        </div>
+        </div> -->
         <br />
         <br />
         <br />
@@ -389,6 +374,17 @@
     </tr>
   </tbody>
 </table>
-
-
-<img src="/Users/christinapitch/SD/Java/FinalProject/DB/0.png" alt="">
+<div *ngIf="showMessageTextBox">
+  <textarea
+    [(ngModel)]="newMessage.messageBody"
+    class="form-control"
+    type="text"
+    name="messageBody"
+    cols="30"
+    rows="3"
+    placeholder="Type message here"
+  ></textarea>
+  <button class = "btn btn-outline-primary" (click)="sendMessage(newMessage)">Send</button>
+  <button class = "btn btn-outline-primary" (click)="showMessageBox()">Back to profile</button>
+</div>
+<!-- <img src="/Users/christinapitch/SD/Java/FinalProject/DB/0.png" alt=""> -->
