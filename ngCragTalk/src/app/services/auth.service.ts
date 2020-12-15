@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { User } from '../models/user';
 import { tap, catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8090/'
+  private baseUrl = environment.baseUrl;
+
   constructor(private http: HttpClient) { }
 
   login(username, password): Observable<User> {

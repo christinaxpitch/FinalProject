@@ -1,37 +1,58 @@
-#leftPane{
-  background-color: lightseagreen;
+h3{
+  color: #695a4d;
+  text-align: center;
+}
+h5{
+  color: #252f2d;
+  font-weight: bold;
+}
+h6{
+  color: #2e69bd;
+}
+p{
+  color: #695a4d;
+}
+.cc2 {
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+  /* transition: 0.3s; */
+  /* width: 40%; */
+  /* display: flex; */
+  /* display: inline-block; */
+  height: 100 px;
+  width: 100 px;
+  /* width:200px; */
+  /* text-align:center; */
+  /* display:block; */
+  background-color: #c8d4e3;
+  border: 1px solid transparent;
+  margin-right: 10px;
+  margin-bottom: 1px;
+  /* flex: 0.7; */
 }
 #users{
-  background-color: lightcyan;
+  /* background-color: lightcyan; */
 }
 #newEvents{
-  background-color: lightsalmon;
+  /* background-color: lightsalmon; */
 }
 #rightPane{
-  background-color: lightblue;
+  /* background-color: lightblue; */
 }
 .hoverClickGreen:hover {
   color: white;
-  background-color: #b9e769;
+  background-color: forestgreen;
   -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
   -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
   box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
 }
 .hoverClickBlue:hover {
   color: white;
-  background-color: #4cc9f0;
-  -webkit-box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
-  -moz-box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
-  box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+  background-color: #5f8dcd;
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(255,255,255, 1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(255,255,255, 1);
+  box-shadow: 10px 10px 99px 6px rgba(255,255,255, 1);
 }
 
-.hoverClickOrange:hover {
-  color: white;
-  background-color: #FF760D;
-  -webkit-box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
-  -moz-box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
-  box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
-}
 .hoverClickYellow:hover {
   color: #ffd700;
   background-color: #ffd700;
@@ -42,6 +63,11 @@
 #gearLabel{
   font-weight: bold;
 }
+label{
+  font-weight: bold;
+  color: #5f8dcd;
+  ;
+}
 #favclimber {
   color: gold;
 }
@@ -51,5 +77,22 @@
 
 }
 .card{
-  background-color: lightsteelblue;
+  background-color: #F0F0F0;
+  color: #5f8dcd;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+  /* background:  transparent; */
 }
+
+/* Header/Logo Title */
+.header {
+  background-image: url("https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg");
+    /* padding: 60px; */
+    height: 200px;
+   /* text-align: top-left; */
+   color: #695a4d;
+   font-family: Arial, Helvetica, sans-serif;
+    /* color: #87a0b5; */
+    font-size: 30px;
+    /* background-repeat: no-repeat; */
+    background-size: 300 px 100 px;
+  }

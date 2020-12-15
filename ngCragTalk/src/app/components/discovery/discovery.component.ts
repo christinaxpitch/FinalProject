@@ -49,7 +49,7 @@ export class DiscoveryComponent implements OnInit {
       if (!isNaN(id)) {
         this.userSvc.show(id).subscribe(
           (user) => {
-            this.selectedUser = user;
+            // this.selectedUser = user;
             this.loggedInUser = user;
             this.reload();
           },
@@ -85,6 +85,7 @@ export class DiscoveryComponent implements OnInit {
           this.users = data.filter((user) => user.id !== loggedInUserId);
           this.userClimbTypes = this.loggedInUser.userClimbTypes;
           this.showNewMessages();
+          this.showRecommendedUsers(this.users,this.loggedInUser);
           this.showUpcomingEvents();
         },
         (fail) => {
