@@ -363,7 +363,7 @@
       </td>
       <br />
       <td>
-        <div *ngIf="showMessageTextBox">
+        <!-- <div *ngIf="showMessageTextBox">
           <textarea
             [(ngModel)]="newMessage.messageBody"
             class="form-control"
@@ -375,7 +375,7 @@
           ></textarea>
           <button (click)="sendMessage(newMessage)">Send</button>
           <button (click)="showMessageBox()">Back to profile</button>
-        </div>
+        </div> -->
         <br />
         <br />
         <br />
@@ -390,5 +390,19 @@
   </tbody>
 </table>
 
+<div *ngIf="showMessageTextBox">
+  <textarea
+    [(ngModel)]="newMessage.messageBody"
+    class="form-control"
+    type="text"
+    name="messageBody"
+    cols="30"
+    rows="3"
+    placeholder="Type message here"
+  ></textarea>
+  <button class = "btn btn-outline-primary" (click)="sendMessage(newMessage)">Send</button>
+  <button class = "btn btn-outline-primary" (click)="showMessageBox()">Back to profile</button>
+</div>
 
 <img src="/Users/christinapitch/SD/Java/FinalProject/DB/0.png" alt="">
+
