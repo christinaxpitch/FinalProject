@@ -69,7 +69,7 @@ class UserTest {
 	void test4() {
 		assertNotNull(user);
 		assertTrue(user.getCreatedEvents().size() > 0);
-		assertEquals("Crags & Brews", user.getCreatedEvents().get(0).getEventName());
+		assertEquals("C3 (CCube) Crag, Chalk, & Chat", user.getCreatedEvents().get(0).getEventName());
 
 	}
 
@@ -77,7 +77,7 @@ class UserTest {
 	void test5() {
 		assertNotNull(user);
 		assertTrue(user.getAttendedEvents().size() > 0);
-		assertEquals("Crags & Brews", user.getAttendedEvents().get(0).getEventName());
+		assertEquals("Kids and Krags", user.getAttendedEvents().get(0).getEventName());
 
 	}
 	
@@ -108,8 +108,7 @@ class UserTest {
 	void test9() {
 		assertNotNull(user);
 		assertTrue(user.getMediaList().size() > 0);
-		assertEquals("https://i1.wp.com/lafabriquev"
-				+ "erticale.com/wp-content/uploads/2019/09/crag-dog-acceptable-or-not-climbing.jpg?fit=720%2C338&ssl=1", user.getMediaList().get(0).getMediaUrl());
+		assertEquals("https://cdn2.apstatic.com/photos/climb/114075045_smallMed_1518138144.jpg", user.getMediaList().get(0).getMediaUrl());
 	}
 	                             
 	@Test

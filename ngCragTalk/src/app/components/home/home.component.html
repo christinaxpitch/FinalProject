@@ -72,7 +72,7 @@ lightDOM=true autoplay=true pauseOnHover=true loop=true>
     </tr>
   </thead>
   <tbody>
-    <tr (click)='eventClick()' *ngFor="let recent of recentClimbs.slice().reverse()" >
+    <tr class="hoverClickBlueBrown" (click)='eventClick()' *ngFor="let recent of recentClimbs.slice().reverse()" >
       <td>{{recent.eventName}}</td>
       <td>{{recent.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</td>
       <!-- <td>{{recent.description}}</td> -->
@@ -96,7 +96,7 @@ lightDOM=true autoplay=true pauseOnHover=true loop=true>
     </tr>
   </thead>
   <tbody>
-    <tr class="hoverClickBlue" (click)='eventClick()' *ngFor="let group of groupClimbs">
+    <tr class="hoverClickBlueBrown" (click)='eventClick()' *ngFor="let group of groupClimbs">
       <td>{{group.eventName}}</td>
       <td>{{group.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</td>
       <!-- <td>{{group.description}}</td> -->

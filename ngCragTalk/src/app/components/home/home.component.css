@@ -162,11 +162,11 @@ body {
   flex: 0.7;
 }
 
-.hoverClickBlue:hover {
+.hoverClickBlueBrown:hover {
   color: white;
-  background-color: #4cc9f0;
-  -webkit-box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
-  -moz-box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
-  box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+  background-color: #5f8dcd;
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(105,90,77, 1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(105,90,77, 1);
+  box-shadow: 10px 10px 99px 6px rgba(105,90,77, 1);
 }
 
