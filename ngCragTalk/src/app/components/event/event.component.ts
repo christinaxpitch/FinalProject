@@ -49,6 +49,7 @@ export class EventComponent implements OnInit {
         this.eventService.show(id).subscribe(
           (event) => {
             this.selected = event;
+            this.getClimbingAreas();
             this.reload();
           },
           (fail) => {
@@ -69,6 +70,7 @@ export class EventComponent implements OnInit {
           this.showAuthorizedStuff = true;
         }
         this.events = data;
+        this.getClimbingAreas();
       },
       (fail) => {
         console.error('EventComponent.reload(): error getting events');
@@ -114,20 +116,35 @@ export class EventComponent implements OnInit {
     this.userSvc.show(createdById);
     this.router.navigateByUrl('user/' + createdById);
   }
-  showAddEventForm() {
-    this.showAuthorizedStuff = false;
+
+  getClimbingAreas(){
     this.climbAreaSrv.index().subscribe(
       (climbAreas) => {
         this.climbingAreas = climbAreas;
-        this.displayTable = false;
-        this.selected = null;
-        this.showAddForm = true;
       },
       (error) =>{
         console.error('EventComponent.showAddEventForm().climbAreaSvc.index(): error getting climbing areas');
         console.error(error);
       }
       );
+  }
+  showAddEventForm() {
+    this.showAuthorizedStuff = false;
+        this.displayTable = false;
+        this.selected = null;
+        this.showAddForm = true;
+    // this.climbAreaSrv.index().subscribe(
+    //   (climbAreas) => {
+    //     this.climbingAreas = climbAreas;
+    //     this.displayTable = false;
+    //     this.selected = null;
+    //     this.showAddForm = true;
+    //   },
+    //   (error) =>{
+    //     console.error('EventComponent.showAddEventForm().climbAreaSvc.index(): error getting climbing areas');
+    //     console.error(error);
+    //   }
+    //   );
   }
   addEvent(): void {
     this.eventService.create(this.newEvent, this.climbingAreaId).subscribe(
@@ -142,7 +159,15 @@ export class EventComponent implements OnInit {
         console.error('EventComponent.addEvent(): error adding event');
         console.error(fail);
       }
-    );
+      );
+    }
+    cancelAdd(): void {
+      this.displayTable = true;
+      this.selected = null;
+      this.loggedInUserIsEventCreator = false;
+      this.showAddForm = false;
+      this.showAuthorizedStuff = true;
+    this.router.navigateByUrl('event');
   }
   deleteEvent(eventId: number): void {
     this.eventService.destroy(eventId).subscribe(

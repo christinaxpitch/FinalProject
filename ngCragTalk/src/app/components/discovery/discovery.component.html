@@ -1,9 +1,20 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <script src="https://kit.fontawesome.com/5f2f2d49e7.js" crossorigin="anonymous"></script>
-<div class="header">
-  <h1>{{pageTitle}}</h1>
-
-</div>
+<div style="vertical-align: top; background-image: url('https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg');  background-repeat:no-repeat; background-size: cover;">
+  <br>
+  <br>
+  <h2 class="titlediv" style="color: whitesmoke;" >&nbsp;&nbsp;{{pageTitle}}</h2>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+ </div>
   <br>
   <br>
 <div class="row align-items-top">
@@ -14,7 +25,7 @@
       <div class="card-body">
     <div class="cc2">
     <div *ngFor="let message of messages">
-      <h6 (click)="displayMessageBody(message)" style="font-weight: bold;" class="hoverClickBlue">{{message.sender.username}}</h6>
+      <h6 (click)="displayMessageBody(message)" style="font-weight: bold;" class="hoverClickBlueBrown">{{message.sender.username}}</h6>
     </div>
     <br>
   </div>
@@ -32,7 +43,7 @@
               <div class="card mb-3">
               <img src="{{user.profilePic}}" class="card-img-top" alt="climber profilePic">
                 <div class="card-body">
-                <h5 class="hoverClickBlue card-title" style="font-weight: bold;" (click)="showProfile(user.id)">{{user.username}}</h5>
+                <h5 class="hoverClickBlueBrown card-title" style="font-weight: bold;" (click)="showProfile(user.id)">{{user.username}}</h5>
                 <i (click)="addFav(user)" class="fa fa-star hoverClickYellow" id="notFavClimber"></i>
                 <br>
                 <label for="gear">Gear: </label>
@@ -60,7 +71,7 @@
     <div class="cc2">
     <div *ngFor="let climber of loggedInUser.myListOfFavoriteUsers">
       <i (click)="removeFav(climber)" class="fa fa-star" id="favclimber">&nbsp;</i>
-      <label for="favclimber" (click)="showProfile(climber.id)" style="font-weight: bold;" class="hoverClickBlue">{{climber.username}}</label>
+      <label for="favclimber" (click)="showProfile(climber.id)" style="font-weight: bold;" class="hoverClickBlueBrown">{{climber.username}}</label>
     </div>
     <br>
   </div>
@@ -80,10 +91,10 @@
             <div class="card mb-3">
             <img src="{{event.imgUrl}}" class="card-img-top" alt="go climbing!">
               <div class="card-body">
-              <h5 class="hoverClickBlue card-title" (click)='displayEvent(event)'>{{event.eventName}}</h5>
+              <h5 class="hoverClickBlueBrown card-title" (click)='displayEvent(event)'>{{event.eventName}}</h5>
               <h6 class="card-subtitle mb-2">{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</h6>
               <p class="card-text">{{event.description}}</p>
-              <p class="hoverClickBlue" (click)='showProfile(event.createdBy.id)'><b>Host:  </b>{{event.createdBy.username}}</p>
+              <p class="hoverClickBlueBrown" (click)='showProfile(event.createdBy.id)'><b>Host:  </b>{{event.createdBy.username}}</p>
               </div>
             </div>
           </div>

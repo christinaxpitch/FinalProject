@@ -18,14 +18,25 @@
   color: whitesmoke;
 }
 .tableContents:hover{
-  background-color: blue;
+  /* background-color: blue; */
+  color: white;
+  background-color: #5f8dcd;
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(105,90,77, 1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(105,90,77, 1);
+  box-shadow: 10px 10px 99px 6px rgba(105,90,77, 1);
 }
 .tablez{
   background-color: #7a8ca2;
   color: whitesmoke;
 }
 .tablez:hover{
-  background-color: blue;
+  /* background-color: blue;
+   */
+   color: white;
+   background-color: #5f8dcd;
+   -webkit-box-shadow: 10px 10px 99px 6px rgba(105,90,77, 1);
+   -moz-box-shadow: 10px 10px 99px 6px rgba(105,90,77, 1);
+   box-shadow: 10px 10px 99px 6px rgba(105,90,77, 1);
 }
 
 .titlediv{

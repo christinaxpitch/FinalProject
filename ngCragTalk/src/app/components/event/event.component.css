@@ -26,7 +26,28 @@
   -moz-box-shadow: 10px 10px 99px 6px rgb(171, 202, 222);
   box-shadow: 10px 10px 99px 6px rgb(13, 167, 202);
 }
+.hoverClickBlueBrown:hover {
+  color: white;
+  background-color: #5f8dcd;
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(105,90,77, 1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(105,90,77, 1);
+  box-shadow: 10px 10px 99px 6px rgba(105,90,77, 1);
+}
+h5 {
+  font-weight: bold;
+  font-family: Georigia, serif;
+  text-align: center;
+}
+h6{
+  color: #5f8dcd;
+  font-family: Georigia, serif;
+}
 
+.card{
+  background-color: transparent;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+  /* background:  transparent; */
+}
 #eventDetails {
 width: 33%;
 align-self: center;
@@ -38,10 +59,10 @@ text-align: center;
 
 }
 
-h5 {
-  text-align: center;
-}
 
+p{
+  font-family: Georigia, serif;
+}
 #image {
   margin-left: auto;
 margin-right: auto;
