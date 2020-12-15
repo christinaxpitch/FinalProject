@@ -27,7 +27,7 @@ class EventRepositoryTest {
 		User user = userRepo.findByUsername("shakawithme");
 		Event event = repo.findByCreatedByAndId(user, 1);
 		assertNotNull(event);
-		assertEquals("Crags & Brews", event.getEventName());
+		assertEquals("C3 (CCube) Crag, Chalk, & Chat", event.getEventName());
 	
 	}
 	
