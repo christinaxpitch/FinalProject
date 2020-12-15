@@ -97,12 +97,12 @@ class UserTest {
 
 	}
 	
-	@Test
-	void test8() {
-		assertNotNull(user);
-		assertTrue(user.getMyListOfFavoriteUsers().size() > 0);
-		assertEquals("Christina", user.getMyListOfFavoriteUsers().get(0).getFirstName());
-	}
+//	@Test
+//	void test8() {
+//		assertNotNull(user);
+//		assertTrue(user.getMyListOfFavoriteUsers().size() > 0);
+//		assertEquals("Christina", user.getMyListOfFavoriteUsers().get(0).getFirstName());
+//	}
 	
 	@Test
 	void test9() {
