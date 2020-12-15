@@ -145,7 +145,7 @@
                           [(ngModel)]="managedGear.name"
                           placeholder="managedGear.name"
                         />
-                        <button (click)="editGearList(managedGear)">
+                        <button class="btn btn-outline-primary" (click)="editGearList(managedGear)">
                           Save
                         </button>
                       </div>
@@ -179,7 +179,7 @@
                           [(ngModel)]="managedUserClimbType.leadClimb"
                           placeholder="managedUserClimbType.leadClimb"
                         />
-                        <button
+                        <button class="btn btn-outline-primary"
                           (click)="editClimbTypeList(managedUserClimbType)"
                         >
                           Save
@@ -212,7 +212,7 @@
             </div>
           </div>
         </div>
-        <button (click)="updateUser(selectedUser)">Save</button>
+        <button class="btn btn-outline-primary" (click)="updateUser(selectedUser)">Save</button>
         <button *ngIf="checkIfCurrentUser(selectedUser.username)"
           class="btn btn-outline-danger"
           (click)="disableUser(selectedUser)"
