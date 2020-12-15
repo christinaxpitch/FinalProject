@@ -1,32 +1,75 @@
-
-<div style="vertical-align: top; background-image: url('https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg');  background-repeat:no-repeat; background-size: cover; ">
+<div style="vertical-align: top; background-image: url('https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg');  background-repeat:no-repeat; background-size: cover;">
+ <br>
+ <br>
+  <h2 style="color: whitesmoke" >{{pageTitle}}</h2>
   <br>
-<br>
-<br>
-<br>
-<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
+</div>
+<br>
+<button class="btn btn-outline-primary" (click)="showAddEventForm()" id="btnCreateEvent" style="vertical-align: top;" >Create An Event</button>
+
+
+<!-- <div>
   <div class="row align-items-center">
     <div class="col-4">
     </div>
     <div class="col-4">
-      <!-- <h1 class='text-center'>{{pageTitle}}</h1> -->
-      <h1 style="text-align: left;" >{{pageTitle}}</h1>
+      <h1 class='text-center'>{{pageTitle}}</h1>
+      <h1>{{pageTitle}}</h1>
     </div>
     <div class="col-4" *ngIf="showAuthorizedStuff">
       <button class="btn btn-outline-primary" (click)="showAddEventForm()" id="btnCreateEvent" style="vertical-align: top;" >Create An Event</button>
     </div>
   </div>
+</div>  -->
+
+<br>
+<br>
+<br>
+
+<div class = "float-container" *ngIf="selected && !editEvent">
+
+<div class="float-child" id="eventDetails" >
+  <div class="image">
+    <img id = "image" src="{{selected.imgUrl}}" style="width:300px;height:300px">
+  </div>
 </div>
-<br>
-<br>
-<br>
-<div id="eventDetails" *ngIf="selected && !editEvent">
-  <div>
+
+  <div class="float-child">
+    <div class = "details">
     <h5>{{selected.eventName }}</h5>
     <p>{{selected.description}}</p>
     <p>Date: {{selected.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</p>
-    <img src="{{selected.imgUrl}}" style="width:300px;height:300px">
+    <p class="hoverClickOrange" (click)='showProfile(selected.createdBy.id)'>Host: {{selected.createdBy.username}}</p>
+    <button class="btn btn-outline-primary" (click)="showTable()">Show All</button>
+    <button  class="btn btn-outline-primary" *ngIf="loggedInUserIsEventCreator" (click)="setEditEvent()">Edit</button>
+    <button class="btn btn-outline-primary" *ngIf="loggedInUserIsEventCreator" (click)="deleteEvent(selected.id)">Delete</button>
+  <br>
+  <br>
+  <br>
+</div>
+  </div>
+
+</div>
+
+<!-- this is the old display div for a single event -->
+
+<!-- <div class = "container">
+<div id="eventDetails" *ngIf="selected && !editEvent">
+  <div class="eventDetailsBody">
+    <h5>{{selected.eventName }}</h5>
+    <img id = "image" src="{{selected.imgUrl}}" style="width:300px;height:300px">
+    <p>{{selected.description}}</p>
+    <p>Date: {{selected.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</p>
     <p class="hoverClickOrange" (click)='showProfile(selected.createdBy.id)'>Host: {{selected.createdBy.username}}</p>
     <button class="btn btn-outline-primary" (click)="showTable()">Show All</button>
     <button  class="btn btn-outline-primary" *ngIf="loggedInUserIsEventCreator" (click)="setEditEvent()">Edit</button>
@@ -36,6 +79,9 @@
   <br>
   </div>
 </div>
+</div> -->
+
+
 <div id="editFormDiv" *ngIf="selected && editEvent">
   <input type="text" name = "eventName" [(ngModel)] = "editEvent.eventName">
   <input type="text" name = "description" [(ngModel)] = "editEvent.description">

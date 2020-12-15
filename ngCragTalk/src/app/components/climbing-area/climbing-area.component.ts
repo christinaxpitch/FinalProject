@@ -73,9 +73,9 @@ export class ClimbingAreaComponent implements OnInit {
   ngOnInit(): void {
     if(this.auth.checkLogin()){
       this.loadClimbEvents();
+
     }
     else {
-
 
       this.router.navigateByUrl('login');
     }

@@ -1,30 +1,35 @@
-body{
-  background-color: wheat;
-}
 
-.title{
-  text-align: center;
-  outline-style: double;
-background-color: sienna;}
 
 .areaName{
-  background-color: sienna;
+  background-color: #45556d;
   text-decoration: overline;
   text-align: center;
+  color: whitesmoke;
 }
 .events{
   text-decoration: overline;
-  background-color: darkslategray;
+  background-color: #657282;
+  color: whitesmoke;
 }
+
+
 .tableContents{
-  background-color: olivedrab;
+  background-color: #87a0b5;
+  color: whitesmoke;
+}
+.tableContents:hover{
+  background-color: blue;
 }
 .tablez{
-  background-color: olive;
-  -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
-  -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
-  box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  background-color: #7a8ca2;
+  color: whitesmoke;
+}
+.tablez:hover{
+  background-color: blue;
+}
 
+.titlediv{
+  font-size: 30px;
 }
 img {
   width: auto;
@@ -42,5 +47,9 @@ tr{
 th{
   width: 500px;
 }
-table{table-layout: fixed;}
+table{
+  table-layout: fixed;
+  border-spacing: 0ch;
+  padding: 0%;
+  border: none}
 

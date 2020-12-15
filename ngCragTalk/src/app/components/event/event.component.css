@@ -1,29 +1,65 @@
 
 .hoverClickGreen:hover {
-  color: white;
+  /* color: white;
   background-color: #b9e769;
   -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
   -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
-  box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1); */
+  color:black;
+  /* background-color: #87a0b5; */
+  -webkit-box-shadow: 10px 10px 99px 6px rgb(171, 202, 222);
+  -moz-box-shadow: 10px 10px 99px 6px rgb(171, 202, 222);
+  box-shadow: 10px 10px 99px 6px rgb(13, 167, 202);
 }
 .hoverClickBlue:hover {
-  color: white;
-  background-color: #4cc9f0;
+  color: black;
+  /* background-color: #4cc9f0; */
   -webkit-box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
   -moz-box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
   box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
 }
 
 .hoverClickOrange:hover {
-  color: white;
-  background-color: #FF760D;
-  -webkit-box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
-  -moz-box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
-  box-shadow: 10px 10px 99px 6px rgba(255, 118, 13, 1);
+  color: black;
+  /* background-color: #87a0b5; */
+  -webkit-box-shadow: 10px 10px 99px 6px rgb(171, 202, 222);
+  -moz-box-shadow: 10px 10px 99px 6px rgb(171, 202, 222);
+  box-shadow: 10px 10px 99px 6px rgb(13, 167, 202);
 }
 
-.title {
-  position: absolute;
-  top: 8px;
-  left: 16px;
+#eventDetails {
+width: 33%;
+align-self: center;
+/* background-color:#45556d; */
+color: white;
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+
 }
+
+h5 {
+  text-align: center;
+}
+
+#image {
+  margin-left: auto;
+margin-right: auto;
+}
+
+.container {
+  justify-content: center;
+}
+
+.float-container {
+  border: 3px solid #fff;
+  padding: 20px;
+}
+
+.float-child {
+  width: 50%;
+  float: left;
+  padding: 20px;
+
+}
+
