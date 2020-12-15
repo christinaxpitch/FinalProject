@@ -1,5 +1,7 @@
 body{
   background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+  position: fixed;
+  display: inline-block;
 }
 .emp-profile{
   padding: 3%;
@@ -160,16 +162,27 @@ body {
 }
 
 /* Header/Logo Title */
-.header {
-background-image: url("https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg");
-  padding: 60px;
-  text-align: top-left;
-  color: white;
-  font-size: 30px;
+/* .header { */
+/* background-image: url("https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg"); */
+  /* padding: 60px; */
+  /* text-align: top-left; */
+  /* color: white; */
+  /* font-size: 30px; */
   /* background-repeat: no-repeat; */
-  background-size: 300 px 100 px;
-}
+  /* background-size: 300 px 100 px; */
+  /* object-fit: cover; */
+/* } */
 
 .italicizeMe {
   font-style: italic;
+}
+
+.title {
+  font-family :Monaco;
+  font-weight: bold;
+  position: absolute;
+   top: 50x;
+   left: 50px;
+   font-size: 200%;
+   color: white;
 }
