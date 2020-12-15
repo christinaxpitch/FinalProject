@@ -264,30 +264,50 @@
               <div class="profile-work">
                 <p></p>
                 <p>About Me</p>
+                <div *ngIf="!checkIfCurrentUser(selectedUser.username)">
+                  <i
+                  (click)="setIsFavoritedValue(selectedUser)"
+                  class="fa fa-star hoverClickYellow"
+                  id="favclimber{{ toFavOrNot }}"
+                ></i>
+              </div>
                 Username: {{ selectedUser.username }} <br />
                 City: {{ selectedUser.location.city }} <br />
                 Has a Dog: {{ selectedUser.hasDog }} <br />
                 Age: {{ age(selectedUser) }} <br />
                 Favorite Beer: {{ selectedUser.favoriteBeer }}
+                <br>
                 <button class="btn btn-outline-primary"
                 *ngIf="checkIfCurrentUser(selectedUser.username)"
                 (click)="setUpdateUser()"
               >Edit Profile</button>
               <br>
-              <button class = "btn btn-outline-primary"
+              <!-- <button class = "btn btn-outline-primary"
                 *ngIf="!checkIfCurrentUser(selectedUser.username)"
                 (click)="showMessageBox()"
               >
                 Message {{ selectedUser.username }}
-              </button>
+              </button> -->
+              <div id="send-btn">
+                <button id="mailButton" *ngIf="!checkIfCurrentUser(selectedUser.username)"
+                (click)="showMessageBox()">
+                  <svg width="25px" height="25px" viewBox="0 0 402 403" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="email" transform="translate(-65.000000, -45.000000)" fill-rule="nonzero">
+                          <path d="M462.409,75.155 L242.847,390.775 L139.609,372.39 L457.101,53.485 L460.81,57.194 C465.62,62.005 466.294,69.57 462.409,75.155 Z" id="Path" fill="#55A4F9"></path>
+                          <path d="M139.61,372.39 L121.225,269.152 L436.767,49.645 C442.397,45.729 450.023,46.408 454.873,51.257 L458.515,54.899 L139.61,372.39 Z M242.847,390.775 L263.045,370.577 L213.856,333.5 L242.847,390.775 Z" id="Shape" fill="#1380E2"></path>
+                          <polygon id="Path" fill="#4172CC" points="184.157 303.801 121.225 269.153 139.61 250.768"></polygon>
+                          <path d="M454.998,51.383 L184.176,303.82 L68.873,188.517 C63.654,183.298 65.694,174.417 72.667,171.998 L434.216,46.609 C441.486,44.088 449.557,45.942 454.998,51.383 Z M460.617,57.002 L213.837,333.48 L323.483,443.126 C328.702,448.345 337.583,446.305 340.002,439.332 L465.391,77.784 C467.912,70.514 466.058,62.443 460.617,57.002 Z" id="Shape" fill="#A7D0FC"></path>
+                          <path d="M465.391,77.785 L394.817,281.279 C382.208,317.636 335.906,328.271 308.696,301.061 C289.148,281.513 288.257,250.104 306.666,229.48 L460.617,57.002 C466.058,62.443 467.912,70.514 465.391,77.785 L465.391,77.785 Z M434.215,46.609 L230.721,117.183 C194.364,129.792 183.729,176.093 210.939,203.304 L214.46,206.825 C234.316,226.681 266.331,227.243 286.872,208.096 L454.998,51.383 C449.557,45.942 441.486,44.088 434.215,46.609 L434.215,46.609 Z" id="Shape" fill="#C8E2FD"></path>
+                          <path d="M199.979,352.149 L130.682,421.445 C129.706,422.422 128.426,422.91 127.147,422.91 C125.868,422.91 124.587,422.422 123.612,421.445 C121.659,419.493 121.659,416.327 123.612,414.375 L192.909,345.079 C194.86,343.126 198.028,343.126 199.979,345.079 C201.932,347.031 201.932,350.197 199.979,352.149 Z M206.519,375.661 C204.568,373.708 201.4,373.708 199.449,375.661 L164.095,411.016 C162.142,412.968 162.142,416.134 164.095,418.086 C165.071,419.063 166.351,419.551 167.63,419.551 C168.909,419.551 170.19,419.063 171.165,418.086 L206.519,382.731 C208.472,380.779 208.472,377.613 206.519,375.661 Z M149.95,425.158 L135.808,439.301 C133.856,441.253 133.856,444.419 135.809,446.372 C136.786,447.348 138.065,447.836 139.344,447.836 C140.623,447.836 141.904,447.348 142.88,446.371 L157.022,432.228 C158.974,430.276 158.974,427.11 157.021,425.157 C155.068,423.206 151.903,423.205 149.95,425.158 Z M194.765,414.816 L180.622,428.958 C178.669,430.911 178.669,434.077 180.621,436.029 C181.598,437.006 182.878,437.494 184.157,437.494 C185.436,437.494 186.717,437.006 187.692,436.03 L201.835,421.888 C203.788,419.935 203.788,416.769 201.836,414.817 C199.883,412.864 196.716,412.865 194.765,414.816 Z" id="Shape" fill="#FFFFFF"></path>
+                      </g>
+                  </g>
+              </svg>
+              Message {{ selectedUser.username }}
+                </button>
+                </div>
               <br>
-              <div *ngIf="!checkIfCurrentUser(selectedUser.username)">
-              <i
-              (click)="setIsFavoritedValue(selectedUser)"
-              class="fa fa-star hoverClickYellow"
-              id="favclimber{{ toFavOrNot }}"
-            ></i>
-          </div>
+
               </div>
             </div>
             <div class="col-md-8">
