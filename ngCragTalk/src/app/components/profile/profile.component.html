@@ -2,6 +2,7 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
+
 <!-- This is the update Div -->
 <div style="vertical-align: top; background-image: url('https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg');  background-repeat:no-repeat; background-size: cover;">
   <br>
@@ -18,10 +19,17 @@
    <br>
    <br>
    <br>
+
  </div>
+
+
 <!-- <div class="header">
   <h1>Profile</h1>
 </div> -->
+
+
+
+
 <table *ngIf="selectedUser && updateUserProfile">
   <tbody>
     <td>
@@ -58,9 +66,10 @@
                     placeholder="selectedUser.lastName"
                   />
                 </h5>
+
                 <p></p>
 
-<ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
                   <li class="nav-item">Climbing Info</li>
                 </ul>
               </div>
@@ -71,6 +80,7 @@
             <div class="col-md-4">
               <div class="profile-work">
                 <p></p>
+
                 <p>About Me</p>
                 <i><p class ="italicizeMe"> Username: </p></i>
                 <input
@@ -207,11 +217,14 @@
           class="btn btn-outline-danger"
           (click)="disableUser(selectedUser)"
         >Disable account</button>
+
       </form>
     </td>
   </tbody>
 </table>
+
 <!-- This is the div for the profile before the user hits the edit button -->
+
 <table *ngIf="selectedUser && !updateUserProfile">
   <tbody>
     <tr>
@@ -241,6 +254,8 @@
                 *ngIf="checkIfCurrentUser(selectedUser.username)"
                 (click)="setUpdateUser()"
               >Edit Profile</button> -->
+
+
         <!-- <button (click) = disable(selectedUser)>Disable Profile</button> -->
               <!-- <button
                 *ngIf="!checkIfCurrentUser(selectedUser.username)"
@@ -394,6 +409,7 @@
     </tr>
   </tbody>
 </table>
+
 <div *ngIf="showMessageTextBox">
   <textarea
     [(ngModel)]="newMessage.messageBody"
@@ -407,4 +423,6 @@
   <button class = "btn btn-outline-primary" (click)="sendMessage(newMessage)">Send</button>
   <button class = "btn btn-outline-primary" (click)="showMessageBox()">Back to profile</button>
 </div>
+
 <!-- <img src="/Users/christinapitch/SD/Java/FinalProject/DB/0.png" alt=""> -->
+
