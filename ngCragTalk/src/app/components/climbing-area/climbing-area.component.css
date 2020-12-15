@@ -1,3 +1,36 @@
+
+
+.areaName{
+  background-color: #45556d;
+  text-decoration: overline;
+  text-align: center;
+  color: whitesmoke;
+}
+.events{
+  text-decoration: overline;
+  background-color: #657282;
+  color: whitesmoke;
+}
+
+
+.tableContents{
+  background-color: #87a0b5;
+  color: whitesmoke;
+}
+.tableContents:hover{
+  background-color: blue;
+}
+.tablez{
+  background-color: #7a8ca2;
+  color: whitesmoke;
+}
+.tablez:hover{
+  background-color: blue;
+}
+
+.titlediv{
+  font-size: 30px;
+}
 img {
   width: auto;
   height: 300px;
@@ -9,10 +42,14 @@ td{
 }
 tr{
   height: auto;
-  width: 50%;
+  /* width: 50%; */
 }
 th{
   width: 500px;
 }
-
+table{
+  table-layout: fixed;
+  border-spacing: 0ch;
+  padding: 0%;
+  border: none}
 

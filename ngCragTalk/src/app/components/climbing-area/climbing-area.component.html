@@ -1,32 +1,55 @@
+<body>
+<div style="vertical-align: top; background-image: url('https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg');  background-repeat:no-repeat; background-size: cover;">
+  <h4 class="titlediv" style="color: whitesmoke;" >Climbing Areas</h4>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+</div>
+<br>
+<br>
+
+
 <div *ngFor="let climb of climbingAreas">
-<table class='table table-striped table-bordered'>
+<table class='table table-striped'>
   <tbody>
-  <tr>
+  <tr style="height: 375px">
 <!-- cell 1x1 -->
-    <td>{{climb.name}}
+    <th class="areaName" style="height: 300px;">{{climb.name}}
       <br>
       <br>
-      <img src="{{climb.imgUrl}}">
-    </td>
+      <img class="climbImage" src="{{climb.imgUrl}}">
+    </th>
     <!-- cell 1x2 -->
-    <div style="height:300px;overflow:auto;">
-      <td>About: <br><br>{{climb.description}}</td></div>
+    <td style="height:375px;overflow:auto;background-color: #657282;color: whitesmoke;" ><h6 style="text-decoration: overline">About</h6> <br>
+      <div style="height:375px;overflow:auto;">
+      {{climb.description}}
+      </div>
+      </td>
+  </tr>
 
 
     <tr>
       <!-- cell 2x1 -->
-      <td><tr><th>Events</th></tr>
+      <td><tr><th class="events">Events</th></tr>
             <div *ngFor="let event of climb.events"
             (click)="eventRoute(event)" >
-          <tr><td>{{event.eventName}}</td></tr>
-          <tr><td>{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</td></tr>
+          <tr ><td class="tableContents">{{event.eventName}}</td></tr>
+          <tr class="tablez"><td>{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</td></tr>
         </div>
       </td>
 
-      <td><tr colspan="2"><th> Users who frequent </th></tr>
-        <div style="height:300px;overflow:auto;">
-        <tr *ngFor="let user of climb.users" (click)="userRoute(user)"><td>{{user.firstName}}</td>
-        <div *ngFor="let climbType of user.userClimbTypes"><td>{{climbType.climbType.name}}</td>
+      <td><tr colspan="2"><th class="events"> Users who frequent </th></tr>
+        <div class="userRow" style="height:300px;overflow:auto;">
+        <tr  *ngFor="let user of climb.users" (click)="userRoute(user)"><td class="tableContents">{{user.firstName}}</td>
+        <div *ngFor="let climbType of user.userClimbTypes"><td class="tablez">{{climbType.climbType.name}}</td>
       </div>
     </div>
       </td>
@@ -34,5 +57,5 @@
   </tbody>
   </table>
 </div>
-
+</body>
 
