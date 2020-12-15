@@ -48,12 +48,15 @@ background-repeat:no-repeat;"> -->
 </div>
 
 <div *ngIf = "showMessageBody">
-  <p >
-   {{messageBody.messageBody}}
 
+  <br>
+  <p style="border:3px; border-style:solid; padding: 1em; color: white; background-color: #7a8ca2;">
+
+    {{messageBody.messageBody}}
+    <br><br>
+    From: {{messageBody.sender.username}}
  </p>
- <br>
- <br>
+
   <button class="btn btn-outline-primary" (click) = "setReplyDiv(messageBody)">Reply</button>
   <button class="btn btn-outline-primary" (click) = "backToInbox()">Back to inbox</button>
 </div>
@@ -91,10 +94,11 @@ background-repeat:no-repeat;"> -->
   </div>
 
   <div  *ngIf = "showOutboxMessages"m>
-    <p >
-      Sent to: {{outboxMessageBody.receiver.username}} <br>
-     Message: <br>
-     {{outboxMessageBody.messageBody}}
+    <p style="border:3px; border-style:solid; padding: 1em; color: white; background-color: #7a8ca2;">
+      {{outboxMessageBody.messageBody}}
+      <br><br>
+      Sent to: {{outboxMessageBody.receiver.username}}
+
    </p>
     <button class="btn btn-outline-primary" (click) = "backToInbox()">Back to inbox</button>
   </div>
