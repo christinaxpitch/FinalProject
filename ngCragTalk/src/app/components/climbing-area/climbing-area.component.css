@@ -1,3 +1,31 @@
+body{
+  background-color: wheat;
+}
+
+.title{
+  text-align: center;
+  outline-style: double;
+background-color: sienna;}
+
+.areaName{
+  background-color: sienna;
+  text-decoration: overline;
+  text-align: center;
+}
+.events{
+  text-decoration: overline;
+  background-color: darkslategray;
+}
+.tableContents{
+  background-color: olivedrab;
+}
+.tablez{
+  background-color: olive;
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+
+}
 img {
   width: auto;
   height: 300px;
@@ -9,10 +37,10 @@ td{
 }
 tr{
   height: auto;
-  width: 50%;
+  /* width: 50%; */
 }
 th{
   width: 500px;
 }
-
+table{table-layout: fixed;}
 

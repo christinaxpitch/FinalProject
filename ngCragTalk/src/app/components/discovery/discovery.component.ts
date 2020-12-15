@@ -1,5 +1,4 @@
 import { EventComponent } from './../event/event.component';
-
 import { Event } from 'src/app/models/event';
 import {
   Component,

@@ -154,4 +154,22 @@ table {
   font-size: x-large;
 }
 
+body {
+  font-family: Arial;
+  margin: 0;
+}
 
+/* Header/Logo Title */
+.header {
+background-image: url("https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg");
+  padding: 60px;
+  text-align: top-left;
+  color: white;
+  font-size: 30px;
+  /* background-repeat: no-repeat; */
+  background-size: 300 px 100 px;
+}
+
+.italicizeMe {
+  font-style: italic;
+}
