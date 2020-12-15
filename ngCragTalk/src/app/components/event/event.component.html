@@ -15,7 +15,7 @@
 
 </div>
 <br>
-<button class="btn btn-outline-primary" (click)="showAddEventForm()" id="btnCreateEvent" style="vertical-align: top;" >Create An Event</button>
+<button class="btn btn-outline-primary" (click)="showAddEventForm()" id="btnCreateEvent" style="vertical-align: top;" *ngIf="showAuthorizedStuff" >Create An Event</button>
 
 
 <!-- <div>

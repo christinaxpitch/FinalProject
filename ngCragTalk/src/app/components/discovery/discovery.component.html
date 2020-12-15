@@ -1,40 +1,45 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <script src="https://kit.fontawesome.com/5f2f2d49e7.js" crossorigin="anonymous"></script>
-  <div id='headimg' style="vertical-align: top; background-image: url('https://cdn2.apstatic.com/photos/climb/106389053_medium_1494104155.jpg');  background-repeat:no-repeat; background-size: cover; height: 200px ">
-    <div>
-      <br>
-      <h1 class="text-start fs-1 fw-bold align-baseline">{{pageTitle}}</h1>
-    </div>
-  </div>
+<div class="header">
+  <h1>{{pageTitle}}</h1>
+
+</div>
   <br>
   <br>
 <div class="row align-items-top">
-  <div id="leftPane" class="col">
-    <h3 class="text-center">New Messages</h3>
+  <div class="col">
+    <h3 >New Messages</h3>
+    <div id="leftPane">
+    <div class="card border-0 shadow">
+      <div class="card-body">
+    <div class="cc2">
     <div *ngFor="let message of messages">
-      <p (click)="displayMessageBody(message)" style="font-weight: bold;" class="hoverClickGreen">{{message.sender.username}}</p>
+      <h6 (click)="displayMessageBody(message)" style="font-weight: bold;" class="hoverClickBlue">{{message.sender.username}}</h6>
     </div>
     <br>
-
+  </div>
+  </div>
+  </div>
+  </div>
   </div>
   <div id="centerPane" class="col-8">
     <div id="users">
-      <h3 class="text-center">Climbers</h3>
+      <h3 class="text-center">Recommended Climbers</h3>
       <div id="userList">
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div *ngFor="let user of users | favAreaLocation: loggedInUser">
             <div class="col">
-              <div class="card text-dark bg-info mb-3" style="max-width: 18 rem;">
+              <div class="card mb-3">
               <img src="{{user.profilePic}}" class="card-img-top" alt="climber profilePic">
                 <div class="card-body">
-                <h5 class="hoverClickGreen card-title" style="font-weight: bold;" (click)="showProfile(user.id)">{{user.username}}</h5>
+                <h5 class="hoverClickBlue card-title" style="font-weight: bold;" (click)="showProfile(user.id)">{{user.username}}</h5>
                 <i (click)="addFav(user)" class="fa fa-star hoverClickYellow" id="notFavClimber"></i>
                 <br>
-                <label for="gear"  style="font-weight: bold; color: #b9e769;"  id="gearLabel">Gear: </label>
+                <label for="gear">Gear: </label>
                 <p class="card-text" id="gear" *ngFor="let gear of user.gearList">{{gear.name}}</p>
-                <label for="availability"  style="font-weight: bold; color: #b9e769;"  id="availabilityLabel">Availability: </label>
+                <label for="availability">Availability: </label>
                 <p class="card-text" id="availability">{{user.availability}}</p>
-                <label for="styleGrade"  style="font-weight: bold; color: #b9e769;"  id="gearLabel">Recent Grade: </label>
+                <label for="styleGrade">Recent Grade: </label>
                 <p class="card-text" id="styleGrade" *ngFor="let climb of user.userClimbTypes">{{climb.recentGrade}} {{climb.leadClimb ? "(Was lead)" : ""}}</p>
                 <!-- <p *ngIf="showAuthorizedStuff" class="hoverClickOrange" ><b>Host:  </b>{{event.createdBy.username}}</p> -->
                 </div>
@@ -47,15 +52,21 @@
       <br>
     </div>
   </div>
-  <div id="rightPane" class="col">
-    <h3 class="text-center">My Favorite Climbers</h3>
+  <div class="col">
+  <h3>Favorite Climbers</h3>
+  <div id="rightPane">
+    <div class="card border-0 shadow">
+      <div class="card-body">
+    <div class="cc2">
     <div *ngFor="let climber of loggedInUser.myListOfFavoriteUsers">
-      <!-- <div class="star" (change)="removeFav(climber)"><i class="fa fa-star" id="favclimer"></i></div> -->
       <i (click)="removeFav(climber)" class="fa fa-star" id="favclimber">&nbsp;</i>
-      <label for="favclimber" (click)="showProfile(climber.id)" style="font-weight: bold;" class="hoverClickGreen">{{climber.username}}</label>
+      <label for="favclimber" (click)="showProfile(climber.id)" style="font-weight: bold;" class="hoverClickBlue">{{climber.username}}</label>
     </div>
     <br>
   </div>
+</div>
+</div>
+</div>
 </div>
 <div class="row align-items-center">
   <div class="col"></div>
@@ -66,13 +77,13 @@
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <div *ngFor='let event of events'>
           <div class="col">
-            <div class="card text-dark bg-info mb-3">
+            <div class="card mb-3">
             <img src="{{event.imgUrl}}" class="card-img-top" alt="go climbing!">
               <div class="card-body">
               <h5 class="hoverClickBlue card-title" (click)='displayEvent(event)'>{{event.eventName}}</h5>
-              <h6 class="card-subtitle mb-2" style="font-weight: bold; color: lightsalmon;">{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</h6>
+              <h6 class="card-subtitle mb-2">{{event.eventDate | date: 'EEEE, MMMM d, y, h:mm a'}}</h6>
               <p class="card-text">{{event.description}}</p>
-              <p class="hoverClickOrange" (click)='showProfile(event.createdBy.id)'><b>Host:  </b>{{event.createdBy.username}}</p>
+              <p class="hoverClickBlue" (click)='showProfile(event.createdBy.id)'><b>Host:  </b>{{event.createdBy.username}}</p>
               </div>
             </div>
           </div>
