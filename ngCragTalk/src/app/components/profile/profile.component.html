@@ -193,6 +193,10 @@
           </div>
         </div>
         <button (click)="updateUser(selectedUser)">Save</button>
+        <button *ngIf="checkIfCurrentUser(selectedUser.username)"
+          class="btn btn-outline-danger"
+          (click)="disableUser(selectedUser)"
+        >Disable account</button>
 
       </form>
     </td>
@@ -211,7 +215,7 @@
           <div class="row">
             <div class="col-md-4">
               <div class="profile-img">
-                <img alt="{{ selectedUser.profilePic }}" />
+                <img src="{{ selectedUser.profilePic }}" />
               </div>
             </div>
             <div class="col-md-6">
@@ -229,15 +233,9 @@
               <button class="btn btn-outline-primary"
                 *ngIf="checkIfCurrentUser(selectedUser.username)"
                 (click)="setUpdateUser()"
-              >
-                Edit Profile
-              </button>
-              <button *ngIf="checkIfCurrentUser(selectedUser.username)"
-          class="btn btn-outline-danger"
-          (click)="disableUser(selectedUser)"
-        >
-          Disable account
-        </button>
+              >Edit Profile</button>
+
+
         <!-- <button (click) = disable(selectedUser)>Disable Profile</button> -->
               <button
                 *ngIf="!checkIfCurrentUser(selectedUser.username)"
