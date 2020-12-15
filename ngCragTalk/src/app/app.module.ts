@@ -25,6 +25,7 @@ import { ClimbingAreaComponent } from './components/climbing-area/climbing-area.
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DiscoveryComponent } from './components/discovery/discovery.component';
 import { FavAreaLocationPipe } from './pipes/fav-area-location.pipe';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { FavAreaLocationPipe } from './pipes/fav-area-location.pipe';
     ClimbingAreaComponent,
     DiscoveryComponent,
     FavAreaLocationPipe,
+    AboutComponent,
 
   ],
   imports: [
