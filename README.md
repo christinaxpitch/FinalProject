@@ -24,7 +24,6 @@ Other than viewing the profile of other climbers, a user may browse information 
 * Pair Programming
 * Git Collaboration
 * Basic Authentication
-
 * AWS EC2 Deployment
 
 
