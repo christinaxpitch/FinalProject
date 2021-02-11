@@ -1,6 +1,6 @@
 # FinalProject
 
-##### Tj Laughlin (Developer, Scrum Master) <br/> Pierce Steward (Developer)<br/> Jeanne Wolcott (Developer, Repo Owner) <br/> Christina Pitch (Developer, DBA)
+#####
 <br><br>
 ### Overview
  CragTalk seeks to ease the process of finding a climbing partner. Whether it's having someone spot you with a crash pad while bouldering or belaying you while you lead climb, CragTalk is a web app that allows users to connect with other climbers based on location, favorite climbing areas, skill level, and the type of gear that they have.
@@ -35,3 +35,7 @@ Pair programming was essential to completing the process. Not a single one of us
 We also learned more about console errors and debugging in general. Not being afraid of new errors and quickly recognizing duplicate errors for quick resolution.
 
 We utilized Basic Authentication for the first time extensively and learning about how to set, recall and reset the session data for use as a user navigates the site.
+
+AWS Deployed: http://3.138.41.38:8080/CragTalk/
+To experience full functionality of website, you can log in with one of the users already in the database. (User: shakawithme Password: getajob). 
+
