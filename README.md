@@ -36,6 +36,7 @@ We also learned more about console errors and debugging in general. Not being af
 
 We utilized Basic Authentication for the first time extensively and learning about how to set, recall and reset the session data for use as a user navigates the site.
 
+### The Web App
 AWS Deployed: http://3.138.41.38:8080/CragTalk/
 
 To experience full functionality of website, you can log in with one of the users already in the database. (User: shakawithme Password: getajob). 
